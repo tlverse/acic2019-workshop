@@ -1,4 +1,4 @@
-TITLE = "proposal"
+TITLE = "proposal_acic2019"
 
 .PHONY : all
 all: doc clean

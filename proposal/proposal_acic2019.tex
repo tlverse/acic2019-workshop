@@ -1,0 +1,126 @@
+%\title{Overleaf Memo Template}
+% Using the texMemo package by Rob Oakes
+\documentclass[a4paper,11pt]{texMemo}
+\usepackage[english]{babel}
+\usepackage{graphicx, lipsum}
+\usepackage{url}
+
+%% Edit the header section here. To include your
+%% own logo, upload a file via the files menu.
+\memoto{Organizing Committee, Atlantic Causal Inference Conference}
+\memofrom{Prof.~Mark J.~van der Laan}
+\memosubject{Workshop proposal: The \texttt{tlverse} software ecosystem for
+  causal inference}
+\memodate{\today}
+\logo{\includegraphics[scale=0.15]{figs/ucberkeleyseal_874_540-converted.pdf}}
+
+\begin{document}
+\maketitle
+
+\section{Workshop information}
+
+\textbf{Title:} ``The \texttt{tlverse}: A Software Ecosystem for Causal
+Inference via Targeted Learning''
+
+\textbf{Goal:} This will primarily be a software workshop centered around the
+new \texttt{tlverse} ecosystem (\url{https://github.com/tlverse}) of \texttt{R}
+packages. In order to motivate the use of the software tools, there will be
+substantive discussion of both causal inference methodology --- largely in the
+Targeted Learning framework --- and applications in both observational studies
+and randomized experiments.
+
+\section{Abstract:}
+
+...
+
+\section{Motivations}
+
+...
+
+\section{Organizers}
+
+\subsection{Prof.~Mark J.~van der Laan}
+
+Mark van der Laan, PhD, is Professor of Biostatistics and Statistics at UC
+Berkeley. His research interests include statistical methods in genomics and
+computational biology, survival analysis, censored data, targeted maximum
+likelihood estimation in semiparametric models, causal inference, data-adaptive
+loss-based super learning, and multiple testing. His research group developed
+loss-based super learning in semiparametric models, based on cross-validation,
+as a generic optimal tool for estimation of infinite dimensional parameters,
+such as nonparametric density estimation and prediction based on censored and
+uncensored data. Building on this super learning methodology, his research group
+developed targeted maximum likelihood estimation of a target parameter of the
+data-generating distribution in semiparametric models, as a new generic optimal
+methodology for statistical inference. Most recently, through funding from the
+Bill \& Melinda Gates Foundation, Mark's group has been partly focused on the
+development of a centralized, principled set of software tools for causal
+inference, the \texttt{tlverse}. Contact: \texttt{laan@berkeley.edu}.
+
+\subsection{Prof.~Alan E.~Hubbard}
+
+Alan Hubbard is Professor of Biostatistics, former head of the Division of
+Biostatistics at UC Berkeley, and head of data analytics core at UC Berkeley's
+SuperFund research program. His current research interests include causal
+inference, variable importance analysis, statistical machine learning,
+estimation of and inference for data-adaptive statistical target parameters, and
+targeted minimum loss-based estimation. Research in his group is generally
+motivated by applications to problems in computational biology, epidemiology,
+and precision medicine. Contact: \texttt{hubbard@berkeley.edu}.
+
+\subsection{Dr.~Jeremy R.~Coyle}
+
+Jeremy Coyle is a consulting data scientist and statistical programmer,
+currently leading the software development effort that has produced the
+\texttt{tlverse} ecosystem of \texttt{R} packages and related software tools.
+Jeremy earned his PhD in Biostatistics from UC Berkeley in 2016, primarily under
+the supervision of Alan Hubbard. Contact: \texttt{jeremy.coyle@gmail.com}.
+
+\subsection{Nima S.~Hejazi}
+
+Nima is a PhD candidate in Biostatistics with a designated emphasis in
+computational and genomic biology at UC Berkeley, where he is co-advised by Mark
+van der Laan and Alan Hubbard. Nima is affiliated with the UC Berkeley Center
+for Computational Biology, the NIH Biomedical Big Data training program at UC
+Berkeley, and the Kaiser Permanente Division of Research. His research interests
+span causal inference, nonparametric (data-adaptive) inference and machine
+learning, targeted minimum loss-based estimation, survival analysis and censored
+data models, statistical computing, reproducible research, and computational
+biology. Substantive applications have recently included vaccine efficacy
+trials, precision medicine, high-dimensional biology, and epidemiology. Nima is
+also passionate about software development for applied statistics, including
+software design, automated testing, and reproducible coding practices. Contact:
+\texttt{nhejazi@berkeley.edu}.
+
+\subsection{Ivana Malenica}
+
+Ivana is a PhD student in the UC Berkeley Biostatistics Division, working
+with Alan Hubbard and Mark van der Laan. She earned her Master's in
+Biostatistics and Bachelor's in Mathematics, and spent some time at the
+Translational Genomics Research Institute. Some of her prior work includes
+mathematical modeling, Bayesian models for allele specific expression and
+time-series models for genomics data. Broadly, her research interests span
+Machine Learning, Causal Inference, high-dimensional data, and semiparametric
+theory. Some of her current work has been centered around active learning, model
+selection criterion for dependent data, targeted estimators for parameters of
+semi- and nonparametric models (recently, working with the natural mediation
+effect) and software development (\texttt{medltmle}, \texttt{sl3}). Contact:
+\texttt{imalenica@berkeley.edu}.
+
+\section{Duration}
+
+This will be a 6-hour workshop (entire day), featuring self-contained modules
+that build on one another, each introducing a distinct type of causal question,
+alongside appropriate statistical methodology and software for implementing
+solutions to the problem at hand.
+
+\section{Prior History}
+
+The \texttt{tlverse} software ecosystem represents a relatively recent effort
+(about 2 years in the making) in developing a set of software tools for causal
+inference, all built around a consistent set of design principles. Although we
+have introduced the material in courses taught at UC Berkeley, this will be the
+first offering in the 6-hour workshop format.
+
+\end{document}
+
