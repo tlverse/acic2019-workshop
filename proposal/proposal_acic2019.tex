@@ -1,13 +1,9 @@
-%\title{Overleaf Memo Template}
-% Using the texMemo package by Rob Oakes
 \documentclass[a4paper,11pt]{texMemo}
 \usepackage[english]{babel}
-\usepackage{graphicx, lipsum}
+\usepackage{graphicx}
 \usepackage{url}
 
-%% Edit the header section here. To include your
-%% own logo, upload a file via the files menu.
-\memoto{Organizing Committee, Atlantic Causal Inference Conference}
+\memoto{Organizing Committee, Atlantic Causal Inference Conference 2019}
 \memofrom{Prof.~Mark J.~van der Laan}
 \memosubject{Workshop proposal: The \texttt{tlverse} software ecosystem for
   causal inference}
@@ -17,47 +13,96 @@
 \begin{document}
 \maketitle
 
+\vspace{-0.25in}
 \section{Workshop information}
 
-\textbf{Title:} ``The \texttt{tlverse}: A Software Ecosystem for Causal
-Inference via Targeted Learning''
+\begin{itemize}
+  \itemsep1pt
+  \item \textbf{Title:} ``The \texttt{tlverse}: A Software Ecosystem for Causal
+    Inference via Targeted Learning''
+  \item \textbf{Goal:} This will primarily be a software workshop centered
+    around the new \texttt{tlverse} ecosystem (\url{https://github.com/tlverse})
+    of \texttt{R} packages. In order to motivate the use of the software tools,
+    there will be substantive discussion of both causal inference methodology
+    --- focusing on the field of targeted learning --- and applications in both
+    large-scale observational studies and randomized experiments.
+\end{itemize}
 
-\textbf{Goal:} This will primarily be a software workshop centered around the
-new \texttt{tlverse} ecosystem (\url{https://github.com/tlverse}) of \texttt{R}
-packages. In order to motivate the use of the software tools, there will be
-substantive discussion of both causal inference methodology --- largely in the
-Targeted Learning framework --- and applications in both observational studies
-and randomized experiments.
+\section{Abstract}
 
-\section{Abstract:}
-
-...
+This full-day short course will provide a comprehensive introduction to both the
+\texttt{tlverse} software ecosystem and the field of targeted learning for
+causal inference. The workshop will primarily focus on introducing modern
+methodological developments in statistical causal inference and their
+corresponding software implementations in the \texttt{tlverse}. Topics to be
+addressed include efficient estimation in nonparametric and semiparametric
+models; efficiency bounds for causal estimands; efficient estimators based on
+influence functions, constructed via targeted minimum loss-based estimation;
+bias-correction and de-confounding for such estimators via machine learning;
+stochastic interventions (e.g., incremental propensity score shifts), and
+optimal treatment regimes (and extensions for categorical treatments). The
+strategies we discuss yield (double) robust estimators with normal limiting
+distributions and fast convergence rates in complex statistical models, allowing
+for valid inference even when nuisance parameters are estimated via machine
+learning. Each causal parameter and statistical estimator will be demonstrated
+with a corresponding \texttt{R} package from the \texttt{tlverse} ecosystem via
+hands-on data analysis, providing participants opportunities to familiarize
+themselves with both the methods and tools. Some backgound in mathematical
+statistics will be useful; familiarity with the \texttt{R} language and
+environment for statistical computing will be essential.
 
 \section{Motivations}
 
-...
+Randomized clinical trials (RCTs) have long served as the gold standard of
+evidence for comparing potential interventions in clinical medicine, public
+health, and marketing, political science, and many other fields. Unfortunately,
+such trials are often not feasible due to ethical, logistic or economical
+constraints. Observational studies constitute a potentially rich alternative to
+RCTs, providing an opportunity to learn about the causal effects of
+interventions for which little or no trial data can be produced; however, in
+such studies intervention allocation may be strongly confounded by other
+important characteristics. Thus, great care is needed in attempts to disentangle
+observed relationships and, ultimately, infer causal effects. This course will
+provide an overview of recent advances in the field of targeted learning, a
+modern statistical framework for that advocates the use of state-of-the-art
+machine learning to flexibly adjust for confounding while yielding valid
+statistical inference, thus unlocking observational studies for causal
+inference.
+
+A longstanding problem in the use of modern, complex statistical approaches
+has been the availability of robust software to facilitate computationally
+reproducible causal inference analyses. Thus, to complement the statisitcal
+methodology introduced, this workshop will focus on the \texttt{tlverse}
+software ecosystem, a recent effort to develop a  suite of \texttt{R} packages
+that share a core set of design principles centered on extensibility. Tools to
+be introduced include the Super Learner model stacking framework to flexibly
+adjust for confounding, and its implementation in the \texttt{sl3 R} package;
+estimation and inference for ``classical'' causal parameters (e.g., ATE) with
+the \texttt{tmle3 R} package; optimal treatment regimes and the
+\texttt{tmle3mopttx R} package; stochastic interventions and the
+\texttt{tmle3shift R} package; and variable importance analyses via targeted
+learning.
 
 \section{Organizers}
 
-\subsection{Prof.~Mark J.~van der Laan}
+\subsection{Mark van der Laan, Ph.D.}
 
 Mark van der Laan, PhD, is Professor of Biostatistics and Statistics at UC
-Berkeley. His research interests include statistical methods in genomics and
-computational biology, survival analysis, censored data, targeted maximum
-likelihood estimation in semiparametric models, causal inference, data-adaptive
-loss-based super learning, and multiple testing. His research group developed
-loss-based super learning in semiparametric models, based on cross-validation,
-as a generic optimal tool for estimation of infinite dimensional parameters,
-such as nonparametric density estimation and prediction based on censored and
-uncensored data. Building on this super learning methodology, his research group
-developed targeted maximum likelihood estimation of a target parameter of the
-data-generating distribution in semiparametric models, as a new generic optimal
-methodology for statistical inference. Most recently, through funding from the
-Bill \& Melinda Gates Foundation, Mark's group has been partly focused on the
-development of a centralized, principled set of software tools for causal
-inference, the \texttt{tlverse}. Contact: \texttt{laan@berkeley.edu}.
+Berkeley. His research interests include statistical methods in computational
+biology, survival analysis, censored data, targeted maximum likelihood
+estimation, causal inference, data-adaptive loss-based learning, and multiple
+testing. His research group developed loss-based super learning in
+semiparametric models, based on cross-validation, as a generic optimal tool for
+the estimation of infinite-dimensional parameters, such as nonparametric density
+estimation and prediction with both censored and uncensored data. Building on
+this work, his research group developed targeted maximum likelihood estimation
+for a target parameter of the data-generating distribution in arbitrary
+semiparametric and nonparametric models, as a generic optimal methodology for
+statistical and causal inference. Most recently, Mark's group has focused in
+part on the development of a centralized, principled set of software tools for
+targeted learning, the \texttt{tlverse}. Contact: \texttt{laan@berkeley.edu}.
 
-\subsection{Prof.~Alan E.~Hubbard}
+\subsection{Alan Hubbard, Ph.D.}
 
 Alan Hubbard is Professor of Biostatistics, former head of the Division of
 Biostatistics at UC Berkeley, and head of data analytics core at UC Berkeley's
@@ -68,7 +113,7 @@ targeted minimum loss-based estimation. Research in his group is generally
 motivated by applications to problems in computational biology, epidemiology,
 and precision medicine. Contact: \texttt{hubbard@berkeley.edu}.
 
-\subsection{Dr.~Jeremy R.~Coyle}
+\subsection{Jeremy Coyle, Ph.D.}
 
 Jeremy Coyle is a consulting data scientist and statistical programmer,
 currently leading the software development effort that has produced the
@@ -76,23 +121,22 @@ currently leading the software development effort that has produced the
 Jeremy earned his PhD in Biostatistics from UC Berkeley in 2016, primarily under
 the supervision of Alan Hubbard. Contact: \texttt{jeremy.coyle@gmail.com}.
 
-\subsection{Nima S.~Hejazi}
+\subsection{Nima Hejazi, M.A.}
 
-Nima is a PhD candidate in Biostatistics with a designated emphasis in
-computational and genomic biology at UC Berkeley, where he is co-advised by Mark
-van der Laan and Alan Hubbard. Nima is affiliated with the UC Berkeley Center
-for Computational Biology, the NIH Biomedical Big Data training program at UC
-Berkeley, and the Kaiser Permanente Division of Research. His research interests
-span causal inference, nonparametric (data-adaptive) inference and machine
-learning, targeted minimum loss-based estimation, survival analysis and censored
+Nima is a PhD candidate in biostatistics with a designated emphasis in
+computational and genomic biology at UC Berkeley, under the joint supervision of
+Mark van der Laan and Alan Hubbard. Nima is affiliated with UC Berkeley's Center
+for Computational Biology and NIH Biomedical Big Data training program. Nima's
+research interests span causal inference, nonparametric inference and machine
+learning, targeted loss-based estimation, survival analysis and censored
 data models, statistical computing, reproducible research, and computational
 biology. Substantive applications have recently included vaccine efficacy
-trials, precision medicine, high-dimensional biology, and epidemiology. Nima is
-also passionate about software development for applied statistics, including
-software design, automated testing, and reproducible coding practices. Contact:
+trials, precision medicine, and high-dimensional biology. Nima is also
+passionate about software development for applied statistics, including software
+design, automated testing, and reproducible coding practices. Contact:
 \texttt{nhejazi@berkeley.edu}.
 
-\subsection{Ivana Malenica}
+\subsection{Ivana Malenica, M.A.}
 
 Ivana is a PhD student in the UC Berkeley Biostatistics Division, working
 with Alan Hubbard and Mark van der Laan. She earned her Master's in
@@ -109,18 +153,34 @@ effect) and software development (\texttt{medltmle}, \texttt{sl3}). Contact:
 
 \section{Duration}
 
-This will be a 6-hour workshop (entire day), featuring self-contained modules
-that build on one another, each introducing a distinct type of causal question,
-alongside appropriate statistical methodology and software for implementing
-solutions to the problem at hand.
+This will be a 6-hour, full-day workshop, featuring modules that each introduce
+a distinct causal question, alongside statistical methodology and software for
+implementing solutions to the given problem. A sample schedule would take the
+form:
+\begin{itemize}
+  \itemsep0pt
+  \item 09:30AM--10:20AM: Introduction to targeted learning for causal inference
+  \item 10:20AM--10:30AM: Coffee Break
+  \item 10:30AM--11:20AM: Introduction to the \texttt{tlverse} software
+    ecosystem
+  \item 11:20AM--11:30AM: Coffee Break
+  \item 11:30AM--12:45PM: Stochastic interventions and the \texttt{tmle3shift R}
+    package
+  \item 12:45PM--01:30PM: Lunch Break
+  \item 01:30PM--02:45PM: Optimal treatments regimes and the
+    \texttt{tmle3mopttx R} package
+  \item 02:45PM--02:55PM: Coffee Break
+  \item 02:55PM--03:45PM: Targeted learning for variable importance analyses
+  \item 03:45PM--4:00PM: Course summary and concluding remarks
+\end{itemize}
 
 \section{Prior History}
 
-The \texttt{tlverse} software ecosystem represents a relatively recent effort
-(about 2 years in the making) in developing a set of software tools for causal
-inference, all built around a consistent set of design principles. Although we
-have introduced the material in courses taught at UC Berkeley, this will be the
-first offering in the 6-hour workshop format.
+The \texttt{tlverse} ecosystem is a relatively recent effort (about 2 years in
+the making) in developing a set of software tools for causal inference, all
+built around a consistent set of design principles. Although we have introduced
+the material in graduate courses taught at UC Berkeley, this will potentially be
+the first offering in the 6-hour format.
 
 \end{document}
 
