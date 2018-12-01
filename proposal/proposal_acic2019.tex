@@ -44,12 +44,12 @@ optimal treatment regimes (and extensions for categorical treatments). The
 strategies we discuss yield (double) robust estimators with normal limiting
 distributions and fast convergence rates in complex statistical models, allowing
 for valid inference even when nuisance parameters are estimated via machine
-learning. Each causal parameter and statistical estimator will be demonstrated
-with a corresponding \texttt{R} package from the \texttt{tlverse} ecosystem via
-hands-on data analysis, providing participants opportunities to familiarize
-themselves with both the methods and tools. Some backgound in mathematical
-statistics will be useful; familiarity with the \texttt{R} language and
-environment for statistical computing will be essential.
+learning. Each causal parameter and corresponding estimators estimator will be
+demonstrated with an \texttt{R} package from the \texttt{tlverse} ecosystem
+through hands-on data analysis, providing participants opportunities to
+familiarize themselves with both the methods and software tools. Some
+background in mathematical statistics will be useful; familiarity with the
+\texttt{R} language and environment for statistical computing will be essential.
 
 \section{Motivations}
 
@@ -65,21 +65,22 @@ important characteristics. Thus, great care is needed in attempts to disentangle
 observed relationships and, ultimately, infer causal effects. This course will
 provide an overview of recent advances in the field of targeted learning, a
 modern statistical framework for that advocates the use of state-of-the-art
-machine learning to flexibly adjust for confounding while yielding valid
-statistical inference, thus unlocking observational studies for causal
-inference.
+machine learning to flexibly adjust estimates under potential confounding while
+yielding valid statistical inference, thus unlocking observational studies for
+causal inference.
 
 A longstanding problem in the use of modern, complex statistical approaches
 has been the availability of robust software to facilitate computationally
-reproducible causal inference analyses. Thus, to complement the statisitcal
+reproducible causal inference analyses. Thus, to complement the statistical
 methodology introduced, this workshop will focus on the \texttt{tlverse}
 software ecosystem, a recent effort to develop a  suite of \texttt{R} packages
 that share a core set of design principles centered on extensibility. Tools to
 be introduced include the Super Learner model stacking framework to flexibly
-adjust for confounding, and its implementation in the \texttt{sl3 R} package;
-estimation and inference for ``classical'' causal parameters (e.g., ATE) with
-the \texttt{tmle3 R} package; optimal treatment regimes and the
-\texttt{tmle3mopttx R} package; stochastic interventions and the
+adjust estimates (under potential confounding), and its implementation in the
+\texttt{sl3 R} package; estimation and inference for causal parameters defined
+through static interventions (e.g., the average treatment effect) with the
+\texttt{tmle3 R} package; dynamic interventions and optimal treatment regimes
+with the \texttt{tmle3mopttx R} package; stochastic interventions with the
 \texttt{tmle3shift R} package; and variable importance analyses via targeted
 learning.
 
@@ -164,11 +165,11 @@ form:
   \item 10:30AM--11:20AM: Introduction to the \texttt{tlverse} software
     ecosystem
   \item 11:20AM--11:30AM: Coffee Break
-  \item 11:30AM--12:45PM: Stochastic interventions and the \texttt{tmle3shift R}
-    package
-  \item 12:45PM--01:30PM: Lunch Break
-  \item 01:30PM--02:45PM: Optimal treatments regimes and the
+  \item 11:30AM--12:45PM: Optimal treatments regimes and the
     \texttt{tmle3mopttx R} package
+  \item 12:45PM--01:30PM: Lunch Break
+  \item 01:30PM--02:45PM: Stochastic interventions and the \texttt{tmle3shift R}
+    package
   \item 02:45PM--02:55PM: Coffee Break
   \item 02:55PM--03:45PM: Targeted learning for variable importance analyses
   \item 03:45PM--4:00PM: Course summary and concluding remarks
