@@ -53,13 +53,13 @@ inference and their corresponding software implementations in the
 will perform hands-on implementation of novel estimators for assessing causal
 claims with complex, observational data. Topics to be addressed include ensemble
 machine learning; efficient substitution estimators in nonparametric and
-semiparametric models and targeted minimum loss-based estimation; inference
-based on influence functions; static, dynamic, optimal dynamic, and stochastic
-interventions. Strategies for constructing (double) robust efficient plug-in
-estimators with normal limiting distributions, allowing for valid inference even
-when the functional nuisance parameters are estimated via machine learning.
-Causal parameters and and corresponding estimators will be examined both
-mathematically and through their corresponding \texttt{R} package
+semiparametric models and targeted minimum loss-based estimation (TMLE);
+inference based on influence functions; static, dynamic, optimal dynamic, and
+stochastic interventions. TMLE provides a strategy for constructing (double)
+robust efficient plug-in estimators with normal limiting distributions, allowing
+for valid inference even when the functional nuisance parameters are estimated
+via machine learning. Causal parameters and corresponding estimators will be
+examined both mathematically and through their corresponding \texttt{R} package
 implementations from the \texttt{tlverse} ecosystem via hands-on data analysis,
 providing participants opportunities to develop skills that will translate to
 real-world causal inference analyses. Some background in mathematical statistics
@@ -70,12 +70,12 @@ essential.
 \subsection{Motivation}
 
 Randomized clinical trials (RCTs) have long served as the gold standard of
-evidence for comparing potential interventions in clinical medicine, public
-health, and marketing, political science, and many other fields. Unfortunately,
-such trials are often not feasible due to ethical, logistic or economical
-constraints. Observational studies constitute a potentially rich alternative to
-RCTs, providing an opportunity to learn about the causal effects of
-interventions for which little or no trial data can be produced; however, in
+evidence for comparing potential interventions in clinical medicine and public
+health, marketing, political science, and a great many other fields.
+Unfortunately, such trials are often not feasible due to ethical, logistic or
+economical constraints. Observational studies constitute a potentially rich
+alternative to RCTs, providing an opportunity to learn about the causal effects
+of interventions for which little or no trial data can be produced; however, in
 such studies intervention allocation may be strongly confounded by other
 important characteristics. Thus, great care is needed in attempts to disentangle
 observed relationships and, ultimately, infer causal effects. This workshop will
@@ -101,7 +101,7 @@ All \texttt{R} packages in the \texttt{tlverse} ecosystem directly model the key
 objects defined in the mathematical and theoretical framework of targeted
 learning. What's more, the \texttt{tlverse} \texttt{R} packages share a core set
 of design principles centered on extensibility, allowing for them to be used in
-conjuction with each other and built upon one other in a cohesive fashion.
+conjunction with each other and built upon one other in a cohesive fashion.
 
 \subsection{Duration}
 
