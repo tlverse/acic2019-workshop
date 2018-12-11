@@ -25,44 +25,117 @@
 
 \memoto{Organizing Committee, Atlantic Causal Inference Conference 2019}
 \memofrom{Prof.~Mark J.~van der Laan}
-\memosubject{Workshop proposal: The \texttt{tlverse} software ecosystem for causal inference.}
+\memosubject{Workshop proposal: The \texttt{tlverse} software ecosystem for
+  causal inference.}
 \memodate{\today}
 \logo{\includegraphics[scale=0.15]{figs/ucberkeleyseal_874_540.eps}}
 
 \begin{document}
 \maketitle
 \vspace{-0.25in}
-\section{Workshop information}\note[id=RP]{Remove this section header and simply including the title, saves space}
+\section{Workshop information}
 
+\subsection{\textbf{Title:} \small The \texttt{tlverse}: A Software Ecosystem
+  for Causal Inference and Targeted Learning}
+
+\subsection{Abstract}
+
+This full-day workshop will provide a comprehensive introduction to both the
+\texttt{tlverse} software ecosystem and the field of targeted learning for
+causal inference. While this will primarily be a software workshop centered
+around the new \texttt{tlverse} ecosystem (\url{https://github.com/tlverse}) of
+\texttt{R} packages, there will be rigorous examination of both causal inference
+methodology --- focusing on the field of targeted learning --- and applications
+in both large-scale observational studies and randomized experiments. The focus
+will be on introducing modern methodological developments in statistical causal
+inference and their corresponding software implementations in the
+\texttt{tlverse}. Through vignette-guided live coding exercises, participants
+will perform hands-on implementation of novel estimators for assessing causal
+claims with complex, observational data. Topics to be addressed include ensemble
+machine learning; efficient substitution estimators in nonparametric and
+semiparametric models and targeted minimum loss-based estimation; inference
+based on influence functions; static, dynamic, optimal dynamic, and stochastic
+interventions. Strategies for constructing (double) robust efficient plug-in
+estimators with normal limiting distributions, allowing for valid inference even
+when the functional nuisance parameters are estimated via machine learning.
+Causal parameters and and corresponding estimators will be examined both
+mathematically and through their corresponding \texttt{R} package
+implementations from the \texttt{tlverse} ecosystem via hands-on data analysis,
+providing participants opportunities to develop skills that will translate to
+real-world causal inference analyses. Some background in mathematical statistics
+will be useful; familiarity with the \texttt{R} programming language will be
+essential.
+
+
+\subsection{Motivation}
+
+Randomized clinical trials (RCTs) have long served as the gold standard of
+evidence for comparing potential interventions in clinical medicine, public
+health, and marketing, political science, and many other fields. Unfortunately,
+such trials are often not feasible due to ethical, logistic or economical
+constraints. Observational studies constitute a potentially rich alternative to
+RCTs, providing an opportunity to learn about the causal effects of
+interventions for which little or no trial data can be produced; however, in
+such studies intervention allocation may be strongly confounded by other
+important characteristics. Thus, great care is needed in attempts to disentangle
+observed relationships and, ultimately, infer causal effects. This workshop will
+provide a comprehensive introduction to the field of targeted learning, a modern
+statistical framework that utilizes state-of-the-art machine learning to
+flexibly adjust for confounding while yielding efficient, unbiased estimators
+and valid statistical inference, thus unlocking observational studies for causal
+inference.
+
+Targeted learning is a complex statistical approach and, in order for this
+method to be accessible in practice, it is crucial that it is accompanied by
+robust software. The \texttt{tlverse} software ecosystem was developed to
+fulfill this need. Not only does this software facilitate computationally
+reproducible and efficient analyses, but it is also a tool for targeted learning
+education since its workflow mirrors that of the methodology. That is, the
+\texttt{tlverse} paradigm does not focus on implementing a specific estimator or
+a small set of related estimators --- instead, the focus is on exposing the
+statistical framework of targeted learning itself! Thus, users are required to
+explicitly define objects to model key statistical objects: the nonparametric
+structural equation model, the factorized likelihood, counterfactual
+interventions, causal parameters, and algorithmic step for computing estimators.
+All \texttt{R} packages in the \texttt{tlverse} ecosystem directly model the key
+objects defined in the mathematical and theoretical framework of targeted
+learning. What's more, the \texttt{tlverse} \texttt{R} packages share a core set
+of design principles centered on extensibility, allowing for them to be used in
+conjuction with each other and built upon one other in a cohesive fashion.
+
+\subsection{Duration}
+
+This will be a full-day workshop, featuring modules that introduce a distinct
+causal question motivated by a case study, alongside statistical methodology and
+software for assessing the causal claim of interest. A sample schedule would
+take the form:
 \begin{itemize}
-  \itemsep1pt
-  \item \textbf{Title:} ``The \texttt{tlverse}: A Software Ecosystem for Causal Inference
-  \deleted[id=RP]{via} \added[id=RP]{with} Targeted Learning'' \note[id=RP]{or, ...Ecosystem of Targeted Learning for Causal Inference.}
-  \item \textbf{Goal:} This will primarily be a software workshop centered around the new \texttt{tlverse} ecosystem (\url{https://github.com/tlverse}) of \texttt{R} packages. In order to motivate the use of the software tools, there will be substantive discussion\note[id=RP]{I think "discussion" is weak here. This "Goal" paragraph is the most important part of the document since it comes first. It doesn't appear to be required \textbf{I think it should be omitted}. Omission will force the reviewer to actually read the abstract instead of reading this summarized version of it} of both causal inference methodology --- focusing on the field of targeted learning --- and applications in both large-scale observational studies and randomized experiments.
+  \itemsep0pt
+  \item 09:30AM--10:15AM: Introduction to targeted learning for causal inference
+  \item 10:15AM--10:45AM: Introduction to the \texttt{tlverse} software
+    ecosystem
+  \item 10:45AM--11:00AM: Coffee Break
+  \item 11:00AM--11:45AM: Ensemble machine learning with the \texttt{sl3}
+    package
+  \item 11:45AM--12:30PM: Targeted learning for causal inference with the
+    \texttt{tmle3} package
+  \item 12:30PM--1:30PM: Lunch
+  \item 01:30PM--02:45PM: Optimal treatments regimes and the
+    \texttt{tmle3mopttx} package
+  \item 02:45PM--03:00PM: Coffee Break
+  \item 3:00PM--4:00PM: Stochastic interventions and the \texttt{tmle3shift}
+    package
+  \item 04:00PM--4:30PM: Course summary and concluding remarks
 \end{itemize}
+\textit{Please note that the workshop will be 6 hours, including coffee breaks
+but not lunch.}
 
-\section{Abstract}
+\subsection{Prior History}
 
-This full-day \deleted[id=RP]{short course} \added[id=RP]{workshop} will provide a comprehensive introduction to both the \texttt{tlverse} software ecosystem and the field of targeted learning for
-causal inference. \deleted[id=RP]{The workshop} \added[id=RP]{We} will \deleted[id=RP]{primarily} focus on \added[id=RP]{using case studies to motivate} \deleted[id=RP]{introducing modern} methodological developments in statistical causal inference and their corresponding software implementations in the \texttt{tlverse}. \added[id=RP]{Through vignette guided live coding exercises with workshop organizers, participants will perform hands on implementation of novel estimators using high dimensional data structures. Also, vignettes will serve as a \texttt{tlverse} guide for attendees to refer to in the future when assessing causal claims with complex, observational data.} Some background in \deleted[id=RP]{mathematical} statistics will be useful\deleted[id=RP]{; f}\added[id=RP]{. F}amiliarity with the \texttt{R} language and environment for statistical computing will be essential. \added[id=RP]{In this full-day workshop, we will present the software tools and the methodology of Targeted Learning, which (1) generalizes machine learning to any estimand of interest; (2) obtains an optimal estimator of the given estimand, grounded in theory; (3) integrates the state-of-the-art ensemble machine learning techniques; and (4) provides formal
-statistical inference in terms of confidence intervals and testing of specified
-null hypotheses of interest.} Topics to be addressed include \added[id=RP]{ensemble machine learning (Super learning) based on cross-validation}; efficient substitution estimators in nonparametric and semiparametric models \deleted[id=RP]{through} \added[id=RP]{with} targeted minimum loss-based estimation (TMLE); efficient influence function \added[id=RP]{and statistical inference based on the efficient influence function?}; \deleted[id=RP]{ensemble machine learning of functional parameters based on cross-validation (Super-learning), as used to obtain initial estimator of nuisance parameters in TMLE;} \deleted[id=RP]{application of TMLE to estimate causal effects of} \note[id=RP]{I omitted ``application of..'' bc its an application of a topic, not strictly a topic like the others, and we provide the ``topic applications'' in the schedule} \added[id=RP]{static, dynamic, optimal dynamic, and stochastic} \deleted[id=RP]{stochastic interventions (e.g., incremental propensity score shifts), and optimal dynamic} treatment regimes. \deleted[id=RP]{The TMLE yields (double) robust efficient plug-in estimators with normal limiting distributions, allowing for valid inference even when the functional nuisance parameters are estimated via machine learning. For each causal parameter and and corresponding TMLE, we will demonstrate the corresponding \texttt{R} package from the \texttt{tlverse} ecosystem via hands-on data analysis, providing participants opportunities to familiarize themselves with both the methods and tools.}\note[id=RP]{Also, I am not sure if we should even include the topics or if we should include more topics such as: brief overview of structural causal models, causal quantities, and identification; asymptotic linearity of an estimator)}
-
-\section{Motivation\deleted[id=RP]{s}}
-
-Randomized clinical trials (RCTs) have long served as the gold standard of evidence for comparing potential interventions in clinical medicine, public health, and marketing, political science, and many other fields. Unfortunately, such trials are often not feasible due to ethical, logistic or economical constraints. Observational studies constitute a potentially rich alternative to RCTs, providing an opportunity to learn about the causal effects of interventions for which little or no trial data can be produced; however, in such studies intervention allocation may be strongly confounded by other important characteristics. Thus, great care is needed in attempts to disentangle observed relationships and, ultimately, infer causal effects. This \deleted[id=RP]{course} \added[id=RP]{workshop} will provide an overview of  advances in the field of targeted learning \note[id=RP]{in the abstract, this workshop was intended to provide a comprehensive introduction to TL. Here, it is intended to provide an "overview of advances" in TL. This is contradictory and we need to choose one focus/target audience. I vote for the "comprehensive introduction" and a target audience of advanced epidemiologists who are grateful for the software and might already use existing TL software in R but not fantastic programmers/statisticians}, a modern statistical framework that \deleted[id=RP]{advocates the use of} \added[id=RP]{utilizes} state-of-the-art
-machine learning to flexibly adjust for confounding while yielding \added[id=RP]{efficient, minimally biased estimators and} valid statistical inference, thus unlocking observational studies for causal inference.
-
-Targeted learning is a complex statistical approach and, in order for this method to be accessible in practice, it is crucial that it is accompanied by robust software. The \texttt{tlverse} software ecosystem was developed to fulfill this need. Not only does this software facilitate computationally reproducible and efficient analyses; it is also a tool for targeted learning education since its work flow mirrors that of the methodology. For example, \texttt{tlverse/tmle3} functionality does not focus on implementing a specific TML estimator, or a small set of related estimators, the focus is on modeling the TMLE framework itself! Therefore, users are required to explicitly define objects to model the non parametric structural equation model, the factorized likelihood, counterfactual interventions, parameters, and TMLE update procedures. This framework is not exclusive to \texttt{tlverse/tmle3}; all \texttt{R} packages in the \texttt{tlverse} directly model the key objects defined in the mathematical and theoretical framework of targeted learning. Further, the \texttt{tlverse} \texttt{R} packages share a core set of design principles centered on extensibility. In this manner, the packages may be used in conjuction and built upon each other in a cohesive fashion; thus forming a software ecosystem.
-\deleted[id=RP]{A longstanding problem in the use of modern, complex statistical approaches has been the availability of robust software  to facilitate computationally reproducible causal inference analyses. Thus, to complement the statisitcal methodology introduced, this workshop will focus on the \texttt{tlverse} software ecosystem, a recent effort to develop a  suite of \texttt{R} packages
-that share a core set of design principles centered on extensibility. Tools to be introduced}
-
-\pagebreak
-
-\note[id=RP]{Not sure if we should include the information below that details the topics to be presented. It's not really motivation/rationale and we present it later in the sample schedule}
-
-\added[id=RP]{In the workshop, the core design principles, architecture, and extensibility of \texttt{tlverse} will presented first. Next, specific \texttt{tlverse} \texttt{R} packages will be presented and will} include the Super Learner model stacking framework to flexibly adjust for confounding, and its implementation in the \texttt{sl3 R} package; estimation and inference for ``classical'' causal parameters (e.g., ATE) with
-the \texttt{tmle3 R} package; optimal treatment regimes and the \texttt{tmle3mopttx R} package; stochastic interventions and the \texttt{tmle3shift R} package; and variable importance analyses \deleted[id=RP]{via} \added[id=RP]{with} targeted learning.
+The \texttt{tlverse} ecosystem is a relatively recent effort, about 2 years in
+the making. Although some material has been introduced across several
+graduate-level courses taught at UC Berkeley, this workshop would be the first
+offering in the 6-hour format.
 
 \section{Organizers}
 
@@ -70,11 +143,20 @@ the \texttt{tmle3 R} package; optimal treatment regimes and the \texttt{tmle3mop
 
 \vspace{-.5em}
 
-Mark van der Laan, PhD, is Professor of Biostatistics and Statistics at UC Berkeley. His research interests include statistical methods in computational
-biology, survival analysis, censored data, adaptive designs, targeted maximum likelihood estimation, causal inference, data-adaptive loss-based learning, and multiple testing. His research group developed loss-based super learning in semiparametric models, based on cross-validation, as a generic optimal tool for the estimation of infinite-dimensional parameters, such as nonparametric density
-estimation and prediction with both censored and uncensored data. Building on this work, his research group developed targeted maximum likelihood estimation for a target parameter of the data-generating distribution in arbitrary
-semiparametric and nonparametric models, as a generic optimal methodology for statistical and causal inference. Most recently, Mark's group has focused in
-part on the development of a centralized, principled set of software tools for targeted learning, the \texttt{tlverse}. Contact: \texttt{laan@berkeley.edu}.
+Mark van der Laan, PhD, is Professor of Biostatistics and Statistics at UC
+Berkeley. His research interests include statistical methods in computational
+biology, survival analysis, censored data, adaptive designs, targeted maximum
+likelihood estimation, causal inference, data-adaptive loss-based learning, and
+multiple testing. His research group developed loss-based super learning in
+semiparametric models, based on cross-validation, as a generic optimal tool for
+the estimation of infinite-dimensional parameters, such as nonparametric density
+estimation and prediction with both censored and uncensored data. Building on
+this work, his research group developed targeted maximum likelihood estimation
+for a target parameter of the data-generating distribution in arbitrary
+semiparametric and nonparametric models, as a generic optimal methodology for
+statistical and causal inference. Most recently, Mark's group has focused in
+part on the development of a centralized, principled set of software tools for
+targeted learning, the \texttt{tlverse}. Contact: \texttt{laan@berkeley.edu}.
 
 \vspace{-.5em}
 
@@ -82,9 +164,13 @@ part on the development of a centralized, principled set of software tools for t
 
 \vspace{-.5em}
 
-Alan Hubbard is Professor of Biostatistics, former head of the Division of Biostatistics at UC Berkeley, and head of data analytics core at UC Berkeley's
-SuperFund research program. His current research interests include causal inference, variable importance analysis, statistical machine learning,
-estimation of and inference for data-adaptive statistical target parameters, and targeted minimum loss-based estimation. Research in his group is generally motivated by applications to problems in computational biology, epidemiology,
+Alan Hubbard is Professor of Biostatistics, former head of the Division of
+Biostatistics at UC Berkeley, and head of data analytics core at UC Berkeley's
+SuperFund research program. His current research interests include causal
+inference, variable importance analysis, statistical machine learning,
+estimation of and inference for data-adaptive statistical target parameters, and
+targeted minimum loss-based estimation. Research in his group is generally
+motivated by applications to problems in computational biology, epidemiology,
 and precision medicine. Contact: \texttt{hubbard@berkeley.edu}.
 
 \vspace{-.5em}
@@ -93,8 +179,11 @@ and precision medicine. Contact: \texttt{hubbard@berkeley.edu}.
 
 \vspace{-.5em}
 
-Jeremy Coyle is a consulting data scientist and statistical programmer, currently leading the software development effort that has produced the
-\texttt{tlverse} ecosystem of \texttt{R} packages and related software tools. Jeremy earned his PhD in Biostatistics from UC Berkeley in 2016, primarily under the supervision of Alan Hubbard. Contact: \texttt{jeremyrcoyle@gmail.com}.
+Jeremy Coyle is a consulting data scientist and statistical programmer,
+currently leading the software development effort that has produced the
+\texttt{tlverse} ecosystem of \texttt{R} packages and related software tools.
+Jeremy earned his PhD in Biostatistics from UC Berkeley in 2016, primarily under
+the supervision of Alan Hubbard. Contact: \texttt{jeremyrcoyle@gmail.com}.
 
 \vspace{-.5em}
 
@@ -102,10 +191,15 @@ Jeremy Coyle is a consulting data scientist and statistical programmer, currentl
 
 \vspace{-.5em}
 
-Nima is a PhD candidate in biostatistics with a designated emphasis in computational and genomic biology at UC Berkeley, under the joint supervision of Mark van der Laan and Alan Hubbard. Nima is affiliated with UC Berkeley's Center for Computational Biology and NIH Biomedical Big Data training program. Nima's research interests span causal inference, nonparametric inference and machine
-learning, targeted loss-based estimation, survival analysis and censored data models, statistical computing, reproducible research, and computational
-biology. Substantive applications have recently included vaccine efficacy trials, precision medicine, and high-dimensional biology. Nima is also
-passionate about software development for applied statistics, including software design, automated testing, and reproducible coding practices. Contact:
+Nima is a PhD candidate in biostatistics with a designated emphasis in
+computational and genomic biology, working jointly with Mark van der Laan and
+Alan Hubbard. Nima is affiliated with UC Berkeley's Center for Computational
+Biology and NIH Biomedical Big Data training program. His research interests
+span causal inference, nonparametric inference and machine learning, targeted
+loss-based estimation, survival analysis, statistical computing, reproducible
+research, and high-dimensional biology. He is also passionate about software
+development for applied statistics, including software design, automated
+testing, and reproducible coding practices. Contact:
 \texttt{nhejazi@berkeley.edu}.
 
 \vspace{-.5em}
@@ -114,62 +208,32 @@ passionate about software development for applied statistics, including software
 
 \vspace{-.5em}
 
-Ivana is a Ph.D. student in biostatistics advised by Mark van der Laan. Ivana is currently a fellow at the Berkeley Institute for Data Science, after serving as a NIH Biomedical Big Data and Freeport-McMoRan Genomic Engine fellow. She earned her Master's in
-Biostatistics and Bachelor's in Mathematics, and spent some time at the Translational Genomics Research Institute. Very broadly, her research interests span non/semi-parametric theory, probability theory, machine learning, causal inference and high-dimensional statistics. Most of her current work involves complex dependent settings (dependence through time and network) and adaptive sequential designs. She is also interested in model selection criteria, optimal individualized treatment, sensitivity analysis, mediation, online learning and software development. Contact: \texttt{imalenica@berkeley.edu}.
+Ivana is a Ph.D.~student in biostatistics advised by Mark van der Laan. Ivana is
+currently a fellow at the Berkeley Institute for Data Science, after serving as
+a NIH Biomedical Big Data and Freeport-McMoRan Genomic Engine fellow. She earned
+her Master's in Biostatistics and Bachelor's in Mathematics, and spent some time
+at the Translational Genomics Research Institute. Very broadly, her research
+interests span non/semi-parametric theory, probability theory, machine learning,
+causal inference and high-dimensional statistics. Most of her current work
+involves complex dependent settings (dependence through time and network) and
+adaptive sequential designs. Contact: \texttt{imalenica@berkeley.edu}.
 
 \vspace{-.5em}
 
-\subsection*{Rachael V Phillips, M.A.}
+\subsection*{Rachael Phillips, M.A.}
 
 \vspace{-.5em}
 
-\added[id=RP]{You might know Rachael and she would very much like to be included in this workshop :D Bonuses of having Rachael on this team: (1) She will help with case studies, vignettes, and other tedious tasks that might be helpful to others; (2) She is decent at explaining concepts and motivating topics so she can easily be placed in introductory sections and can also be a "helper" walking around the room and tending to individual participants; (3) She is also not an OG tlverse developer so, she might be able to provide insight on where to explain things in more detail/points of confusion; (4) She will help with this proposal; (5) She will find kick ass (and cheap) Airbnbs in Montreal; (6) Speaks Canadian.}
-
-\section*{Duration}\note[id=RP]{sample schedule is too long. 6 hours including coffee breaks. I am guessing not including lunch?}
-
-This will be a 6-hour, full-day workshop, featuring modules that \deleted[id=RP]{each} introduce a distinct causal question \added[id=RP]{motivated by a case study}, alongside statistical methodology and software for \deleted[id=RP]{implementing solutions to the given problem} \added[id=RP]{answering the question/ assessing the causal claim / solving the given problem}. A sample schedule would take the
-form:
-\begin{itemize}
-  \itemsep0pt
-  \item 09:30AM--10:20AM: Introduction to targeted learning for causal inference \added[id=RP]{45 min?}
-  \item 10:20AM--10:30AM: Coffee Break \added[id=RP]{remove. Also 10 min is too short for coffee break. Random 10 min breaks that are not formally in the schedule are great but I think 2 scheduled 15-30 min coffee breaks is enough for the 6 hour period. Gotta make those coffee breaks count!}
-  \item 10:30AM--11:20AM: Introduction to the \texttt{tlverse} software ecosystem \added[id=RP]{ Are you presenting sl3 and tmle3 here in addition to introducing the architecture of the software? If so, I think this section needs to be much longer... like 75-90 min with coffee break in between. For frame of reference, when I introduced sl3 (which inevitably included introducing general tlverse architecture) to Causal II students who knew about super learning but really didn't grasp it, it took a little over 1 hour. So, I think this section should be split into 2 and have a coffee break in between the 2}
-  \item 11:20AM--11:30AM: Coffee Break \added[id=RP]{remove}
-  \item 11:30AM--12:45PM: Stochastic interventions and the \texttt{tmle3shift R} package \added[id=RP]{reduce to 45 min?}
-  \item 12:45PM--01:30PM: Lunch Break \added[id=RP]{make this full 1 hour if it's not included in the 6-hour allotment}
-  \item 01:30PM--02:45PM: Optimal treatments regimes and the \texttt{tmle3mopttx R} package \added[id=RP]{extend to 90 min w coffee break in between}
-  \item 02:45PM--02:55PM: Coffee Break
-  \item 02:55PM--03:45PM: Targeted learning for variable importance analyses \added[id=RP]{omit?}
-  \item 03:45PM--4:00PM: Course summary and concluding remarks \added[id=RP]{I could do this :O or help with intro?}
-\end{itemize}
-
-\vspace{3in}
-
-\note[id=RP]{Below I drafted an alternative schedule}
-
-\begin{itemize}
-  \itemsep0pt
-  \item 09:30AM--10:15AM: Introduction to targeted learning for causal inference
-  \item 10:15AM--10:45AM: Introduction to the \texttt{tlverse} software ecosystem
-  \item 10:45AM--11:00AM: Coffee Break
-  \item 11:00AM--11:45AM: Super Learner ensemble machine learning for initial estimation and prediction and the \texttt{sl3 R} package
-  \item 11:45AM--12:30PM: estimation and inference for causal parameters and the \texttt{tmle3 R} package
-  \item 12:30AM--1:30PM: Lunch
-  \item 1:30PM--2:15PM: Stochastic interventions and the \texttt{tmle3shift R} package
-  \item 02:30PM--03:15PM: Optimal treatments regimes
-  \item 03:15PM--03:30PM: Coffee Break
-  \item 03:30PM--04:15PM: The \texttt{tmle3mopttx R} package
-  \item 04:15PM--4:30PM: Course summary and concluding remarks
-\end{itemize}
-
-
-\section{Prior History}
-
-\added[id=RP]{The \texttt{tlverse} ecosystem is a relatively recent effort, about 2 years in the making. Some material has been introduced in graduate courses taught at UC Berkeley. This workshop would be the first offering in the 6-hour format.}
-
-\deleted[id=RP]{The \texttt{tlverse} ecosystem is a relatively recent effort (about 2 years in the making) in developing a set of software tools for causal inference, all
-built around a consistent set of design principles. Although we have introduced
-the material in graduate courses taught at UC Berkeley, this will potentially be
-the first offering in the 6-hour format.}
+Rachael is a Ph.D.~student in biostatistics, working with Alan Hubbard and Mark
+van der Laan. She received an M.A.~in Biostatistics from UC Berkeley in 2018.
+She graduated cum laude from Texas Tech University in 2015 receiving a B.S.~in
+Biology with a Chemistry minor and a B.A.~in Mathematics with a Spanish minor.
+Rachael is motivated to minimize human bias in scientific research and solve
+problems in molecular biology/human health by integrating tools from causal
+inference, machine learning, nonparametric statistical estimation, and
+computational statistics. She is also passionate about online mediated education
+and responsible conduct in research. Contact:
+\texttt{rachaelvphillips@berkeley.edu}.
 
 \end{document}
+
