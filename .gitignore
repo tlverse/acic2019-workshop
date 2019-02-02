@@ -1,2 +1,4 @@
 *.pdf
 proposal/*.pdf
+.Rproj.user
+.Rhistory
