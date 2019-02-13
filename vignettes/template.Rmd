@@ -1,0 +1,227 @@
+# `tmle3shift`: Targeted Learning of the Causal Effects of Stochastic Interventions
+
+<!--
+NOTE: YOU CAN'T USE THE STANDARD RMARKDOWN YAML IN BOOKDOWN
+---
+title: "`tmle3shift`: Targeted Learning of the Causal Effects of Stochastic
+  Interventions"
+author: "Nima Hejazi and Jeremy Coyle"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+bibliography: template_refs.bib
+---
+-->
+
+## Learning Objectives
+<!--- appears as "X.1: Learning Objectives" in the book, where X is the chapter
+corresponding to stochastic interventions -->
+1. ...
+2. ...
+3. ...
+4. ...
+5. ...
+
+## Introduction to Stochastic Interventions
+
+Stochastic treatment regimes present a relatively simple manner in which to
+assess the effects of continuous treatments by way of parameters that examine
+the effects induced by the counterfactual shifting of the observed values of a
+treatment of interest. Here, we present an implementation of a new algorithm for
+computing targeted minimum loss-based estimates of treatment shift parameters
+defined based on a shifting function $d(A,W)$. For a technical presentation of
+the algorithm, the interested reader is invited to consult @diaz2018stochastic.
+For additional background on Targeted Learning and previous work on stochastic
+treatment regimes, please consider consulting @vdl2011targeted,
+@vdl2018targeted, and @diaz2012population.
+
+## Data Structure and Notation
+
+Consider $n$ observed units $O_1, \ldots, O_n$, where each random variable $O =
+(W, A, Y)$ corresponds to a single observational unit. As discussed before, $W$
+are baseline covariates, $A$ is a continuous-valued intervention, and $Y$ an
+outcome of interest. We will consider a simple stochastic intervention that
+considers counterfactual interventions defined through scalar shifts of the
+observed/natural value of the intervention $A$. We'll start by considering a
+simple additive shift $d(a,w) = a + \delta$, assuming support a.e. of
+$P(A\midW)$. To ease violations of the positivity assumption, we may consider
+extensions where $a \leq u(w) - \delta$ or $d(a, w) = a$ if $a \geq u(w) -
+\delta$.
+
+## Defining the Causal Effect of a Stochastic Intervention
+
+...
+
+## Interpreting the Causal Effect of a Stochastic Intervention
+
+...
+
+## Evaluating the Causal Effect of a Stochastic Intervention
+
+To start, let's load the packages we'll use and set a seed for simulation:
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(data.table)
+library(condensier)
+library(sl3)
+library(tmle3)
+library(tmle3shift)
+set.seed(429153)
+```
+
+```{r sl3_lrnrs, echo=FALSE}
+# learners used for conditional expectation regression (e.g., outcome)
+lrn1 <- Lrnr_mean$new()
+lrn2 <- Lrnr_glm$new()
+lrn3 <- Lrnr_ranger$new()
+sl_lrn <- Lrnr_sl$new(
+  learners = list(lrn1, lrn2, lrn3),
+  metalearner = Lrnr_nnls$new()
+)
+
+# learners used for conditional density regression (e.g., propensity score)
+lrn1_dens <- Lrnr_condensier$new(
+  nbins = 25, bin_estimator = lrn1,
+  bin_method = "dhist"
+)
+lrn2_dens <- Lrnr_condensier$new(
+  nbins = 20, bin_estimator = lrn2,
+  bin_method = "dhist"
+)
+lrn3_dens <- Lrnr_condensier$new(
+  nbins = 15, bin_estimator = lrn3,
+  bin_method = "dhist"
+)
+sl_lrn_dens <- Lrnr_sl$new(
+  learners = list(lrn1_dens, lrn2_dens, lrn3_dens),
+  metalearner = Lrnr_solnp_density$new()
+)
+```
+
+```{r make_lrnr_list}
+# specify outcome and treatment regressions and create learner list
+Q_learner <- sl_lrn
+g_learner <- sl_lrn_dens
+learner_list <- list(Y = Q_learner, A = g_learner)
+```
+
+The `learner_list` object above specifies the role that each of the ensemble
+learners we've generated is to play in computing initial estimators to be used
+in building a TMLE for the parameter of interest here. In particular, it makes
+explicit the fact that our `Q_learner` is used in fitting the outcome regression
+while our `g_learner` is used in fitting our treatment mechanism regression.
+
+### Simulate Data
+<!--
+NOTE: WE DON'T NEED THIS SINCE WE'LL USE THE SAME DATA SET ACROSS ALL VIGNETTES
+-->
+```{r sim_data}
+# simulate simple data for tmle-shift sketch
+n_obs <- 1000 # number of observations
+n_w <- 1 # number of baseline covariates
+tx_mult <- 2 # multiplier for the effect of W = 1 on the treatment
+
+## baseline covariates -- simple, binary
+W <- as.numeric(replicate(n_w, rbinom(n_obs, 1, 0.5)))
+
+## create treatment based on baseline W
+A <- as.numeric(rnorm(n_obs, mean = tx_mult * W, sd = 1))
+
+## create outcome as a linear function of A, W + white noise
+Y <- A + W + rnorm(n_obs, mean = 0, sd = 1)
+```
+
+The above composes our observed data structure $O = (W, A, Y)$. To formally
+express this fact using the `tlverse` grammar introduced by the `tmle3` package,
+we create a single data object and specify the functional relationships between
+the nodes in the _directed acyclic graph_ (DAG) via _nonparametric structural
+equation models_ (NPSEMs), reflected in the node list that we set up:
+
+```{r data_nodes}
+# organize data and nodes for tmle3
+data <- data.table(W, A, Y)
+node_list <- list(W = "W", A = "A", Y = "Y")
+head(data)
+```
+
+We now have an observed data structure (`data`) and a specification of the role
+that each variable in the data set plays as the nodes in a DAG.
+
+To start, we will initialize a specification for the TMLE of our parameter of
+interest (called a `tmle3_Spec` in the `tlverse` nomenclature) simply by calling
+`tmle_shift`. We specify the argument `shift_val = 0.5` when initializing the
+`tmle3_Spec` object to communicate that we're interested in a shift of $0.5$ on
+the scale of the treatment $A$ -- that is, we specify $\delta = 0.5$ (note that
+this is an arbitrarily chosen value for this example).
+
+```{r spec_init}
+# initialize a tmle specification
+tmle_spec <- tmle_shift(shift_val = 0.5,
+                        shift_fxn = shift_additive_bounded,
+                        shift_fxn_inv = shift_additive_bounded_inv)
+```
+
+As seen above, the `tmle_shift` specification object (like all `tmle3_Spec`
+objects) does _not_ store the data for our specific analysis of interest. Later,
+we'll see that passing a data object directly to the `tmle3` wrapper function,
+alongside the instantiated `tmle_spec`, will serve to construct a `tmle3_Task`
+object internally (see the `tmle3` documentation for details).
+
+### Targeted Estimation of Stochastic Interventions Effects
+
+```{r fit_tmle}
+tmle_fit <- tmle3(tmle_spec, data, node_list, learner_list)
+tmle_fit
+```
+
+The `print` method of the resultant `tmle_fit` object conveniently displays the
+results from computing our TML estimator.
+
+### Statistical Inference for Targeted Maximum Likelihood Estimates
+
+Recall that the asymptotic distribution of TML estimators has been studied
+thoroughly:
+$$\psi_n - \psi_0 = (P_n - P_0) \cdot D(\bar{Q}_n^*, g_n) + R(\hat{P}^*, P_0),$$
+which suggests the following behavior for inferential purposes:
+
+$$\psi_n \pm z_{\alpha} \cdot \frac{\sigma_n}{\sqrt{n}},$$
+where $\sigma_n^2$ is an estimator of $V(D(P_0))$. The estimator $\sigma_n^2$
+may be obtained using the bootstrap or computed directly via the following
+
+$$\sigma_n^2 = \frac{1}{n} \sum_{i = 1}^{n} D^2(\bar{Q}_n^*, g_n)(O_i).$$
+
+
+## Extensions: Variable Importance Analysis with Stochastic Interventions
+
+...
+
+## Exercises
+
+### Introductory
+
+1. ...
+
+2. ...
+
+3. ...
+
+4. ...
+
+5. ...
+
+### Intermediate
+
+1. ...
+
+2. ...
+
+3. ...
+
+### Advanced
+
+1. ...
+
+2. ...
+
+## References
+
