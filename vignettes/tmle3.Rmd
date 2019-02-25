@@ -1,0 +1,103 @@
+# `tmle3`: Targeted Learning Framework
+
+<!--
+NOTE: YOU CAN'T USE THE STANDARD RMARKDOWN YAML IN BOOKDOWN
+---
+title: "`tmle3`: Targeted Learning Framework
+author: "Jeremy Coyle"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+bibliography: template_refs.bib
+---
+-->
+
+## Learning Objectives
+<!--- appears as "X.1: Learning Objectives" in the book, where X is the chapter
+corresponding to stochastic interventions -->
+1. Use `tmle3` to estimate an Average Treatment Effect (ATE)
+2. Understand `tmle3` "Specs"
+3. Fit `tmle3` for a custom set of parameters
+4. Use the delta method to estimate transformations of parameters
+
+## Introduction to `tmle3`
+
+* General purpose framework
+* Ecosystem of extension packages for different parameters
+* Easy to use for simple cases, customizable
+
+## Motivating Example - Average Treatment Effect (ATE)
+
+##$ Data Structure and Notation
+
+TODO: modify for ATE
+Consider $n$ observed units $O_1, \ldots, O_n$, where each random variable $O =
+(W, A, Y)$ corresponds to a single observational unit. As discussed before, $W$
+are baseline covariates, $A$ is a continuous-valued intervention, and $Y$ an
+outcome of interest. We will consider a simple stochastic intervention that
+considers counterfactual interventions defined through scalar shifts of the
+observed/natural value of the intervention $A$. We'll start by considering a
+simple additive shift $d(a,w) = a + \delta$, assuming support a.e. of
+$P(A\midW)$. To ease violations of the positivity assumption, we may consider
+extensions where $a \leq u(w) - \delta$ or $d(a, w) = a$ if $a \geq u(w) -
+\delta$.
+
+##$ Defining the Causal Effect of a Average Treatment Effect
+
+
+##$ Interpreting the Causal Effect of a Stochastic Intervention
+
+## Estimating an ATE with `tmle3`
+
+* example code here
+* how to extract/interpret the results
+
+
+## `tmle3` Specifications
+
+* wraps up all the details of the estimation strategy into a cohesive spec
+* a function to search for these (similar to sl3_list_learners)
+* example of applying a different spec
+
+## Customizing `tmle3`
+
+* A new set of parameters (which set)
+* How much can we simplify this process
+
+## Using the Delta method
+
+* smooth transform of a parameter (or parameters)
+* lay out math here
+
+## Summary
+
+* Do we want a summary section
+
+## Exercises
+
+### Introductory
+
+1. Change the learner list
+
+2. Estimate ATE for another intervention
+
+3. 
+
+4. ...
+
+5. ...
+
+### Intermediate
+
+1. Estimate PAF 
+
+2. Add known likelihood for g
+
+
+### Advanced
+
+1. ...
+
+2. ...
+
+## References
+
