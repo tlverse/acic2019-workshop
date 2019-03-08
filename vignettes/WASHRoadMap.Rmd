@@ -2,7 +2,7 @@
 title: "Statistical Roadmap and Data Intro"
 author: "Alan Hubbard"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: pdf_document
 bibliography: refs.bib
 editor_options: 
   chunk_output_type: console
@@ -28,6 +28,8 @@ provision of lipid-based nutrient supplements; and combined water, sanitation, h
 ```{r}
 library(tidyverse)
 library(tlverse)
+library(xtable)
+
 ## Read in data
 dat <- read_csv("../washb_data/washb_data.csv") 
 tibble(dat)
@@ -41,8 +43,8 @@ our adjustment variables, $W$, are *everything else*.  This results in our obser
 Modifications of our methods for biased samples, repeated measures, etc. are available. 
 
 ### The variables
-```{r}
-categ <- dat[,c(2,3,6,8,10,14:28)]
+```{r, echo=FALSE, include=F}
+categ <- dat[,c(2,6,8,10,14:28)]
 ncat <- dim(categ)[2]
 vars.cat <- names(categ)
 cont <- dat[,-c(2,3,6,8,10,14:28)]
@@ -52,133 +54,50 @@ vars.cont <- names(cont)
 # First do "continuous"" variables
 var.out <- NULL
 tab1.out <- NULL
+hline <- c(-1,0)
 for(i in 1:ncont) {
 var.out <- c(var.out,vars.cont[i])
   x = as.numeric(unlist(cont[,i]))
   tab1.out <- rbind(tab1.out,c(mean(x,na.rm=T),sd(x,na.rm=T),NA,NA))
+  hline=c(hline,i)
 }
 
 tab1.out <- data.frame(levels="",tab1.out)
-names(tab1.out)<- c("levels","Mean","SD","Count","Row.Perc")
+names(tab1.out)<- c("levels","Mean","SD","Count","Row.Prop")
 # Do categorical variables
+cnter <- ncont
 for(i in 1:ncat) {
+  hline <- c(hline,cnter)
   x = unlist(categ[,i])
   tt <- table(x)
   levels <- names(tt)
   nt <- length(tt)
   tt <- as.vector(tt)
   out <- data.frame(levels=levels,Mean=rep(NA,nt),SD=rep(NA,nt),Count=tt,Row.Perc=tt/sum(tt))
-names(out)<- c("levels","Mean","SD","Count","Row.Perc")
-  
-  var.out <- c(var.out,rep(vars.cat[i],nrow(out)))
+names(out)<- c("levels","Mean","SD","Count","Row.Prop")
+  var.out <- c(var.out,c(vars.cat[i],rep("",nrow(out)-1)))
+  cnter <- cnter+nrow(out)
   tab1.out <- rbind(tab1.out,out)
 }
 
 times <- rep("base",nrow(tab1.out))
 
-tab2.out<-NULL
-for(i in 1:ntd) {
-var.out <- c(var.out,tm.dp[i])
-  x = df.tab.td[,i]
-  tab2.out <- rbind(tab2.out,c(mean(x,na.rm=T),sd(x,na.rm=T),NA,NA))
-}
-
-tab2.out <- data.frame(levels=rep("",nrow(tab2.out)),tab2.out)
-names(tab2.out)<- c("levels","Mean","SD","Count","Row.Perc")
-
-tab1.out <- rbind(tab1.out,tab2.out)
 tab1.out <- data.frame(Variable=var.out,tab1.out)
-tab1.out <- merge(tab1.out,final, by=1, all=T)
-oo <- order(tab1.out$time.dep)
 ```
 
-# Make table 1
-```{r}
-library(xtable)
+## The model
+
+
+```{r, echo=F, include=F}
 # Change label from tabl
-tab1=xtable::xtable(tab1.out[oo,c(7,2:6)], 
-  caption = "Baseline variable values among those at risk of event (death/hemostasis) at first time interval (0.5 to 1.5 hour). Baseline variables and their means or counts and percentages. Total number of subjects enrolled is 680, and seven of those either died or achieved hemostasis by 0.5 hour after study began.", label = "table: 1", digits = 4,rownames=F)
-
+tab1=xtable::xtable(tab1.out, 
+  caption = "Distribution of variables used in WASH-Benefits Study", label = "table_1", digits = 4,rownames=F,display=c("s","s","s","f","f","d","f"),align = "l|l|r|c|c||c|c|")
+print(tab1,type="latex",file="../vignettes/table1.tex",caption.placement="top",include.rownames=F,hline.after=hline)
 
 ```
-print(xtable(out.wcgs,caption="ATE Results for WCGS",label="wcgsRes",digits=4),type="latex",file="wcgsRes.tex",caption.placement="top",include.rownames=T)
-@
-\include{wcgsRes}
+\include{table1}
 
-
-## Motivating Example - Average Treatment Effect (ATE)
-
-##$ Data Structure and Notation
-
-TODO: modify for ATE
-Consider $n$ observed units $O_1, \ldots, O_n$, where each random variable $O =
-(W, A, Y)$ corresponds to a single observational unit. As discussed before, $W$
-are baseline covariates, $A$ is a continuous-valued intervention, and $Y$ an
-outcome of interest. We will consider a simple stochastic intervention that
-considers counterfactual interventions defined through scalar shifts of the
-observed/natural value of the intervention $A$. We'll start by considering a
-simple additive shift $d(a,w) = a + \delta$, assuming support a.e. of
-$P(A\midW)$. To ease violations of the positivity assumption, we may consider
-extensions where $a \leq u(w) - \delta$ or $d(a, w) = a$ if $a \geq u(w) -
-\delta$.
-
-##$ Defining the Causal Effect of a Average Treatment Effect
-
-
-##$ Interpreting the Causal Effect of a Stochastic Intervention
-
-## Estimating an ATE with `tmle3`
-
-* example code here
-* how to extract/interpret the results
-
-
-## `tmle3` Specifications
-
-* wraps up all the details of the estimation strategy into a cohesive spec
-* a function to search for these (similar to sl3_list_learners)
-* example of applying a different spec
-
-## Customizing `tmle3`
-
-* A new set of parameters (which set)
-* How much can we simplify this process
-
-## Using the Delta method
-
-* smooth transform of a parameter (or parameters)
-* lay out math here
-
-## Summary
-
-* Do we want a summary section
-
-## Exercises
-
-### Introductory
-
-1. Change the learner list
-
-2. Estimate ATE for another intervention
-
-3. 
-
-4. ...
-
-5. ...
-
-### Intermediate
-
-1. Estimate PAF 
-
-2. Add known likelihood for g
-
-
-### Advanced
-
-1. ...
-
-2. ...
+The distribution of relevant variables is shown in Table \ref{table_1}.  
 
 ## References
 
