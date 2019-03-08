@@ -4,6 +4,8 @@ author: "Alan Hubbard"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 bibliography: refs.bib
+editor_options: 
+  chunk_output_type: console
 ---
 
 ## Learning Objectives
@@ -14,21 +16,95 @@ bibliography: refs.bib
 The data come from the Effect of water quality, sanitation, hand washing, and
 nutritional interventions on child development in rural
 Bangladesh (WASH Benefits Bangladesh):
-a cluster-randomised controlled trial. The study enrolled enrolled pregnant women in their first or second trimester
+a cluster-randomised controlled trial (@luby2018effects). The study enrolled enrolled pregnant women in their first or second trimester
 from rural villages of Gazipur, Kishoreganj, Mymensingh, and Tangail districts of central Bangladesh, with an average
 of eight women per cluster. Groups of eight geographically adjacent clusters were block-randomised, using a random
 number generator, into six intervention groups (all of which received weekly visits from a community health promoter
 for the first 6 months and every 2 weeks for the next 18 months) and a double-sized control group (no intervention or
 health promoter visit). The six intervention groups were: chlorinated drinking water; improved sanitation;
 handwashing with soap; combined water, sanitation, and handwashing; improved nutrition through counselling and
-provision of lipid-based nutrient supplements; and combined water, sanitation, handwashing, and nutrition. Here,
-we report on the prespecified secondary child development outcomes: gross motor milestone achievement assessed
-with the WHO module at age 1 year, and communication, gross motor, personal social, and combined scores
-measured by the Extended Ages and Stages Questionnaire (EASQ) at age 2 years. Masking of participants was not
-possible. Analyses were by intention to treat. This trial is registered with ClinicalTrials.gov, number NCT0
-* General purpose framework
-* Ecosystem of extension packages for different parameters
-* Easy to use for simple cases, customizable
+provision of lipid-based nutrient supplements; and combined water, sanitation, handwashing, and nutrition. In the workshop, we concentrate child-growth (size for age) as the outcome.  This trial was registered with ClinicalTrials.gov, number NCT01590095.
+
+```{r}
+library(tidyverse)
+library(tlverse)
+## Read in data
+dat <- read_csv("../washb_data/washb_data.csv") 
+tibble(dat)
+```
+
+For the purposes of this workshop, we we start by treating the data as independent and identically distributed (i.i.d.) random draws from a very large target population.  We could, with available options,  account for the clustering of the data (within sampled geographic units), but avoiding these details for this workshop.
+
+We have 2 variables and 1 variable set of interest.  Our outcome, $Y$, is *whz* -- weight For height Z-score, the treatment of interest, $A$, is *tr* -- randomized treatment group, and 
+our adjustment variables, $W$, are *everything else*.  This results in our observed data structure as $i=1,...,n$ i.i.d. copies of $O_i = (W_i,A_i,Y_i)$. 
+
+Modifications of our methods for biased samples, repeated measures, etc. are available. 
+
+### The variables
+```{r}
+categ <- dat[,c(2,3,6,8,10,14:28)]
+ncat <- dim(categ)[2]
+vars.cat <- names(categ)
+cont <- dat[,-c(2,3,6,8,10,14:28)]
+ncont <- dim(cont)[2]
+vars.cont <- names(cont)
+
+# First do "continuous"" variables
+var.out <- NULL
+tab1.out <- NULL
+for(i in 1:ncont) {
+var.out <- c(var.out,vars.cont[i])
+  x = as.numeric(unlist(cont[,i]))
+  tab1.out <- rbind(tab1.out,c(mean(x,na.rm=T),sd(x,na.rm=T),NA,NA))
+}
+
+tab1.out <- data.frame(levels="",tab1.out)
+names(tab1.out)<- c("levels","Mean","SD","Count","Row.Perc")
+# Do categorical variables
+for(i in 1:ncat) {
+  x = unlist(categ[,i])
+  tt <- table(x)
+  levels <- names(tt)
+  nt <- length(tt)
+  tt <- as.vector(tt)
+  out <- data.frame(levels=levels,Mean=rep(NA,nt),SD=rep(NA,nt),Count=tt,Row.Perc=tt/sum(tt))
+names(out)<- c("levels","Mean","SD","Count","Row.Perc")
+  
+  var.out <- c(var.out,rep(vars.cat[i],nrow(out)))
+  tab1.out <- rbind(tab1.out,out)
+}
+
+times <- rep("base",nrow(tab1.out))
+
+tab2.out<-NULL
+for(i in 1:ntd) {
+var.out <- c(var.out,tm.dp[i])
+  x = df.tab.td[,i]
+  tab2.out <- rbind(tab2.out,c(mean(x,na.rm=T),sd(x,na.rm=T),NA,NA))
+}
+
+tab2.out <- data.frame(levels=rep("",nrow(tab2.out)),tab2.out)
+names(tab2.out)<- c("levels","Mean","SD","Count","Row.Perc")
+
+tab1.out <- rbind(tab1.out,tab2.out)
+tab1.out <- data.frame(Variable=var.out,tab1.out)
+tab1.out <- merge(tab1.out,final, by=1, all=T)
+oo <- order(tab1.out$time.dep)
+```
+
+# Make table 1
+```{r}
+library(xtable)
+# Change label from tabl
+tab1=xtable::xtable(tab1.out[oo,c(7,2:6)], 
+  caption = "Baseline variable values among those at risk of event (death/hemostasis) at first time interval (0.5 to 1.5 hour). Baseline variables and their means or counts and percentages. Total number of subjects enrolled is 680, and seven of those either died or achieved hemostasis by 0.5 hour after study began.", label = "table: 1", digits = 4,rownames=F)
+
+
+```
+print(xtable(out.wcgs,caption="ATE Results for WCGS",label="wcgsRes",digits=4),type="latex",file="wcgsRes.tex",caption.placement="top",include.rownames=T)
+@
+\include{wcgsRes}
+
 
 ## Motivating Example - Average Treatment Effect (ATE)
 
