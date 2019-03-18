@@ -1,11 +1,8 @@
 TITLE=handbook
 
 .PHONY: all
-all: book clean
+all: book
 
 book:
 	Rscript -e "bookdown::render_book('.')"
-
-clean:
-	rm $(TITLE).Rmd
 
