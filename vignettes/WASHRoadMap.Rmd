@@ -25,7 +25,7 @@ health promoter visit). The six intervention groups were: chlorinated drinking w
 handwashing with soap; combined water, sanitation, and handwashing; improved nutrition through counselling and
 provision of lipid-based nutrient supplements; and combined water, sanitation, handwashing, and nutrition. In the workshop, we concentrate child-growth (size for age) as the outcome.  This trial was registered with ClinicalTrials.gov, number NCT01590095.
 
-```{r}
+```{r, echo=T, include=F}
 library(tidyverse)
 library(tlverse)
 library(xtable)
@@ -85,8 +85,6 @@ times <- rep("base",nrow(tab1.out))
 tab1.out <- data.frame(Variable=var.out,tab1.out)
 ```
 
-## The model
-
 
 ```{r, echo=F, include=F}
 # Change label from tabl
@@ -97,7 +95,14 @@ print(tab1,type="latex",file="../vignettes/table1.tex",caption.placement="top",i
 ```
 \include{table1}
 
-The distribution of relevant variables is shown in Table \ref{table_1}.  
+The distribution of relevant variables is shown in Table \ref{table_1}.  The top
+rows summarize continuous variables, the remainder are categorical.  The asset 
+variables reflect the socio-economic status of the subjects.  Notice also the 
+uniform distribution of the treatment groups (with twice as many controls); this 
+is of course by design.
+
+### The model
+
 
 ## References
 
