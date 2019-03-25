@@ -123,7 +123,7 @@ TODO
 
 To start, let's load the packages we'll use and set a seed for simulation:
 
-```{r setup, message=FALSE, warning=FALSE}
+```{r setup-mopttx, message=FALSE, warning=FALSE}
 library(data.table)
 library(sl3)
 library(tmle3)
@@ -152,7 +152,7 @@ we create a single data object and specify the functional relationships between
 the nodes in the _directed acyclic graph_ (DAG) via _nonparametric structural
 equation models_ (NPSEMs), reflected in the node list that we set up:
 
-```{r data_nodes}
+```{r data_nodes-mopttx}
 # organize data and nodes for tmle3
 data <- data_cat
 node_list <- list(
@@ -179,7 +179,7 @@ the nuisance parameters of the TML estimator may be fit with ensemble learning,
 using the cross-validation framework of the Super Learner algorithm of
 @vdl2007super.
 
-```{r sl3_lrnrs}
+```{r sl3_lrnrs-mopttx}
 #Initialize some of the learners.
 #Here we use xgboost with various parameters, glm, HAL and the simle mean.
 xgboost_50<-Lrnr_xgboost$new(nrounds = 50)
@@ -226,7 +226,7 @@ Also note that since the corresponding blip will be vector valued, with a column
 We make the above explicit with respect to standard notation by bundling the
 ensemble learners into a list object below:
 
-```{r make_lrnr_list}
+```{r make_lrnr_list-mopttx}
 # specify outcome and treatment regressions and create learner list
 learner_list <- list(Y = Q_learner, A = g_learner, B = b_learner)
 ```
