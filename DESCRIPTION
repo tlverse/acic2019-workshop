@@ -1,5 +1,5 @@
-Package: tlversehandbook
-Title: The Practitioner's Targeted Learning Handbook
+Package: acic2019workshop
+Title: ACIC 2019 Targeted Learning Workshop
 Version: 0.0.1
 Imports:
   bookdown,
