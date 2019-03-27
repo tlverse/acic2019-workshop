@@ -3,7 +3,7 @@ title: "The Hitchhiker's Guide to the `tlverse`"
 subtitle: "or a Targeted Learning Practitioner's Handbook"
 author: "Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana
   Malenica, Rachael Phillips"
-date: "`r format(Sys.time(), '%B %d, %Y')` | __ACIC 2019 edition__"
+date: "__ACIC 2019 edition__; updated: `r format(Sys.time(), '%B %d, %Y')`"
 documentclass: book
 output: bookdown::gitbook
 site: bookdown::bookdown_site
@@ -141,11 +141,35 @@ conjunction with each other and built upon one other in a cohesive fashion.
 
 ## Outline {-}
 
+This is a full-day (6-hour) workshop, featuring modules that introduce distinct
+causal questions, each motivated by a case study, alongside statistical
+methodology and software for assessing the causal claim of interest. A sample
+schedule may take the form:
+
+* 09:30AM--09:45AM: [Why we need a statistical
+    revolution](https://senseaboutscienceusa.org/super-learning-and-the-revolution-in-knowledge/)
+* 09:45AM--10:15AM: The Roadmap and introduction to the data
+* 10:15AM--10:30AM: Introduction to the [`tlverse` software
+    ecosystem](https://tlverse.org)
+* 10:30AM--10:45AM: Morning break
+* 10:45AM--11:45AM: Ensemble machine learning with the
+    [`sl3`](https://github.com/tlverse/sl3) package
+* 11:45AM--12:30PM: Targeted learning for causal inference with the
+    [`tmle3`](https://github.com/tlverse/tmle3) package
+* 12:30PM--1:30PM: Lunch break
+* 01:30PM--02:45PM: Optimal treatments regimes and the
+    [`tmle3mopttx`](https://github.com/tlverse/tmle3mopttx) package
+* 02:45PM--03:00PM: Afternoon break
+* 3:00PM--4:00PM: Stochastic interventions and the
+    [`tmle3shift`](https://github.com/tlverse/tmle3shift) package
+* 04:00PM--4:30PM: _Coda_: [Why we need a statistical
+    revolution](https://senseaboutscienceusa.org/super-learning-and-the-revolution-in-knowledge/)
+
 ## About the instructors {-}
 
 ### Mark van der Laan {-}
 
-Mark van der Laan, PhD, is Professor of Biostatistics and Statistics at UC
+Mark van der Laan, Ph.D., is Professor of Biostatistics and Statistics at UC
 Berkeley. His research interests include statistical methods in computational
 biology, survival analysis, censored data, adaptive designs, targeted maximum
 likelihood estimation, causal inference, data-adaptive loss-based learning, and
@@ -163,10 +187,10 @@ https://vanderlaan-lab.org.
 
 ### Alan Hubbard {-}
 
-Alan Hubbard is Professor of Biostatistics, former head of the Division of
-Biostatistics at UC Berkeley, and head of data analytics core at UC Berkeley's
-SuperFund research program. His current research interests include causal
-inference, variable importance analysis, statistical machine learning,
+Alan Hubbard, Ph.D., is Professor of Biostatistics, former head of the Division
+of Biostatistics at UC Berkeley, and head of data analytics core at UC
+Berkeley's SuperFund research program. His current research interests include
+causal inference, variable importance analysis, statistical machine learning,
 estimation of and inference for data-adaptive statistical target parameters, and
 targeted minimum loss-based estimation. Research in his group is generally
 motivated by applications to problems in computational biology, epidemiology,
@@ -174,7 +198,7 @@ and precision medicine.
 
 ### Jeremy Coyle {-}
 
-Jeremy Coyle is a consulting data scientist and statistical programmer,
+Jeremy Coyle, Ph.D., is a consulting data scientist and statistical programmer,
 currently leading the software development effort that has produced the
 `tlverse` ecosystem of R packages and related software tools. Jeremy earned his
 Ph.D. in Biostatistics from UC Berkeley in 2016, primarily under the supervision
