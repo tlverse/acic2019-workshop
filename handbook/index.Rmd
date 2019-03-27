@@ -1,9 +1,9 @@
 ---
 title: "The Hitchhiker's Guide to the `tlverse`"
 subtitle: "or a Targeted Learning Practitioner's Handbook"
-author: "Mark J. van der Laan, Alan E. Hubbard, Jeremy R. Coyle, Nima S.
-  Hejazi, Ivana Malenica, Rachael V. Phillips"
-date: "`r format(Sys.time(), '%B %d, %Y')`"
+author: "Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana
+  Malenica, Rachael Phillips"
+date: "`r format(Sys.time(), '%B %d, %Y')` | __ACIC 2019 edition__"
 documentclass: book
 output: bookdown::gitbook
 site: bookdown::bookdown_site
@@ -143,7 +143,7 @@ conjunction with each other and built upon one other in a cohesive fashion.
 
 ## About the instructors {-}
 
-### Mark J. van der Laan
+### Mark van der Laan {-}
 
 Mark van der Laan, PhD, is Professor of Biostatistics and Statistics at UC
 Berkeley. His research interests include statistical methods in computational
@@ -161,7 +161,7 @@ part on the development of a centralized, principled set of software tools for
 targeted learning, the `tlverse`. For more information, see
 https://vanderlaan-lab.org.
 
-### Alan E. Hubbard
+### Alan Hubbard {-}
 
 Alan Hubbard is Professor of Biostatistics, former head of the Division of
 Biostatistics at UC Berkeley, and head of data analytics core at UC Berkeley's
@@ -172,7 +172,7 @@ targeted minimum loss-based estimation. Research in his group is generally
 motivated by applications to problems in computational biology, epidemiology,
 and precision medicine.
 
-### Jeremy R. Coyle
+### Jeremy Coyle {-}
 
 Jeremy Coyle is a consulting data scientist and statistical programmer,
 currently leading the software development effort that has produced the
@@ -180,7 +180,7 @@ currently leading the software development effort that has produced the
 Ph.D. in Biostatistics from UC Berkeley in 2016, primarily under the supervision
 of Alan Hubbard.
 
-### Nima S. Hejazi
+### Nima Hejazi {-}
 
 Nima is a Ph.D. candidate in biostatistics with a designated emphasis in
 computational and genomic biology, working jointly with Mark van der Laan and
@@ -193,7 +193,7 @@ development for applied statistics, including software design, automated
 testing, and reproducible coding practices. For more information, see
 https://nimahejazi.org.
 
-### Ivana Malenica
+### Ivana Malenica {-}
 
 Ivana is a Ph.D. student in biostatistics advised by Mark van der Laan. Ivana is
 currently a fellow at the Berkeley Institute for Data Science, after serving as
@@ -205,7 +205,7 @@ causal inference and high-dimensional statistics. Most of her current work
 involves complex dependent settings (dependence through time and network) and
 adaptive sequential designs.
 
-### Rachael V. Phillips
+### Rachael Phillips {-}
 
 Rachael is a Ph.D. student in biostatistics, advised by Alan Hubbard and Mark
 van der Laan. She has an M.A. in Biostatistics, B.S. in Biology with a
@@ -216,8 +216,4 @@ statistical estimation, and finite sample inference. She is also passionate
 about online mediated education. Rachael is affiliated with UC Berkeley's Center
 for Computational Biology, NIH Biomedical Big Data Training Program, and
 Superfund Research Program.
-
-## Acknowledgements {-}
-
-...
 
