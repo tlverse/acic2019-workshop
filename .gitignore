@@ -1,5 +1,4 @@
 *.pdf
-*.html
 proposal/*.pdf
 .Rproj.user
 .Rhistory
