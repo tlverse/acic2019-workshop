@@ -4,5 +4,5 @@ TITLE=handbook
 all: book
 
 book:
-	Rscript -e "bookdown::render_book('.')"
+	sh ./_build.sh
 

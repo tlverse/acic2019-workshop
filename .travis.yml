@@ -1,0 +1,17 @@
+language: r
+cache: packages
+
+r_packages:
+  - devtools
+
+r_github_packages:
+  - tlverse/tlverse
+
+before_script:
+  - chmod +x ./handbook/_build.sh
+  - chmod +x ./handbook/_deploy.sh
+
+script:
+  - cd handbook
+  - ./_build.sh
+  - ./_deploy.sh
