@@ -1,6 +1,27 @@
 Package: acic2019workshop
 Title: ACIC 2019 Targeted Learning Workshop
 Version: 0.0.1
+Authors@R: c(
+    person("Mark", "van der Laan", email = "laan@berkeley.edu",
+           role = c("aut", "cph"),
+           comment = c(ORCID = "0000-0003-1432-5511")),
+    person("Alan", "Hubbard", email = "hubbard@berkeley.edu",
+           role = "aut"),
+    person("Jeremy", "Coyle", email = "jeremy.coyle@gmail.com",
+           role = "aut",
+           comment = c(ORCID = "0000-0002-9874-6649")),
+    person("Nima", "Hejazi", email = "nh@nimahejazi.org",
+           role = "aut",
+           comment = c(ORCID = "0000-0002-7127-2789")),
+    person("Ivana", "Malenica", email = "imalenica@berkeley.edu",
+           role = "aut"),
+    person("Rachael", "Phillips", email = "rachaelvphillips@berkeley.edu",
+           role = "aut")
+  )
+Maintainer: Nima Hejazi <nh@nimahejazi.org>
+Description: Materials for a full-day workshop on Targeted Learning at the
+  2019 Atlantic Causal Inference Conference in Montreal, Quebec, Canada.
+Depends: R (>= 3.2.0)
 Imports:
   bookdown,
   ggplot2,
@@ -44,3 +65,6 @@ Remotes:
   github::tlverse/tmle3,
   github::tlverse/tmle3mopttx,
   github::tlverse/tmle3shift
+License: file LICENSE
+URL: https://github.com/tlverse/acic2019workshop
+BugReports: https://github.com/tlverse/acic2019workshop/issues
