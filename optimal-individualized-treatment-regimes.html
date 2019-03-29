@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="optimal-individualized-treatment-regimes" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Optimal Individualized Treatment Regimes</h1>
 <p><em>Ivana Malenica, Jeremy Coyle, Mark van der Laan</em></p>
-<p>Updated: 2019-03-27</p>
+<p>Updated: 2019-03-29</p>
 <div id="learning-objectives" class="section level2">
 <h2><span class="header-section-number">4.1</span> Learning Objectives</h2>
 <!--- appears as "X.1: Learning Objectives" in the book, where X is the chapter
@@ -454,10 +454,10 @@ interest, we have specified the set of covariates the rule depends on (<span cla
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est  tmle_est         se     lower    upper
-1:  TSM E[Y_{A=NULL}] 0.4889021 0.5812319 0.02478875 0.5326469 0.629817
+   type         param  init_est  tmle_est         se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.4940049 0.5873015 0.02480677 0.5386811 0.6359219
    psi_transformed lower_transformed upper_transformed
-1:       0.5812319         0.5326469          0.629817</code></pre>
+1:       0.5873015         0.5386811         0.6359219</code></pre>
 </div>
 <div id="extensions-simpler-rules" class="section level3">
 <h3><span class="header-section-number">4.7.5</span> Extensions: Simpler Rules</h3>
