@@ -160,7 +160,7 @@ schedule may take the form:
 * 01:30PM--02:45PM: Optimal treatments regimes and the
     [`tmle3mopttx`](https://github.com/tlverse/tmle3mopttx) package
 * 02:45PM--03:00PM: Afternoon break
-* 3:00PM--4:00PM: Stochastic interventions and the
+* 3:00PM--4:00PM: Stochastic treatment regimes and the
     [`tmle3shift`](https://github.com/tlverse/tmle3shift) package
 * 04:00PM--4:30PM: _Coda_: [Why we need a statistical
     revolution](https://senseaboutscienceusa.org/super-learning-and-the-revolution-in-knowledge/)
