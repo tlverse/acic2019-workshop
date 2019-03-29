@@ -11,7 +11,7 @@ before_script:
   - chmod +x ./handbook/_build.sh
   - chmod +x ./handbook/_deploy.sh
 
-after_success:
+script:
   - cd handbook
   - ./_build.sh
   - test $TRAVIS_BRANCH = "master" &&
