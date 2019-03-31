@@ -36,19 +36,19 @@ knowledge and skills to utilize the sound research methodology of Targeted
 Learning.\\
 
 For any complex statistical methodology to be accessible in practice, it is
-crucial that it is accompanied by robust software. The \texttt{tlverse}
+crucial that it is accompanied by robust software. The `tlverse`
 software ecosystem was developed to fulfill this need. Not only does this
 software facilitate computationally reproducible and efficient analyses, it is
 also a tool for Targeted Learning education since its workflow mirrors that of
-the methodology. In particular, the \texttt{tlverse} paradigm does not focus on
+the methodology. In particular, the `tlverse` paradigm does not focus on
 implementing a specific estimator or a small set of related estimators ---
 instead, the focus is on exposing the statistical framework of Targeted Learning
-itself! All \texttt{R} packages in the \texttt{tlverse} ecosystem directly model
+itself! All `R` packages in the `tlverse` ecosystem directly model
 the key objects defined in the mathematical and theoretical framework of Targeted
 Learning.\\
 
 In this handbook, the reader will embark on a journey through the
-\texttt{tlverse}. Guided by \texttt{R} programming exercises, case studies, and
+`tlverse`. Guided by `R` programming exercises, case studies, and
 intuitive explanation readers will build a toolbox for applying the Targeted
 Learning statistical methodology, thereby increasing accessibility of this
 statistical approach and philosophy. The reader need not be a fully trained
