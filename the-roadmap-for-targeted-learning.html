@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>The Hitchhiker’s Guide to the tlverse</title>
+  <title>Chapter 1 The Roadmap for Targeted Learning | The Hitchhiker’s Guide to the tlverse</title>
   <meta name="description" content="An open-source and fully-reproducible electronic handbook accompanying a full-day short-course on applying the targeted learning methodology in practice using the tlverse software ecosystem." />
   <meta name="generator" content="bookdown  and GitBook 2.6.7" />
 
-  <meta property="og:title" content="The Hitchhiker’s Guide to the tlverse" />
+  <meta property="og:title" content="Chapter 1 The Roadmap for Targeted Learning | The Hitchhiker’s Guide to the tlverse" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://tlverse.org/acic2019-workshop/" />
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="tlverse/acic2019-workshop" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="The Hitchhiker’s Guide to the tlverse" />
+  <meta name="twitter:title" content="Chapter 1 The Roadmap for Targeted Learning | The Hitchhiker’s Guide to the tlverse" />
   
   <meta name="twitter:description" content="An open-source and fully-reproducible electronic handbook accompanying a full-day short-course on applying the targeted learning methodology in practice using the tlverse software ecosystem." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="img/logos/favicons/favicon.png" type="image/x-icon" />
-
-<link rel="next" href="the-roadmap-for-targeted-learning.html">
+<link rel="prev" href="index.html">
+<link rel="next" href="literature.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -223,238 +223,177 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">The Hitchhiker’s Guide to the <code>tlverse</code></h1>
-<h2 class="subtitle"><em>or a Targeted Learning Practitioner’s Handbook</em></h2>
-<p class="author"><em>Mark J. van der Laan, Alan E. Hubbard, Jeremy R. Coyle, Nima S. Hejazi, Ivana Malenica, Rachael V. Phillips</em></p>
-<p class="date"><em>March 31, 2019</em></p>
+<div id="the-roadmap-for-targeted-learning" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> The Roadmap for Targeted Learning</h1>
+<div id="learning-objectives" class="section level2">
+<h2><span class="header-section-number">1.1</span> Learning Objectives</h2>
+<p>By the end of this chapter you will be able to:
+1. Translate scientific questions to statistical questions.
+2. Define a statistical model based on the knowledge of the data-generating
+distribution.</p>
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<img style="float: left; margin-right: 1%; margin-bottom: 0.01em"
-     src="img/logos/tlverse-logo.svg" width="30%" height="30%">
-<img style="float: center; margin-right: 1%; margin-bottom: 0.01em"
-     src="img/logos/Rlogo.svg" width="30%" height="30%">
-<img style="float: right; margin-right: 1%; margin-bottom: 0.01em"
-     src="img/logos/vdl-logo-transparent.svg" width="30%" height="30%">
-<p style="clear: both;">
-<p><br></p>
-<p>This is an open source and fully-reproducible electronic handbook accompanying a
-full-day short-course on applying the targeted learning methodology in practice
-using the <a href="https://github.com/tlverse"><code>tlverse</code> software ecosystem</a>, given at
-the <a href="https://mcgill.ca/epi-biostat-occh/news-events/atlantic-causal-inference-conference-2019">2019 Atlantic Causal Inference
-Conference</a> in
-Montréal, Québec, Canada on 22 May 2019.</p>
-<p><img style="float: center; margin-right: 1%; margin-bottom: 0.05em"
-     src="img/ad_workshop.png" width="100%" height="100%">
-<br></p>
-<div id="about-this-workshop" class="section level2 unnumbered">
-<h2>About this workshop</h2>
-<p>This full-day workshop will provide a comprehensive introduction to both the
-<code>tlverse</code> software ecosystem and the field of targeted learning for
-causal inference. While this will primarily be a software workshop centered
-around the new <a href="https://github.com/tlverse"><code>tlverse</code> ecosystem</a> of
-<code>R</code> packages, there will be rigorous examination of both causal inference
-methodology – focusing on the field of targeted learning – and applications
-in both large-scale observational studies and randomized experiments. The focus
-will be on introducing modern methodological developments in statistical causal
-inference and their corresponding software implementations in the
-<code>tlverse</code>. Through vignette-guided live coding exercises, participants
-will perform hands-on implementation of novel estimators for assessing causal
-claims with complex, observational data. Topics to be addressed include ensemble
-machine learning; efficient substitution estimators in nonparametric and
-semiparametric models and targeted minimum loss-based estimation (TMLE);
-inference based on influence functions; static, dynamic, optimal dynamic, and
-stochastic interventions. TMLE provides a strategy for constructing (double)
-robust efficient plug-in estimators with normal limiting distributions, allowing
-for valid inference even when the functional nuisance parameters are estimated
-via machine learning. Causal parameters and corresponding estimators will be
-examined both mathematically and through their corresponding <code>R</code> package
-implementations from the <code>tlverse</code> ecosystem via hands-on data analysis,
-providing participants opportunities to develop skills that will translate to
-real-world causal inference analyses. Some background in mathematical statistics
-will be useful; familiarity with the <code>R</code> programming language will be
-essential.</p>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">1.2</span> Introduction</h2>
+<p>The roadmap of statistical learning is concerned with the translation from the
+real-world data application into a mathematical and statistical formulation of
+the actual estimation problem that needs to be solved. This involves data as a
+random variable having a probability distribution, statistical knowledge
+represented by a statistical model, statistical target parameter which
+represents the question of interest, and the notion of an estimator and sampling
+distribution of the estimator.</p>
 </div>
-<div id="motivation" class="section level2 unnumbered">
-<h2>Motivation</h2>
-<p>Randomized clinical trials (RCTs) have long served as the gold standard of
-evidence for comparing potential interventions in clinical medicine and public
-health, marketing, political science, and a great many other fields.
-Unfortunately, such trials are often not feasible due to ethical, logistic or
-economical constraints. Observational studies constitute a potentially rich
-alternative to RCTs, providing an opportunity to learn about the causal effects
-of interventions for which little or no trial data can be produced; however, in
-such studies intervention allocation may be strongly confounded by other
-important characteristics. Thus, great care is needed in attempts to disentangle
-observed relationships and, ultimately, infer causal effects. This workshop will
-provide a comprehensive introduction to the field of targeted learning, a modern
-statistical framework that utilizes state-of-the-art machine learning to
-flexibly adjust for confounding while yielding efficient, unbiased estimators
-and valid statistical inference, thus unlocking observational studies for causal
-inference.</p>
-<p>Targeted learning is a complex statistical approach and, in order for this
-method to be accessible in practice, it is crucial that it is accompanied by
-robust software. The <code>tlverse</code> software ecosystem was developed to
-fulfill this need. Not only does this software facilitate computationally
-reproducible and efficient analyses, but it is also a tool for targeted learning
-education since its workflow mirrors that of the methodology. That is, the
-<code>tlverse</code> paradigm does not focus on implementing a specific estimator or
-a small set of related estimators – instead, the focus is on exposing the
-statistical framework of targeted learning itself! Thus, users are required to
-explicitly define objects to model key statistical objects: the nonparametric
-structural equation model, the factorized likelihood, counterfactual
-interventions, causal parameters, and algorithmic step for computing estimators.
-All <code>R</code> packages in the <code>tlverse</code> ecosystem directly model the key
-objects defined in the mathematical and theoretical framework of targeted
-learning. What’s more, the <code>tlverse</code> <code>R</code> packages share a core set
-of design principles centered on extensibility, allowing for them to be used in
-conjunction with each other and built upon one other in a cohesive fashion.</p>
+<div id="the-roadmap-for-targeted-learning-1" class="section level2">
+<h2><span class="header-section-number">1.3</span> The Roadmap for Targeted Learning</h2>
+<ol style="list-style-type: decimal">
+<li>Data as a random variable with a probability distribution, <span class="math inline">\(O \sim P_0\)</span>.</li>
+</ol>
+<p><span class="math display">\[O_1, ..., O_n \simiid P_0\]</span></p>
+<p>The data set we’re confronted with is the result of an experiment and we can
+view the data as a random variable, <span class="math inline">\(O\)</span>, because if we repeat the experiment
+we would have a different realization of this experiment. In particular, if we
+repeat the experiment many times we could learn the probability distribution,
+<span class="math inline">\(P_0\)</span>, of our data. So, the observed data <span class="math inline">\(O\)</span> with probability distribution
+<span class="math inline">\(P_0\)</span> are <span class="math inline">\(n\)</span> independent identically distributed (i.i.d) observations of the
+random variable $O; <span class="math inline">\(O_1, \ldots, O_n\)</span>. Note that i.i.d. is a real assumption
+and not all data are i.i.d. There are ways to handle non-i.i.d. data such as
+establishing conditional independence, stratifying the data to create sets of
+identically distributed data, etc. Researchers need to be absolutely clear
+about what they actually know about the distributions that generate their data.
+Unfortunately, communication between statisticians and researchers often gets
+lost in translation and thereby misinterpreted. This is one reason why the
+roadmap is so helpful – it truly helps with this communication!</p>
+<div id="the-empirical-probability-measure-p_n" class="section level4">
+<h4><span class="header-section-number">1.3.0.1</span> The empirical probability measure, <span class="math inline">\(P_n\)</span></h4>
+<p>Once we have <span class="math inline">\(n\)</span> of such i.i.d. observations we have an empirical probability
+measure, <span class="math inline">\(P_n\)</span>. The empirical probability measure is an approximation of the true
+probability measure <span class="math inline">\(P_0\)</span> and it allows us to learn from our data. For example, we
+can define the empirical probability measure of a set, <span class="math inline">\(A\)</span>, to be the proportion
+of observations which end up in <span class="math inline">\(A\)</span>. That is,</p>
+<p><span class="math display">\[P_n(A) = \frac{1}{n}\sum_{i=1}^{n}I(O_i \in A)\]</span></p>
+<p>In order to start learning something, we need to ask <em>``What do we know about the
+probability distribution of the data?&quot;</em> This brings us to Step 2.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>The statistical model, <span class="math inline">\(P_0 \in \mathcal{M}\)</span></li>
+</ol>
+<p>The statistical model <span class="math inline">\(\mathcal{M}\)</span> is defined by the question we asked at the
+end of Step 1. It is defined as the set of possible probability distributions
+for our data. Often <span class="math inline">\(\mathcal{M}\)</span> is very large because statistical knowledge
+is limited so <span class="math inline">\(\mathcal{M}\)</span> is often infinite dimensional. We call this a
+non-parametric statistical model.\</p>
+<p>Alternatively, if the probability distribution of your data is described by a
+finite number of parameters then the statistical model is parametric. This
+means we believe our random variable we’re observing on a unit like
+blood pressure has e.g. a normal distribution with mean <span class="math inline">\(\mu\)</span> and variance
+<span class="math inline">\(\sigma^2\)</span>. More formally, a parametric model is defined as:</p>
+<p><span class="math display">\[\mathcal{M} = \{P_{\theta} : \theta \in \mathcal{R}^d \}\]</span></p>
+<p>Sadly, it is all-too-common to assume the data-generating distributions have
+specific forms when such knowledge is certainly not at hand. This lack of truth
+in the current culture of analysis typically trumps trying to answer the real
+scientific question at hand and is supported by statements such as
+“All models are wrong but some are useful,” which allow a user to make arbitrary
+choices even though these choices result in different answers to the same
+estimation problem. The Targeted Learning methodology does not suffer from this
+selection bias since it defines the statistical model as a representation for
+the true data generating distribution that produced the observed data.</p>
+<p>Our next question becomes, <em>``What are we trying to learn from the data?&quot;</em>
+This brings us to Step 3.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>The statistical target parameter, <span class="math inline">\(\Psi: \mathcal{M}\rightarrow\mathbb{R}\)</span></li>
+</ol>
+<p>The statistical target parameter, <span class="math inline">\(\Psi\)</span> is defined as a mapping from the
+statistical model, <span class="math inline">\(\mathcal{M}\)</span> to the parameter space (i.e., a number),
+<span class="math inline">\(\mathcal{R}\)</span>. It is defined by the query mentioned at the end of Step 2.
+Target parameters of interest represent questions, which are often causal.
+Causal target parameters require …..\</p>
+<p>For example, say we observe a survival time on every subject and our question
+of interest is “What’s the probability that someone lives longer than five
+years?” We have,</p>
+<p><span class="math display">\[\Psi(P_0) = P_0(O &gt; 5)\]</span></p>
+<p>This answer to this question brings us to Step 4.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>The estimand, <span class="math inline">\(\Psi(P_0)\)</span></li>
+</ol>
+<p>The answer to the query asked in Step 3. This estimand is quantity we’re really
+trying to learn. Once we have defined <span class="math inline">\(O\)</span>, <span class="math inline">\(\mathcal{M}\)</span> and <span class="math inline">\(\Psi(P_0)\)</span> we have
+formally defined the statistical estimation problem.</p>
 </div>
-<div id="outline" class="section level2 unnumbered">
-<h2>Outline</h2>
+<div id="after-formally-defining-the-statistical-estimation-problem" class="section level4">
+<h4><span class="header-section-number">1.3.0.2</span> After formally defining the statistical estimation problem</h4>
+<p>We use the data to estimate the estimand and hopefully the estimator has good
+statistical properties to approximate the estimate. Additionally, we try to end
+up with statistical inference (i.e. we try to quantify the uncertainty in our
+estimator). We need statistical theory to guide us in the construction of our
+estimators.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>The estimator, <span class="math inline">\(\hat{\Psi} : \mathcal{M}_{NP} \rightarrow \mathbb{R}^d\)</span></li>
+</ol>
+<p>To come up with a good estimand we need an estimator, an a-priori specified
+algorithm defined as a mapping from the set of possible empirical distributions,
+<span class="math inline">\(P_n\)</span>, which live in a non-parametric statistical model, <span class="math inline">\(\mathcal{M}_{NP}\)</span>
+(<span class="math inline">\(P_n \in \mathcal{M}_{NP}\)</span>), to the parameter space for our parameter of
+interest. It is a function that takes as input the observed data, a realization
+of <span class="math inline">\(P_n\)</span>, and gives as output a value in the parameter space.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>The estimate, <span class="math inline">\(\hat{\Psi}(P_n)\)</span></li>
+</ol>
+<p>The output mentioned at the end of Step 5 is defined as the estimate. It is a
+function of the empirical probability distribution of the data that is an
+element of the parameter space. If we plug in a realization of <span class="math inline">\(P_n\)</span> (based on
+a sample size <span class="math inline">\(n\)</span> of the random variable <span class="math inline">\(O\)</span>), we get back an estimate
+<span class="math inline">\(\hat{\Psi}(P_n)\)</span> of the true parameter value <span class="math inline">\(\Psi(P_0)\)</span>.\</p>
+<p>In order to have any hope of coming up with the quantification of the
+uncertainty (i.e. statistical inference), we need to understand the sampling
+distribution of our estimator. This brings us to step 7.</p>
+<ol start="7" style="list-style-type: decimal">
+<li>Sampling distribution of <span class="math inline">\(\hat{\Psi}(P_n)\)</span></li>
+</ol>
+<p>The sampling distribution of <span class="math inline">\(\hat{\Psi}(P_n)\)</span> says that the estimator itself
+is a random variable. So, if we repeat the experiment of drawing <span class="math inline">\(n\)</span>
+observations we would every time end up with a different realization of our
+estimator and our estimator has a sampling/probability distribution. Hopefully
+this sampling distribution can be theoretically validated to be approximately
+normally distributed.</p>
 </div>
-<div id="about-the-instructors" class="section level2 unnumbered">
-<h2>About the instructors</h2>
-<div id="mark-j.-van-der-laan" class="section level3">
-<h3><span class="header-section-number">0.0.1</span> Mark J. van der Laan</h3>
-<p>Mark van der Laan, PhD, is Professor of Biostatistics and Statistics at UC
-Berkeley. His research interests include statistical methods in computational
-biology, survival analysis, censored data, adaptive designs, targeted maximum
-likelihood estimation, causal inference, data-adaptive loss-based learning, and
-multiple testing. His research group developed loss-based super learning in
-semiparametric models, based on cross-validation, as a generic optimal tool for
-the estimation of infinite-dimensional parameters, such as nonparametric density
-estimation and prediction with both censored and uncensored data. Building on
-this work, his research group developed targeted maximum likelihood estimation
-for a target parameter of the data-generating distribution in arbitrary
-semiparametric and nonparametric models, as a generic optimal methodology for
-statistical and causal inference. Most recently, Mark’s group has focused in
-part on the development of a centralized, principled set of software tools for
-targeted learning, the <code>tlverse</code>. For more information, see
-<a href="https://vanderlaan-lab.org" class="uri">https://vanderlaan-lab.org</a>.</p>
-</div>
-<div id="alan-e.-hubbard" class="section level3">
-<h3><span class="header-section-number">0.0.2</span> Alan E. Hubbard</h3>
-<p>Alan Hubbard is Professor of Biostatistics, former head of the Division of
-Biostatistics at UC Berkeley, and head of data analytics core at UC Berkeley’s
-SuperFund research program. His current research interests include causal
-inference, variable importance analysis, statistical machine learning,
-estimation of and inference for data-adaptive statistical target parameters, and
-targeted minimum loss-based estimation. Research in his group is generally
-motivated by applications to problems in computational biology, epidemiology,
-and precision medicine.</p>
-</div>
-<div id="jeremy-r.-coyle" class="section level3">
-<h3><span class="header-section-number">0.0.3</span> Jeremy R. Coyle</h3>
-<p>Jeremy Coyle is a consulting data scientist and statistical programmer,
-currently leading the software development effort that has produced the
-<code>tlverse</code> ecosystem of R packages and related software tools. Jeremy earned his
-Ph.D. in Biostatistics from UC Berkeley in 2016, primarily under the supervision
-of Alan Hubbard.</p>
-</div>
-<div id="nima-s.-hejazi" class="section level3">
-<h3><span class="header-section-number">0.0.4</span> Nima S. Hejazi</h3>
-<p>Nima is a Ph.D. candidate in biostatistics with a designated emphasis in
-computational and genomic biology, working jointly with Mark van der Laan and
-Alan Hubbard. Nima is affiliated with UC Berkeley’s Center for Computational
-Biology and NIH Biomedical Big Data training program. His research interests
-span causal inference, nonparametric inference and machine learning, targeted
-loss-based estimation, survival analysis, statistical computing, reproducible
-research, and high-dimensional biology. He is also passionate about software
-development for applied statistics, including software design, automated
-testing, and reproducible coding practices. For more information, see
-<a href="https://nimahejazi.org" class="uri">https://nimahejazi.org</a>.</p>
-</div>
-<div id="ivana-malenica" class="section level3">
-<h3><span class="header-section-number">0.0.5</span> Ivana Malenica</h3>
-<p>Ivana is a Ph.D. student in biostatistics advised by Mark van der Laan. Ivana is
-currently a fellow at the Berkeley Institute for Data Science, after serving as
-a NIH Biomedical Big Data and Freeport-McMoRan Genomic Engine fellow. She earned
-her Master’s in Biostatistics and Bachelor’s in Mathematics, and spent some time
-at the Translational Genomics Research Institute. Very broadly, her research
-interests span non/semi-parametric theory, probability theory, machine learning,
-causal inference and high-dimensional statistics. Most of her current work
-involves complex dependent settings (dependence through time and network) and
-adaptive sequential designs.</p>
-</div>
-<div id="rachael-v.-phillips" class="section level3">
-<h3><span class="header-section-number">0.0.6</span> Rachael V. Phillips</h3>
-<p>Rachael is a Ph.D. student in biostatistics, advised by Alan Hubbard and Mark
-van der Laan. She has an M.A. in Biostatistics, B.S. in Biology with a
-Chemistry minor and a B.A. in Mathematics with a Spanish minor. Rachael is
-motivated to solve real-world, high-dimensional problems in human health. Her
-research interests span causal inference, machine learning, nonparametric
-statistical estimation, and finite sample inference. She is also passionate
-about online mediated education. Rachael is affiliated with UC Berkeley’s Center
-for Computational Biology, NIH Biomedical Big Data Training Program, and
-Superfund Research Program.</p>
+<div id="statistical-inference" class="section level4">
+<h4><span class="header-section-number">1.3.0.3</span> Statistical Inference</h4>
+<p>The  (CLT) allows us to make statements regarding
+the  approximating a normal
+distribution when the sample size gets large enough. For large <span class="math inline">\(n\)</span> we have,</p>
+<p><span class="math display">\[\hat{\Psi}(P_n) \sim N\Big( \Psi(P_0), \frac{\sigma^2}{n} \Big)\]</span></p>
+<p>This permits statistical inference. Now we can quantify the uncertainty in our
+estimator. For example, we can construct a 95% confidence interval for our
+estimand, <span class="math inline">\(\Psi(P_0)\)</span>:</p>
+<p><span class="math display">\[\hat{\Psi}(P_n) \pm 1.96 \Big( \frac{\sigma}{\sqrt{n}} \Big)\]</span></p>
+<p>Note: we typically have to estimate the standard error,
+<span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span>.\</p>
+<p>A 95% confidence interval means that if we were to take 100 different samples
+of size <span class="math inline">\(n\)</span> and compute a 95% confidence interval for each sample then
+approximately 95 of the 100 confidence intervals would contain the estimand,
+<span class="math inline">\(\Psi(P_0)\)</span>. More practically, this means that there is a 95% probability
+(or 95% confidence) that the confidence interval procedure will contain the
+true estimand. However, any single estimated confidence interval either will
+contain the true estimand or will not.</p>
 </div>
 </div>
-<div id="acknowledgements" class="section level2 unnumbered">
-<h2>Acknowledgements</h2>
-<p>…</p>
+<div id="summary" class="section level2">
+<h2><span class="header-section-number">1.4</span> Summary</h2>
+<p>Data, <span class="math inline">\(O\)</span>, is viewed as a random variable that has a probability distribution.
+We often have <span class="math inline">\(n\)</span> units of independent identically distributed units with
+probability distribution <span class="math inline">\(P_0\)</span> (<span class="math inline">\(O_1, \ldots, O_n \simiid P_0\)</span>). We have
+statistical knowledge about the experiment that generated this data. In other
+words, we make a statement that the true data distribution <span class="math inline">\(P_0\)</span> falls in a
+certain set called a statistical model, <span class="math inline">\(\mathcal{M}\)</span>. Often these sets are very
+large because statistical knowledge is very limited so these statistical models
+are often infinite dimensional models. Our statistical query is, ``What are we
+trying to learn from the data?&quot; denoted by the statistical target parameter,
+<span class="math inline">\(\Psi\)</span>, which maps the <span class="math inline">\(P_0\)</span> into the estimand, <span class="math inline">\(\Psi(P_0)\)</span>. At this point the
+statistical estimation problem is formally defined and now we will need
+statistical theory to guide us in the construction of estimators. There’s a lot
+of statistical theory we will review in this course that, in particular, relies
+on the Central Limit Theorem, allowing us to come up with estimators that are
+approximately normally distributed and also allowing us to come with statistical
+inference (i.e. confidence intervals).</p>
 
-</div>
-<div id="preface-foreward-motivation-background-idk" class="section level2">
-<h2><span class="header-section-number">0.1</span> Preface / Foreward / Motivation /Background (idk)</h2>
-<p><strong>Maybe this info is not necessary</strong></p>
-<p>The foundation of this handbook is grounded in the statistical approach and
-philosophy, “Targeted Learning”, developed by Principal Investigator, Professor
-Mark van der Laan, at the University of California, Berkeley. Capable of
-answering specific questions of interest based on real-world data, Targeted
-Learning unifies desirable aspects of algorithmic machine learning and causal
-inference to generate efficient and trustworthy inferences. It resurrects the
-pillars of statistics like the facts that a model represents real knowledge
-about the experiment that generated the data and that a target parameter
-represents what we are seeking to learn from the data as a feature of the
-distribution that generated the data. In this way, Targeted Learning defines a
-truth and establishes a standard for estimation, while current culture typically
-defines a parameter as a coefficient in a misspecified parametric (or other
-restrictive) statistical model, where different choices of such misspecified
-models result in different answers. This allows one to make arbitrary choices,
-potentially driven by data and human bias, even though these choices often
-result in different answers to the same estimation problem. This subjectivity
-presents a fundamental drive behind the epidemic of false positives and lack of
-power to detect true positives that scientific research is suffering from
-<span class="citation">Laan and Starmans (<a href="#ref-van2014entering">2014</a>)</span>. We are faced with an urgent scientific need to enhance the
-reproducibility and rigor of research and the current culture of data analysis
-enables a major contributor of this crisis – human bias. Consequences of not
-meeting this need will result in further decline in the rate of scientific
-progression, the reputation of biomedical science, and the public’s trust in
-its findings.\</p>
-<p>Training of robust methods that avoid confirmation bias will lead
-to results being more reproducible and trustworthy. Our team at The University
-of California, Berkeley, is uniquely positioned to provide such a training. The
-objective for this handbook is to enhance the education of students,
-researchers, professors, etc. to empower them with the necessary
-knowledge and skills to utilize the sound research methodology of Targeted
-Learning.\</p>
-<p>For any complex statistical methodology to be accessible in practice, it is
-crucial that it is accompanied by robust software. The 
-software ecosystem was developed to fulfill this need. Not only does this
-software facilitate computationally reproducible and efficient analyses, it is
-also a tool for Targeted Learning education since its workflow mirrors that of
-the methodology. In particular, the  paradigm does not focus on
-implementing a specific estimator or a small set of related estimators —
-instead, the focus is on exposing the statistical framework of Targeted Learning
-itself! All  packages in the  ecosystem directly model
-the key objects defined in the mathematical and theoretical framework of Targeted
-Learning.\</p>
-<p>In this handbook, the reader will embark on a journey through the
-. Guided by  programming exercises, case studies, and
-intuitive explanation readers will build a toolbox for applying the Targeted
-Learning statistical methodology, thereby increasing accessibility of this
-statistical approach and philosophy. The reader need not be a fully trained
-statistician to begin understanding and applying these methods. However, we do
-recommend ___ before</p>
-
-</div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-van2014entering">
-<p>Laan, Mark J van der, and Richard JCM Starmans. 2014. “Entering the Era of Data Science: Targeted Learning and the Integration of Statistics and Computational Data Analysis.” <em>Advances in Statistics</em> 2014. Hindawi.</p>
 </div>
 </div>
             </section>
@@ -462,8 +401,8 @@ recommend ___ before</p>
           </div>
         </div>
       </div>
-
-<a href="the-roadmap-for-targeted-learning.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="literature.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -493,7 +432,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/tlverse/acic2019-workshop/edit/master/index.Rmd",
+"link": "https://github.com/tlverse/acic2019-workshop/edit/master/01-intro.Rmd",
 "text": "Edit"
 },
 "history": {
