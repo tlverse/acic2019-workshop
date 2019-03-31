@@ -46,14 +46,19 @@ extensions where $a \leq u(w) - \delta$ or $d(a, w) = a$ if $a \geq u(w) -
 
 ##$ Interpreting the Causal Effect of a Stochastic Intervention
 
+## Simple Substitution Estimator
+
+
 ## Estimating an ATE with `tmle3`
 
 * example code here
 * how to extract/interpret the results
 
-
+## Data science compare Q to Q* ss to tmle
+## Propensity score distro
 ## `tmle3` Specifications
-
+## interleave exercises
+## demo custom parameters/estimators
 * wraps up all the details of the estimation strategy into a cohesive spec
 * a function to search for these (similar to sl3_list_learners)
 * example of applying a different spec

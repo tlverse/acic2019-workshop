@@ -1,11 +1,13 @@
 ---
 title: "Statistical Roadmap and Data Intro"
 author: "Alan Hubbard"
-date: "`r Sys.Date()`"
-output: pdf_document
-bibliography: refs.bib
-editor_options: 
+date: '`r Sys.Date()`'
+output:
+  html_document:
+    df_print: paged
+editor_options:
   chunk_output_type: console
+bibliography: refs.bib
 ---
 
 ## Learning Objectives

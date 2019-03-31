@@ -1,3 +1,17 @@
-# Methods
+# `tmle3` -- Targeted Learning Framework
+
+## 
+
+Repeat concepts from Alan's section
+
+## 
+
+Map concepts to tmle3 objects
+
+## 
+
+Fit tmle
+
+## explain concepts
 
 We describe our methods in this chapter.

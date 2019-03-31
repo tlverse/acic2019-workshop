@@ -1,0 +1,319 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Statistical Roadmap and Data Intro},
+            pdfauthor={Alan Hubbard},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Statistical Roadmap and Data Intro}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Alan Hubbard}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{2019-03-30}
+
+
+\begin{document}
+\maketitle
+
+\hypertarget{learning-objectives}{%
+\subsection{Learning Objectives}\label{learning-objectives}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Introduce the data being used in workshp
+\item
+  Introduce the statistical roadmap on which the methods are based.
+\end{enumerate}
+
+\hypertarget{the-data}{%
+\subsection{The Data}\label{the-data}}
+
+The data come from the Effect of water quality, sanitation, hand
+washing, and nutritional interventions on child development in rural
+Bangladesh (WASH Benefits Bangladesh): a cluster-randomised controlled
+trial (Luby et al. (2018)). The study enrolled enrolled pregnant women
+in their first or second trimester from rural villages of Gazipur,
+Kishoreganj, Mymensingh, and Tangail districts of central Bangladesh,
+with an average of eight women per cluster. Groups of eight
+geographically adjacent clusters were block-randomised, using a random
+number generator, into six intervention groups (all of which received
+weekly visits from a community health promoter for the first 6 months
+and every 2 weeks for the next 18 months) and a double-sized control
+group (no intervention or health promoter visit). The six intervention
+groups were: chlorinated drinking water; improved sanitation;
+handwashing with soap; combined water, sanitation, and handwashing;
+improved nutrition through counselling and provision of lipid-based
+nutrient supplements; and combined water, sanitation, handwashing, and
+nutrition. In the workshop, we concentrate child-growth (size for age)
+as the outcome. This trial was registered with ClinicalTrials.gov,
+number NCT01590095.
+
+For the purposes of this workshop, we we start by treating the data as
+independent and identically distributed (i.i.d.) random draws from a
+very large target population. We could, with available options, account
+for the clustering of the data (within sampled geographic units), but
+avoiding these details for this workshop.
+
+We have 2 variables and 1 variable set of interest. Our outcome, \(Y\),
+is \emph{whz} -- weight For height Z-score, the treatment of interest,
+\(A\), is \emph{tr} -- randomized treatment group, and our adjustment
+variables, \(W\), are \emph{everything else}. This results in our
+observed data structure as \(i=1,...,n\) i.i.d. copies of
+\(O_i = (W_i,A_i,Y_i)\).
+
+Modifications of our methods for biased samples, repeated measures, etc.
+are available.
+
+\hypertarget{the-variables}{%
+\subsubsection{The variables}\label{the-variables}}
+
+\include{table1}
+
+The distribution of relevant variables is shown in Table \ref{table_1}.
+The top rows summarize continuous variables, the remainder are
+categorical. The asset variables reflect the socio-economic status of
+the subjects. Notice also the uniform distribution of the treatment
+groups (with twice as many controls); this is of course by design.
+
+\hypertarget{the-model}{%
+\subsection{The model}\label{the-model}}
+
+The reason you're taking this course, presumably, is because you want to
+estimate relevant parameters in realistic models.
+
+\hypertarget{the-statistical-model}{%
+\subsubsection{The statistical Model}\label{the-statistical-model}}
+
+One can break up the distribution of the observed data as follows:
+\(P(O)=P(W,A,Y)=P(W)P(A|W)P(Y|A,W)\). To estimate a parameter of
+interest, the researcher does not necessarily need to specify these
+whole distributions and conditional distributions. Each estimator
+requires certain parts of the distribution, for example some require
+estimates of \(E(Y|A,W)=\) mean of \(Y\) within subgroups \((A,W)\), or
+the regression of the outcome on the exposure and confounders. At this
+stage in the road map the researcher specifies what statistical model
+she will use to estimate \(E(Y|A,W)\) or other elements of the
+probability distribution that are needed to estimate the parameter of
+interest. By ``statistical model'' here we mean any constraints on the
+model form that are imposed by knowledge about the process - known
+aspects of how the data were generated. Typically, the true model is a
+very big model, with few constraints if any on the data-generating
+distribution, or a semi-parametric model. Thus, with few constraints on
+the data-generating distribution, and a potentially large number of
+covariates, data-adaptive, machine-learning approaches are the only
+practical option. The remainder of the course is how to do this as
+efficiently and robustly as possible, depending on the goal of the
+analysis.
+
+\hypertarget{the-causal-model}{%
+\subsubsection{The Causal Model}\label{the-causal-model}}
+
+The next step is to use a causal framework to formalize the experiment
+and thereby define the parameter of interest. Causal graphs are one
+useful tool to express what we know about the causal relations among
+variables that are relevant to the question under study (Pearl (2000)).
+An illustration shows a simple causal graph, specifically a directed
+acyclic graph or DAG, to depict the causal relations between variables
+with a simple example of a binary exposure A, a binary outcome Y, and
+one categorical confounding variable W. The DAG for these relations is
+depicted below.
+
+\includegraphics[width=4.0in]{CausalGraph.pdf}
+
+The \(U_W\), \(U_A\), and \(U_Y\) are the unmeasured exogenous
+background characteristics that influence the value of each variable.
+Alternatively, the same causal relations among variables can be
+represented with a series of equations: \begin{eqnarray*}
+W &=& f_W(U_W) \\
+A &=& f_A(W,U_A) \\
+Y&=&f_Y(W,A,U_Y). 
+\end{eqnarray*}
+
+Here \(f_W, f_A\) and \(f_Y\) denote that each variable (\(W, A\) and
+\(Y\) respectively) is a function of its parents and unmeasured
+background characteristics, but there is no imposition of any particular
+functional constraints. For this reason, they are called non-parametric
+structural equations. The DAG and this series of non-parametric
+structural equations represent the same information.
+
+\hypertarget{parameter-of-interest}{%
+\subsection{Parameter of Interest}\label{parameter-of-interest}}
+
+The first hypothetical experiment we will consider is assigning exposure
+to the whole population and observing the outcome, and then assigning no
+exposure to the whole population and observing the outcome. On the
+non-parametric structural equations, this corresponds to a comparison of
+the outcome distribution in the population under two interventions: 1) A
+is set to 1 for all individuals, and 2) A is set to 0 for all
+individuals. These interventions imply two new non-parametric structural
+equation models with first being: \begin{eqnarray*}
+W &=& f_W(U_W) \\
+A &=& 1 \\
+Y(1)&=&f_Y(W,1,U_Y), 
+\end{eqnarray*} and second just replacing the intervention of \(A=1\) to
+\(A=0\), \begin{eqnarray*}
+W &=& f_W(U_W) \\
+A &=& 0 \\
+Y(0)&=&f_Y(W,0,U_Y).
+\end{eqnarray*}
+
+In these equations, A is no longer a function of W because we have
+intervened on the graph and set A to the values 1 and 0. The new symbols
+Y(1) and Y(0) indicate the outcome variable in our population if it were
+generated by the respective NPSEMs above; these are often called
+counterfactuals. The difference between the means of the outcome under
+these two interventions defines a parameter that is often called the
+``Average Treatment Effect (ATE), or \begin{equation}
+\label{ate}
+ATE = E_X(Y(1)-Y(0)),
+\end{equation} \#\#\# Identifiability where \(E_X\) is the mean under
+the theoretical full data: \(X=(W,Y(1),Y(0))\). Because we can never
+observe both \(Y(0)\) (counterfactual when \(A=0\)) and \(Y(1)\), we can
+not estimate \ref{ate} directly. Thus, we have to make assumptions to
+estimate this quantity from \(O \sim P_0\), or the data-generating
+distribution. Fortunately, given our causal model shown in the graph
+above, we can, with a couple of more assumptions, estimate the ATE even
+from observational data. First, the causal graph implies that
+\(Y(a) \perp A\) for all \(a \in \mathcal{A}\), which is the
+randomization assumption. Outside of the graph, one also needs a
+non-interference assumption (say the \(Y\)'s are independent) and
+positivity (\(0<P_0(A=a\mid W)< 1\) for all \(a\) and \(W\)). Given
+these assumptions, then one can re-write the ATE as a function of
+\(P_0\), specifically \begin{equation}
+\label{estimand}
+ATE = E_0(Y(1)=Y(0)) = E_0\left( E_0[Y \mid A=1,W]-E_0[Y \mid A=0,W] \right),
+\end{equation} or the difference in predicted values for each subject in
+population and then averaging over those subjects. Thus, a parameter of
+a theoretical''full" data distribution can be represented as an estimand
+of the observed data-distribution. Significantly, there is nothing about
+the representation in \ref{estimand} that requires parameteric
+assumptions, so that the regressions on the right hand side can be
+estimated freely with machine learning. With different parameters, there
+will be potentially different identifiability assumptions and the
+resulting estimands can be functions of different components of \(P_0\).
+We discuss several more complex ones in this workshop later.
+
+\hypertarget{estimator}{%
+\subsection{Estimator}\label{estimator}}
+
+We will discuss more in the specific sections later, but the goals of
+the estimator should be, among sensible (asymptotically consistent,
+regular) estimators 1. They are asymptotically efficient in the
+statistical model of interest. 2. They can be constructed for finite
+sample performance improvements.
+
+\hypertarget{inference}{%
+\subsection{Inference}\label{inference}}
+
+The estimators we discuss are asymptotically linear, meaning that the
+difference in teh estimate \(\Psi(P_n)\) and the true parameter
+(\(\Psi(P_0)\)) can be represented in first order by a i.i.d. sum:
+\begin{equation}
+\label{IC}
+\Psi(P_n) - \Psi(P_0) = \frac{1}{n} IC(O_i; \nu)+op(1/\sqrt{n})
+\end{equation} where \(IC(O_i; \nu)\) is a function of the data and
+possibly other parameters, \(\nu\). Thus, in the univariate case, one
+can derive a 95\% confidence interval as: \begin{equation}
+\label{CI}
+\Psi(P^*_n) \pm 1.96 \sqrt{\frac{\hat{\sigma}^2}{n}}
+\end{equation}
+
+where \(SE=\sqrt{\frac{\hat{\sigma}^2}{n}}\) and \(\hat{\sigma}^2\) is
+the sample variance of the estimated IC's: \(IC(O;\hat{\nu})\). One can
+use the functional delta method to derive the influence curve if a
+parameter of interest that is written as a function of other
+asymptotically linear estimators.
+
+\hypertarget{references}{%
+\subsection*{References}\label{references}}
+\addcontentsline{toc}{subsection}{References}
+
+\hypertarget{refs}{}
+\leavevmode\hypertarget{ref-luby2018effects}{}%
+Luby, Stephen P, Mahbubur Rahman, Benjamin F Arnold, Leanne Unicomb,
+Sania Ashraf, Peter J Winch, Christine P Stewart, et al. 2018. ``Effects
+of Water Quality, Sanitation, Handwashing, and Nutritional Interventions
+on Diarrhoea and Child Growth in Rural Bangladesh: A Cluster Randomised
+Controlled Trial.'' \emph{The Lancet Global Health} 6 (3). Elsevier:
+e302--e315.
+
+\leavevmode\hypertarget{ref-pearl_causality_2000}{}%
+Pearl, J. 2000. \emph{Causality}. Cambridge University Press.
+
+
+\end{document}
