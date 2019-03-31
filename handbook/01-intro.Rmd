@@ -6,7 +6,7 @@ corresponding to stochastic interventions -->
 1. Understand the `tlverse` concept
 2. Identify the core components of the `tlverse`
 3. Install `tlverse` R packages
-
+4. Learn about the WASH Benefits example data
 ## What is `tlverse`?
 
 `tlverse` is a new framework for doing Targeted Learning in R. We were inspired by the tidyverse effort.
@@ -96,3 +96,8 @@ This just means that R tried to install too many packages from github in too sho
 
 1. Use `usethis::browse_github_pat()` to create a Personal Access Token.
 2. Use `usethis::edit_r_environ()` and add the token as `GITHUB_PAT`.
+
+## Example Data - WASH Benefits
+
+<!-- This will be it's own chapter written by Alan. Including an expert here for now -->
+
