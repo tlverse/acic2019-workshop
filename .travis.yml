@@ -14,4 +14,6 @@ before_script:
 script:
   - cd handbook
   - ./_build.sh
-  - ./_deploy.sh
+  - test $TRAVIS_BRANCH = "master" &&
+    ./_deploy.sh
+

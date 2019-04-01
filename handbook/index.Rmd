@@ -1,9 +1,9 @@
 ---
 title: "The Hitchhiker's Guide to the `tlverse`"
 subtitle: "or a Targeted Learning Practitioner's Handbook"
-author: "Mark J. van der Laan, Alan E. Hubbard, Jeremy R. Coyle, Nima S.
-  Hejazi, Ivana Malenica, Rachael V. Phillips"
-date: "`r format(Sys.time(), '%B %d, %Y')`"
+author: "Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana
+  Malenica, Rachael Phillips"
+date: "__ACIC 2019 edition__; updated: `r format(Sys.time(), '%B %d, %Y')`"
 documentclass: book
 output: bookdown::gitbook
 site: bookdown::bookdown_site
@@ -72,7 +72,7 @@ Conference](https://mcgill.ca/epi-biostat-occh/news-events/atlantic-causal-infer
 Montréal, Québec, Canada on 22 May 2019.
 
 <img style="float: center; margin-right: 1%; margin-bottom: 0.05em"
-     src="img/ad_workshop.png" width="100%" height="100%">
+     src="img/misc/ad_workshop.png" width="100%" height="100%">
 <br>
 
 ## About this workshop {-}
@@ -141,11 +141,36 @@ conjunction with each other and built upon one other in a cohesive fashion.
 
 ## Outline {-}
 
+This is a full-day (6-hour) workshop, featuring modules that introduce distinct
+causal questions, each motivated by a case study, alongside statistical
+methodology and software for assessing the causal claim of interest. A sample
+schedule may take the form:
+
+* 09:30AM--09:45AM: [Why we need a statistical
+    revolution](https://senseaboutscienceusa.org/super-learning-and-the-revolution-in-knowledge/)
+* 09:45AM--10:15AM: The Roadmap, and the [WASH
+    Benefits](http://www.washbenefits.net/) data
+* 10:15AM--10:30AM: Introduction to the [`tlverse` software
+    ecosystem](https://tlverse.org)
+* 10:30AM--10:45AM: Morning break
+* 10:45AM--11:45AM: Ensemble machine learning with the
+    [`sl3`](https://github.com/tlverse/sl3) package
+* 11:45AM--12:30PM: Targeted learning for causal inference with the
+    [`tmle3`](https://github.com/tlverse/tmle3) package
+* 12:30PM--1:30PM: Lunch break
+* 01:30PM--02:45PM: Optimal treatment regimes and the
+    [`tmle3mopttx`](https://github.com/tlverse/tmle3mopttx) package
+* 02:45PM--03:00PM: Afternoon break
+* 3:00PM--4:00PM: Stochastic treatment regimes and the
+    [`tmle3shift`](https://github.com/tlverse/tmle3shift) package
+* 04:00PM--4:30PM: _Coda_: [Why we need a statistical
+    revolution](https://senseaboutscienceusa.org/super-learning-and-the-revolution-in-knowledge/)
+
 ## About the instructors {-}
 
-### Mark J. van der Laan
+### Mark van der Laan {-}
 
-Mark van der Laan, PhD, is Professor of Biostatistics and Statistics at UC
+Mark van der Laan, Ph.D., is Professor of Biostatistics and Statistics at UC
 Berkeley. His research interests include statistical methods in computational
 biology, survival analysis, censored data, adaptive designs, targeted maximum
 likelihood estimation, causal inference, data-adaptive loss-based learning, and
@@ -161,26 +186,26 @@ part on the development of a centralized, principled set of software tools for
 targeted learning, the `tlverse`. For more information, see
 https://vanderlaan-lab.org.
 
-### Alan E. Hubbard
+### Alan Hubbard {-}
 
-Alan Hubbard is Professor of Biostatistics, former head of the Division of
-Biostatistics at UC Berkeley, and head of data analytics core at UC Berkeley's
-SuperFund research program. His current research interests include causal
-inference, variable importance analysis, statistical machine learning,
+Alan Hubbard, Ph.D., is Professor of Biostatistics, former head of the Division
+of Biostatistics at UC Berkeley, and head of data analytics core at UC
+Berkeley's SuperFund research program. His current research interests include
+causal inference, variable importance analysis, statistical machine learning,
 estimation of and inference for data-adaptive statistical target parameters, and
 targeted minimum loss-based estimation. Research in his group is generally
 motivated by applications to problems in computational biology, epidemiology,
 and precision medicine.
 
-### Jeremy R. Coyle
+### Jeremy Coyle {-}
 
-Jeremy Coyle is a consulting data scientist and statistical programmer,
+Jeremy Coyle, Ph.D., is a consulting data scientist and statistical programmer,
 currently leading the software development effort that has produced the
 `tlverse` ecosystem of R packages and related software tools. Jeremy earned his
 Ph.D. in Biostatistics from UC Berkeley in 2016, primarily under the supervision
 of Alan Hubbard.
 
-### Nima S. Hejazi
+### Nima Hejazi {-}
 
 Nima is a Ph.D. candidate in biostatistics with a designated emphasis in
 computational and genomic biology, working jointly with Mark van der Laan and
@@ -193,7 +218,7 @@ development for applied statistics, including software design, automated
 testing, and reproducible coding practices. For more information, see
 https://nimahejazi.org.
 
-### Ivana Malenica
+### Ivana Malenica {-}
 
 Ivana is a Ph.D. student in biostatistics advised by Mark van der Laan. Ivana is
 currently a fellow at the Berkeley Institute for Data Science, after serving as
@@ -205,7 +230,7 @@ causal inference and high-dimensional statistics. Most of her current work
 involves complex dependent settings (dependence through time and network) and
 adaptive sequential designs.
 
-### Rachael V. Phillips
+### Rachael Phillips {-}
 
 Rachael is a Ph.D. student in biostatistics, advised by Alan Hubbard and Mark
 van der Laan. She has an M.A. in Biostatistics, B.S. in Biology with a
@@ -216,8 +241,4 @@ statistical estimation, and finite sample inference. She is also passionate
 about online mediated education. Rachael is affiliated with UC Berkeley's Center
 for Computational Biology, NIH Biomedical Big Data Training Program, and
 Superfund Research Program.
-
-## Acknowledgements {-}
-
-...
 
