@@ -458,7 +458,7 @@ sl_fit &lt;-<span class="st"> </span>sl<span class="op">$</span><span class="kw"
 values and summarized results.</p>
 <pre class="sourceCode r"><code class="sourceCode r">sl_preds &lt;-<span class="st"> </span>sl_fit<span class="op">$</span><span class="kw">predict</span>()
 <span class="kw">head</span>(sl_preds)</code></pre>
-<pre><code>[1] -0.5387057 -0.8885456 -0.7792087 -0.8119158 -0.6628611 -0.7224926</code></pre>
+<pre><code>[1] -0.5148466 -0.8842153 -0.7887017 -0.7923940 -0.6487325 -0.7075403</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">sl_fit<span class="op">$</span><span class="kw">print</span>()</code></pre>
 <pre><code>[1] &quot;SuperLearner:&quot;
 List of 4
@@ -468,23 +468,23 @@ List of 4
  $ : chr &quot;Lrnr_glmnet_NULL_deviance_10_1_100_TRUE&quot;
 [1] &quot;Lrnr_nnls&quot;
                                      lrnrs   weights
-1:                           Lrnr_glm_TRUE 0.1938093
+1:                           Lrnr_glm_TRUE 0.1669442
 2:                               Lrnr_mean 0.0000000
-3:                    Lrnr_ranger_500_TRUE 0.4409638
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.3701373
+3:                    Lrnr_ranger_500_TRUE 0.4843020
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.3546726
 [1] &quot;Cross-validated risk (MSE, squared error loss):&quot;
                                    learner coefficients mean_risk    SE_risk
 1:                           Lrnr_glm_TRUE           NA  1.020570 0.02391262
 2:                               Lrnr_mean           NA  1.065278 0.02502098
-3:                    Lrnr_ranger_500_TRUE           NA  1.016882 0.02350027
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.015128 0.02361537
-5:                            SuperLearner           NA  1.009915 0.02345424
+3:                    Lrnr_ranger_500_TRUE           NA  1.014762 0.02342543
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.014703 0.02359779
+5:                            SuperLearner           NA  1.008824 0.02340485
       fold_SD fold_min_risk fold_max_risk
 1: 0.04603086     0.9760878      1.133006
 2: 0.06603243     0.9310730      1.181434
-3: 0.04769030     0.9328218      1.103192
-4: 0.05017041     0.9464229      1.131936
-5: 0.04754370     0.9394852      1.113366</code></pre>
+3: 0.04463992     0.9366095      1.095521
+4: 0.05010489     0.9464229      1.131936
+5: 0.04610963     0.9398930      1.108153</code></pre>
 </div>
 <div id="extensions" class="section level3">
 <h3><span class="header-section-number">2.3.2</span> Extensions</h3>
@@ -635,30 +635,30 @@ List of 9
  $ : chr &quot;Lrnr_pkg_SuperLearner_SL.gam&quot;
  $ : chr &quot;Lrnr_pkg_SuperLearner_SL.bayesglm&quot;
 [1] &quot;Lrnr_nnls&quot;
-                                     lrnrs   weights
-1:                           Lrnr_glm_TRUE 0.1735264
-2:                               Lrnr_mean 0.0000000
-3:                    Lrnr_ranger_500_TRUE 0.0000000
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.3355734
-5:                   Lrnr_ranger_1000_TRUE 0.4953499
-6:                    Lrnr_ranger_100_TRUE 0.0000000
+                                     lrnrs    weights
+1:                           Lrnr_glm_TRUE 0.14004558
+2:                               Lrnr_mean 0.00000000
+3:                    Lrnr_ranger_500_TRUE 0.00000000
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.38935130
+5:                   Lrnr_ranger_1000_TRUE 0.39711630
+6:                    Lrnr_ranger_100_TRUE 0.07973216
 [1] &quot;Cross-validated risk (MSE, squared error loss):&quot;
                                    learner coefficients mean_risk    SE_risk
 1:                           Lrnr_glm_TRUE           NA  1.020570 0.02391262
 2:                               Lrnr_mean           NA  1.065278 0.02502098
-3:                    Lrnr_ranger_500_TRUE           NA  1.016593 0.02352965
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.014921 0.02361643
-5:                   Lrnr_ranger_1000_TRUE           NA  1.014669 0.02343845
-6:                    Lrnr_ranger_100_TRUE           NA  1.026179 0.02381172
-7:                            SuperLearner           NA  1.009157 0.02342352
+3:                    Lrnr_ranger_500_TRUE           NA  1.017955 0.02348781
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.013985 0.02358775
+5:                   Lrnr_ranger_1000_TRUE           NA  1.014728 0.02341251
+6:                    Lrnr_ranger_100_TRUE           NA  1.021433 0.02345723
+7:                            SuperLearner           NA  1.008735 0.02339766
       fold_SD fold_min_risk fold_max_risk
 1: 0.04603086     0.9760878      1.133006
 2: 0.06603243     0.9310730      1.181434
-3: 0.04846283     0.9346660      1.109889
-4: 0.05044872     0.9464229      1.131936
-5: 0.04510431     0.9389358      1.100664
-6: 0.04771501     0.9327669      1.105328
-7: 0.04637075     0.9412327      1.110678</code></pre>
+3: 0.04535473     0.9380471      1.105242
+4: 0.05054671     0.9438794      1.131301
+5: 0.04604023     0.9334575      1.100871
+6: 0.04395283     0.9495448      1.097780
+7: 0.04692241     0.9374040      1.110086</code></pre>
 </div>
 </div>
 <div id="exercise" class="section level2">
