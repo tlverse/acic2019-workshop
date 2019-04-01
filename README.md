@@ -5,6 +5,11 @@ Note: `travis-ci` currently deploys the developmental version of this workshop
 handbook into the `gh-pages` branch of this repository, which is hosted by
 GitHub Pages at https://tlverse.org/acic2019-workshop.
 
+The workshop materials are automatically built and deployed using
+[Binder](https://github.com/jupyterhub/binderhub). An RStudio session,
+pre-loaded with all the materials, is available via
+**RStudio:** [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/tlverse/acic2019-workshop/master?urlpath=rstudio)
+
 Welcome to the GitHub repository for an early draft of [**The Hitchhiker's
 Guide to the `tlverse`, or a Targeted Learning Practitioner's
 Handbook**](http://tlverse.org/acic2019-workshop), by Mark van der Laan, Alan

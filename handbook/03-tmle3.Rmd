@@ -34,15 +34,19 @@ washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
 We'll use the common W (covariates), A (treatment/intervention), Y (outcome) data structure. `tmle3` needs to know what variables in the dataset correspond to each of these roles. We use a list of character vectors to tell it. We call this a "Node List" as it corresponds to the nodes in a Directed Acyclic Graph (DAG), a way of displaying causal relationships between variables.
 
 ```{r tmle3-node-list}
-node_list <- list(W = c("month", "aged", "sex", "momage", "momedu",
-                        "momheight", "hfiacat", "Nlt18", "Ncomp", "watmin",
-                        "elec", "floor", "walls", "roof", "asset_wardrobe",
-                        "asset_table", "asset_chair", "asset_khat",
-                        "asset_chouki", "asset_tv", "asset_refrig",
-                        "asset_bike", "asset_moto", "asset_sewmach",
-                        "asset_mobile"),
-                  A = "tr",
-                  Y = "whz")
+node_list <- list(
+  W = c(
+    "month", "aged", "sex", "momage", "momedu",
+    "momheight", "hfiacat", "Nlt18", "Ncomp", "watmin",
+    "elec", "floor", "walls", "roof", "asset_wardrobe",
+    "asset_table", "asset_chair", "asset_khat",
+    "asset_chouki", "asset_tv", "asset_refrig",
+    "asset_bike", "asset_moto", "asset_sewmach",
+    "asset_mobile"
+  ),
+  A = "tr",
+  Y = "whz"
+)
 ```
 
 ### Handle Missingness
@@ -76,8 +80,10 @@ We'll start with using one of the specs, and then work our way down into the
 internals of `tmle3`.
 
 ```{r tmle3-ate-spec}
-ate_spec <- tmle_ATE(treatment_level = "Nutrition + WSH",
-                     control_level = "Control")
+ate_spec <- tmle_ATE(
+  treatment_level = "Nutrition + WSH",
+  control_level = "Control"
+)
 ```
 
 ### Define the learners
@@ -95,7 +101,7 @@ lrnr_xgboost <- make_learner(Lrnr_xgboost)
 
 # define metalearners appropriate to data types
 ls_metalearner <- make_learner(Lrnr_nnls)
-mn_metalearner <- make_learner(Lrnr_solnp,  metalearner_linear_multinomial, loss_loglik_multinomial)
+mn_metalearner <- make_learner(Lrnr_solnp, metalearner_linear_multinomial, loss_loglik_multinomial)
 sl_Y <- Lrnr_sl$new(learners = list(lrnr_mean, lrnr_xgboost), metalearner = ls_metalearner)
 sl_A <- Lrnr_sl$new(learners = list(lrnr_mean, lrnr_xgboost), metalearner = mn_metalearner)
 
@@ -149,8 +155,10 @@ Next, is an object representing the likelihood, factorized according to the
 NPSEM described above:
 
 ```{r tmle3-spec-initial-likelihood}
-initial_likelihood <- ate_spec$make_initial_likelihood(tmle_task,
-                                                       learner_list)
+initial_likelihood <- ate_spec$make_initial_likelihood(
+  tmle_task,
+  learner_list
+)
 print(initial_likelihood)
 ```
 
@@ -185,7 +193,8 @@ options. For example, you can disable CV-TMLE (the default in `tmle3`) as follow
 ```{r tmle3-spec-targeted-likelihood-no-cv}
 targeted_likelihood_no_cv <-
   Targeted_Likelihood$new(initial_likelihood,
-                          updater = list(cvtmle = FALSE))
+    updater = list(cvtmle = FALSE)
+  )
 ```
 
 ### Parameter Mapping
@@ -205,8 +214,10 @@ Having used the spec to manually generate all these components, we can now
 manually fit a `tmle3`:
 
 ```{r tmle3-manual-fit}
-tmle_fit_manual <- fit_tmle3(tmle_task, targeted_likelihood, tmle_params,
-                             targeted_likelihood$updater)
+tmle_fit_manual <- fit_tmle3(
+  tmle_task, targeted_likelihood, tmle_params,
+  targeted_likelihood$updater
+)
 print(tmle_fit_manual)
 ```
 
@@ -237,9 +248,11 @@ parameters. For instance, we can estimate a ATE using the delta method and two
 of the above TSM parameters:
 
 ```{r tmle3-delta-method-param}
-ate_param <- define_param(Param_delta, targeted_likelihood,
-                         delta_param_ATE,
-                         list(all_tsm_params[[1]], all_tsm_params[[4]]))
+ate_param <- define_param(
+  Param_delta, targeted_likelihood,
+  delta_param_ATE,
+  list(all_tsm_params[[1]], all_tsm_params[[4]])
+)
 print(ate_param)
 ```
 
@@ -254,8 +267,10 @@ above defined ATE parameter
 ```{r tmle3-tsm-plus-delta}
 all_params <- c(all_tsm_params, ate_param)
 
-tmle_fit_multiparam <- fit_tmle3(tmle_task, targeted_likelihood, all_params,
-                                 targeted_likelihood$updater)
+tmle_fit_multiparam <- fit_tmle3(
+  tmle_task, targeted_likelihood, all_params,
+  targeted_likelihood$updater
+)
 
 print(tmle_fit_multiparam)
 ```
