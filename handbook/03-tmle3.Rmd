@@ -88,24 +88,28 @@ to estimate the relevant factors of the likelihood: Q and g.
 This takes the form of a list of `sl3` learners, one for each likelihood factor
 to be estimated with `sl3`:
 
-<!-- TODO: use learners defned in Rachael's section -->
-
 ```{r tmle3-learner-list}
-lrnr_glm <- make_learner(Lrnr_glm)
+# choose base learners
 lrnr_mean <- make_learner(Lrnr_mean)
-learner_list <- list(A = lrnr_mean, Y = lrnr_glm)
+lrnr_xgboost <- make_learner(Lrnr_xgboost)
+
+# define metalearners appropriate to data types
+ls_metalearner <- make_learner(Lrnr_nnls)
+mn_metalearner <- make_learner(Lrnr_solnp,  metalearner_linear_multinomial, loss_loglik_multinomial)
+sl_Y <- Lrnr_sl$new(learners = list(lrnr_mean, lrnr_xgboost), metalearner = ls_metalearner)
+sl_A <- Lrnr_sl$new(learners = list(lrnr_mean, lrnr_xgboost), metalearner = mn_metalearner)
+
+learner_list <- list(A = sl_A, Y = sl_Y)
 ```
 
-We plan to include reasonable defaults for this as well.
+Here, we use a SuperLearner as defined in the previous chapter. In the future, we plan to include reasonable defaults learners.
 
 ### Fit the TMLE
 
 We now have everything we need to fit the tmle using `tmle3`:
 
 ```{r tmle3-spec-fit}
-suppressWarnings({
 tmle_fit <- tmle3(ate_spec, washb_data, node_list, learner_list)
-})
 ```
 
 ### Evaluate the Estimates
@@ -176,7 +180,7 @@ targeted_likelihood <- Targeted_Likelihood$new(initial_likelihood)
 
 When constructing the targeted likelihood, you can specify different update
 options. See the documentation for `tmle3_Update` for details of the different
-options. For example, you can disable CV-TMLE as follows:
+options. For example, you can disable CV-TMLE (the default in `tmle3`) as follows:
 
 ```{r tmle3-spec-targeted-likelihood-no-cv}
 targeted_likelihood_no_cv <-
@@ -201,11 +205,9 @@ Having used the spec to manually generate all these components, we can now
 manually fit a `tmle3`:
 
 ```{r tmle3-manual-fit}
-suppressWarnings({
-  tmle_fit_manual <- fit_tmle3(tmle_task, targeted_likelihood, tmle_params,
-                               targeted_likelihood$updater)
-})
-all.equal(tmle_fit$summary, tmle_fit_manual$summary)
+tmle_fit_manual <- fit_tmle3(tmle_task, targeted_likelihood, tmle_params,
+                             targeted_likelihood$updater)
+print(tmle_fit_manual)
 ```
 
 The result is equivalent to fitting using the `tmle3` function as above.
@@ -225,7 +227,8 @@ print(all_tsm_params)
 
 This spec generates a Treatment Specific Mean (TSM) for each level of the
 exposure variable. Note that we must first generate a new targeted likelihood,
-as the old one was targeted to the ATE.
+as the old one was targeted to the ATE. However, we can recycle the initial likelihood we fit above, 
+saving us a super learner step.
 
 ### Delta Method
 
@@ -250,10 +253,10 @@ above defined ATE parameter
 
 ```{r tmle3-tsm-plus-delta}
 all_params <- c(all_tsm_params, ate_param)
-suppressWarnings({
-  tmle_fit_multiparam <- fit_tmle3(tmle_task, targeted_likelihood, all_params,
-                                   targeted_likelihood$updater)
-})
+
+tmle_fit_multiparam <- fit_tmle3(tmle_task, targeted_likelihood, all_params,
+                                 targeted_likelihood$updater)
+
 print(tmle_fit_multiparam)
 ```
 
