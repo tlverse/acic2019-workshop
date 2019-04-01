@@ -274,6 +274,6 @@ get_variable_importance <- function(data, outcome, covars){
   return(results_ordered)
 }
 
-get_variable_importance(data = wash_data, outcome = outcome, covars = covars)
+get_variable_importance(data = washb_data, outcome = outcome, covars = covars)
 
 ```
