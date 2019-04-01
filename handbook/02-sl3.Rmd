@@ -250,10 +250,8 @@ get_variable_importance <- function(data, outcome, covars){
 
   risk_diffs <- lapply(covars, function(x){
     # scramble cov column and give it the same name as the raw cov col
-    col_to_scramble <- as.numeric(unlist(data[,x, with = FALSE]))
-    scrambled_col <- data.table(runif(nrow(data),
-                                      min = min(col_to_scramble),
-                                      max = max(col_to_scramble)))
+    scrambled_col <- data.table(sample(unlist(data[,x, with = FALSE]),
+                                       nrow(data)))
     names(scrambled_col) <- x
 
     # replace raw col with scrambled col in the task
@@ -275,10 +273,9 @@ get_variable_importance <- function(data, outcome, covars){
   results <- data.table(cov = rep(names(risk_diffs),
                                   sapply(risk_diffs,length)),
                         risk_diff = unlist(risk_diffs))
-  # arrange results in by increasing importance
-  results_ordered <- arrange(results, risk_diff, decreasing = TRUE)
-  return(results_ordered)
+  return(results)
 }
 
-get_variable_importance(data = washb_data, outcome = outcome, covars = covars)
+varimp_washb <- get_variable_importance(data = washb_data, outcome = outcome,
+  covars = covars)
 ```
