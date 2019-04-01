@@ -335,7 +335,7 @@ We can see that the estimate of $psi_0$ is $0.58$, and that the confidence inter
 
 Here we outline how to use `tmle3mopttx` package in order to estimate the mean under the ITR using Q-learning. As demonstrated in the previous sections, we first need to initialize a specification for the TMLE of our parameter of interest. As opposed to the previous section however, we will now use `tmle3_mopttx_Q` instead of `tmle3_mopttx_blip_revere` in order to indicate that we want to use Q-learning instead of TMLE. 
 
-```{r spec_init_Qlearning}
+```{r spec_init_Qlearning1}
 # initialize a tmle specification
 tmle_spec_Q <- tmle3_mopttx_Q(maximize = TRUE)
 
@@ -480,7 +480,7 @@ optimal rule under this fit of the likelihood \cite{Sutton1998,murphy2003}.
 
 Below we outline how to use `tmle3mopttx` package in order to estimate the mean under the ITR using Q-learning. As demonstrated in the previous sections, we first need to initialize a specification for the TMLE of our parameter of interest. As opposed to the previous section however, we will now use `tmle3_mopttx_Q` instead of `tmle3_mopttx_blip_revere` in order to indicate that we want to use Q-learning instead of TMLE. 
 
-```{r spec_init_Qlearning}
+```{r spec_init_Qlearning2}
 # initialize a tmle specification
 tmle_spec_Q <- tmle3_mopttx_Q(maximize = TRUE)
 
