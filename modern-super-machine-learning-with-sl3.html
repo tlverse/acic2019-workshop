@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Modern Super (Machine) Learning with sl3 | The Hitchhiker’s Guide to the tlverse</title>
+  <meta name="description" content="An open-source and fully-reproducible electronic handbook accompanying a full-day short-course on applying the targeted learning methodology in practice using the tlverse software ecosystem." />
+  <meta name="generator" content="bookdown  and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Modern Super (Machine) Learning with sl3 | The Hitchhiker’s Guide to the tlverse" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://tlverse.org/acic2019-workshop/" />
+  
+  <meta property="og:description" content="An open-source and fully-reproducible electronic handbook accompanying a full-day short-course on applying the targeted learning methodology in practice using the tlverse software ecosystem." />
+  <meta name="github-repo" content="tlverse/acic2019-workshop" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Modern Super (Machine) Learning with sl3 | The Hitchhiker’s Guide to the tlverse" />
+  
+  <meta name="twitter:description" content="An open-source and fully-reproducible electronic handbook accompanying a full-day short-course on applying the targeted learning methodology in practice using the tlverse software ecosystem." />
+  
+
+<meta name="author" content="Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana Malenica, Rachael Phillips" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/logos/favicons/favicon.png" type="image/x-icon" />
+<link rel="prev" href="intro.html">
+<link rel="next" href="tmle3-targeted-learning-framework.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Hitchhiker's Guide to the tlverse</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-this-workshop"><i class="fa fa-check"></i>About this workshop</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#outline"><i class="fa fa-check"></i>Outline</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-instructors"><i class="fa fa-check"></i>About the instructors</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#mark-van-der-laan"><i class="fa fa-check"></i>Mark van der Laan</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#alan-hubbard"><i class="fa fa-check"></i>Alan Hubbard</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#jeremy-coyle"><i class="fa fa-check"></i>Jeremy Coyle</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#nima-hejazi"><i class="fa fa-check"></i>Nima Hejazi</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#ivana-malenica"><i class="fa fa-check"></i>Ivana Malenica</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#rachael-phillips"><i class="fa fa-check"></i>Rachael Phillips</a></li>
+</ul></li>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#preface-1"><i class="fa fa-check"></i><b>0.1</b> Preface</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Welcome to the <code>tlverse</code></a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#what-is-the-tlverse"><i class="fa fa-check"></i><b>1.2</b> What is the <code>tlverse</code>?</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#tlverse-components"><i class="fa fa-check"></i><b>1.3</b> <code>tlverse</code> components</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#installation"><i class="fa fa-check"></i><b>1.4</b> Installation</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#example-data---wash-benefits"><i class="fa fa-check"></i><b>1.5</b> Example Data - WASH Benefits</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html"><i class="fa fa-check"></i><b>2</b> Modern Super (Machine) Learning with <code>sl3</code></a><ul>
+<li class="chapter" data-level="2.1" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#learning-objectives-1"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#background"><i class="fa fa-check"></i><b>2.2</b> Background</a></li>
+<li class="chapter" data-level="2.3" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#modern-super-machine-learning-with-sl3-1"><i class="fa fa-check"></i><b>2.3</b> Modern Super (Machine) Learning with <code>sl3</code></a><ul>
+<li class="chapter" data-level="2.3.1" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#basic-implementation"><i class="fa fa-check"></i><b>2.3.1</b> Basic Implementation</a></li>
+<li class="chapter" data-level="2.3.2" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#extensions"><i class="fa fa-check"></i><b>2.3.2</b> Extensions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#exercise"><i class="fa fa-check"></i><b>2.4</b> Exercise</a></li>
+<li class="chapter" data-level="2.5" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#appendix-more-advanced-extensions-of-sl3"><i class="fa fa-check"></i><b>2.5</b> Appendix: More advanced extensions of <code>sl3</code></a><ul>
+<li class="chapter" data-level="2.5.1" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#variable-importance"><i class="fa fa-check"></i><b>2.5.1</b> Variable importance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html"><i class="fa fa-check"></i><b>3</b> <code>tmle3</code> – Targeted Learning Framework</a><ul>
+<li class="chapter" data-level="3.1" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#example-tmle3-for-ate"><i class="fa fa-check"></i><b>3.2</b> Example: <code>tmle3</code> for ATE</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#load-the-data"><i class="fa fa-check"></i><b>3.2.1</b> Load the Data</a></li>
+<li class="chapter" data-level="3.2.2" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#define-the-variable-roles"><i class="fa fa-check"></i><b>3.2.2</b> Define the variable roles</a></li>
+<li class="chapter" data-level="3.2.3" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#handle-missingness"><i class="fa fa-check"></i><b>3.2.3</b> Handle Missingness</a></li>
+<li class="chapter" data-level="3.2.4" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#create-a-spec-object"><i class="fa fa-check"></i><b>3.2.4</b> Create a “Spec” Object</a></li>
+<li class="chapter" data-level="3.2.5" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#define-the-learners"><i class="fa fa-check"></i><b>3.2.5</b> Define the learners</a></li>
+<li class="chapter" data-level="3.2.6" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#fit-the-tmle"><i class="fa fa-check"></i><b>3.2.6</b> Fit the TMLE</a></li>
+<li class="chapter" data-level="3.2.7" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#evaluate-the-estimates"><i class="fa fa-check"></i><b>3.2.7</b> Evaluate the Estimates</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#tmle3-components"><i class="fa fa-check"></i><b>3.3</b> <code>tmle3</code> Components</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#tmle3_task"><i class="fa fa-check"></i><b>3.3.1</b> <code>tmle3_task</code></a></li>
+<li class="chapter" data-level="3.3.2" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#initial-likelihood"><i class="fa fa-check"></i><b>3.3.2</b> Initial Likelihood</a></li>
+<li class="chapter" data-level="3.3.3" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#targeted-likelihood-updater"><i class="fa fa-check"></i><b>3.3.3</b> Targeted Likelihood (updater)</a></li>
+<li class="chapter" data-level="3.3.4" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#parameter-mapping"><i class="fa fa-check"></i><b>3.3.4</b> Parameter Mapping</a></li>
+<li class="chapter" data-level="3.3.5" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#putting-it-all-together"><i class="fa fa-check"></i><b>3.3.5</b> Putting it all together</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#fitting-tmle3-with-multiple-parameters"><i class="fa fa-check"></i><b>3.4</b> Fitting <code>tmle3</code> with multiple parameters</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#delta-method"><i class="fa fa-check"></i><b>3.4.1</b> Delta Method</a></li>
+<li class="chapter" data-level="3.4.2" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#fit"><i class="fa fa-check"></i><b>3.4.2</b> Fit</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#summary"><i class="fa fa-check"></i><b>3.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html"><i class="fa fa-check"></i><b>4</b> Optimal Individualized Treatment Regimes</a><ul>
+<li class="chapter" data-level="4.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#learning-objectives-3"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#introduction-to-optimal-individualized-interventions"><i class="fa fa-check"></i><b>4.2</b> Introduction to Optimal Individualized Interventions</a></li>
+<li class="chapter" data-level="4.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#data-structure-and-notation"><i class="fa fa-check"></i><b>4.3</b> Data Structure and Notation</a></li>
+<li class="chapter" data-level="4.4" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#defining-the-causal-effect-of-an-optimal-individualized-intervention"><i class="fa fa-check"></i><b>4.4</b> Defining the Causal Effect of an Optimal Individualized Intervention</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#binary-treatment"><i class="fa fa-check"></i><b>4.4.1</b> Binary treatment</a></li>
+<li class="chapter" data-level="4.4.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#categorical-treatment"><i class="fa fa-check"></i><b>4.4.2</b> Categorical treatment</a></li>
+<li class="chapter" data-level="4.4.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#why-cv-tmle"><i class="fa fa-check"></i><b>4.4.3</b> Why CV-TMLE?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#interpreting-the-causal-effect-of-an-optimal-individualized-intervention"><i class="fa fa-check"></i><b>4.5</b> Interpreting the Causal Effect of an Optimal Individualized Intervention</a></li>
+<li class="chapter" data-level="4.6" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#evaluating-the-causal-effect-of-an-optimal-individualized-intervention-with-categorical-treatment"><i class="fa fa-check"></i><b>4.6</b> Evaluating the Causal Effect of an Optimal Individualized Intervention with Categorical Treatment</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#simulated-data"><i class="fa fa-check"></i><b>4.6.1</b> Simulated Data</a></li>
+<li class="chapter" data-level="4.6.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#constructing-optimal-stacked-regressions-with-sl3"><i class="fa fa-check"></i><b>4.6.2</b> Constructing Optimal Stacked Regressions with <code>sl3</code></a></li>
+<li class="chapter" data-level="4.6.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#targeted-estimation-of-the-mean-under-the-optimal-individualized-interventions-effects"><i class="fa fa-check"></i><b>4.6.3</b> Targeted Estimation of the Mean under the Optimal Individualized Interventions Effects</a></li>
+<li class="chapter" data-level="4.6.4" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#learning-the-mean-outcome-under-the-optimal-rule-with-q-learning"><i class="fa fa-check"></i><b>4.6.4</b> Learning the Mean Outcome under the Optimal Rule with Q-learning</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#evaluating-the-causal-effect-of-an-optimal-individualized-intervention-with-binary-treatment"><i class="fa fa-check"></i><b>4.7</b> Evaluating the Causal Effect of an Optimal Individualized Intervention with Binary Treatment</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#simulated-data-1"><i class="fa fa-check"></i><b>4.7.1</b> Simulated Data</a></li>
+<li class="chapter" data-level="4.7.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#constructing-optimal-stacked-regressions-with-sl3-1"><i class="fa fa-check"></i><b>4.7.2</b> Constructing Optimal Stacked Regressions with <code>sl3</code></a></li>
+<li class="chapter" data-level="4.7.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#targeted-estimation-of-the-mean-under-the-optimal-individualized-interventions-effects-1"><i class="fa fa-check"></i><b>4.7.3</b> Targeted Estimation of the Mean under the Optimal Individualized Interventions Effects</a></li>
+<li class="chapter" data-level="4.7.4" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#extension-simpler-rules"><i class="fa fa-check"></i><b>4.7.4</b> Extension: Simpler Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#learning-the-mean-outcome-under-the-optimal-rule-with-q-learning-1"><i class="fa fa-check"></i><b>4.8</b> Learning the Mean Outcome under the Optimal Rule with Q-learning</a></li>
+<li class="chapter" data-level="4.9" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#variable-importance-analysis-with-optimal-individualized-interventions"><i class="fa fa-check"></i><b>4.9</b> Variable Importance Analysis with Optimal Individualized Interventions</a><ul>
+<li class="chapter" data-level="4.9.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#simulated-data-2"><i class="fa fa-check"></i><b>4.9.1</b> Simulated Data</a></li>
+<li class="chapter" data-level="4.9.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#constructing-optimal-stacked-regressions-with-sl3-2"><i class="fa fa-check"></i><b>4.9.2</b> Constructing Optimal Stacked Regressions with <code>sl3</code></a></li>
+<li class="chapter" data-level="4.9.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#variable-importance-using-targeted-estimation-of-the-mean-under-the-optimal-individualized-interventions-effects"><i class="fa fa-check"></i><b>4.9.3</b> Variable Importance using Targeted Estimation of the Mean under the Optimal Individualized Interventions Effects</a></li>
+<li class="chapter" data-level="4.9.4" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#variable-importance-using-q-learning"><i class="fa fa-check"></i><b>4.9.4</b> Variable Importance using Q-learning</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#exercises"><i class="fa fa-check"></i><b>4.10</b> Exercises</a><ul>
+<li class="chapter" data-level="4.10.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#basicsreview"><i class="fa fa-check"></i><b>4.10.1</b> Basics/Review</a></li>
+<li class="chapter" data-level="4.10.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#using-the-ideas"><i class="fa fa-check"></i><b>4.10.2</b> Using the Ideas</a></li>
+<li class="chapter" data-level="4.10.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#advanced"><i class="fa fa-check"></i><b>4.10.3</b> Advanced</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html"><i class="fa fa-check"></i><b>5</b> Stochastic Treatment Regimes</a><ul>
+<li class="chapter" data-level="5.1" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#learning-objectives-4"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.2" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#introduction-to-stochastic-interventions"><i class="fa fa-check"></i><b>5.2</b> Introduction to Stochastic Interventions</a></li>
+<li class="chapter" data-level="5.3" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#data-structure-and-notation-1"><i class="fa fa-check"></i><b>5.3</b> Data Structure and Notation</a></li>
+<li class="chapter" data-level="5.4" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#defining-the-causal-effect-of-a-stochastic-intervention"><i class="fa fa-check"></i><b>5.4</b> Defining the Causal Effect of a Stochastic Intervention</a></li>
+<li class="chapter" data-level="5.5" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#interpreting-the-causal-effect-of-a-stochastic-intervention"><i class="fa fa-check"></i><b>5.5</b> Interpreting the Causal Effect of a Stochastic Intervention</a></li>
+<li class="chapter" data-level="5.6" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#evaluating-the-causal-effect-of-a-stochastic-intervention"><i class="fa fa-check"></i><b>5.6</b> Evaluating the Causal Effect of a Stochastic Intervention</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#simulate-data"><i class="fa fa-check"></i><b>5.6.1</b> Simulate Data</a></li>
+<li class="chapter" data-level="5.6.2" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#targeted-estimation-of-stochastic-interventions-effects"><i class="fa fa-check"></i><b>5.6.2</b> Targeted Estimation of Stochastic Interventions Effects</a></li>
+<li class="chapter" data-level="5.6.3" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#statistical-inference-for-targeted-maximum-likelihood-estimates"><i class="fa fa-check"></i><b>5.6.3</b> Statistical Inference for Targeted Maximum Likelihood Estimates</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#extensions-variable-importance-analysis-with-stochastic-interventions"><i class="fa fa-check"></i><b>5.7</b> Extensions: Variable Importance Analysis with Stochastic Interventions</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#defining-a-grid-of-counterfactual-interventions"><i class="fa fa-check"></i><b>5.7.1</b> Defining a grid of counterfactual interventions</a></li>
+<li class="chapter" data-level="5.7.2" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#initializing-vimshift-through-its-tmle3_spec"><i class="fa fa-check"></i><b>5.7.2</b> Initializing <code>vimshift</code> through its <code>tmle3_Spec</code></a></li>
+<li class="chapter" data-level="5.7.3" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#targeted-estimation-of-stochastic-interventions-effects-1"><i class="fa fa-check"></i><b>5.7.3</b> Targeted Estimation of Stochastic Interventions Effects</a></li>
+<li class="chapter" data-level="5.7.4" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#inference-with-marginal-structural-models"><i class="fa fa-check"></i><b>5.7.4</b> Inference with Marginal Structural Models</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#exercises-1"><i class="fa fa-check"></i><b>5.8</b> Exercises</a><ul>
+<li class="chapter" data-level="5.8.1" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#basicsreview-1"><i class="fa fa-check"></i><b>5.8.1</b> Basics/Review</a></li>
+<li class="chapter" data-level="5.8.2" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#using-the-ideas-1"><i class="fa fa-check"></i><b>5.8.2</b> Using the Ideas</a></li>
+<li class="chapter" data-level="5.8.3" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#advanced-1"><i class="fa fa-check"></i><b>5.8.3</b> Advanced</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Hitchhiker’s Guide to the <code>tlverse</code></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modern-super-machine-learning-with-sl3" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Modern Super (Machine) Learning with <code>sl3</code></h1>
+<p><em>Rachael V. Phillips, Jeremy Coyle, Mark van der Laan</em></p>
+<p>Updated: 2019-04-01</p>
+<div id="learning-objectives-1" class="section level2">
+<h2><span class="header-section-number">2.1</span> Learning Objectives</h2>
+<p>By the end of this chapter you will be able to:</p>
+<ol style="list-style-type: decimal">
+<li>Assemble an ensemble of learners based on the properties that identify what
+features they support.</li>
+<li>Customize learner hyperparameters to incorporate a diversity of different
+settings.</li>
+<li>Select a subset of available covariates and pass only those variables to the
+modeling algorithm.</li>
+<li>Fit an ensemble with nested cross-validation to obtain an estimate of the
+performance of the ensemble itself.</li>
+</ol>
+</div>
+<div id="background" class="section level2">
+<h2><span class="header-section-number">2.2</span> Background</h2>
+<p>Now that we have defined the statistical estimation problem, we are ready construct
+the TMLE; an asymptotically efficient substitution estimator of this target
+quantity. The first step in this estimation procedure is an initial estimate of
+the data-generating distribution, or the relevant part of this distribution that
+is needed to evaluate the target parameter. For this initial estimation, we use
+the Super Learner, an important step in creating a robust estimator.</p>
+<div id="super-learner" class="section level4">
+<h4><span class="header-section-number">2.2.0.1</span> Super Learner</h4>
+<ul>
+<li><p>Loss-function-based tool that uses V-fold cross-validation to obtain the best
+prediction of the relevant part of the likelihood (needed to evaluate target parameter)
+based on a weighted average of a <em>library</em> of machine learning algorithms.</p></li>
+<li><p>The library of machine learning algorithms consists of functions (“learners”
+in the <code>sl3</code> nomenclature) that we think might be consistent with the true
+data-generating distribution.</p></li>
+<li><p>Proven to be asymptotically as accurate as the best possible prediction
+algorithm that is tested.</p></li>
+</ul>
+</div>
+</div>
+<div id="modern-super-machine-learning-with-sl3-1" class="section level2">
+<h2><span class="header-section-number">2.3</span> Modern Super (Machine) Learning with <code>sl3</code></h2>
+<div id="basic-implementation" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Basic Implementation</h3>
+<p><strong>0. Load necessary libraries</strong></p>
+<p>First, we will load the relevant <code>R</code> packages and set a seed.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(here)
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(data.table)
+<span class="kw">library</span>(sl3)
+<span class="kw">library</span>(SuperLearner)
+<span class="kw">library</span>(origami)
+<span class="kw">set.seed</span>(<span class="dv">7194</span>)</code></pre>
+<p><strong>1. Load data</strong></p>
+<p>We begin by illustrating the default functionality of the Super Learner
+algorithm as implemented in <code>sl3</code>. Using the WASH data, we are interested in
+predicting weight-for-height z-score <code>whz</code> using the available covariate data.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load data set and take a peek</span>
+washb_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;washb_data.csv&quot;</span>), <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>)
+<span class="kw">head</span>(washb_data)</code></pre>
+<pre><code>     whz      tr fracode month aged    sex momage          momedu momheight
+1:  0.00 Control  N05265     9  268   male     30  Primary (1-5y)    146.40
+2: -1.16 Control  N05265     9  286   male     25  Primary (1-5y)    148.75
+3: -1.05 Control  N08002     9  264   male     25  Primary (1-5y)    152.15
+4: -1.26 Control  N08002     9  252 female     28  Primary (1-5y)    140.25
+5: -0.59 Control  N06531     9  336 female     19 Secondary (&gt;5y)    150.95
+6: -0.51 Control  N06531     9  304   male     20 Secondary (&gt;5y)    154.20
+                    hfiacat Nlt18 Ncomp watmin elec floor walls roof
+1:              Food Secure     3    11      0    1     0     1    1
+2: Moderately Food Insecure     2     4      0    1     0     1    1
+3:              Food Secure     1    10      0    0     0     1    1
+4:              Food Secure     3     5      0    1     0     1    1
+5:              Food Secure     2     7      0    1     0     1    1
+6:   Severely Food Insecure     0     3      1    1     0     1    1
+   asset_wardrobe asset_table asset_chair asset_khat asset_chouki asset_tv
+1:              0           1           1          1            0        1
+2:              0           1           0          1            1        0
+3:              0           0           1          0            1        0
+4:              1           1           1          1            0        0
+5:              1           1           1          1            1        0
+6:              0           0           0          0            1        0
+   asset_refrig asset_bike asset_moto asset_sewmach asset_mobile
+1:            0          0          0             0            1
+2:            0          0          0             0            1
+3:            0          0          0             0            1
+4:            0          1          0             0            1
+5:            0          0          0             0            1
+6:            0          0          0             0            1</code></pre>
+<p><strong>2. Define machine learning task</strong></p>
+<p>To define the machine learning <strong>“task”</strong> (predict weight-for-height z-score
+<code>whz</code> using the available covariate data), we need to create an <code>sl3_Task</code>
+object. The <code>sl3_Task</code> keeps track of the roles the variables play in the machine
+learning problem, the data, and any metadata (e.g., observational-level weights,
+id, offset).</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># specify the outcome and covariates</span>
+outcome &lt;-<span class="st"> &quot;whz&quot;</span>
+covars &lt;-<span class="st"> </span><span class="kw">colnames</span>(washb_data)[<span class="op">-</span><span class="kw">which</span>(<span class="kw">names</span>(washb_data) <span class="op">==</span><span class="st"> </span>outcome)]
+
+<span class="co"># create the sl3 task</span>
+task &lt;-<span class="st"> </span><span class="kw">make_sl3_Task</span>(<span class="dt">data =</span> washb_data, <span class="dt">covariates =</span> covars,
+                      <span class="dt">outcome =</span> outcome)</code></pre>
+<pre><code>Warning in .subset2(public_bind_env, &quot;initialize&quot;)(...): Missing Covariate Data
+Found. Imputing covariates using sl3_process_missing</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># examine it</span>
+task</code></pre>
+<pre><code>A sl3 Task with 4695 obs and these nodes:
+$covariates
+ [1] &quot;tr&quot;              &quot;fracode&quot;         &quot;month&quot;           &quot;aged&quot;           
+ [5] &quot;sex&quot;             &quot;momage&quot;          &quot;momedu&quot;          &quot;momheight&quot;      
+ [9] &quot;hfiacat&quot;         &quot;Nlt18&quot;           &quot;Ncomp&quot;           &quot;watmin&quot;         
+[13] &quot;elec&quot;            &quot;floor&quot;           &quot;walls&quot;           &quot;roof&quot;           
+[17] &quot;asset_wardrobe&quot;  &quot;asset_table&quot;     &quot;asset_chair&quot;     &quot;asset_khat&quot;     
+[21] &quot;asset_chouki&quot;    &quot;asset_tv&quot;        &quot;asset_refrig&quot;    &quot;asset_bike&quot;     
+[25] &quot;asset_moto&quot;      &quot;asset_sewmach&quot;   &quot;asset_mobile&quot;    &quot;delta_momage&quot;   
+[29] &quot;delta_momheight&quot;
+
+$outcome
+[1] &quot;whz&quot;
+
+$id
+NULL
+
+$weights
+NULL
+
+$offset
+NULL</code></pre>
+<p><strong>3. Specify base learner library</strong></p>
+<p>Now that we have defined our machine learning problem by making the task, we are
+ready to define the machine learning algorithms. Learners have properties that
+indicate what features they support. Use <code>sl3_list_properties()</code> to get a list
+of all properties supported by at least one learner.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sl3_list_properties</span>()</code></pre>
+<pre><code> [1] &quot;binomial&quot;             &quot;categorical&quot;          &quot;continuous&quot;          
+ [4] &quot;cv&quot;                   &quot;density&quot;              &quot;ids&quot;                 
+ [7] &quot;multivariate_outcome&quot; &quot;offset&quot;               &quot;preprocessing&quot;       
+[10] &quot;timeseries&quot;           &quot;weights&quot;              &quot;wrapper&quot;             </code></pre>
+<p>Since we have a continuous outcome, we may identify the learners that support
+this outcome type with <code>sl3_list_learners()</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sl3_list_learners</span>(<span class="kw">c</span>(<span class="st">&quot;continuous&quot;</span>))</code></pre>
+<pre><code> [1] &quot;Lrnr_arima&quot;                     &quot;Lrnr_bartMachine&quot;              
+ [3] &quot;Lrnr_bilstm&quot;                    &quot;Lrnr_condensier&quot;               
+ [5] &quot;Lrnr_dbarts&quot;                    &quot;Lrnr_expSmooth&quot;                
+ [7] &quot;Lrnr_glm&quot;                       &quot;Lrnr_glm_fast&quot;                 
+ [9] &quot;Lrnr_glmnet&quot;                    &quot;Lrnr_grf&quot;                      
+[11] &quot;Lrnr_h2o_glm&quot;                   &quot;Lrnr_h2o_grid&quot;                 
+[13] &quot;Lrnr_hal9001&quot;                   &quot;Lrnr_HarmonicReg&quot;              
+[15] &quot;Lrnr_lstm&quot;                      &quot;Lrnr_mean&quot;                     
+[17] &quot;Lrnr_nnls&quot;                      &quot;Lrnr_optim&quot;                    
+[19] &quot;Lrnr_pkg_SuperLearner&quot;          &quot;Lrnr_pkg_SuperLearner_method&quot;  
+[21] &quot;Lrnr_pkg_SuperLearner_screener&quot; &quot;Lrnr_randomForest&quot;             
+[23] &quot;Lrnr_ranger&quot;                    &quot;Lrnr_rpart&quot;                    
+[25] &quot;Lrnr_rugarch&quot;                   &quot;Lrnr_solnp&quot;                    
+[27] &quot;Lrnr_stratified&quot;                &quot;Lrnr_svm&quot;                      
+[29] &quot;Lrnr_tsDyn&quot;                     &quot;Lrnr_xgboost&quot;                  </code></pre>
+<p>Now that we have an idea of some learners, we can construct them by the
+<code>make_learner</code> function.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># choose base learners</span>
+lrnr_glm &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_glm)
+lrnr_mean &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_mean)
+lrnr_ranger &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_ranger)
+lrnr_glmnet &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_glmnet)</code></pre>
+<p>In order to assemble the library of learners, we need to <strong>“stack”</strong> them
+together. A <code>Stack</code> is just a special learner and so has the same interface as
+all other learners:</p>
+<pre class="sourceCode r"><code class="sourceCode r">stack &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Stack, lrnr_glm, lrnr_mean, lrnr_ranger,
+                      lrnr_glmnet)</code></pre>
+<p>A <code>stack</code> combines multiple learners by training them simultaneously, so that
+their predictions can be either combined or compared.</p>
+<p>We’re almost ready to super learn! Just one more necessary specification.</p>
+<p><strong>4. Specify meta-learner</strong></p>
+<p>We will fit a non-negative least squares meta-learner using <code>Lrnr_nnls</code>. Note
+that any learner can be used as a meta-learner.</p>
+<pre class="sourceCode r"><code class="sourceCode r">metalearner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_nnls)</code></pre>
+<p><strong>5. Super learn</strong></p>
+<p>The Super Learner algorithm fits a meta-learner on the validation-set predictions
+in a cross-validated manner, thereby avoiding overfitting. This procedure is
+referred to as the <em>continuous</em> super learner. The cross-validation selector is the
+<em>discrete</em> super learner.</p>
+<p>First, we create a super learner object and then we need to <strong>“train”</strong> it on
+our <code>sl3_task</code> object:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># run sl and predict on WASH</span>
+sl &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(<span class="dt">learners =</span> stack, <span class="dt">metalearner =</span> metalearner)
+sl_fit &lt;-<span class="st"> </span>sl<span class="op">$</span><span class="kw">train</span>(task)</code></pre>
+<p>Now that we have fit the super leaner, we are ready to obtain our predicted
+values and summarized results.</p>
+<pre class="sourceCode r"><code class="sourceCode r">sl_preds &lt;-<span class="st"> </span>sl_fit<span class="op">$</span><span class="kw">predict</span>()
+<span class="kw">head</span>(sl_preds)</code></pre>
+<pre><code>[1] -0.5029638 -0.8878685 -0.7753261 -0.7882591 -0.6812345 -0.7038221</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">sl_fit<span class="op">$</span><span class="kw">print</span>()</code></pre>
+<pre><code>[1] &quot;SuperLearner:&quot;
+List of 4
+ $ : chr &quot;Lrnr_glm_TRUE&quot;
+ $ : chr &quot;Lrnr_mean&quot;
+ $ : chr &quot;Lrnr_ranger_500_TRUE&quot;
+ $ : chr &quot;Lrnr_glmnet_NULL_deviance_10_1_100_TRUE&quot;
+[1] &quot;Lrnr_nnls&quot;
+                                     lrnrs   weights
+1:                           Lrnr_glm_TRUE 0.1876734
+2:                               Lrnr_mean 0.0000000
+3:                    Lrnr_ranger_500_TRUE 0.4816424
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.3347854
+[1] &quot;Cross-validated risk (MSE, squared error loss):&quot;
+                                   learner coefficients mean_risk    SE_risk
+1:                           Lrnr_glm_TRUE           NA  1.020570 0.02391262
+2:                               Lrnr_mean           NA  1.065278 0.02502098
+3:                    Lrnr_ranger_500_TRUE           NA  1.015457 0.02347748
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.015160 0.02361971
+5:                            SuperLearner           NA  1.009377 0.02343840
+      fold_SD fold_min_risk fold_max_risk
+1: 0.04603086     0.9760878      1.133006
+2: 0.06603243     0.9310730      1.181434
+3: 0.04585768     0.9327879      1.100511
+4: 0.05003559     0.9491794      1.131936
+5: 0.04656630     0.9393638      1.110628</code></pre>
+</div>
+<div id="extensions" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Extensions</h3>
+<p>We can customize learner hyperparameters to incorporate a diversity of different
+settings. We can also include learners from the <code>SuperLearner</code> <code>R</code> package.</p>
+<pre class="sourceCode r"><code class="sourceCode r">lrnr_ranger100 &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_ranger, <span class="dt">num.trees =</span> <span class="dv">100</span>)
+lrnr_ranger1k &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_ranger, <span class="dt">num.trees =</span> <span class="dv">1000</span>)
+lrnr_polymars &lt;-<span class="st"> </span>Lrnr_pkg_SuperLearner<span class="op">$</span><span class="kw">new</span>(<span class="st">&quot;SL.polymars&quot;</span>)
+lrnr_gam &lt;-<span class="st"> </span>Lrnr_pkg_SuperLearner<span class="op">$</span><span class="kw">new</span>(<span class="st">&quot;SL.gam&quot;</span>)
+lrnr_bayesglm &lt;-<span class="st"> </span>Lrnr_pkg_SuperLearner<span class="op">$</span><span class="kw">new</span>(<span class="st">&quot;SL.bayesglm&quot;</span>)
+
+<span class="co"># let&#39;s create a new stack with these new learners</span>
+new_stack &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Stack, lrnr_glm, lrnr_mean, lrnr_ranger,
+                      lrnr_glmnet, lrnr_ranger1k, lrnr_ranger100,
+                      lrnr_polymars, lrnr_gam, lrnr_bayesglm)</code></pre>
+<p>We can also select a subset of available covariates and <strong>“pipe”</strong> only those
+variables to the modeling algorithm. A <code>Pipeline</code> is a set of learners to be
+fit sequentially, where the fit from one learner is used to define the task for
+the next learner.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># design a screener to reduce covariate size</span>
+screen_cor &lt;-<span class="st"> </span>Lrnr_pkg_SuperLearner_screener<span class="op">$</span><span class="kw">new</span>(<span class="st">&quot;screen.corP&quot;</span>)
+
+<span class="co"># incorporate screener in the learner combo (i.e., Pipeline)</span>
+cor_pipeline &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Pipeline, screen_cor, stack)
+
+<span class="co"># put it all together again with a Stack</span>
+stack &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Stack, cor_pipeline, new_stack)</code></pre>
+<p>Now we can super learn with this “fancy” implementation.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># run sl and predict on WASH</span>
+sl &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(<span class="dt">learners =</span> new_stack, <span class="dt">metalearner =</span> metalearner)
+sl_fit &lt;-<span class="st"> </span>sl<span class="op">$</span><span class="kw">train</span>(task)</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners): The
+following learners failed for one or more folds and will be dropped from
+all folds: Lrnr_pkg_SuperLearner_SL.polymars, Lrnr_pkg_SuperLearner_SL.gam,
+Lrnr_pkg_SuperLearner_SL.bayesglm</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">sl_preds &lt;-<span class="st"> </span>sl_fit<span class="op">$</span><span class="kw">predict</span>()
+sl_fit<span class="op">$</span><span class="kw">print</span>()</code></pre>
+<pre><code>[1] &quot;SuperLearner:&quot;
+List of 9
+ $ : chr &quot;Lrnr_glm_TRUE&quot;
+ $ : chr &quot;Lrnr_mean&quot;
+ $ : chr &quot;Lrnr_ranger_500_TRUE&quot;
+ $ : chr &quot;Lrnr_glmnet_NULL_deviance_10_1_100_TRUE&quot;
+ $ : chr &quot;Lrnr_ranger_1000_TRUE&quot;
+ $ : chr &quot;Lrnr_ranger_100_TRUE&quot;
+ $ : chr &quot;Lrnr_pkg_SuperLearner_SL.polymars&quot;
+ $ : chr &quot;Lrnr_pkg_SuperLearner_SL.gam&quot;
+ $ : chr &quot;Lrnr_pkg_SuperLearner_SL.bayesglm&quot;
+[1] &quot;Lrnr_nnls&quot;
+                                     lrnrs    weights
+1:                           Lrnr_glm_TRUE 0.17814933
+2:                               Lrnr_mean 0.00000000
+3:                    Lrnr_ranger_500_TRUE 0.03905204
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.32750435
+5:                   Lrnr_ranger_1000_TRUE 0.31613779
+6:                    Lrnr_ranger_100_TRUE 0.14351863
+[1] &quot;Cross-validated risk (MSE, squared error loss):&quot;
+                                   learner coefficients mean_risk    SE_risk
+1:                           Lrnr_glm_TRUE           NA  1.020570 0.02391262
+2:                               Lrnr_mean           NA  1.065278 0.02502098
+3:                    Lrnr_ranger_500_TRUE           NA  1.016101 0.02346094
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.015025 0.02361526
+5:                   Lrnr_ranger_1000_TRUE           NA  1.014837 0.02345965
+6:                    Lrnr_ranger_100_TRUE           NA  1.020746 0.02359695
+7:                            SuperLearner           NA  1.009078 0.02343206
+      fold_SD fold_min_risk fold_max_risk
+1: 0.04603086     0.9760878      1.133006
+2: 0.06603243     0.9310730      1.181434
+3: 0.04829319     0.9282896      1.106287
+4: 0.05006425     0.9464229      1.131301
+5: 0.04534389     0.9375547      1.102942
+6: 0.04768590     0.9399861      1.111754
+7: 0.04693926     0.9394737      1.111902</code></pre>
+</div>
+</div>
+<div id="exercise" class="section level2">
+<h2><span class="header-section-number">2.4</span> Exercise</h2>
+<ol style="list-style-type: decimal">
+<li>Create an sl3 task with the same outcome and covariate data.</li>
+<li>Make a library of 10 algorithms. Customize hyperparameters for at least two
+of your learners. Feel free to use learners from sl3 or SuperLearner.</li>
+<li>Incorporate at least two variations of feature selection.</li>
+<li>Use nonnegative least squares to fit the meta-learning step.</li>
+<li>Justify this base learner library and meta-learner selection.</li>
+<li>With the meta-learner and base learners, make the Super Learner and train it
+on the task.</li>
+<li>Print your Super Learner fit by calling print() with $.</li>
+<li>Which learner is the discrete super learner?</li>
+<li>Report the weights that the continuous Super Learner assigned to each learner.</li>
+<li>What might be the case if the mean risk of the continuous Super Learner is
+higher than the mean risk of the discrete Super Learner?</li>
+</ol>
+</div>
+<div id="appendix-more-advanced-extensions-of-sl3" class="section level2">
+<h2><span class="header-section-number">2.5</span> Appendix: More advanced extensions of <code>sl3</code></h2>
+<div id="variable-importance" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> Variable importance</h3>
+<pre class="sourceCode r"><code class="sourceCode r">get_variable_importance &lt;-<span class="st"> </span><span class="cf">function</span>(data, outcome, covars){
+
+  <span class="co"># create the sl3 task</span>
+  task &lt;-<span class="st"> </span><span class="kw">make_sl3_Task</span>(<span class="dt">data =</span> data, <span class="dt">covariates =</span> covars, <span class="dt">outcome =</span> outcome)
+
+  <span class="co"># choose base learners</span>
+  lrnr_glm &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_glm)
+  lrnr_mean &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_mean)
+  lrnr_glmnet &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_glmnet)
+  lrnr_polymars &lt;-<span class="st"> </span>Lrnr_pkg_SuperLearner<span class="op">$</span><span class="kw">new</span>(<span class="st">&quot;SL.polymars&quot;</span>)
+  lrnr_gam &lt;-<span class="st"> </span>Lrnr_pkg_SuperLearner<span class="op">$</span><span class="kw">new</span>(<span class="st">&quot;SL.gam&quot;</span>)
+  lrnr_bayesglm &lt;-<span class="st"> </span>Lrnr_pkg_SuperLearner<span class="op">$</span><span class="kw">new</span>(<span class="st">&quot;SL.bayesglm&quot;</span>)
+
+  <span class="co"># stack them together</span>
+  stack &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Stack, lrnr_glm, lrnr_mean, lrnr_glmnet,
+                        lrnr_polymars, lrnr_gam, lrnr_bayesglm)
+
+  <span class="co"># choose metalearner</span>
+  metalearner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_nnls)
+
+  <span class="co"># run sl and predict on raw data</span>
+  sl &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(<span class="dt">learners =</span> stack, <span class="dt">metalearner =</span> metalearner)
+  sl_fit &lt;-<span class="st"> </span>sl<span class="op">$</span><span class="kw">train</span>(task)
+  sl_preds &lt;-<span class="st"> </span>sl_fit<span class="op">$</span><span class="kw">predict</span>()
+  risk &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">loss_squared_error</span>(task<span class="op">$</span>Y, sl_preds))
+
+  risk_diffs &lt;-<span class="st"> </span><span class="kw">lapply</span>(covars, <span class="cf">function</span>(x){
+    <span class="co"># scramble cov column and give it the same name as the raw cov col</span>
+    scrambled_col &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="kw">sample</span>(<span class="kw">unlist</span>(data[,x, <span class="dt">with =</span> <span class="ot">FALSE</span>]),
+                                       <span class="kw">nrow</span>(data)))
+    <span class="kw">names</span>(scrambled_col) &lt;-<span class="st"> </span>x
+
+    <span class="co"># replace raw col with scrambled col in the task</span>
+    scrambled_col_names &lt;-<span class="st"> </span>task<span class="op">$</span><span class="kw">add_columns</span>(scrambled_col)
+    scrambled_col_task &lt;-<span class="st"> </span>task<span class="op">$</span><span class="kw">next_in_chain</span>(<span class="dt">column_names =</span> scrambled_col_names)
+
+    <span class="co"># obtain preds on the scrambled col task</span>
+    scrambled_sl_preds &lt;-<span class="st"> </span>sl_fit<span class="op">$</span><span class="kw">predict_fold</span>(scrambled_col_task)
+
+    <span class="co"># risk on scrambled col task</span>
+    risk_scrambled &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">loss_squared_error</span>(task<span class="op">$</span>Y,scrambled_sl_preds))
+
+    <span class="co"># calculate risk difference</span>
+    rd &lt;-<span class="st"> </span>risk_scrambled <span class="op">-</span><span class="st"> </span>risk
+    <span class="kw">return</span>(rd)
+  })
+
+  <span class="kw">names</span>(risk_diffs) &lt;-<span class="st"> </span>covars
+  results &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">cov =</span> <span class="kw">rep</span>(<span class="kw">names</span>(risk_diffs),
+                                  <span class="kw">sapply</span>(risk_diffs,length)),
+                        <span class="dt">risk_diff =</span> <span class="kw">unlist</span>(risk_diffs))
+  <span class="kw">return</span>(results)
+}
+
+varimp_washb &lt;-<span class="st"> </span><span class="kw">get_variable_importance</span>(<span class="dt">data =</span> washb_data, <span class="dt">outcome =</span> outcome,
+  <span class="dt">covars =</span> covars)</code></pre>
+<pre><code>Warning in .subset2(public_bind_env, &quot;initialize&quot;)(...): Missing Covariate Data
+Found. Imputing covariates using sl3_process_missing</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.polymars failed with message: loading required package
+(polspline) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.gam failed with message: loading required package (gam)
+failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners):
+Lrnr_pkg_SuperLearner_SL.bayesglm failed with message: loading required package
+(arm) failed. It will be removed from the stack</code></pre>
+<pre><code>Warning in private$.train(subsetted_task, trained_sublearners): The
+following learners failed for one or more folds and will be dropped from
+all folds: Lrnr_pkg_SuperLearner_SL.polymars, Lrnr_pkg_SuperLearner_SL.gam,
+Lrnr_pkg_SuperLearner_SL.bayesglm</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tmle3-targeted-learning-framework.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/tlverse/acic2019-workshop/edit/master/02-sl3.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["handbook.pdf", "handbook.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
