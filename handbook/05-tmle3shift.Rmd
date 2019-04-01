@@ -245,7 +245,7 @@ give a recipe:
 ## Interpreting the Causal Effect of a Stochastic Intervention
 
 ```{r, fig.cap="Animation of how a counterfactual outcome changes as the natural treatment distribution is subjected to a simple stochastic intervention", echo=FALSE, eval=TRUE, out.width='60%'}
-knitr::include_graphics(path="img/gif/shift_animation.gif")
+knitr::include_graphics(path = "img/gif/shift_animation.gif")
 ```
 
 ## Evaluating the Causal Effect of a Stochastic Intervention
@@ -274,10 +274,10 @@ regression techniques:
 # learners used for conditional expectation regression
 lrn_mean <- Lrnr_mean$new()
 lrn_fglm <- Lrnr_glm_fast$new()
-lrn_xgb <- Lrnr_xgboost$new(nrounds=200)
+lrn_xgb <- Lrnr_xgboost$new(nrounds = 200)
 lrn_hal <- Lrnr_hal9001$new()
 sl_lrn <- Lrnr_sl$new(
-  learners = list(lrn_mean, lrn_fglm), #, lrn_xgb, lrn_hal),
+  learners = list(lrn_mean, lrn_fglm), # , lrn_xgb, lrn_hal),
   metalearner = Lrnr_nnls$new()
 )
 ```
@@ -365,9 +365,11 @@ this is an arbitrarily chosen value for this example).
 
 ```{r spec_init-shift, message=FALSE, warning=FALSE}
 # initialize a tmle specification
-tmle_spec <- tmle_shift(shift_val = 0.5,
-                        shift_fxn = shift_additive_bounded,
-                        shift_fxn_inv = shift_additive_bounded_inv)
+tmle_spec <- tmle_shift(
+  shift_val = 0.5,
+  shift_fxn = shift_additive_bounded,
+  shift_fxn_inv = shift_additive_bounded_inv
+)
 ```
 
 As seen above, the `tmle_shift` specification object (like all `tmle3_Spec`
@@ -485,8 +487,10 @@ choice of shift is an arbitrarily chosen set of values for this example).
 delta_grid <- seq(-1, 1, 1)
 
 # initialize a tmle specification
-tmle_spec <- tmle_vimshift_delta(shift_grid = delta_grid,
-                                 max_shifted_ratio = 2)
+tmle_spec <- tmle_vimshift_delta(
+  shift_grid = delta_grid,
+  max_shifted_ratio = 2
+)
 ```
 
 As seen above, the `tmle_vimshift` specification object (like all `tmle3_Spec`
@@ -616,8 +620,10 @@ appears above):
 
 ```{r vim_targeted_msm_fit, message=FALSE, warning=FALSE, cache=FALSE}
 # initialize a tmle specification
-tmle_msm_spec <- tmle_vimshift_msm(shift_grid = delta_grid,
-                                   max_shifted_ratio = 2)
+tmle_msm_spec <- tmle_vimshift_msm(
+  shift_grid = delta_grid,
+  max_shifted_ratio = 2
+)
 
 # fit the TML estimator and examine the results
 tmle_msm_fit <- tmle3(tmle_msm_spec, data, node_list, learner_list)

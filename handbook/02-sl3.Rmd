@@ -81,8 +81,10 @@ outcome <- "whz"
 covars <- colnames(washb_data)[-which(names(washb_data) == outcome)]
 
 # create the sl3 task
-task <- make_sl3_Task(data = washb_data, covariates = covars,
-                      outcome = outcome)
+task <- make_sl3_Task(
+  data = washb_data, covariates = covars,
+  outcome = outcome
+)
 
 # examine it
 task
@@ -120,8 +122,10 @@ together. A `Stack` is just a special learner and so has the same interface as
 all other learners:
 
 ```{r stack}
-stack <- make_learner(Stack, lrnr_glm, lrnr_mean, lrnr_ranger,
-                      lrnr_glmnet)
+stack <- make_learner(
+  Stack, lrnr_glm, lrnr_mean, lrnr_ranger,
+  lrnr_glmnet
+)
 ```
 A `stack` combines multiple learners by training them simultaneously, so that
 their predictions can be either combined or compared.
@@ -173,9 +177,11 @@ lrnr_gam <- Lrnr_pkg_SuperLearner$new("SL.gam")
 lrnr_bayesglm <- Lrnr_pkg_SuperLearner$new("SL.bayesglm")
 
 # let's create a new stack with these new learners
-new_stack <- make_learner(Stack, lrnr_glm, lrnr_mean, lrnr_ranger,
-                      lrnr_glmnet, lrnr_ranger1k, lrnr_ranger100,
-                      lrnr_polymars, lrnr_gam, lrnr_bayesglm)
+new_stack <- make_learner(
+  Stack, lrnr_glm, lrnr_mean, lrnr_ranger,
+  lrnr_glmnet, lrnr_ranger1k, lrnr_ranger100,
+  lrnr_polymars, lrnr_gam, lrnr_bayesglm
+)
 ```
 We can also select a subset of available covariates and **"pipe"** only those
 variables to the modeling algorithm. A `Pipeline` is a set of learners to be
@@ -222,7 +228,7 @@ higher than the mean risk of the discrete Super Learner?
 
 ### Variable importance
 ```{r varimp}
-get_variable_importance <- function(data, outcome, covars){
+get_variable_importance <- function(data, outcome, covars) {
 
   # create the sl3 task
   task <- make_sl3_Task(data = data, covariates = covars, outcome = outcome)
@@ -236,8 +242,10 @@ get_variable_importance <- function(data, outcome, covars){
   lrnr_bayesglm <- Lrnr_pkg_SuperLearner$new("SL.bayesglm")
 
   # stack them together
-  stack <- make_learner(Stack, lrnr_glm, lrnr_mean, lrnr_glmnet,
-                        lrnr_polymars, lrnr_gam, lrnr_bayesglm)
+  stack <- make_learner(
+    Stack, lrnr_glm, lrnr_mean, lrnr_glmnet,
+    lrnr_polymars, lrnr_gam, lrnr_bayesglm
+  )
 
   # choose metalearner
   metalearner <- make_learner(Lrnr_nnls)
@@ -248,10 +256,12 @@ get_variable_importance <- function(data, outcome, covars){
   sl_preds <- sl_fit$predict()
   risk <- mean(loss_squared_error(task$Y, sl_preds))
 
-  risk_diffs <- lapply(covars, function(x){
+  risk_diffs <- lapply(covars, function(x) {
     # scramble cov column and give it the same name as the raw cov col
-    scrambled_col <- data.table(sample(unlist(data[,x, with = FALSE]),
-                                       nrow(data)))
+    scrambled_col <- data.table(sample(
+      unlist(data[, x, with = FALSE]),
+      nrow(data)
+    ))
     names(scrambled_col) <- x
 
     # replace raw col with scrambled col in the task
@@ -262,7 +272,7 @@ get_variable_importance <- function(data, outcome, covars){
     scrambled_sl_preds <- sl_fit$predict_fold(scrambled_col_task)
 
     # risk on scrambled col task
-    risk_scrambled <- mean(loss_squared_error(task$Y,scrambled_sl_preds))
+    risk_scrambled <- mean(loss_squared_error(task$Y, scrambled_sl_preds))
 
     # calculate risk difference
     rd <- risk_scrambled - risk
@@ -270,12 +280,18 @@ get_variable_importance <- function(data, outcome, covars){
   })
 
   names(risk_diffs) <- covars
-  results <- data.table(cov = rep(names(risk_diffs),
-                                  sapply(risk_diffs,length)),
-                        risk_diff = unlist(risk_diffs))
+  results <- data.table(
+    cov = rep(
+      names(risk_diffs),
+      sapply(risk_diffs, length)
+    ),
+    risk_diff = unlist(risk_diffs)
+  )
   return(results)
 }
 
-varimp_washb <- get_variable_importance(data = washb_data, outcome = outcome,
-  covars = covars)
+varimp_washb <- get_variable_importance(
+  data = washb_data, outcome = outcome,
+  covars = covars
+)
 ```
