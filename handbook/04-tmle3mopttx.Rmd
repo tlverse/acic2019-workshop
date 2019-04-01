@@ -10,13 +10,13 @@ corresponding to optimal interventions -->
 1. Understand and describe the essential properties of dynamic and optimal individualized          treatment regimes. How may this formalism be used to define causal effects? How do dynamic      treatment regimes differ from static and stochastic regimes?
 2. Understand and describe the challenges associated with using optimal individualized             treatment regimes in practice.
 3. Understand and describe how variable importance measures may be defined in
-   terms of optimal individualized treatment interventions.
+terms of optimal individualized treatment interventions.
 4. Use the `tmle3mopttx` R package to successfully estimate the causal effects
-   of an optimal individualized treatment on simulated data.
+of an optimal individualized treatment on simulated data.
 5. Perform hands-on, real-world data analysis to assess the causal effect of
-   optimal individualized treatment, successfully describing what
-   may be learned from the data based on the inferential properties of targeted
-   minimum loss-based estimators.
+optimal individualized treatment, successfully describing what
+may be learned from the data based on the inferential properties of targeted
+minimum loss-based estimators.
 
 ## Introduction to Optimal Individualized Interventions
 
@@ -239,11 +239,7 @@ using the cross-validation framework of the Super Learner algorithm of
 
 ```{r sl3_lrnrs-mopttx}
 #Initialize some of the learners.
-<<<<<<< HEAD
 #Here we use xgboost with various parameters, glm, HAL and the mean.
-=======
-# Here we use xgboost with various parameters, glm, HAL and the simle mean.
->>>>>>> 25fca2613340ff69ddd1c79fe5d95e3589c51e73
 xgboost_50<-Lrnr_xgboost$new(nrounds = 50)
 xgboost_100<-Lrnr_xgboost$new(nrounds = 100)
 xgboost_500<-Lrnr_xgboost$new(nrounds = 500)
@@ -296,10 +292,6 @@ learner_list <- list(Y = Q_learner, A = g_learner, B = b_learner)
 The `learner_list` object above specifies the role that each of the ensemble
 learners we've generated is to play in computing initial estimators to be used
 in building a TMLE for the parameter of interest. In particular, it makes
-<<<<<<< HEAD
-explicit the fact that our `Y` is used in fitting the outcome regression,
-while `A` is used in fitting the treatment mechanism regression, and finally `B` is used in fitting the blip function.
-=======
 explicit the fact that our `Y` is used in fitting the outcome regression
 while our `A` is used in fitting our treatment mechanism regression, and finally `B` is used in fitting the blip function.
 
@@ -322,7 +314,6 @@ initial_likelihood <- tmle_spec_Q$make_initial_likelihood(tmle_task, learner_lis
 # Estimate the parameter: (broken by tmle3@1bc8f32)
 Q_learning(tmle_spec_Q, initial_likelihood, tmle_task)
 ```
->>>>>>> 25fca2613340ff69ddd1c79fe5d95e3589c51e73
 
 ### Targeted Estimation of the Mean under the Optimal Individualized Interventions Effects
 
@@ -368,6 +359,7 @@ $$W \sim \mathcal{N}(\bf{0},I_{3 \times 3})$$
 $$P(A=1|W) = \frac{1}{1+\exp^{(-0.8*W_1)}}$$
 
 $$P(Y=1|A,W) = 0.5\text{logit}^{-1}[-5I(A=1)(W_1-0.5)+5I(A=0)(W_1-0.5)] + 0.5\text{logit}^{-1}(W_2W_3)$$
+
 ```{r load sim_bin_data}
 data("data_bin")
 ```
