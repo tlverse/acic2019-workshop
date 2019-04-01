@@ -11,6 +11,12 @@ corresponding to stochastic interventions -->
 
 ## Example: `tmle3` for ATE
 
+We'll illustrate the most basic use of TMLE using the WASH Benefits data introduced earlier and estimating an Average Treatment Effect (ATE)
+
+<!-- This will be covered in detail in Alan's roadmap chapter, but we should remind people -->
+As a reminder, the ATE is identified with the following statistical parameter (under assumptions):
+$ATE = E_0(Y(1)=Y(0)) = E_0\left( E_0[Y \mid A=1,W]-E_0[Y \mid A=0,W] \right),$
+
 ### Load the Data
 
 We'll use the same WASH Benefits data as the earlier chapters:
@@ -20,7 +26,6 @@ library(tmle3)
 library(sl3)
 library(data.table)
 washb_data <- fread("../washb_data/washb_data.csv", stringsAsFactors = TRUE)
-str(washb_data)
 ```
 
 ### Define the variable roles
@@ -91,41 +96,130 @@ We now have everything we need to fit the tmle using `tmle3`:
 
 ```{r tmle3-spec-fit}
 suppressWarnings({
-tmle3_fit <- tmle3(ate_spec, washb_data, node_list, learner_list)
+tmle_fit <- tmle3(ate_spec, washb_data, node_list, learner_list)
 })
 ```
 
 
 ### Evaluate the Estimates
 
+We can see the summary results by printing the fit object. Alternatively, we can extra results from the summary by indexing into it:
 ```{r tmle3-spec-summary}
-print(tmle3_fit)
+print(tmle_fit)
 
-estimates <- tmle3_fit$summary$psi_transformed
+estimates <- tmle_fit$summary$psi_transformed
 print(estimates)
 ```
 
-## `tmle3` Specs
+## `tmle3` Components
 
-```{r tmle3-spec-components}
+Now that we've successfully used a spec to obtain a TML estimate, let's look under the hood at the components. The spec has a number of functions that generate the objects necessary to define and fit a TMLE.
+
+### `tmle3_task`
+
+First is, a `tmle3_Task`, analogous to an `sl3_Task`, containing the data we're fitting the TMLE to, as well as an NP-SEM generated from the `node_list` defined above, describing the variables and their relationships.
+
+```{r tmle3-spec-task}
 tmle_task <- ate_spec$make_tmle_task(washb_data, node_list)
-initial_likelihood <- ate_spec$make_initial_likelihood(tmle_task, learner_list)
-targeted_likelihood <- Targeted_Likelihood$new(initial_likelihood)
-params <- ate_spec$make_params(tmle_task, targeted_likelihood)
 ```
-General concept
+
+```{r tmle3-spec-task-npsem}
+tmle_task$npsem
+```
+
+### Initial Likelihood
+
+Next, is an object representing the likelihood, factorized according to the npsem described above:
+
+```{r tmle3-spec-initial-likelihood}
+initial_likelihood <- ate_spec$make_initial_likelihood(tmle_task, learner_list)
+print(initial_likelihood)
+```
+
+These components of the likelihood indicate how the the factors were estimated: the marginal distribution of $W$ was estimated using NP-MLE, and the conditional distributions of $A$ and $Y$ were estimated using `sl3` fits (as defined with the `learner_list`) above.
+
+We can use this in tandem with the `tmle_task` object to obtain likelihood estimates for each observation:
+```{r tmle3-spec-initial-likelihood-estimates}
+initial_likelihood$get_likelihoods(tmle_task)
+```
+
+<!-- TODO: make helper to get learners out of fit objects -->
+
+### Targeted Likelihood (updater)
+
+We also need to define a "Targeted Likelihood" object. This is a special type of likelihood that is able to be updated using an `tmle3_Update` object. This object defines the update strategy (e.g. submodel, loss function, cv-tmle or not, etc).
+
+```{r tmle3-spec-targeted-likelihood}
+targeted_likelihood <- Targeted_Likelihood$new(initial_likelihood)
+```
+
+When constructing the targeted likelihood, you can specify different update options. See the documentation for `tmle3_Update` for details of the different options. For example, you can disable CV-TMLE as follows:
+
+```{r tmle3-spec-targeted-likelihood-no-cv}
+targeted_likelihood_no_cv <- Targeted_Likelihood$new(initial_likelihood, updater=list(cvtmle=FALSE))
+```
+
+### Parameter Mapping
+
+Finally, we need to define the parameters of interest. Here, the spec defines a single parameter, the ATE. In the next section, we'll see how to add additional parameters.
+
+```{r tmle3-spec-params}
+tmle_params <- ate_spec$make_params(tmle_task, targeted_likelihood)
+print(tmle_params)
+```
+
+### Putting it all together
+
+Having used the spec to manually generate all these components, we can now manually fit a `tmle3`:
+
+```{r tmle3-manual-fit}
+suppressWarnings({
+  tmle_fit_manual <- fit_tmle3(tmle_task, targeted_likelihood, tmle_params, targeted_likelihood$updater)
+})
+all.equal(tmle_fit$summary, tmle_fit_manual$summary)
+```
+
+The result is equivalent to fitting using the `tmle3` function as above.
+
+## Fitting `tmle3` with multiple parameters
+
+Above, we fit a `tmle3` with just one parameter. `tmle3` also supports fitting multiple parameters simultaneously. To illustrate this, we'll use the `tmle_TSM_all` spec:
+
+```{r tmle3-tsm-all}
+tsm_spec <- tmle_TSM_all()
+targeted_likelihood <- Targeted_Likelihood$new(initial_likelihood)
+all_tsm_params <- tsm_spec$make_params(tmle_task, targeted_likelihood)
+print(all_tsm_params)
+```
+
+This spec generates a Treatment Specific Mean (TSM) for each level of the exposure variable. Note that we must first generate a new targeted likelihood, as the old one was targeted to the ATE. 
 
 
-### tmle_task
+### Delta Method
 
-### initial likelihood
+We can also define parameters based on Delta Method Transformations of other parameters. For instance, we can estimate a ATE using the delta method and two of the above TSM parameters:
 
-### targeted likelihood (updater)
+```{r tmle3-delta-method-param}
+ate_param <- define_param(Param_delta, targeted_likelihood, 
+                         delta_param_ATE, 
+                         list(all_tsm_params[[1]], all_tsm_params[[4]]))
+print(ate_param)
+```
 
-### parameters
+This can similarly be used to estimate other derived parameters like Relative Risks, and Population Attributable Risks
+### Fit
 
-### finding specs
+We can now fit a tmle simultaneously for all TSM parameters, as well as the above defined ATE parameter
+```{r tmle3-tsm-plus-delta}
+all_params <- c(all_tsm_params, ate_param)
+suppressWarnings({
+  tmle_fit_multiparam <- fit_tmle3(tmle_task, targeted_likelihood, all_params, targeted_likelihood$updater)
+})
 
-## Defining new parameters
+print(tmle_fit_multiparam)
+```
 
-## Delta method
+
+## Summary
+
+`tmle3` is a general purpose framework for generating TML estimates. The easiest way to use it is to use a predefined spec, allowing you to just fill in the blanks for the data, variable roles, and `sl3` learners. However, digging under the hood allows users to specify a wide range of TMLEs. In the next sections, we'll see how this framework can be used to estimate advanced parameters such as optimal treatments and shift interventions.
