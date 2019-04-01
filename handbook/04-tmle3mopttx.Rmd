@@ -181,7 +181,7 @@ using the cross-validation framework of the Super Learner algorithm of
 
 ```{r sl3_lrnrs-mopttx}
 #Initialize some of the learners.
-#Here we use xgboost with various parameters, glm, HAL and the simle mean.
+# Here we use xgboost with various parameters, glm, HAL and the simle mean.
 xgboost_50<-Lrnr_xgboost$new(nrounds = 50)
 xgboost_100<-Lrnr_xgboost$new(nrounds = 100)
 xgboost_500<-Lrnr_xgboost$new(nrounds = 500)
@@ -211,7 +211,6 @@ g_learner <- make_learner(Lrnr_sl, glib, mn_metalearner)
 #Define the Blip learner, which is a multivariate learner:
 learners <- list(xgboost_50,xgboost_100,xgboost_500,lrn1,lrn2)
 b_learner <- create_mv_learners(learners = learners)
-
 ```
 
 As seen above, we generate three different ensemble learners that must be fit, corresponding to the learners for the outcome regression, propensity score, and the blip function. Note that we need to estimate $g_0(A|W)$ for a categorical $A$- therefore we use the multinomial Super Learner option available within the `sl3` package with learners that can address multi-class classification problems. In order to see which learners can be used to estimate $g_0(A|W)$ in `sl3`, we run the following:
@@ -250,10 +249,11 @@ tmle_task <- tmle_spec_Q$make_tmle_task(data, node_list)
 
 # Define likelihood:
 initial_likelihood <- tmle_spec_Q$make_initial_likelihood(tmle_task, learner_list)
+```
 
-#Estimate the parameter:
+```{r spec_init_Qlearning_broken, eval = FALSE}
+# Estimate the parameter: (broken by tmle3@1bc8f32)
 Q_learning(tmle_spec_Q, initial_likelihood, tmle_task)
-
 ```
 
 ### Targeted Estimation of the Mean under the Optimal Individualized Interventions Effects

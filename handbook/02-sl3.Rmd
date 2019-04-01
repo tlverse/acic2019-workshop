@@ -47,6 +47,7 @@ algorithm that is tested.
 First, we will load the relevant `R` packages and set a seed.
 
 ```{r setup, message=FALSE, warning=FALSE}
+library(here)
 library(tidyverse)
 library(data.table)
 library(sl3)
@@ -62,8 +63,8 @@ predicting weight-for-height z-score `whz` using the available covariate data.
 
 ```{r data}
 # load data set and take a peek
-washb_data <- fread("../washb_data/washb_data.csv", stringsAsFactors = TRUE)
-head(wash_data)
+washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
+head(washb_data)
 ```
 #### 2. Define machine learning task
 
@@ -79,7 +80,8 @@ outcome <- "whz"
 covars <- colnames(washb_data)[-which(names(washb_data) == outcome)]
 
 # create the sl3 task
-task <- make_sl3_Task(data = washb_data, covariates = covars, outcome = outcome)
+task <- make_sl3_Task(data = washb_data, covariates = covars,
+                      outcome = outcome)
 
 # examine it
 task
@@ -267,13 +269,13 @@ get_variable_importance <- function(data, outcome, covars){
   })
 
   names(risk_diffs) <- covars
-  results <- data.table(cov = rep(names(risk_diffs), sapply(risk_diffs,length)),
+  results <- data.table(cov = rep(names(risk_diffs),
+                                  sapply(risk_diffs,length)),
                         risk_diff = unlist(risk_diffs))
-  # arrange results in by increasing importance               
-  results_ordered <- arrange(results, risk_diff)                      
+  # arrange results in by increasing importance
+  results_ordered <- arrange(results, risk_diff)
   return(results_ordered)
 }
 
 get_variable_importance(data = washb_data, outcome = outcome, covars = covars)
-
 ```
