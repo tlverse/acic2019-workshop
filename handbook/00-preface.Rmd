@@ -1,4 +1,4 @@
-## Foreward
+## Preface
 
 The foundation of this handbook is grounded in the statistical approach and
 philosophy, “Targeted Learning”, developed by Principal Investigator, Professor
