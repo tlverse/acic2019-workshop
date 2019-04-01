@@ -452,7 +452,7 @@ sl_fit &lt;-<span class="st"> </span>sl<span class="op">$</span><span class="kw"
 values and summarized results.</p>
 <pre class="sourceCode r"><code class="sourceCode r">sl_preds &lt;-<span class="st"> </span>sl_fit<span class="op">$</span><span class="kw">predict</span>()
 <span class="kw">head</span>(sl_preds)</code></pre>
-<pre><code>[1] -0.5186543 -0.9011043 -0.7768092 -0.8110134 -0.6704368 -0.6845187</code></pre>
+<pre><code>[1] -0.5057734 -0.9303469 -0.7803166 -0.8312888 -0.6534902 -0.7100670</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">sl_fit<span class="op">$</span><span class="kw">print</span>()</code></pre>
 <pre><code>[1] &quot;SuperLearner:&quot;
 List of 4
@@ -462,23 +462,23 @@ List of 4
  $ : chr &quot;Lrnr_glmnet_NULL_deviance_10_1_100_TRUE&quot;
 [1] &quot;Lrnr_nnls&quot;
                                      lrnrs   weights
-1:                           Lrnr_glm_TRUE 0.1672910
+1:                           Lrnr_glm_TRUE 0.2113069
 2:                               Lrnr_mean 0.0000000
-3:                    Lrnr_ranger_500_TRUE 0.4779280
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.3590057
+3:                    Lrnr_ranger_500_TRUE 0.4980402
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.2941671
 [1] &quot;Cross-validated risk (MSE, squared error loss):&quot;
                                    learner coefficients mean_risk    SE_risk
 1:                           Lrnr_glm_TRUE           NA  1.020570 0.02391262
 2:                               Lrnr_mean           NA  1.065278 0.02502098
-3:                    Lrnr_ranger_500_TRUE           NA  1.015585 0.02345225
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.015027 0.02361148
-5:                            SuperLearner           NA  1.009444 0.02342740
+3:                    Lrnr_ranger_500_TRUE           NA  1.015007 0.02344169
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.015645 0.02363409
+5:                            SuperLearner           NA  1.009306 0.02342104
       fold_SD fold_min_risk fold_max_risk
 1: 0.04603086     0.9760878      1.133006
 2: 0.06603243     0.9310730      1.181434
-3: 0.04567201     0.9385326      1.102027
-4: 0.04955953     0.9521113      1.131936
-5: 0.04654408     0.9429503      1.111524</code></pre>
+3: 0.04571742     0.9366095      1.100642
+4: 0.05044170     0.9464229      1.131936
+5: 0.04617709     0.9409439      1.110133</code></pre>
 </div>
 </div>
 <div id="extensions" class="section level3">
@@ -628,30 +628,30 @@ List of 9
  $ : chr &quot;Lrnr_pkg_SuperLearner_SL.gam&quot;
  $ : chr &quot;Lrnr_pkg_SuperLearner_SL.bayesglm&quot;
 [1] &quot;Lrnr_nnls&quot;
-                                     lrnrs   weights
-1:                           Lrnr_glm_TRUE 0.1883012
-2:                               Lrnr_mean 0.0000000
-3:                    Lrnr_ranger_500_TRUE 0.0000000
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.3216843
-5:                   Lrnr_ranger_1000_TRUE 0.3946749
-6:                    Lrnr_ranger_100_TRUE 0.0989407
+                                     lrnrs    weights
+1:                           Lrnr_glm_TRUE 0.19737386
+2:                               Lrnr_mean 0.00000000
+3:                    Lrnr_ranger_500_TRUE 0.24571434
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.30922300
+5:                   Lrnr_ranger_1000_TRUE 0.17708329
+6:                    Lrnr_ranger_100_TRUE 0.07352625
 [1] &quot;Cross-validated risk (MSE, squared error loss):&quot;
                                    learner coefficients mean_risk    SE_risk
 1:                           Lrnr_glm_TRUE           NA  1.020570 0.02391262
 2:                               Lrnr_mean           NA  1.065278 0.02502098
-3:                    Lrnr_ranger_500_TRUE           NA  1.017346 0.02347811
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.015393 0.02362193
-5:                   Lrnr_ranger_1000_TRUE           NA  1.015548 0.02344359
-6:                    Lrnr_ranger_100_TRUE           NA  1.021598 0.02350579
-7:                            SuperLearner           NA  1.009638 0.02341725
+3:                    Lrnr_ranger_500_TRUE           NA  1.016332 0.02343367
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.015734 0.02363026
+5:                   Lrnr_ranger_1000_TRUE           NA  1.016019 0.02344731
+6:                    Lrnr_ranger_100_TRUE           NA  1.022685 0.02367363
+7:                            SuperLearner           NA  1.009894 0.02342654
       fold_SD fold_min_risk fold_max_risk
 1: 0.04603086     0.9760878      1.133006
 2: 0.06603243     0.9310730      1.181434
-3: 0.04544119     0.9419599      1.103101
-4: 0.04924672     0.9521113      1.130824
-5: 0.04644072     0.9325849      1.102462
-6: 0.04609801     0.9497244      1.114629
-7: 0.04646690     0.9413622      1.111813</code></pre>
+3: 0.04494383     0.9408310      1.102320
+4: 0.04925908     0.9550860      1.131936
+5: 0.04732754     0.9372381      1.109984
+6: 0.04440779     0.9687527      1.118007
+7: 0.04612441     0.9462888      1.112949</code></pre>
 </div>
 </div>
 <div id="exercise" class="section level2">
@@ -839,31 +839,31 @@ following learners failed for one or more folds and will be dropped from
 all folds: Lrnr_pkg_SuperLearner_SL.polymars, Lrnr_pkg_SuperLearner_SL.gam,
 Lrnr_pkg_SuperLearner_SL.bayesglm</code></pre>
 <pre><code>              cov  risk_diff
-1         fracode 0.01515531
-2          watmin 0.01529986
-3         hfiacat 0.01548467
-4        asset_tv 0.01577155
-5           month 0.01577961
-6   asset_sewmach 0.01584292
-7             sex 0.01597771
-8      asset_khat 0.01599288
-9            roof 0.01601433
-10          Ncomp 0.01602497
-11 asset_wardrobe 0.01629266
-12     asset_bike 0.01632129
-13     asset_moto 0.01658357
-14   asset_mobile 0.01660480
-15          walls 0.01670998
-16   asset_chouki 0.01672160
-17          Nlt18 0.01718793
-18          floor 0.01808864
-19    asset_table 0.01840892
-20             tr 0.01921146
-21           elec 0.01942469
-22    asset_chair 0.02094715
-23         momedu 0.02166782
-24   asset_refrig 0.02317318
-25           aged 0.05223249
+1         fracode 0.01391523
+2          watmin 0.01417176
+3         hfiacat 0.01430070
+4        asset_tv 0.01467530
+5           month 0.01468838
+6   asset_sewmach 0.01470847
+7      asset_khat 0.01487620
+8             sex 0.01492830
+9            roof 0.01494954
+10          Ncomp 0.01495678
+11     asset_bike 0.01510071
+12 asset_wardrobe 0.01519980
+13     asset_moto 0.01551556
+14   asset_mobile 0.01556618
+15   asset_chouki 0.01576412
+16          walls 0.01579512
+17          Nlt18 0.01618685
+18          floor 0.01703289
+19    asset_table 0.01731981
+20           elec 0.01825031
+21             tr 0.01829337
+22    asset_chair 0.01973537
+23         momedu 0.02035095
+24   asset_refrig 0.02214525
+25           aged 0.05115075
 26         momage         NA
 27      momheight         NA</code></pre>
 
