@@ -25,7 +25,7 @@ the data-generating distribution, or the relevant part of this distribution that
 is needed to evaluate the target parameter. For this initial estimation, we use
 the Super Learner, an important step in creating a robust estimator.
 
-#### What is the Super Learner?
+#### Super Learner
 
 * Loss-function-based tool that uses V-fold cross-validation to obtain the best
 prediction of the relevant part of the likelihood (needed to evaluate target parameter)
@@ -52,7 +52,6 @@ library(data.table)
 library(sl3)
 library(SuperLearner)
 library(origami)
-library(here)
 set.seed(7194)
 ```
 #### 1. Load data
@@ -63,7 +62,7 @@ predicting weight-for-height z-score `whz` using the available covariate data.
 
 ```{r data}
 # load data set and take a peek
-wash_data <- fread(here("..", "washb_data", "washb_data.csv"))
+wash_data <- fread("../washb_data/washb_data.csv", stringsAsFactors = TRUE))
 head(wash_data)
 ```
 #### 2. Define machine learning task
