@@ -418,10 +418,11 @@ learner_list <- list(Y = Q_learner, A = g_learner, B = b_learner)
 
 ### Targeted Estimation of the Mean under the Optimal Individualized Interventions Effects
 
-```{r spec_init2}
+```{r mopttx_spec_init_complex}
 # initialize a tmle specification
-tmle_spec <- tmle3_mopttx_blip_revere(V = c("W1", "W2", "W3"), type = "blip1", 
-                                      b_learner = learner_list$B, maximize = TRUE, complex = TRUE)
+tmle_spec <- tmle3_mopttx_blip_revere(V = c("W1", "W2", "W3"), type = "blip1",
+                                      b_learner = learner_list$B,
+                                      maximize = TRUE, complex = TRUE)
 ```
 
 ```{r fit_tmle_auto2, eval=T}
@@ -436,10 +437,11 @@ We can see that the estimate of $psi_0$ is $0.56$, and that the confidence inter
 
 In order to not only consider the most ambitious fully V-optimal rule, we define S-optimal rules as the optimal rule that considers all possible subsets of $V$ covariates, with card($S$) $\leq$ card($V$) and $\emptyset \in S$. This allows us to consider sub-optimal rules that are easier to estimate and potentially provide more realistic rules- as such, we allow for statistical inference for the counterfactual mean outcome under the sub-optimal rule. Within the `tmle3mopttx` paradigm, we just need to change the `complex` parameter to `FALSE`:
 
-```{r spec_init2}
+```{r mopttx_spec_init_noncomplex}
 # initialize a tmle specification
-tmle_spec <- tmle3_mopttx_blip_revere(V = c("W1", "W2", "W3"), type = "blip1", 
-                                      b_learner = learner_list$B, maximize = TRUE, complex = FALSE)
+tmle_spec <- tmle3_mopttx_blip_revere(V = c("W1", "W2", "W3"), type = "blip1",
+                                      b_learner = learner_list$B,
+                                      maximize = TRUE, complex = FALSE)
 ```
 
 ```{r fit_tmle_auto2, eval=T}
@@ -468,7 +470,7 @@ tmle_task <- tmle_spec_Q$make_tmle_task(data, node_list)
 # Define likelihood:
 initial_likelihood <- tmle_spec_Q$make_initial_likelihood(tmle_task, learner_list)
 
-#Estimate the parameter:
+# Estimate the parameter:
 Q_learning(tmle_spec_Q, initial_likelihood, tmle_task)
 
 ```
@@ -546,7 +548,7 @@ rule. Finally, we also need to specify whether the final comparison of the mean 
 optimal individualized rule and the mean under the observed outcome should be on the 
 multiplicative scale (risk ratio) or linear (similar to average treatment effect).
 
-```{r spec_init3}
+```{r mopttx_spec_init_vim}
 # initialize a tmle specification
 tmle_spec <-  tmle3_mopttx_vim(V = c("W1", "W2", "W3"),
                                type = "blip1",
@@ -579,7 +581,7 @@ vim_results_Q <- tmle3_vim(tmle_spec_Q, data, node_list=node_list, learner_list,
                          adjust_for_other_A = FALSE)
 vim_results_Q
 ```
- 
+
 ---
 
 ## Exercises
