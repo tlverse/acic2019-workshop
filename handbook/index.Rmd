@@ -148,7 +148,8 @@ schedule may take the form:
 
 * 09:30AM--09:45AM: [Why we need a statistical
     revolution](https://senseaboutscienceusa.org/super-learning-and-the-revolution-in-knowledge/)
-* 09:45AM--10:15AM: The Roadmap and introduction to the data
+* 09:45AM--10:15AM: The Roadmap, and the [WASH
+    Benefits](http://www.washbenefits.net/) data
 * 10:15AM--10:30AM: Introduction to the [`tlverse` software
     ecosystem](https://tlverse.org)
 * 10:30AM--10:45AM: Morning break
@@ -157,7 +158,7 @@ schedule may take the form:
 * 11:45AM--12:30PM: Targeted learning for causal inference with the
     [`tmle3`](https://github.com/tlverse/tmle3) package
 * 12:30PM--1:30PM: Lunch break
-* 01:30PM--02:45PM: Optimal treatments regimes and the
+* 01:30PM--02:45PM: Optimal treatment regimes and the
     [`tmle3mopttx`](https://github.com/tlverse/tmle3mopttx) package
 * 02:45PM--03:00PM: Afternoon break
 * 3:00PM--4:00PM: Stochastic treatment regimes and the
