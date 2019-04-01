@@ -111,4 +111,3 @@ for the first 6 months and every 2 weeks for the next 18 months) and a double-si
 health promoter visit). The six intervention groups were: chlorinated drinking water; improved sanitation;
 handwashing with soap; combined water, sanitation, and handwashing; improved nutrition through counselling and
 provision of lipid-based nutrient supplements; and combined water, sanitation, handwashing, and nutrition. In the workshop, we concentrate child-growth (size for age) as the outcome.  This trial was registered with ClinicalTrials.gov, number NCT01590095.
-
