@@ -1,6 +1,4 @@
-## Preface / Foreward / Motivation /Background (idk)
-
-**Maybe this info is not necessary**
+## Foreward
 
 The foundation of this handbook is grounded in the statistical approach and
 philosophy, “Targeted Learning”, developed by Principal Investigator, Professor
@@ -25,7 +23,7 @@ reproducibility and rigor of research and the current culture of data analysis
 enables a major contributor of this crisis – human bias. Consequences of not
 meeting this need will result in further decline in the rate of scientific
 progression, the reputation of biomedical science, and the public’s trust in
-its findings.\\
+its findings.
 
 Training of robust methods that avoid confirmation bias will lead
 to results being more reproducible and trustworthy. Our team at The University
@@ -33,7 +31,7 @@ of California, Berkeley, is uniquely positioned to provide such a training. The
 objective for this handbook is to enhance the education of students,
 researchers, professors, etc. to empower them with the necessary
 knowledge and skills to utilize the sound research methodology of Targeted
-Learning.\\
+Learning.
 
 For any complex statistical methodology to be accessible in practice, it is
 crucial that it is accompanied by robust software. The `tlverse`
@@ -45,7 +43,7 @@ implementing a specific estimator or a small set of related estimators ---
 instead, the focus is on exposing the statistical framework of Targeted Learning
 itself! All `R` packages in the `tlverse` ecosystem directly model
 the key objects defined in the mathematical and theoretical framework of Targeted
-Learning.\\
+Learning.
 
 In this handbook, the reader will embark on a journey through the
 `tlverse`. Guided by `R` programming exercises, case studies, and
