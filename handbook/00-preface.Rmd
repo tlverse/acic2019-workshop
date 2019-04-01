@@ -1,0 +1,56 @@
+## Preface / Foreward / Motivation /Background (idk)
+
+**Maybe this info is not necessary**
+
+The foundation of this handbook is grounded in the statistical approach and
+philosophy, “Targeted Learning”, developed by Principal Investigator, Professor
+Mark van der Laan, at the University of California, Berkeley. Capable of
+answering specific questions of interest based on real-world data, Targeted
+Learning unifies desirable aspects of algorithmic machine learning and causal
+inference to generate efficient and trustworthy inferences. It resurrects the
+pillars of statistics like the facts that a model represents real knowledge
+about the experiment that generated the data and that a target parameter
+represents what we are seeking to learn from the data as a feature of the
+distribution that generated the data. In this way, Targeted Learning defines a
+truth and establishes a standard for estimation, while current culture typically
+defines a parameter as a coefficient in a misspecified parametric (or other
+restrictive) statistical model, where different choices of such misspecified
+models result in different answers. This allows one to make arbitrary choices,
+potentially driven by data and human bias, even though these choices often
+result in different answers to the same estimation problem. This subjectivity
+presents a fundamental drive behind the epidemic of false positives and lack of
+power to detect true positives that scientific research is suffering from
+@van2014entering. We are faced with an urgent scientific need to enhance the
+reproducibility and rigor of research and the current culture of data analysis
+enables a major contributor of this crisis – human bias. Consequences of not
+meeting this need will result in further decline in the rate of scientific
+progression, the reputation of biomedical science, and the public’s trust in
+its findings.\\
+
+Training of robust methods that avoid confirmation bias will lead
+to results being more reproducible and trustworthy. Our team at The University
+of California, Berkeley, is uniquely positioned to provide such a training. The
+objective for this handbook is to enhance the education of students,
+researchers, professors, etc. to empower them with the necessary
+knowledge and skills to utilize the sound research methodology of Targeted
+Learning.\\
+
+For any complex statistical methodology to be accessible in practice, it is
+crucial that it is accompanied by robust software. The `tlverse`
+software ecosystem was developed to fulfill this need. Not only does this
+software facilitate computationally reproducible and efficient analyses, it is
+also a tool for Targeted Learning education since its workflow mirrors that of
+the methodology. In particular, the `tlverse` paradigm does not focus on
+implementing a specific estimator or a small set of related estimators ---
+instead, the focus is on exposing the statistical framework of Targeted Learning
+itself! All `R` packages in the `tlverse` ecosystem directly model
+the key objects defined in the mathematical and theoretical framework of Targeted
+Learning.\\
+
+In this handbook, the reader will embark on a journey through the
+`tlverse`. Guided by `R` programming exercises, case studies, and
+intuitive explanation readers will build a toolbox for applying the Targeted
+Learning statistical methodology, thereby increasing accessibility of this
+statistical approach and philosophy. The reader need not be a fully trained
+statistician to begin understanding and applying these methods. However, we do
+recommend ___ before
