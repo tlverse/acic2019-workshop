@@ -529,10 +529,10 @@ regression techniques:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># learners used for conditional expectation regression</span>
 lrn_mean &lt;-<span class="st"> </span>Lrnr_mean<span class="op">$</span><span class="kw">new</span>()
 lrn_fglm &lt;-<span class="st"> </span>Lrnr_glm_fast<span class="op">$</span><span class="kw">new</span>()
-lrn_xgb &lt;-<span class="st"> </span>Lrnr_xgboost<span class="op">$</span><span class="kw">new</span>(<span class="dt">nrounds=</span><span class="dv">200</span>)
+lrn_xgb &lt;-<span class="st"> </span>Lrnr_xgboost<span class="op">$</span><span class="kw">new</span>(<span class="dt">nrounds =</span> <span class="dv">200</span>)
 lrn_hal &lt;-<span class="st"> </span>Lrnr_hal9001<span class="op">$</span><span class="kw">new</span>()
 sl_lrn &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(
-  <span class="dt">learners =</span> <span class="kw">list</span>(lrn_mean, lrn_fglm), <span class="co">#, lrn_xgb, lrn_hal),</span>
+  <span class="dt">learners =</span> <span class="kw">list</span>(lrn_mean, lrn_fglm), <span class="co"># , lrn_xgb, lrn_hal),</span>
   <span class="dt">metalearner =</span> Lrnr_nnls<span class="op">$</span><span class="kw">new</span>()
 )</code></pre>
 <p>The second of these is an estimate of the treatment mechanism, <span class="math inline">\(\hat{g}_n\)</span>,
@@ -613,9 +613,11 @@ interest (called a <code>tmle3_Spec</code> in the <code>tlverse</code> nomenclat
 the scale of the treatment <span class="math inline">\(A\)</span> – that is, we specify <span class="math inline">\(\delta = 0.5\)</span> (note that
 this is an arbitrarily chosen value for this example).</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># initialize a tmle specification</span>
-tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle_shift</span>(<span class="dt">shift_val =</span> <span class="fl">0.5</span>,
-                        <span class="dt">shift_fxn =</span> shift_additive_bounded,
-                        <span class="dt">shift_fxn_inv =</span> shift_additive_bounded_inv)</code></pre>
+tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle_shift</span>(
+  <span class="dt">shift_val =</span> <span class="fl">0.5</span>,
+  <span class="dt">shift_fxn =</span> shift_additive_bounded,
+  <span class="dt">shift_fxn_inv =</span> shift_additive_bounded_inv
+)</code></pre>
 <p>As seen above, the <code>tmle_shift</code> specification object (like all <code>tmle3_Spec</code>
 objects) does <em>not</em> store the data for our specific analysis of interest. Later,
 we’ll see that passing a data object directly to the <code>tmle3</code> wrapper function,
@@ -726,8 +728,10 @@ choice of shift is an arbitrarily chosen set of values for this example).</p>
 delta_grid &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)
 
 <span class="co"># initialize a tmle specification</span>
-tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle_vimshift_delta</span>(<span class="dt">shift_grid =</span> delta_grid,
-                                 <span class="dt">max_shifted_ratio =</span> <span class="dv">2</span>)</code></pre>
+tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle_vimshift_delta</span>(
+  <span class="dt">shift_grid =</span> delta_grid,
+  <span class="dt">max_shifted_ratio =</span> <span class="dv">2</span>
+)</code></pre>
 <p>As seen above, the <code>tmle_vimshift</code> specification object (like all <code>tmle3_Spec</code>
 objects) does <em>not</em> store the data for our specific analysis of interest. Later,
 we’ll see that passing a data object directly to the <code>tmle3</code> wrapper function,
@@ -856,8 +860,10 @@ parameters of the working marginal structural model, we may use the
 <code>tmle_vimshift_msm</code> Spec (instead of the <code>tmle_vimshift_delta</code> Spec that
 appears above):</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># initialize a tmle specification</span>
-tmle_msm_spec &lt;-<span class="st"> </span><span class="kw">tmle_vimshift_msm</span>(<span class="dt">shift_grid =</span> delta_grid,
-                                   <span class="dt">max_shifted_ratio =</span> <span class="dv">2</span>)
+tmle_msm_spec &lt;-<span class="st"> </span><span class="kw">tmle_vimshift_msm</span>(
+  <span class="dt">shift_grid =</span> delta_grid,
+  <span class="dt">max_shifted_ratio =</span> <span class="dv">2</span>
+)
 
 <span class="co"># fit the TML estimator and examine the results</span>
 tmle_msm_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_msm_spec, data, node_list, learner_list)</code></pre>

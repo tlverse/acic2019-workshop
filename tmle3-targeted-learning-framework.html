@@ -297,15 +297,19 @@ washb_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span cla
 <div id="define-the-variable-roles" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> Define the variable roles</h3>
 <p>We’ll use the common W (covariates), A (treatment/intervention), Y (outcome) data structure. <code>tmle3</code> needs to know what variables in the dataset correspond to each of these roles. We use a list of character vectors to tell it. We call this a “Node List” as it corresponds to the nodes in a Directed Acyclic Graph (DAG), a way of displaying causal relationships between variables.</p>
-<pre class="sourceCode r"><code class="sourceCode r">node_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">W =</span> <span class="kw">c</span>(<span class="st">&quot;month&quot;</span>, <span class="st">&quot;aged&quot;</span>, <span class="st">&quot;sex&quot;</span>, <span class="st">&quot;momage&quot;</span>, <span class="st">&quot;momedu&quot;</span>,
-                        <span class="st">&quot;momheight&quot;</span>, <span class="st">&quot;hfiacat&quot;</span>, <span class="st">&quot;Nlt18&quot;</span>, <span class="st">&quot;Ncomp&quot;</span>, <span class="st">&quot;watmin&quot;</span>,
-                        <span class="st">&quot;elec&quot;</span>, <span class="st">&quot;floor&quot;</span>, <span class="st">&quot;walls&quot;</span>, <span class="st">&quot;roof&quot;</span>, <span class="st">&quot;asset_wardrobe&quot;</span>,
-                        <span class="st">&quot;asset_table&quot;</span>, <span class="st">&quot;asset_chair&quot;</span>, <span class="st">&quot;asset_khat&quot;</span>,
-                        <span class="st">&quot;asset_chouki&quot;</span>, <span class="st">&quot;asset_tv&quot;</span>, <span class="st">&quot;asset_refrig&quot;</span>,
-                        <span class="st">&quot;asset_bike&quot;</span>, <span class="st">&quot;asset_moto&quot;</span>, <span class="st">&quot;asset_sewmach&quot;</span>,
-                        <span class="st">&quot;asset_mobile&quot;</span>),
-                  <span class="dt">A =</span> <span class="st">&quot;tr&quot;</span>,
-                  <span class="dt">Y =</span> <span class="st">&quot;whz&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">node_list &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="dt">W =</span> <span class="kw">c</span>(
+    <span class="st">&quot;month&quot;</span>, <span class="st">&quot;aged&quot;</span>, <span class="st">&quot;sex&quot;</span>, <span class="st">&quot;momage&quot;</span>, <span class="st">&quot;momedu&quot;</span>,
+    <span class="st">&quot;momheight&quot;</span>, <span class="st">&quot;hfiacat&quot;</span>, <span class="st">&quot;Nlt18&quot;</span>, <span class="st">&quot;Ncomp&quot;</span>, <span class="st">&quot;watmin&quot;</span>,
+    <span class="st">&quot;elec&quot;</span>, <span class="st">&quot;floor&quot;</span>, <span class="st">&quot;walls&quot;</span>, <span class="st">&quot;roof&quot;</span>, <span class="st">&quot;asset_wardrobe&quot;</span>,
+    <span class="st">&quot;asset_table&quot;</span>, <span class="st">&quot;asset_chair&quot;</span>, <span class="st">&quot;asset_khat&quot;</span>,
+    <span class="st">&quot;asset_chouki&quot;</span>, <span class="st">&quot;asset_tv&quot;</span>, <span class="st">&quot;asset_refrig&quot;</span>,
+    <span class="st">&quot;asset_bike&quot;</span>, <span class="st">&quot;asset_moto&quot;</span>, <span class="st">&quot;asset_sewmach&quot;</span>,
+    <span class="st">&quot;asset_mobile&quot;</span>
+  ),
+  <span class="dt">A =</span> <span class="st">&quot;tr&quot;</span>,
+  <span class="dt">Y =</span> <span class="st">&quot;whz&quot;</span>
+)</code></pre>
 </div>
 <div id="handle-missingness" class="section level3">
 <h3><span class="header-section-number">3.2.3</span> Handle Missingness</h3>
@@ -331,8 +335,10 @@ manually specifying all of these components. Therefore, <code>tmle3</code> imple
 that, with minimal additional detail, can be run by an end-user.</p>
 <p>We’ll start with using one of the specs, and then work our way down into the
 internals of <code>tmle3</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">ate_spec &lt;-<span class="st"> </span><span class="kw">tmle_ATE</span>(<span class="dt">treatment_level =</span> <span class="st">&quot;Nutrition + WSH&quot;</span>,
-                     <span class="dt">control_level =</span> <span class="st">&quot;Control&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">ate_spec &lt;-<span class="st"> </span><span class="kw">tmle_ATE</span>(
+  <span class="dt">treatment_level =</span> <span class="st">&quot;Nutrition + WSH&quot;</span>,
+  <span class="dt">control_level =</span> <span class="st">&quot;Control&quot;</span>
+)</code></pre>
 </div>
 <div id="define-the-learners" class="section level3">
 <h3><span class="header-section-number">3.2.5</span> Define the learners</h3>
@@ -346,7 +352,7 @@ lrnr_xgboost &lt;-<span class="st"> </span><span class="kw">make_learner</span>(
 
 <span class="co"># define metalearners appropriate to data types</span>
 ls_metalearner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_nnls)
-mn_metalearner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_solnp,  metalearner_linear_multinomial, loss_loglik_multinomial)
+mn_metalearner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_solnp, metalearner_linear_multinomial, loss_loglik_multinomial)
 sl_Y &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(<span class="dt">learners =</span> <span class="kw">list</span>(lrnr_mean, lrnr_xgboost), <span class="dt">metalearner =</span> ls_metalearner)
 sl_A &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(<span class="dt">learners =</span> <span class="kw">list</span>(lrnr_mean, lrnr_xgboost), <span class="dt">metalearner =</span> mn_metalearner)
 
@@ -406,8 +412,10 @@ tmle3_Node: Y
 <h3><span class="header-section-number">3.3.2</span> Initial Likelihood</h3>
 <p>Next, is an object representing the likelihood, factorized according to the
 NPSEM described above:</p>
-<pre class="sourceCode r"><code class="sourceCode r">initial_likelihood &lt;-<span class="st"> </span>ate_spec<span class="op">$</span><span class="kw">make_initial_likelihood</span>(tmle_task,
-                                                       learner_list)
+<pre class="sourceCode r"><code class="sourceCode r">initial_likelihood &lt;-<span class="st"> </span>ate_spec<span class="op">$</span><span class="kw">make_initial_likelihood</span>(
+  tmle_task,
+  learner_list
+)
 <span class="kw">print</span>(initial_likelihood)</code></pre>
 <pre><code>W: Lf_emp
 A: LF_fit
@@ -445,7 +453,8 @@ options. See the documentation for <code>tmle3_Update</code> for details of the 
 options. For example, you can disable CV-TMLE (the default in <code>tmle3</code>) as follows:</p>
 <pre class="sourceCode r"><code class="sourceCode r">targeted_likelihood_no_cv &lt;-
 <span class="st">  </span>Targeted_Likelihood<span class="op">$</span><span class="kw">new</span>(initial_likelihood,
-                          <span class="dt">updater =</span> <span class="kw">list</span>(<span class="dt">cvtmle =</span> <span class="ot">FALSE</span>))</code></pre>
+    <span class="dt">updater =</span> <span class="kw">list</span>(<span class="dt">cvtmle =</span> <span class="ot">FALSE</span>)
+  )</code></pre>
 </div>
 <div id="parameter-mapping" class="section level3">
 <h3><span class="header-section-number">3.3.4</span> Parameter Mapping</h3>
@@ -461,8 +470,10 @@ Param_ATE: ATE[Y_{A=Nutrition + WSH}-Y_{A=Control}]</code></pre>
 <h3><span class="header-section-number">3.3.5</span> Putting it all together</h3>
 <p>Having used the spec to manually generate all these components, we can now
 manually fit a <code>tmle3</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">tmle_fit_manual &lt;-<span class="st"> </span><span class="kw">fit_tmle3</span>(tmle_task, targeted_likelihood, tmle_params,
-                             targeted_likelihood<span class="op">$</span>updater)
+<pre class="sourceCode r"><code class="sourceCode r">tmle_fit_manual &lt;-<span class="st"> </span><span class="kw">fit_tmle3</span>(
+  tmle_task, targeted_likelihood, tmle_params,
+  targeted_likelihood<span class="op">$</span>updater
+)
 <span class="kw">print</span>(tmle_fit_manual)</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
    type                                    param    init_est    tmle_est
@@ -512,9 +523,11 @@ saving us a super learner step.</p>
 <p>We can also define parameters based on Delta Method Transformations of other
 parameters. For instance, we can estimate a ATE using the delta method and two
 of the above TSM parameters:</p>
-<pre class="sourceCode r"><code class="sourceCode r">ate_param &lt;-<span class="st"> </span><span class="kw">define_param</span>(Param_delta, targeted_likelihood,
-                         delta_param_ATE,
-                         <span class="kw">list</span>(all_tsm_params[[<span class="dv">1</span>]], all_tsm_params[[<span class="dv">4</span>]]))
+<pre class="sourceCode r"><code class="sourceCode r">ate_param &lt;-<span class="st"> </span><span class="kw">define_param</span>(
+  Param_delta, targeted_likelihood,
+  delta_param_ATE,
+  <span class="kw">list</span>(all_tsm_params[[<span class="dv">1</span>]], all_tsm_params[[<span class="dv">4</span>]])
+)
 <span class="kw">print</span>(ate_param)</code></pre>
 <pre><code>Param_delta: E[Y_{A=Nutrition + WSH}] - E[Y_{A=Control}]</code></pre>
 <p>This can similarly be used to estimate other derived parameters like Relative
@@ -526,8 +539,10 @@ Risks, and Population Attributable Risks</p>
 above defined ATE parameter</p>
 <pre class="sourceCode r"><code class="sourceCode r">all_params &lt;-<span class="st"> </span><span class="kw">c</span>(all_tsm_params, ate_param)
 
-tmle_fit_multiparam &lt;-<span class="st"> </span><span class="kw">fit_tmle3</span>(tmle_task, targeted_likelihood, all_params,
-                                 targeted_likelihood<span class="op">$</span>updater)
+tmle_fit_multiparam &lt;-<span class="st"> </span><span class="kw">fit_tmle3</span>(
+  tmle_task, targeted_likelihood, all_params,
+  targeted_likelihood<span class="op">$</span>updater
+)
 
 <span class="kw">print</span>(tmle_fit_multiparam)</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)

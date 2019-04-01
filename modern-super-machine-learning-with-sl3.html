@@ -365,8 +365,10 @@ outcome &lt;-<span class="st"> &quot;whz&quot;</span>
 covars &lt;-<span class="st"> </span><span class="kw">colnames</span>(washb_data)[<span class="op">-</span><span class="kw">which</span>(<span class="kw">names</span>(washb_data) <span class="op">==</span><span class="st"> </span>outcome)]
 
 <span class="co"># create the sl3 task</span>
-task &lt;-<span class="st"> </span><span class="kw">make_sl3_Task</span>(<span class="dt">data =</span> washb_data, <span class="dt">covariates =</span> covars,
-                      <span class="dt">outcome =</span> outcome)</code></pre>
+task &lt;-<span class="st"> </span><span class="kw">make_sl3_Task</span>(
+  <span class="dt">data =</span> washb_data, <span class="dt">covariates =</span> covars,
+  <span class="dt">outcome =</span> outcome
+)</code></pre>
 <pre><code>Warning in .subset2(public_bind_env, &quot;initialize&quot;)(...): Missing Covariate Data
 Found. Imputing covariates using sl3_process_missing</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># examine it</span>
@@ -431,8 +433,10 @@ lrnr_glmnet &lt;-<span class="st"> </span><span class="kw">make_learner</span>(L
 <p>In order to assemble the library of learners, we need to <strong>“stack”</strong> them
 together. A <code>Stack</code> is just a special learner and so has the same interface as
 all other learners:</p>
-<pre class="sourceCode r"><code class="sourceCode r">stack &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Stack, lrnr_glm, lrnr_mean, lrnr_ranger,
-                      lrnr_glmnet)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">stack &lt;-<span class="st"> </span><span class="kw">make_learner</span>(
+  Stack, lrnr_glm, lrnr_mean, lrnr_ranger,
+  lrnr_glmnet
+)</code></pre>
 <p>A <code>stack</code> combines multiple learners by training them simultaneously, so that
 their predictions can be either combined or compared.</p>
 <p>We’re almost ready to super learn! Just one more necessary specification.</p>
@@ -454,7 +458,7 @@ sl_fit &lt;-<span class="st"> </span>sl<span class="op">$</span><span class="kw"
 values and summarized results.</p>
 <pre class="sourceCode r"><code class="sourceCode r">sl_preds &lt;-<span class="st"> </span>sl_fit<span class="op">$</span><span class="kw">predict</span>()
 <span class="kw">head</span>(sl_preds)</code></pre>
-<pre><code>[1] -0.5336568 -0.8704003 -0.7633203 -0.8058583 -0.6615648 -0.7187561</code></pre>
+<pre><code>[1] -0.5684999 -0.8938802 -0.7715979 -0.7938838 -0.6571894 -0.7047049</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">sl_fit<span class="op">$</span><span class="kw">print</span>()</code></pre>
 <pre><code>[1] &quot;SuperLearner:&quot;
 List of 4
@@ -464,23 +468,23 @@ List of 4
  $ : chr &quot;Lrnr_glmnet_NULL_deviance_10_1_100_TRUE&quot;
 [1] &quot;Lrnr_nnls&quot;
                                      lrnrs   weights
-1:                           Lrnr_glm_TRUE 0.1489448
+1:                           Lrnr_glm_TRUE 0.1619997
 2:                               Lrnr_mean 0.0000000
-3:                    Lrnr_ranger_500_TRUE 0.4232562
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.4324321
+3:                    Lrnr_ranger_500_TRUE 0.4624979
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.3807813
 [1] &quot;Cross-validated risk (MSE, squared error loss):&quot;
                                    learner coefficients mean_risk    SE_risk
 1:                           Lrnr_glm_TRUE           NA  1.020570 0.02391262
 2:                               Lrnr_mean           NA  1.065278 0.02502098
-3:                    Lrnr_ranger_500_TRUE           NA  1.017508 0.02358685
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.014388 0.02359558
-5:                            SuperLearner           NA  1.010021 0.02348730
+3:                    Lrnr_ranger_500_TRUE           NA  1.015783 0.02341515
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.014531 0.02360565
+5:                            SuperLearner           NA  1.009421 0.02340935
       fold_SD fold_min_risk fold_max_risk
 1: 0.04603086     0.9760878      1.133006
 2: 0.06603243     0.9310730      1.181434
-3: 0.04542036     0.9396537      1.103192
-4: 0.04962424     0.9491794      1.131301
-5: 0.04672447     0.9424496      1.113863</code></pre>
+3: 0.04719379     0.9325230      1.102105
+4: 0.05026329     0.9464229      1.131936
+5: 0.04736825     0.9378434      1.112077</code></pre>
 </div>
 <div id="extensions" class="section level3">
 <h3><span class="header-section-number">2.3.2</span> Extensions</h3>
@@ -493,9 +497,11 @@ lrnr_gam &lt;-<span class="st"> </span>Lrnr_pkg_SuperLearner<span class="op">$</
 lrnr_bayesglm &lt;-<span class="st"> </span>Lrnr_pkg_SuperLearner<span class="op">$</span><span class="kw">new</span>(<span class="st">&quot;SL.bayesglm&quot;</span>)
 
 <span class="co"># let&#39;s create a new stack with these new learners</span>
-new_stack &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Stack, lrnr_glm, lrnr_mean, lrnr_ranger,
-                      lrnr_glmnet, lrnr_ranger1k, lrnr_ranger100,
-                      lrnr_polymars, lrnr_gam, lrnr_bayesglm)</code></pre>
+new_stack &lt;-<span class="st"> </span><span class="kw">make_learner</span>(
+  Stack, lrnr_glm, lrnr_mean, lrnr_ranger,
+  lrnr_glmnet, lrnr_ranger1k, lrnr_ranger100,
+  lrnr_polymars, lrnr_gam, lrnr_bayesglm
+)</code></pre>
 <p>We can also select a subset of available covariates and <strong>“pipe”</strong> only those
 variables to the modeling algorithm. A <code>Pipeline</code> is a set of learners to be
 fit sequentially, where the fit from one learner is used to define the task for
@@ -629,30 +635,30 @@ List of 9
  $ : chr &quot;Lrnr_pkg_SuperLearner_SL.gam&quot;
  $ : chr &quot;Lrnr_pkg_SuperLearner_SL.bayesglm&quot;
 [1] &quot;Lrnr_nnls&quot;
-                                     lrnrs   weights
-1:                           Lrnr_glm_TRUE 0.1668288
-2:                               Lrnr_mean 0.0000000
-3:                    Lrnr_ranger_500_TRUE 0.0000000
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.3379238
-5:                   Lrnr_ranger_1000_TRUE 0.1536410
-6:                    Lrnr_ranger_100_TRUE 0.3474755
+                                     lrnrs    weights
+1:                           Lrnr_glm_TRUE 0.16718953
+2:                               Lrnr_mean 0.00000000
+3:                    Lrnr_ranger_500_TRUE 0.44562628
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.36397485
+5:                   Lrnr_ranger_1000_TRUE 0.02854757
+6:                    Lrnr_ranger_100_TRUE 0.00000000
 [1] &quot;Cross-validated risk (MSE, squared error loss):&quot;
                                    learner coefficients mean_risk    SE_risk
 1:                           Lrnr_glm_TRUE           NA  1.020570 0.02391262
 2:                               Lrnr_mean           NA  1.065278 0.02502098
-3:                    Lrnr_ranger_500_TRUE           NA  1.016317 0.02351597
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.014834 0.02359449
-5:                   Lrnr_ranger_1000_TRUE           NA  1.015110 0.02346838
-6:                    Lrnr_ranger_100_TRUE           NA  1.017068 0.02341411
-7:                            SuperLearner           NA  1.008244 0.02337806
+3:                    Lrnr_ranger_500_TRUE           NA  1.015496 0.02342357
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.014719 0.02361097
+5:                   Lrnr_ranger_1000_TRUE           NA  1.015957 0.02342661
+6:                    Lrnr_ranger_100_TRUE           NA  1.026489 0.02359664
+7:                            SuperLearner           NA  1.009185 0.02341164
       fold_SD fold_min_risk fold_max_risk
 1: 0.04603086     0.9760878      1.133006
 2: 0.06603243     0.9310730      1.181434
-3: 0.04617044     0.9370666      1.101715
-4: 0.05036150     0.9491794      1.133907
-5: 0.04671814     0.9357520      1.103514
-6: 0.05035067     0.9321130      1.112944
-7: 0.04834552     0.9367344      1.113675</code></pre>
+3: 0.04571652     0.9333955      1.096593
+4: 0.04988405     0.9464229      1.131301
+5: 0.04648415     0.9371532      1.107980
+6: 0.04327723     0.9705546      1.109749
+7: 0.04647138     0.9383420      1.109229</code></pre>
 </div>
 </div>
 <div id="exercise" class="section level2">
@@ -677,7 +683,7 @@ higher than the mean risk of the discrete Super Learner?</li>
 <h2><span class="header-section-number">2.5</span> Appendix: More advanced extensions of <code>sl3</code></h2>
 <div id="variable-importance" class="section level3">
 <h3><span class="header-section-number">2.5.1</span> Variable importance</h3>
-<pre class="sourceCode r"><code class="sourceCode r">get_variable_importance &lt;-<span class="st"> </span><span class="cf">function</span>(data, outcome, covars){
+<pre class="sourceCode r"><code class="sourceCode r">get_variable_importance &lt;-<span class="st"> </span><span class="cf">function</span>(data, outcome, covars) {
 
   <span class="co"># create the sl3 task</span>
   task &lt;-<span class="st"> </span><span class="kw">make_sl3_Task</span>(<span class="dt">data =</span> data, <span class="dt">covariates =</span> covars, <span class="dt">outcome =</span> outcome)
@@ -691,8 +697,10 @@ higher than the mean risk of the discrete Super Learner?</li>
   lrnr_bayesglm &lt;-<span class="st"> </span>Lrnr_pkg_SuperLearner<span class="op">$</span><span class="kw">new</span>(<span class="st">&quot;SL.bayesglm&quot;</span>)
 
   <span class="co"># stack them together</span>
-  stack &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Stack, lrnr_glm, lrnr_mean, lrnr_glmnet,
-                        lrnr_polymars, lrnr_gam, lrnr_bayesglm)
+  stack &lt;-<span class="st"> </span><span class="kw">make_learner</span>(
+    Stack, lrnr_glm, lrnr_mean, lrnr_glmnet,
+    lrnr_polymars, lrnr_gam, lrnr_bayesglm
+  )
 
   <span class="co"># choose metalearner</span>
   metalearner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_nnls)
@@ -703,10 +711,12 @@ higher than the mean risk of the discrete Super Learner?</li>
   sl_preds &lt;-<span class="st"> </span>sl_fit<span class="op">$</span><span class="kw">predict</span>()
   risk &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">loss_squared_error</span>(task<span class="op">$</span>Y, sl_preds))
 
-  risk_diffs &lt;-<span class="st"> </span><span class="kw">lapply</span>(covars, <span class="cf">function</span>(x){
+  risk_diffs &lt;-<span class="st"> </span><span class="kw">lapply</span>(covars, <span class="cf">function</span>(x) {
     <span class="co"># scramble cov column and give it the same name as the raw cov col</span>
-    scrambled_col &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="kw">sample</span>(<span class="kw">unlist</span>(data[,x, <span class="dt">with =</span> <span class="ot">FALSE</span>]),
-                                       <span class="kw">nrow</span>(data)))
+    scrambled_col &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="kw">sample</span>(
+      <span class="kw">unlist</span>(data[, x, <span class="dt">with =</span> <span class="ot">FALSE</span>]),
+      <span class="kw">nrow</span>(data)
+    ))
     <span class="kw">names</span>(scrambled_col) &lt;-<span class="st"> </span>x
 
     <span class="co"># replace raw col with scrambled col in the task</span>
@@ -717,7 +727,7 @@ higher than the mean risk of the discrete Super Learner?</li>
     scrambled_sl_preds &lt;-<span class="st"> </span>sl_fit<span class="op">$</span><span class="kw">predict_fold</span>(scrambled_col_task)
 
     <span class="co"># risk on scrambled col task</span>
-    risk_scrambled &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">loss_squared_error</span>(task<span class="op">$</span>Y,scrambled_sl_preds))
+    risk_scrambled &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">loss_squared_error</span>(task<span class="op">$</span>Y, scrambled_sl_preds))
 
     <span class="co"># calculate risk difference</span>
     rd &lt;-<span class="st"> </span>risk_scrambled <span class="op">-</span><span class="st"> </span>risk
@@ -725,14 +735,20 @@ higher than the mean risk of the discrete Super Learner?</li>
   })
 
   <span class="kw">names</span>(risk_diffs) &lt;-<span class="st"> </span>covars
-  results &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">cov =</span> <span class="kw">rep</span>(<span class="kw">names</span>(risk_diffs),
-                                  <span class="kw">sapply</span>(risk_diffs,length)),
-                        <span class="dt">risk_diff =</span> <span class="kw">unlist</span>(risk_diffs))
+  results &lt;-<span class="st"> </span><span class="kw">data.table</span>(
+    <span class="dt">cov =</span> <span class="kw">rep</span>(
+      <span class="kw">names</span>(risk_diffs),
+      <span class="kw">sapply</span>(risk_diffs, length)
+    ),
+    <span class="dt">risk_diff =</span> <span class="kw">unlist</span>(risk_diffs)
+  )
   <span class="kw">return</span>(results)
 }
 
-varimp_washb &lt;-<span class="st"> </span><span class="kw">get_variable_importance</span>(<span class="dt">data =</span> washb_data, <span class="dt">outcome =</span> outcome,
-  <span class="dt">covars =</span> covars)</code></pre>
+varimp_washb &lt;-<span class="st"> </span><span class="kw">get_variable_importance</span>(
+  <span class="dt">data =</span> washb_data, <span class="dt">outcome =</span> outcome,
+  <span class="dt">covars =</span> covars
+)</code></pre>
 <pre><code>Warning in .subset2(public_bind_env, &quot;initialize&quot;)(...): Missing Covariate Data
 Found. Imputing covariates using sl3_process_missing</code></pre>
 <pre><code>Warning in private$.train(subsetted_task, trained_sublearners):

@@ -462,22 +462,22 @@ package</a>.</p>
 the nuisance parameters of the TML estimator may be fit with ensemble learning,
 using the cross-validation framework of the Super Learner algorithm of
 <span class="citation">van der Laan, Polley, and Hubbard (<a href="#ref-vdl2007super">2007</a>)</span>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Initialize some of the learners.</span>
-<span class="co">#Here we use xgboost with various parameters, glm, HAL and the mean.</span>
-xgboost_<span class="dv">50</span>&lt;-Lrnr_xgboost<span class="op">$</span><span class="kw">new</span>(<span class="dt">nrounds =</span> <span class="dv">50</span>)
-xgboost_<span class="dv">100</span>&lt;-Lrnr_xgboost<span class="op">$</span><span class="kw">new</span>(<span class="dt">nrounds =</span> <span class="dv">100</span>)
-xgboost_<span class="dv">500</span>&lt;-Lrnr_xgboost<span class="op">$</span><span class="kw">new</span>(<span class="dt">nrounds =</span> <span class="dv">500</span>)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Initialize some of the learners.</span>
+<span class="co"># Here we use xgboost with various parameters, glm, HAL and the mean.</span>
+xgboost_<span class="dv">50</span> &lt;-<span class="st"> </span>Lrnr_xgboost<span class="op">$</span><span class="kw">new</span>(<span class="dt">nrounds =</span> <span class="dv">50</span>)
+xgboost_<span class="dv">100</span> &lt;-<span class="st"> </span>Lrnr_xgboost<span class="op">$</span><span class="kw">new</span>(<span class="dt">nrounds =</span> <span class="dv">100</span>)
+xgboost_<span class="dv">500</span> &lt;-<span class="st"> </span>Lrnr_xgboost<span class="op">$</span><span class="kw">new</span>(<span class="dt">nrounds =</span> <span class="dv">500</span>)
 lrn1 &lt;-<span class="st"> </span>Lrnr_mean<span class="op">$</span><span class="kw">new</span>()
-lrn2&lt;-Lrnr_glm_fast<span class="op">$</span><span class="kw">new</span>()
-lrn3&lt;-Lrnr_hal9001<span class="op">$</span><span class="kw">new</span>()
+lrn2 &lt;-<span class="st"> </span>Lrnr_glm_fast<span class="op">$</span><span class="kw">new</span>()
+lrn3 &lt;-<span class="st"> </span>Lrnr_hal9001<span class="op">$</span><span class="kw">new</span>()
 
-<span class="co">#Define the Q learner, which is just a regular learner:</span>
+<span class="co"># Define the Q learner, which is just a regular learner:</span>
 Q_learner &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(
-  <span class="dt">learners =</span> <span class="kw">list</span>(xgboost_<span class="dv">50</span>,xgboost_<span class="dv">100</span>,xgboost_<span class="dv">500</span>,lrn1,lrn2),
+  <span class="dt">learners =</span> <span class="kw">list</span>(xgboost_<span class="dv">50</span>, xgboost_<span class="dv">100</span>, xgboost_<span class="dv">500</span>, lrn1, lrn2),
   <span class="dt">metalearner =</span> Lrnr_nnls<span class="op">$</span><span class="kw">new</span>()
 )
 
-<span class="co">#Define the g learner, which is a multinomial learner:</span>
+<span class="co"># Define the g learner, which is a multinomial learner:</span>
 glib &lt;-<span class="st"> </span><span class="kw">list</span>(
   rf &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_randomForest),
   xgb &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_xgboost),
@@ -486,16 +486,18 @@ glib &lt;-<span class="st"> </span><span class="kw">list</span>(
   mean &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_mean)
 )
 
-<span class="co">#Specify the appropriate loss of the multinomial learner:</span>
-mn_metalearner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_solnp, <span class="dt">loss_function =</span> loss_loglik_multinomial, 
-                               <span class="dt">learner_function =</span> metalearner_linear_multinomial)
+<span class="co"># Specify the appropriate loss of the multinomial learner:</span>
+mn_metalearner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_solnp,
+  <span class="dt">loss_function =</span> loss_loglik_multinomial,
+  <span class="dt">learner_function =</span> metalearner_linear_multinomial
+)
 g_learner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_sl, glib, mn_metalearner)
 
-<span class="co">#Define the Blip learner, which is a multivariate learner:</span>
-learners &lt;-<span class="st"> </span><span class="kw">list</span>(xgboost_<span class="dv">50</span>,xgboost_<span class="dv">100</span>,xgboost_<span class="dv">500</span>,lrn1,lrn2)
+<span class="co"># Define the Blip learner, which is a multivariate learner:</span>
+learners &lt;-<span class="st"> </span><span class="kw">list</span>(xgboost_<span class="dv">50</span>, xgboost_<span class="dv">100</span>, xgboost_<span class="dv">500</span>, lrn1, lrn2)
 b_learner &lt;-<span class="st"> </span><span class="kw">create_mv_learners</span>(<span class="dt">learners =</span> learners)</code></pre>
 <p>As seen above, we generate three different ensemble learners that must be fit, corresponding to the learners for the outcome regression, propensity score, and the blip function. Note that we need to estimate <span class="math inline">\(g_0(A|W)\)</span> for a categorical <span class="math inline">\(A\)</span>- therefore we use the multinomial Super Learner option available within the <code>sl3</code> package with learners that can address multi-class classification problems. In order to see which learners can be used to estimate <span class="math inline">\(g_0(A|W)\)</span> in <code>sl3</code>, we run the following:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#See which learners support multi-class classification:</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># See which learners support multi-class classification:</span>
 <span class="kw">sl3_list_learners</span>(<span class="kw">c</span>(<span class="st">&quot;categorical&quot;</span>))</code></pre>
 <pre><code> [1] &quot;Lrnr_bartMachine&quot;          &quot;Lrnr_dbarts&quot;              
  [3] &quot;Lrnr_glmnet&quot;               &quot;Lrnr_grf&quot;                 
@@ -525,8 +527,10 @@ in learning a rule dependent on <code>V</code> covariates. We also need to speci
 pseudo-blip we will use in this estimation problem, and finally the list of learners
 used to estimate the blip function.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># initialize a tmle specification</span>
-tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_revere</span>(<span class="dt">V =</span> <span class="kw">c</span>(<span class="st">&quot;W1&quot;</span>, <span class="st">&quot;W2&quot;</span>, <span class="st">&quot;W3&quot;</span>, <span class="st">&quot;W4&quot;</span>), <span class="dt">type =</span> <span class="st">&quot;blip2&quot;</span>, 
-                                      <span class="dt">b_learner =</span> learner_list<span class="op">$</span>B, <span class="dt">maximize =</span> <span class="ot">TRUE</span>, <span class="dt">complex =</span> <span class="ot">TRUE</span>)</code></pre>
+tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_revere</span>(
+  <span class="dt">V =</span> <span class="kw">c</span>(<span class="st">&quot;W1&quot;</span>, <span class="st">&quot;W2&quot;</span>, <span class="st">&quot;W3&quot;</span>, <span class="st">&quot;W4&quot;</span>), <span class="dt">type =</span> <span class="st">&quot;blip2&quot;</span>,
+  <span class="dt">b_learner =</span> learner_list<span class="op">$</span>B, <span class="dt">maximize =</span> <span class="ot">TRUE</span>, <span class="dt">complex =</span> <span class="ot">TRUE</span>
+)</code></pre>
 <p>As seen above, the <code>tmle3_mopttx_blip_revere</code> specification object (like all <code>tmle3_Spec</code>
 objects) does <em>not</em> store the data for our specific analysis of interest. Later,
 we’ll see that passing a data object directly to the <code>tmle3</code> wrapper function,
@@ -538,10 +542,10 @@ interest, we have specified the set of covariates the rule depends on (<code>V</
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est  tmle_est       se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.4804623 0.5844556 0.025198 0.5350685 0.6338428
+   type         param  init_est  tmle_est         se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.4804096 0.5822483 0.02541945 0.5324271 0.6320695
    psi_transformed lower_transformed upper_transformed
-1:       0.5844556         0.5350685         0.6338428</code></pre>
+1:       0.5822483         0.5324271         0.6320695</code></pre>
 <p>We can see that the estimate of <span class="math inline">\(psi_0\)</span> is <span class="math inline">\(0.58\)</span>, and that the confidence interval covers our true mean under the true optimal individualized treatment.</p>
 </div>
 <div id="learning-the-mean-outcome-under-the-optimal-rule-with-q-learning" class="section level3">
@@ -588,27 +592,31 @@ node_list &lt;-<span class="st"> </span><span class="kw">list</span>(
 <div id="constructing-optimal-stacked-regressions-with-sl3-1" class="section level3">
 <h3><span class="header-section-number">4.7.2</span> Constructing Optimal Stacked Regressions with <code>sl3</code></h3>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Define sl3 library and metalearners:</span>
-xgboost_<span class="dv">50</span>&lt;-Lrnr_xgboost<span class="op">$</span><span class="kw">new</span>(<span class="dt">nrounds =</span> <span class="dv">50</span>)
-xgboost_<span class="dv">100</span>&lt;-Lrnr_xgboost<span class="op">$</span><span class="kw">new</span>(<span class="dt">nrounds =</span> <span class="dv">100</span>)
-xgboost_<span class="dv">500</span>&lt;-Lrnr_xgboost<span class="op">$</span><span class="kw">new</span>(<span class="dt">nrounds =</span> <span class="dv">500</span>)
+xgboost_<span class="dv">50</span> &lt;-<span class="st"> </span>Lrnr_xgboost<span class="op">$</span><span class="kw">new</span>(<span class="dt">nrounds =</span> <span class="dv">50</span>)
+xgboost_<span class="dv">100</span> &lt;-<span class="st"> </span>Lrnr_xgboost<span class="op">$</span><span class="kw">new</span>(<span class="dt">nrounds =</span> <span class="dv">100</span>)
+xgboost_<span class="dv">500</span> &lt;-<span class="st"> </span>Lrnr_xgboost<span class="op">$</span><span class="kw">new</span>(<span class="dt">nrounds =</span> <span class="dv">500</span>)
 lrn1 &lt;-<span class="st"> </span>Lrnr_mean<span class="op">$</span><span class="kw">new</span>()
-lrn2&lt;-Lrnr_glm_fast<span class="op">$</span><span class="kw">new</span>()
-lrn3&lt;-Lrnr_hal9001<span class="op">$</span><span class="kw">new</span>()
+lrn2 &lt;-<span class="st"> </span>Lrnr_glm_fast<span class="op">$</span><span class="kw">new</span>()
+lrn3 &lt;-<span class="st"> </span>Lrnr_hal9001<span class="op">$</span><span class="kw">new</span>()
 
 Q_learner &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(
-  <span class="dt">learners =</span> <span class="kw">list</span>(xgboost_<span class="dv">50</span>,xgboost_<span class="dv">100</span>,xgboost_<span class="dv">500</span>,
-                  lrn1,lrn2),
+  <span class="dt">learners =</span> <span class="kw">list</span>(
+    xgboost_<span class="dv">50</span>, xgboost_<span class="dv">100</span>, xgboost_<span class="dv">500</span>,
+    lrn1, lrn2
+  ),
   <span class="dt">metalearner =</span> Lrnr_nnls<span class="op">$</span><span class="kw">new</span>()
 )
 
 g_learner &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(
-  <span class="dt">learners =</span> <span class="kw">list</span>(xgboost_<span class="dv">100</span>,lrn2),
+  <span class="dt">learners =</span> <span class="kw">list</span>(xgboost_<span class="dv">100</span>, lrn2),
   <span class="dt">metalearner =</span> Lrnr_nnls<span class="op">$</span><span class="kw">new</span>()
 )
 
 b_learner &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(
-  <span class="dt">learners =</span> <span class="kw">list</span>(xgboost_<span class="dv">50</span>,xgboost_<span class="dv">100</span>,xgboost_<span class="dv">500</span>,
-                  lrn1,lrn2),
+  <span class="dt">learners =</span> <span class="kw">list</span>(
+    xgboost_<span class="dv">50</span>, xgboost_<span class="dv">100</span>, xgboost_<span class="dv">500</span>,
+    lrn1, lrn2
+  ),
   <span class="dt">metalearner =</span> Lrnr_nnls<span class="op">$</span><span class="kw">new</span>()
 )</code></pre>
 <p>As seen above, we generate three different ensemble learners that must be fit,
@@ -621,17 +629,19 @@ learner_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span cl
 <div id="targeted-estimation-of-the-mean-under-the-optimal-individualized-interventions-effects-1" class="section level3">
 <h3><span class="header-section-number">4.7.3</span> Targeted Estimation of the Mean under the Optimal Individualized Interventions Effects</h3>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># initialize a tmle specification</span>
-tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_revere</span>(<span class="dt">V =</span> <span class="kw">c</span>(<span class="st">&quot;W1&quot;</span>, <span class="st">&quot;W2&quot;</span>, <span class="st">&quot;W3&quot;</span>), <span class="dt">type =</span> <span class="st">&quot;blip1&quot;</span>,
-                                      <span class="dt">b_learner =</span> learner_list<span class="op">$</span>B,
-                                      <span class="dt">maximize =</span> <span class="ot">TRUE</span>, <span class="dt">complex =</span> <span class="ot">TRUE</span>)</code></pre>
+tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_revere</span>(
+  <span class="dt">V =</span> <span class="kw">c</span>(<span class="st">&quot;W1&quot;</span>, <span class="st">&quot;W2&quot;</span>, <span class="st">&quot;W3&quot;</span>), <span class="dt">type =</span> <span class="st">&quot;blip1&quot;</span>,
+  <span class="dt">b_learner =</span> learner_list<span class="op">$</span>B,
+  <span class="dt">maximize =</span> <span class="ot">TRUE</span>, <span class="dt">complex =</span> <span class="ot">TRUE</span>
+)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># fit the TML estimator</span>
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
    type         param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.4273824 0.5612336 0.02760086 0.5071369 0.6153303
+1:  TSM E[Y_{A=NULL}] 0.4266449 0.5627388 0.02691808 0.5099803 0.6154973
    psi_transformed lower_transformed upper_transformed
-1:       0.5612336         0.5071369         0.6153303</code></pre>
+1:       0.5627388         0.5099803         0.6154973</code></pre>
 <p>We can see that the estimate of <span class="math inline">\(psi_0\)</span> is <span class="math inline">\(0.56\)</span>, and that the confidence
 interval covers our true mean under the true optimal individualized treatment.</p>
 </div>
@@ -646,17 +656,19 @@ inference for the counterfactual mean outcome under the sub-optimal rule.
 Within the <code>tmle3mopttx</code> paradigm, we just need to change the <code>complex</code>
 parameter to <code>FALSE</code>:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># initialize a tmle specification</span>
-tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_revere</span>(<span class="dt">V =</span> <span class="kw">c</span>(<span class="st">&quot;W1&quot;</span>, <span class="st">&quot;W2&quot;</span>, <span class="st">&quot;W3&quot;</span>), <span class="dt">type =</span> <span class="st">&quot;blip1&quot;</span>,
-                                      <span class="dt">b_learner =</span> learner_list<span class="op">$</span>B,
-                                      <span class="dt">maximize =</span> <span class="ot">TRUE</span>, <span class="dt">complex =</span> <span class="ot">FALSE</span>)</code></pre>
+tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_revere</span>(
+  <span class="dt">V =</span> <span class="kw">c</span>(<span class="st">&quot;W1&quot;</span>, <span class="st">&quot;W2&quot;</span>, <span class="st">&quot;W3&quot;</span>), <span class="dt">type =</span> <span class="st">&quot;blip1&quot;</span>,
+  <span class="dt">b_learner =</span> learner_list<span class="op">$</span>B,
+  <span class="dt">maximize =</span> <span class="ot">TRUE</span>, <span class="dt">complex =</span> <span class="ot">FALSE</span>
+)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># fit the TML estimator</span>
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type       param  init_est tmle_est         se     lower     upper
-1:  TSM E[Y_{A=W3}] 0.4207201 0.551216 0.02731607 0.4976775 0.6047545
+   type       param init_est  tmle_est         se    lower     upper
+1:  TSM E[Y_{A=W3}] 0.431602 0.5566068 0.02724532 0.503207 0.6100067
    psi_transformed lower_transformed upper_transformed
-1:        0.551216         0.4976775         0.6047545</code></pre>
+1:       0.5566068          0.503207         0.6100067</code></pre>
 <p>Therefore even though the user specified all baseline covariates as the basis
 for rule estimation, a simpler rule based on only <span class="math inline">\(W_3\)</span> is sufficient to
 maximize the mean under the optimal individualized treatment.</p>
@@ -679,7 +691,7 @@ initial_likelihood &lt;-<span class="st"> </span>tmle_spec_Q<span class="op">$</
 
 <span class="co"># Estimate the parameter:</span>
 <span class="kw">Q_learning</span>(tmle_spec_Q, initial_likelihood, tmle_task)</code></pre>
-<pre><code>[1] 0.3178034</code></pre>
+<pre><code>[1] 0.3176492</code></pre>
 </div>
 <div id="variable-importance-analysis-with-optimal-individualized-interventions" class="section level2">
 <h2><span class="header-section-number">4.9</span> Variable Importance Analysis with Optimal Individualized Interventions</h2>
@@ -703,7 +715,7 @@ optimal allocation of all the available <span class="math inline">\(W\)</span>s 
 </div>
 <div id="constructing-optimal-stacked-regressions-with-sl3-2" class="section level3">
 <h3><span class="header-section-number">4.9.2</span> Constructing Optimal Stacked Regressions with <code>sl3</code></h3>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Define sl3 library and metalearners:</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Define sl3 library and metalearners:</span>
 qlib &lt;-<span class="st"> </span><span class="kw">make_learner_stack</span>(
   <span class="st">&quot;Lrnr_mean&quot;</span>,
   <span class="st">&quot;Lrnr_glm_fast&quot;</span>
@@ -722,10 +734,11 @@ blib &lt;-<span class="st"> </span><span class="kw">make_learner_stack</span>(
 
 metalearner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_nnls)
 mn_metalearner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_solnp,
-                               <span class="dt">loss_function =</span>
-                                 loss_loglik_multinomial,
-                               <span class="dt">learner_function =</span>
-                                 metalearner_linear_multinomial)
+  <span class="dt">loss_function =</span>
+    loss_loglik_multinomial,
+  <span class="dt">learner_function =</span>
+    metalearner_linear_multinomial
+)
 
 Q_learner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_sl, qlib, metalearner)
 g_learner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_sl, glib, mn_metalearner)
@@ -764,15 +777,18 @@ rule. Finally, we also need to specify whether the final comparison of the mean 
 optimal individualized rule and the mean under the observed outcome should be on the
 multiplicative scale (risk ratio) or linear (similar to average treatment effect).</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># initialize a tmle specification</span>
-tmle_spec &lt;-<span class="st">  </span><span class="kw">tmle3_mopttx_vim</span>(<span class="dt">V =</span> <span class="kw">c</span>(<span class="st">&quot;W1&quot;</span>, <span class="st">&quot;W2&quot;</span>, <span class="st">&quot;W3&quot;</span>),
-                               <span class="dt">type =</span> <span class="st">&quot;blip1&quot;</span>,
-                               <span class="dt">b_learner =</span> learner_list<span class="op">$</span>B,
-                               <span class="dt">contrast =</span> <span class="st">&quot;multiplicative&quot;</span>,
-                               <span class="dt">maximize =</span> <span class="ot">FALSE</span>,
-                               <span class="dt">method=</span><span class="st">&quot;SL&quot;</span>)</code></pre>
+tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_vim</span>(
+  <span class="dt">V =</span> <span class="kw">c</span>(<span class="st">&quot;W1&quot;</span>, <span class="st">&quot;W2&quot;</span>, <span class="st">&quot;W3&quot;</span>),
+  <span class="dt">type =</span> <span class="st">&quot;blip1&quot;</span>,
+  <span class="dt">b_learner =</span> learner_list<span class="op">$</span>B,
+  <span class="dt">contrast =</span> <span class="st">&quot;multiplicative&quot;</span>,
+  <span class="dt">maximize =</span> <span class="ot">FALSE</span>,
+  <span class="dt">method =</span> <span class="st">&quot;SL&quot;</span>
+)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># fit the TML estimator</span>
 vim_results &lt;-<span class="st"> </span><span class="kw">tmle3_vim</span>(tmle_spec, data, node_list, learner_list,
-                         <span class="dt">adjust_for_other_A =</span> <span class="ot">FALSE</span>)
+  <span class="dt">adjust_for_other_A =</span> <span class="ot">FALSE</span>
+)
 vim_results</code></pre>
 <p>The final result of <code>tmle3_vim</code> with the <code>tmle3mopttx</code> spec is an ordered list
 of mean outcomes under the optimal individualized treatment for all categorical
@@ -784,12 +800,16 @@ covariates in our dataset.</p>
 treatment estimated by Q-learning. In order to do that, we need to initialize
 our <code>tmle3</code> spec with <code>method=&quot;Q&quot;</code>, then run as in the above section.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># initialize a tmle specification:</span>
-tmle_spec_Q &lt;-<span class="st">  </span><span class="kw">tmle3_mopttx_vim</span>(<span class="dt">contrast =</span> <span class="st">&quot;multiplicative&quot;</span>,
-                               <span class="dt">maximize =</span> <span class="ot">FALSE</span>,
-                               <span class="dt">method=</span><span class="st">&quot;Q&quot;</span>)
+tmle_spec_Q &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_vim</span>(
+  <span class="dt">contrast =</span> <span class="st">&quot;multiplicative&quot;</span>,
+  <span class="dt">maximize =</span> <span class="ot">FALSE</span>,
+  <span class="dt">method =</span> <span class="st">&quot;Q&quot;</span>
+)
 
-vim_results_Q &lt;-<span class="st"> </span><span class="kw">tmle3_vim</span>(tmle_spec_Q, data, <span class="dt">node_list=</span>node_list, learner_list,
-                         <span class="dt">adjust_for_other_A =</span> <span class="ot">FALSE</span>)
+vim_results_Q &lt;-<span class="st"> </span><span class="kw">tmle3_vim</span>(tmle_spec_Q, data,
+  <span class="dt">node_list =</span> node_list, learner_list,
+  <span class="dt">adjust_for_other_A =</span> <span class="ot">FALSE</span>
+)
 vim_results_Q</code></pre>
 <hr />
 </div>
