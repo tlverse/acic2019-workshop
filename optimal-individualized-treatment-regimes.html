@@ -142,7 +142,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#ivana-malenica"><i class="fa fa-check"></i>Ivana Malenica</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#rachael-phillips"><i class="fa fa-check"></i>Rachael Phillips</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#preface-motivation-for-handbook"><i class="fa fa-check"></i>Preface / Motivation for Handbook ?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#preface-motivation"><i class="fa fa-check"></i>Preface / Motivation</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Welcome to the <code>tlverse</code></a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
@@ -543,9 +543,9 @@ fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data,
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
    type         param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.4804096 0.5821092 0.02541803 0.5322908 0.6319277
+1:  TSM E[Y_{A=NULL}] 0.4804245 0.5810156 0.02546229 0.5311104 0.6309208
    psi_transformed lower_transformed upper_transformed
-1:       0.5821092         0.5322908         0.6319277</code></pre>
+1:       0.5810156         0.5311104         0.6309208</code></pre>
 <p>We can see that the estimate of <span class="math inline">\(psi_0\)</span> is <span class="math inline">\(0.58\)</span>, and that the confidence interval covers our true mean under the true optimal individualized treatment.</p>
 </div>
 <div id="learning-the-mean-outcome-under-the-optimal-rule-with-q-learning" class="section level3">
@@ -638,10 +638,10 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param init_est  tmle_est         se     lower    upper
-1:  TSM E[Y_{A=NULL}] 0.423859 0.5625872 0.02772082 0.5082554 0.616919
+   type         param  init_est  tmle_est         se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.4314672 0.5633989 0.02719709 0.5100935 0.6167042
    psi_transformed lower_transformed upper_transformed
-1:       0.5625872         0.5082554          0.616919</code></pre>
+1:       0.5633989         0.5100935         0.6167042</code></pre>
 <p>We can see that the estimate of <span class="math inline">\(psi_0\)</span> is <span class="math inline">\(0.56\)</span>, and that the confidence
 interval covers our true mean under the true optimal individualized treatment.</p>
 </div>
@@ -665,10 +665,10 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type       param  init_est  tmle_est         se    lower     upper
-1:  TSM E[Y_{A=W3}] 0.4306912 0.5645341 0.02699133 0.511632 0.6174361
+   type       param  init_est tmle_est        se     lower     upper
+1:  TSM E[Y_{A=W3}] 0.4315842 0.574005 0.0269018 0.5212785 0.6267316
    psi_transformed lower_transformed upper_transformed
-1:       0.5645341          0.511632         0.6174361</code></pre>
+1:        0.574005         0.5212785         0.6267316</code></pre>
 <p>Therefore even though the user specified all baseline covariates as the basis
 for rule estimation, a simpler rule based on only <span class="math inline">\(W_3\)</span> is sufficient to
 maximize the mean under the optimal individualized treatment.</p>
@@ -691,7 +691,7 @@ initial_likelihood &lt;-<span class="st"> </span>tmle_spec_Q<span class="op">$</
 
 <span class="co"># Estimate the parameter:</span>
 <span class="kw">Q_learning</span>(tmle_spec_Q, initial_likelihood, tmle_task)</code></pre>
-<pre><code>[1] 0.3203868</code></pre>
+<pre><code>[1] 0.3170944</code></pre>
 </div>
 <div id="variable-importance-analysis-with-optimal-individualized-interventions" class="section level2">
 <h2><span class="header-section-number">4.9</span> Variable Importance Analysis with Optimal Individualized Interventions</h2>
