@@ -1,4 +1,4 @@
-## Preface / Motivation for Handbook ? {-}
+## Preface / Motivation {-}
 
 Scientific research is at a unique point in history. The need to improve rigor
 and reproducibility in our field is greater than ever; corroboration moves
