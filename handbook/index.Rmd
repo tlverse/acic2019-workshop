@@ -99,42 +99,6 @@ hypothesis tests, and regression. Advanced knowledge of mathematical statistics
 may be useful but is not necessary. Familiarity with the `R` programming language
 will be essential.
 
-## Motivation {-}
-
-Randomized clinical trials (RCTs) have long served as the gold standard of
-evidence for comparing potential interventions in clinical medicine and public
-health, marketing, political science, and a great many other fields.
-Unfortunately, such trials are often not feasible due to ethical, logistic or
-economical constraints. Observational studies constitute a potentially rich
-alternative to RCTs, providing an opportunity to learn about the causal effects
-of interventions for which little or no trial data can be produced; however, in
-such studies intervention allocation may be strongly confounded by other
-important characteristics. Thus, great care is needed in attempts to disentangle
-observed relationships and, ultimately, infer causal effects. This workshop will
-provide a comprehensive introduction to the field of targeted learning, a modern
-statistical framework that utilizes state-of-the-art machine learning to
-flexibly adjust for confounding while yielding efficient, unbiased estimators
-and valid statistical inference, thus unlocking observational studies for causal
-inference.
-
-Targeted learning is a complex statistical approach and, in order for this
-method to be accessible in practice, it is crucial that it is accompanied by
-robust software. The `tlverse` software ecosystem was developed to
-fulfill this need. Not only does this software facilitate computationally
-reproducible and efficient analyses, but it is also a tool for targeted learning
-education since its workflow mirrors that of the methodology. That is, the
-`tlverse` paradigm does not focus on implementing a specific estimator or
-a small set of related estimators -- instead, the focus is on exposing the
-statistical framework of targeted learning itself! Thus, users are required to
-explicitly define objects to model key statistical objects: the nonparametric
-structural equation model, the factorized likelihood, counterfactual
-interventions, causal parameters, and algorithmic step for computing estimators.
-All `R` packages in the `tlverse` ecosystem directly model the key
-objects defined in the mathematical and theoretical framework of targeted
-learning. What's more, the `tlverse` `R` packages share a core set
-of design principles centered on extensibility, allowing for them to be used in
-conjunction with each other and built upon one other in a cohesive fashion.
-
 ## Outline {-}
 
 This is a full-day (6-hour) workshop, featuring modules that introduce distinct
