@@ -460,22 +460,33 @@ Superfund Research Program.</p>
 and reproducibility in our field is greater than ever; corroboration moves
 science forward, yet there is a growing alarm about results that cannot be
 reproduced and that report false discoveries.</p>
+<blockquote>
 <p>“One enemy of robust science is our humanity — our appetite for
 being right, and our tendency to find patterns in noise, to see supporting
 evidence for what we already believe is true, and to ignore the facts that do
-not fit.” <span class="citation">(“Let’s Think About Cognitive Bias” <a href="#ref-naturenews_2015">2015</a>)</span>.</p>
+not fit.”</p>
+<p>— <span class="citation">(“Let’s Think About Cognitive Bias” <a href="#ref-naturenews_2015">2015</a>)</span>.</p>
+</blockquote>
+<blockquote>
 <p>“The key question we want to answer when seeing the results of any scientific
-study is whether we can trust the data analysis.” <span class="citation">Peng (<a href="#ref-peng2015reproducibility">2015</a>)</span></p>
+study is whether we can trust the data analysis.”</p>
+<p>— <span class="citation">Peng (<a href="#ref-peng2015reproducibility">2015</a>)</span></p>
+</blockquote>
+<blockquote>
+<p>“The key for effective classical inference is to have well-defined questions and
+an analysis plan that tests those questions.”</p>
+<p>— <span class="citation">Nosek et al. (<a href="#ref-nosek2018preregistration">2018</a>)</span></p>
+</blockquote>
 <p>Sadly at its current state, the culture of data analysis actually enables human
 bias through model selection. Statistical models are often chosen based on the
 p-values they yield, their convenience of implementation, and/or an analysts
 loyalty to a particular algorithm. This practice allows one to make arbitrary
 modeling choices, even though these choices result in different answers to the
 same research question. This presents a fundamental drive behind the epidemic
-of false positives that scientific research is suffering from. More than ever
+of false positives that scientific research is suffering from. <strong>More than ever
 we need training of robust methodologies that regulate these
 all-too-human biases (e.g., hindsight bias, confirmation
-bias, and outcome bias) and prevent the errors they cause. Consequences of not
+bias, and outcome bias) and prevent the errors they cause.</strong> Consequences of not
 meeting this need will result in further decline in the rate of scientific
 progression, the reputation of the sciences, and the public’s trust in its
 findings <span class="citation">Munafò et al. (<a href="#ref-munafo2017manifesto">2017</a>)</span> <span class="citation">(“How Scientists Fool Themselves – and How They Can Stop” <a href="#ref-naturenews2_2015">2015</a>)</span>.</p>
@@ -494,22 +505,24 @@ that facts that a statistical model represents real knowledge about the
 experiment that generated the data, and a target parameter represents what we
 are seeking to learn from the data as a feature of the distribution that
 generated it. In this way, Targeted Learning defines a truth and establishes a
-principled standard for estimation <span class="citation">Laan and Starmans (<a href="#ref-van2014entering">2014</a>)</span>. The objective for this
-handbook is to provide training to students, researchers, industry professionals,
-faculty in science, public health, statistics, and other fields to empower them
-with the necessary knowledge and skills to utilize the sound methodology of Targeted
-Learning — a technique that provides tailored a priori specified machines for
-answering queries, so that each data analysis is completely reproducible, and
-estimators are efficient, minimally biased, and provide formal statistical
-inference.</p>
+principled standard for estimation, while the current culture of analysis
+typically defines a parameter as a coefficient in a misspecified parametric (or
+other restrictive) statistical model <span class="citation">Laan and Starmans (<a href="#ref-van2014entering">2014</a>)</span>.</p>
+<p><em>The objective for this handbook is to provide training to students, researchers,
+industry professionals, faculty in science, public health, statistics, and other
+fields to empower them with the necessary knowledge and skills to utilize the
+sound methodology of Targeted Learning — a technique that provides tailored a
+priori specified machines for answering queries, so that each data analysis is
+completely reproducible, and estimators are efficient, minimally biased, and
+provide formal statistical inference.</em></p>
 <p>For any statistical methodology to be readily accessible in practice, it is
 crucial that it is accompanied by robust user-friendly software. The <code>tlverse</code>
 software ecosystem was developed to fulfill this need. Not only does this
 software facilitate computationally reproducible and efficient analyses, it is
 also a tool for Targeted Learning education since its workflow mirrors that of
 the methodology. In particular, the <code>tlverse</code> paradigm does not focus on
-implementing a specific estimator or a small set of related estimators —
-instead, the focus is on exposing the statistical framework of Targeted Learning
+implementing a specific estimator or a small set of related estimators. Instead,
+the focus is on exposing the statistical framework of Targeted Learning
 itself! All <code>R</code> packages in the <code>tlverse</code> ecosystem directly model
 the key objects defined in the mathematical and theoretical framework of
 Targeted Learning. What’s more, the <code>tlverse</code> <code>R</code> packages share a core set
@@ -636,6 +649,9 @@ recommend ___ before -->
 </div>
 <div id="ref-munafo2017manifesto">
 <p>Munafò, Marcus R, Brian A Nosek, Dorothy VM Bishop, Katherine S Button, Christopher D Chambers, Nathalie Percie Du Sert, Uri Simonsohn, Eric-Jan Wagenmakers, Jennifer J Ware, and John PA Ioannidis. 2017. “A Manifesto for Reproducible Science.” <em>Nature Human Behaviour</em> 1 (1). Nature Publishing Group: 0021.</p>
+</div>
+<div id="ref-nosek2018preregistration">
+<p>Nosek, Brian A, Charles R Ebersole, Alexander C DeHaven, and David T Mellor. 2018. “The Preregistration Revolution.” <em>Proceedings of the National Academy of Sciences</em> 115 (11). National Acad Sciences: 2600–2606.</p>
 </div>
 <div id="ref-peng2015reproducibility">
 <p>Peng, Roger. 2015. “The Reproducibility Crisis in Science: A Statistical Counterattack.” <em>Significance</em> 12 (3). Wiley Online Library: 30–32.</p>
