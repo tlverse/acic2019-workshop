@@ -132,7 +132,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-this-workshop"><i class="fa fa-check"></i>About this workshop</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i>Motivation</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#outline"><i class="fa fa-check"></i>Outline</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-instructors"><i class="fa fa-check"></i>About the instructors</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#mark-van-der-laan"><i class="fa fa-check"></i>Mark van der Laan</a></li>
@@ -142,7 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#ivana-malenica"><i class="fa fa-check"></i>Ivana Malenica</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#rachael-phillips"><i class="fa fa-check"></i>Rachael Phillips</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#preface-motivation"><i class="fa fa-check"></i>Preface / Motivation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i>Motivation</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Welcome to the <code>tlverse</code></a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
@@ -313,41 +312,6 @@ hypothesis tests, and regression. Advanced knowledge of mathematical statistics
 may be useful but is not necessary. Familiarity with the <code>R</code> programming language
 will be essential.</p>
 </div>
-<div id="motivation" class="section level2 unnumbered">
-<h2>Motivation</h2>
-<p>Randomized clinical trials (RCTs) have long served as the gold standard of
-evidence for comparing potential interventions in clinical medicine and public
-health, marketing, political science, and a great many other fields.
-Unfortunately, such trials are often not feasible due to ethical, logistic or
-economical constraints. Observational studies constitute a potentially rich
-alternative to RCTs, providing an opportunity to learn about the causal effects
-of interventions for which little or no trial data can be produced; however, in
-such studies intervention allocation may be strongly confounded by other
-important characteristics. Thus, great care is needed in attempts to disentangle
-observed relationships and, ultimately, infer causal effects. This workshop will
-provide a comprehensive introduction to the field of targeted learning, a modern
-statistical framework that utilizes state-of-the-art machine learning to
-flexibly adjust for confounding while yielding efficient, unbiased estimators
-and valid statistical inference, thus unlocking observational studies for causal
-inference.</p>
-<p>Targeted learning is a complex statistical approach and, in order for this
-method to be accessible in practice, it is crucial that it is accompanied by
-robust software. The <code>tlverse</code> software ecosystem was developed to
-fulfill this need. Not only does this software facilitate computationally
-reproducible and efficient analyses, but it is also a tool for targeted learning
-education since its workflow mirrors that of the methodology. That is, the
-<code>tlverse</code> paradigm does not focus on implementing a specific estimator or
-a small set of related estimators – instead, the focus is on exposing the
-statistical framework of targeted learning itself! Thus, users are required to
-explicitly define objects to model key statistical objects: the nonparametric
-structural equation model, the factorized likelihood, counterfactual
-interventions, causal parameters, and algorithmic step for computing estimators.
-All <code>R</code> packages in the <code>tlverse</code> ecosystem directly model the key
-objects defined in the mathematical and theoretical framework of targeted
-learning. What’s more, the <code>tlverse</code> <code>R</code> packages share a core set
-of design principles centered on extensibility, allowing for them to be used in
-conjunction with each other and built upon one other in a cohesive fashion.</p>
-</div>
 <div id="outline" class="section level2 unnumbered">
 <h2>Outline</h2>
 <p>This is a full-day (6-hour) workshop, featuring modules that introduce distinct
@@ -454,12 +418,8 @@ Superfund Research Program.</p>
 
 </div>
 </div>
-<div id="preface-motivation" class="section level2 unnumbered">
-<h2>Preface / Motivation</h2>
-<p>Scientific research is at a unique point in history. The need to improve rigor
-and reproducibility in our field is greater than ever; corroboration moves
-science forward, yet there is a growing alarm about results that cannot be
-reproduced and that report false discoveries.</p>
+<div id="motivation" class="section level2 unnumbered">
+<h2>Motivation</h2>
 <blockquote>
 <p>“One enemy of robust science is our humanity — our appetite for
 being right, and our tendency to find patterns in noise, to see supporting
@@ -467,63 +427,82 @@ evidence for what we already believe is true, and to ignore the facts that do
 not fit.”</p>
 <p>— <span class="citation">(“Let’s Think About Cognitive Bias” <a href="#ref-naturenews_2015">2015</a>)</span>.</p>
 </blockquote>
+<p>Scientific research is at a unique point in history. The need to improve rigor
+and reproducibility in our field is greater than ever; corroboration moves
+science forward, yet there is a growing alarm about results that cannot be
+reproduced and that report false discoveries <span class="citation">Baker (<a href="#ref-baker2016there">2016</a>)</span>. Consequences of
+not meeting this need will result in further decline in the rate of scientific
+progression, the reputation of the sciences, and the public’s trust in its findings
+<span class="citation">Munafò et al. (<a href="#ref-munafo2017manifesto">2017</a>)</span> <span class="citation">(“How Scientists Fool Themselves – and How They Can Stop” <a href="#ref-naturenews2_2015">2015</a>)</span>.</p>
 <blockquote>
 <p>“The key question we want to answer when seeing the results of any scientific
 study is whether we can trust the data analysis.”</p>
 <p>— <span class="citation">Peng (<a href="#ref-peng2015reproducibility">2015</a>)</span></p>
 </blockquote>
-<blockquote>
-<p>“The key for effective classical inference is to have well-defined questions and
-an analysis plan that tests those questions.”</p>
-<p>— <span class="citation">Nosek et al. (<a href="#ref-nosek2018preregistration">2018</a>)</span></p>
-</blockquote>
 <p>Sadly at its current state, the culture of data analysis actually enables human
-bias through model selection. Statistical models are often chosen based on the
-p-values they yield, their convenience of implementation, and/or an analysts
-loyalty to a particular algorithm. This practice allows one to make arbitrary
+bias through improper model selection. All hypothesis tests and estimators are
+derived from statistical models, so to obtain valid estimates and inference, it
+is critical that statistical model contains the process that generated the data.
+Perhaps treatment was randomized or only depended on a small number of baseline
+covariates; this knowledge should and can be incorporated in the model.
+Alternatively, maybe the data is observational and there is no knowledge about
+the data-generating process (DGP), then the statistical model should contain <em>all</em>
+data distributions. In practice; however, models are not selected based on
+knowledge of the DPG, instead models are often selected based on (1) the p-values
+they yield, (2) their convenience of implementation, and/or (3) an analysts
+loyalty to a particular model. This practice allows one to make arbitrary
 modeling choices, even though these choices result in different answers to the
-same research question. This presents a fundamental drive behind the epidemic
-of false positives that scientific research is suffering from. <strong>More than ever
-we need training of robust methodologies that regulate these
-all-too-human biases (e.g., hindsight bias, confirmation
-bias, and outcome bias) and prevent the errors they cause.</strong> Consequences of not
-meeting this need will result in further decline in the rate of scientific
-progression, the reputation of the sciences, and the public’s trust in its
-findings <span class="citation">Munafò et al. (<a href="#ref-munafo2017manifesto">2017</a>)</span> <span class="citation">(“How Scientists Fool Themselves – and How They Can Stop” <a href="#ref-naturenews2_2015">2015</a>)</span>.</p>
+same research question, and it presents a fundamental drive behind the epidemic
+of false positives that scientific research is suffering from.</p>
+<blockquote>
+<p>“We suggest that the weak statistical understanding is probably due to
+inadequate “statistics lite” education. This approach does not build up
+appropriate mathematical fundamentals and does not provide scientifically
+rigorous introduction into statistics. Hence, students’ knowledge may remain
+imprecise, patchy, and prone to serious misunderstandings. What this approach
+achieves, however, is providing students with false confidence of being able
+to use inferential tools whereas they usually only interpret the p-value
+provided by black box statistical software. While this educational problem
+remains unaddressed, poor statistical practices will prevail regardless of
+what procedures and measures may be favored and/or banned by editorials.&quot;</p>
+<p>— <span class="citation">Szucs and Ioannidis (<a href="#ref-szucs2017null">2017</a>)</span></p>
+</blockquote>
 <p>Our team at The University of California, Berkeley, is uniquely positioned to
-provide such a training. Spearheaded by Professor Mark van der Laan, and
+provide such an education. Spearheaded by Professor Mark van der Laan, and
 spreading rapidly by many of his students and colleagues who have greatly
 enriched the field, the aptly named “Targeted Learning” methodology targets the
 scientific question at hand and is counter to the current culture of
-“convenience statistics” that opens the door to biased estimation, misleading
-results, and false discoveries. Capable of answering specific questions of
-interest based on real-world observational and experimental data, Targeted
-Learning unifies desirable aspects of algorithmic machine learning and causal
-inference to generate efficient and trustworthy inferences. Targeted Learning
-restores the fundamentals that formalized the field of statistics, such as the
-that facts that a statistical model represents real knowledge about the
-experiment that generated the data, and a target parameter represents what we
-are seeking to learn from the data as a feature of the distribution that
-generated it. In this way, Targeted Learning defines a truth and establishes a
-principled standard for estimation, while the current culture of analysis
-typically defines a parameter as a coefficient in a misspecified parametric (or
-other restrictive) statistical model <span class="citation">Laan and Starmans (<a href="#ref-van2014entering">2014</a>)</span>.</p>
-<p><em>The objective for this handbook is to provide training to students, researchers,
+“convenience statistics” which opens the door to biased estimation, misleading
+results, and false discoveries. Targeted Learning restores the fundamentals that
+formalized the field of statistics, such as the that facts that a statistical
+model represents real knowledge about the experiment that generated the data,
+and a target parameter represents what we are seeking to learn from the data as
+a feature of the distribution that generated it <span class="citation">Laan and Starmans (<a href="#ref-van2014entering">2014</a>)</span>. In this way,
+Targeted Learning defines a truth and establishes a principled standard for
+estimation, thereby inhibiting these all-too-human biases (e.g., hindsight bias,
+confirmation bias, and outcome bias) from infiltrating analysis.</p>
+<blockquote>
+<p>“The key for effective classical [statistical] inference is to have
+well-defined questions and an analysis plan that tests those questions.”</p>
+<p>— <span class="citation">Nosek et al. (<a href="#ref-nosek2018preregistration">2018</a>)</span></p>
+</blockquote>
+<p>The objective for this handbook is to provide training to students, researchers,
 industry professionals, faculty in science, public health, statistics, and other
 fields to empower them with the necessary knowledge and skills to utilize the
-sound methodology of Targeted Learning — a technique that provides tailored a
-priori specified machines for answering queries, so that each data analysis is
+sound methodology of Targeted Learning — a technique that provides tailored
+pre-specified machines for answering queries, so that each data analysis is
 completely reproducible, and estimators are efficient, minimally biased, and
-provide formal statistical inference.</em></p>
-<p>For any statistical methodology to be readily accessible in practice, it is
-crucial that it is accompanied by robust user-friendly software. The <code>tlverse</code>
-software ecosystem was developed to fulfill this need. Not only does this
-software facilitate computationally reproducible and efficient analyses, it is
-also a tool for Targeted Learning education since its workflow mirrors that of
-the methodology. In particular, the <code>tlverse</code> paradigm does not focus on
-implementing a specific estimator or a small set of related estimators. Instead,
-the focus is on exposing the statistical framework of Targeted Learning
-itself! All <code>R</code> packages in the <code>tlverse</code> ecosystem directly model
+provide formal statistical inference.</p>
+<p>For a statistical methodology to be readily accessible in practice, it is
+crucial that it is accompanied by robust user-friendly software
+<span class="citation">Pullenayegum et al. (<a href="#ref-pullenayegum2016knowledge">2016</a>)</span> <span class="citation">Stromberg and others (<a href="#ref-stromberg2004write">2004</a>)</span>. The <code>tlverse</code> software ecosystem
+was developed to fulfill this need for the Targeted Learning methodology. Not
+only does this software facilitate computationally reproducible and efficient
+analyses, it is also a tool for Targeted Learning education since its workflow
+mirrors that of the methodology. In particular, the <code>tlverse</code> paradigm does not
+focus on implementing a specific estimator or a small set of related estimators.
+Instead, the focus is on exposing the statistical framework of Targeted Learning
+itself — all <code>R</code> packages in the <code>tlverse</code> ecosystem directly model
 the key objects defined in the mathematical and theoretical framework of
 Targeted Learning. What’s more, the <code>tlverse</code> <code>R</code> packages share a core set
 of design principles centered on extensibility, allowing for them to be used in
@@ -542,6 +521,9 @@ language will be essential. We also recommend an understanding of introductory
 causal inference. Please see __ for introductory materials for learning the <code>R</code>
 programming language and __ for causal inference learning materials.</p>
 <!--
+
+The knowledge-user must be aware of methodological innovations, believe they are worth implementing, and have access to the expertise, time, and resources (e.g., software) to facilitate their implementation.
+
 However, a statistical model is a
 representation of the data-generating process; defined as the set of
 distributions that might have generated the data. All hypothesis tests and
@@ -638,6 +620,9 @@ recommend ___ before -->
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
+<div id="ref-baker2016there">
+<p>Baker, Monya. 2016. “Is There a Reproducibility Crisis? A Nature Survey Lifts the Lid on How Researchers View the’crisis Rocking Science and What They Think Will Help.” <em>Nature</em> 533 (7604). Nature Publishing Group: 452–55.</p>
+</div>
 <div id="ref-naturenews2_2015">
 <p>“How Scientists Fool Themselves – and How They Can Stop.” 2015. <em>Nature</em> 526 (7572). Springer Nature.</p>
 </div>
@@ -655,6 +640,15 @@ recommend ___ before -->
 </div>
 <div id="ref-peng2015reproducibility">
 <p>Peng, Roger. 2015. “The Reproducibility Crisis in Science: A Statistical Counterattack.” <em>Significance</em> 12 (3). Wiley Online Library: 30–32.</p>
+</div>
+<div id="ref-pullenayegum2016knowledge">
+<p>Pullenayegum, Eleanor M, Robert W Platt, Melanie Barwick, Brian M Feldman, Martin Offringa, and Lehana Thabane. 2016. “Knowledge Translation in Biostatistics: A Survey of Current Practices, Preferences, and Barriers to the Dissemination and Uptake of New Statistical Methods.” <em>Statistics in Medicine</em> 35 (6). Wiley Online Library: 805–18.</p>
+</div>
+<div id="ref-stromberg2004write">
+<p>Stromberg, Arnold, and others. 2004. “Why Write Statistical Software? The Case of Robust Statistical Methods.”</p>
+</div>
+<div id="ref-szucs2017null">
+<p>Szucs, Denes, and John Ioannidis. 2017. “When Null Hypothesis Significance Testing Is Unsuitable for Research: A Reassessment.” <em>Frontiers in Human Neuroscience</em> 11. Frontiers: 390.</p>
 </div>
 </div>
             </section>
