@@ -142,7 +142,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#ivana-malenica"><i class="fa fa-check"></i>Ivana Malenica</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#rachael-phillips"><i class="fa fa-check"></i>Rachael Phillips</a></li>
 </ul></li>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#preface-1"><i class="fa fa-check"></i><b>0.1</b> Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#preface-1"><i class="fa fa-check"></i>Preface</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Welcome to the <code>tlverse</code></a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
@@ -269,7 +269,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="modern-super-machine-learning-with-sl3" class="section level1">
 <h1><span class="header-section-number">Chapter 2</span> Modern Super (Machine) Learning with <code>sl3</code></h1>
 <p><em>Rachael V. Phillips, Jeremy Coyle, Mark van der Laan</em></p>
-<p>Updated: 2019-04-01</p>
+<p>Updated: 2019-04-05</p>
 <div id="learning-objectives-1" class="section level2">
 <h2><span class="header-section-number">2.1</span> Learning Objectives</h2>
 <p>By the end of this chapter you will be able to:</p>
@@ -458,7 +458,7 @@ sl_fit &lt;-<span class="st"> </span>sl<span class="op">$</span><span class="kw"
 values and summarized results.</p>
 <pre class="sourceCode r"><code class="sourceCode r">sl_preds &lt;-<span class="st"> </span>sl_fit<span class="op">$</span><span class="kw">predict</span>()
 <span class="kw">head</span>(sl_preds)</code></pre>
-<pre><code>[1] -0.5083231 -0.8758737 -0.7679683 -0.8297391 -0.6570618 -0.7145924</code></pre>
+<pre><code>[1] -0.5442541 -0.8843055 -0.7640407 -0.7960953 -0.6496448 -0.7160418</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">sl_fit<span class="op">$</span><span class="kw">print</span>()</code></pre>
 <pre><code>[1] &quot;SuperLearner:&quot;
 List of 4
@@ -468,23 +468,23 @@ List of 4
  $ : chr &quot;Lrnr_glmnet_NULL_deviance_10_1_100_TRUE&quot;
 [1] &quot;Lrnr_nnls&quot;
                                      lrnrs   weights
-1:                           Lrnr_glm_TRUE 0.1445949
+1:                           Lrnr_glm_TRUE 0.1699332
 2:                               Lrnr_mean 0.0000000
-3:                    Lrnr_ranger_500_TRUE 0.4931882
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.3668939
+3:                    Lrnr_ranger_500_TRUE 0.4310918
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.4034715
 [1] &quot;Cross-validated risk (MSE, squared error loss):&quot;
                                    learner coefficients mean_risk    SE_risk
 1:                           Lrnr_glm_TRUE           NA  1.020570 0.02391262
 2:                               Lrnr_mean           NA  1.065278 0.02502098
-3:                    Lrnr_ranger_500_TRUE           NA  1.014601 0.02346318
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.014628 0.02359998
-5:                            SuperLearner           NA  1.008909 0.02342565
+3:                    Lrnr_ranger_500_TRUE           NA  1.017099 0.02352789
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.014586 0.02361097
+5:                            SuperLearner           NA  1.009947 0.02346634
       fold_SD fold_min_risk fold_max_risk
 1: 0.04603086     0.9760878      1.133006
 2: 0.06603243     0.9310730      1.181434
-3: 0.04795741     0.9299819      1.108130
-4: 0.04923597     0.9521113      1.130824
-5: 0.04759099     0.9380673      1.113800</code></pre>
+3: 0.04627051     0.9344893      1.100996
+4: 0.05028901     0.9464229      1.131301
+5: 0.04704068     0.9397403      1.112149</code></pre>
 </div>
 <div id="extensions" class="section level3">
 <h3><span class="header-section-number">2.3.2</span> Extensions</h3>
@@ -636,29 +636,29 @@ List of 9
  $ : chr &quot;Lrnr_pkg_SuperLearner_SL.bayesglm&quot;
 [1] &quot;Lrnr_nnls&quot;
                                      lrnrs   weights
-1:                           Lrnr_glm_TRUE 0.1847472
+1:                           Lrnr_glm_TRUE 0.1620907
 2:                               Lrnr_mean 0.0000000
 3:                    Lrnr_ranger_500_TRUE 0.0000000
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.3163424
-5:                   Lrnr_ranger_1000_TRUE 0.2455397
-6:                    Lrnr_ranger_100_TRUE 0.2569270
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.3465677
+5:                   Lrnr_ranger_1000_TRUE 0.4954902
+6:                    Lrnr_ranger_100_TRUE 0.0000000
 [1] &quot;Cross-validated risk (MSE, squared error loss):&quot;
                                    learner coefficients mean_risk    SE_risk
 1:                           Lrnr_glm_TRUE           NA  1.020570 0.02391262
 2:                               Lrnr_mean           NA  1.065278 0.02502098
-3:                    Lrnr_ranger_500_TRUE           NA  1.017934 0.02353507
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.015500 0.02361885
-5:                   Lrnr_ranger_1000_TRUE           NA  1.015419 0.02346042
-6:                    Lrnr_ranger_100_TRUE           NA  1.018988 0.02358505
-7:                            SuperLearner           NA  1.009089 0.02343390
+3:                    Lrnr_ranger_500_TRUE           NA  1.016928 0.02351577
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.014792 0.02359936
+5:                   Lrnr_ranger_1000_TRUE           NA  1.014634 0.02348050
+6:                    Lrnr_ranger_100_TRUE           NA  1.026415 0.02357557
+7:                            SuperLearner           NA  1.009096 0.02343780
       fold_SD fold_min_risk fold_max_risk
 1: 0.04603086     0.9760878      1.133006
 2: 0.06603243     0.9310730      1.181434
-3: 0.04643418     0.9393785      1.108497
-4: 0.04937464     0.9521113      1.131936
-5: 0.04780016     0.9307966      1.107361
-6: 0.04621375     0.9382634      1.106251
-7: 0.04671065     0.9397145      1.111899</code></pre>
+3: 0.04533674     0.9309899      1.096593
+4: 0.04964306     0.9491794      1.130824
+5: 0.04562379     0.9365241      1.100871
+6: 0.04580662     0.9554017      1.113958
+7: 0.04640569     0.9407492      1.110117</code></pre>
 </div>
 </div>
 <div id="exercise" class="section level2">
