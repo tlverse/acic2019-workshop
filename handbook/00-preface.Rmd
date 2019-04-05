@@ -3,15 +3,24 @@
 Scientific research is at a unique point in history. The need to improve rigor
 and reproducibility in our field is greater than ever; corroboration moves
 science forward, yet there is a growing alarm about results that cannot be
-reproduced and that report false discoveries. 
+reproduced and that report false discoveries.
 
-"One enemy of robust science is our humanity — our appetite for
+> "One enemy of robust science is our humanity — our appetite for
 being right, and our tendency to find patterns in noise, to see supporting
 evidence for what we already believe is true, and to ignore the facts that do
-not fit." @naturenews_2015.
+not fit."
+>
+> --- @naturenews_2015.
 
-"The key question we want to answer when seeing the results of any scientific
-study is whether we can trust the data analysis." @peng2015reproducibility
+> "The key question we want to answer when seeing the results of any scientific
+study is whether we can trust the data analysis."
+>
+> --- @peng2015reproducibility
+
+> "The key for effective classical inference is to have well-defined questions and
+an analysis plan that tests those questions."
+>
+> --- @nosek2018preregistration
 
 Sadly at its current state, the culture of data analysis actually enables human
 bias through model selection. Statistical models are often chosen based on the
@@ -19,10 +28,10 @@ p-values they yield, their convenience of implementation, and/or an analysts
 loyalty to a particular algorithm. This practice allows one to make arbitrary
 modeling choices, even though these choices result in different answers to the
 same research question. This presents a fundamental drive behind the epidemic
-of false positives that scientific research is suffering from. More than ever
+of false positives that scientific research is suffering from. **More than ever
 we need training of robust methodologies that regulate these
 all-too-human biases (e.g., hindsight bias, confirmation
-bias, and outcome bias) and prevent the errors they cause. Consequences of not
+bias, and outcome bias) and prevent the errors they cause.** Consequences of not
 meeting this need will result in further decline in the rate of scientific
 progression, the reputation of the sciences, and the public’s trust in its
 findings @munafo2017manifesto @naturenews2_2015.
@@ -42,14 +51,17 @@ that facts that a statistical model represents real knowledge about the
 experiment that generated the data, and a target parameter represents what we
 are seeking to learn from the data as a feature of the distribution that
 generated it. In this way, Targeted Learning defines a truth and establishes a
-principled standard for estimation @van2014entering. The objective for this
-handbook is to provide training to students, researchers, industry professionals,
-faculty in science, public health, statistics, and other fields to empower them
-with the necessary knowledge and skills to utilize the sound methodology of Targeted
-Learning --- a technique that provides tailored a priori specified machines for
-answering queries, so that each data analysis is completely reproducible, and
-estimators are efficient, minimally biased, and provide formal statistical
-inference.
+principled standard for estimation, while the current culture of analysis
+typically defines a parameter as a coefficient in a misspecified parametric (or
+other restrictive) statistical model @van2014entering.
+
+*The objective for this handbook is to provide training to students, researchers,
+industry professionals, faculty in science, public health, statistics, and other
+fields to empower them with the necessary knowledge and skills to utilize the
+sound methodology of Targeted Learning --- a technique that provides tailored a
+priori specified machines for answering queries, so that each data analysis is
+completely reproducible, and estimators are efficient, minimally biased, and
+provide formal statistical inference.*
 
 For any statistical methodology to be readily accessible in practice, it is
 crucial that it is accompanied by robust user-friendly software. The `tlverse`
@@ -57,8 +69,8 @@ software ecosystem was developed to fulfill this need. Not only does this
 software facilitate computationally reproducible and efficient analyses, it is
 also a tool for Targeted Learning education since its workflow mirrors that of
 the methodology. In particular, the `tlverse` paradigm does not focus on
-implementing a specific estimator or a small set of related estimators ---
-instead, the focus is on exposing the statistical framework of Targeted Learning
+implementing a specific estimator or a small set of related estimators. Instead,
+the focus is on exposing the statistical framework of Targeted Learning
 itself! All `R` packages in the `tlverse` ecosystem directly model
 the key objects defined in the mathematical and theoretical framework of
 Targeted Learning. What's more, the `tlverse` `R` packages share a core set
