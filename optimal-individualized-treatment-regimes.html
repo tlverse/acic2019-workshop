@@ -542,10 +542,10 @@ interest, we have specified the set of covariates the rule depends on (<code>V</
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est  tmle_est        se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.4804245 0.5809032 0.0254412 0.5310394 0.6307671
+   type         param init_est tmle_est         se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.480412 0.582563 0.02542859 0.5327239 0.6324021
    psi_transformed lower_transformed upper_transformed
-1:       0.5809032         0.5310394         0.6307671</code></pre>
+1:        0.582563         0.5327239         0.6324021</code></pre>
 <p>We can see that the estimate of <span class="math inline">\(psi_0\)</span> is <span class="math inline">\(0.58\)</span>, and that the confidence interval covers our true mean under the true optimal individualized treatment.</p>
 </div>
 <div id="learning-the-mean-outcome-under-the-optimal-rule-with-q-learning" class="section level3">
@@ -639,9 +639,9 @@ fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data,
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
    type         param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.4308262 0.5602017 0.02715757 0.5069739 0.6134296
+1:  TSM E[Y_{A=NULL}] 0.4274312 0.5639567 0.02755672 0.5099465 0.6179669
    psi_transformed lower_transformed upper_transformed
-1:       0.5602017         0.5069739         0.6134296</code></pre>
+1:       0.5639567         0.5099465         0.6179669</code></pre>
 <p>We can see that the estimate of <span class="math inline">\(psi_0\)</span> is <span class="math inline">\(0.56\)</span>, and that the confidence
 interval covers our true mean under the true optimal individualized treatment.</p>
 </div>
@@ -665,10 +665,10 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type       param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=W3}] 0.4413565 0.5681202 0.02666485 0.5158581 0.6203824
+   type       param  init_est  tmle_est         se    lower    upper
+1:  TSM E[Y_{A=W3}] 0.4291893 0.5634705 0.02708493 0.510385 0.616556
    psi_transformed lower_transformed upper_transformed
-1:       0.5681202         0.5158581         0.6203824</code></pre>
+1:       0.5634705          0.510385          0.616556</code></pre>
 <p>Therefore even though the user specified all baseline covariates as the basis
 for rule estimation, a simpler rule based on only <span class="math inline">\(W_3\)</span> is sufficient to
 maximize the mean under the optimal individualized treatment.</p>
@@ -691,7 +691,7 @@ initial_likelihood &lt;-<span class="st"> </span>tmle_spec_Q<span class="op">$</
 
 <span class="co"># Estimate the parameter:</span>
 <span class="kw">Q_learning</span>(tmle_spec_Q, initial_likelihood, tmle_task)</code></pre>
-<pre><code>[1] 0.3138123</code></pre>
+<pre><code>[1] 0.3157736</code></pre>
 </div>
 <div id="variable-importance-analysis-with-optimal-individualized-interventions" class="section level2">
 <h2><span class="header-section-number">4.9</span> Variable Importance Analysis with Optimal Individualized Interventions</h2>
