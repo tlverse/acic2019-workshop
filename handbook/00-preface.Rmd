@@ -77,6 +77,11 @@ pre-specified machines for answering queries, so that each data analysis is
 completely reproducible, and estimators are efficient, minimally biased, and
 provide formal statistical inference.
 
+
+<!---
+COMMENT ABOUT CARGO CULT STATISTICS PIECE
+-->
+
 For a statistical methodology to be readily accessible in practice, it is
 crucial that it is accompanied by robust user-friendly software
 @pullenayegum2016knowledge @stromberg2004write. The `tlverse` software ecosystem
@@ -92,8 +97,8 @@ Targeted Learning. What's more, the `tlverse` `R` packages share a core set
 of design principles centered on extensibility, allowing for them to be used in
 conjunction with each other and built upon one other in a cohesive fashion.
 
-In this handbook, the reader will embark on a journey through the
-`tlverse`. Guided by `R` programming exercises, case studies, and
+In this handbook, the reader will embark on a journey through the `tlverse`
+ecosystem. Guided by `R` programming exercises, case studies, and
 intuitive explanation readers will build a toolbox for applying the Targeted
 Learning statistical methodology, which will translate to real-world causal
 inference analyses. The reader need not be a fully trained
