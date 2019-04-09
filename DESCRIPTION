@@ -46,5 +46,5 @@ Remotes:
   github::tlverse/tmle3,
   github::tlverse/tmle3mopttx,
   github::tlverse/tmle3shift
-URL: https://github.com/tlverse/acic2019workshop
-BugReports: https://github.com/tlverse/acic2019workshop/issues
+URL: https://github.com/tlverse/acic2019-workshop
+BugReports: https://github.com/tlverse/acic2019-workshop/issues
