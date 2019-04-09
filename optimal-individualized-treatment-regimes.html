@@ -268,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="optimal-individualized-treatment-regimes" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Optimal Individualized Treatment Regimes</h1>
 <p><em>Ivana Malenica, Jeremy Coyle, Mark van der Laan</em></p>
-<p>Updated: 2019-04-05</p>
+<p>Updated: 2019-04-09</p>
 <div id="learning-objectives-3" class="section level2">
 <h2><span class="header-section-number">4.1</span> Learning Objectives</h2>
 <!--- appears as "X.1: Learning Objectives" in the book, where X is the chapter
@@ -310,7 +310,7 @@ In the statistics community such a treatment strategy is termed
 </p>
 <p>The problem of estimating the optimal individualized treatment has received much attention
 in the statistics literature over the years, especially with the advancement of
-precision medicine; see <span class="citation">Murphy (<a href="#ref-murphy2003">2003</a>)</span>, <span class="citation">Robins (<a href="#ref-robins2004">2004</a>)</span>, <span class="citation">(“Temporary,” <a href="#ref-moodie2013">n.d.</a>)</span> and <span class="citation">(<span class="citeproc-not-found" data-reference-id="robins2014"><strong>???</strong></span>)</span> to name a few.
+precision medicine; see <span class="citation">Murphy (<a href="#ref-murphy2003">2003</a>)</span>, <span class="citation">Robins (<a href="#ref-robins2004">2004</a>)</span>, <span class="citation">(“Temporary,” <a href="#ref-moodie2013">n.d.</a>)</span> and <span class="citation">(“Temporary,” <a href="#ref-robins2014">n.d.</a>)</span> to name a few.
 However, much of the early work depends on parametric assumptions. As such, even in a randomized trial,
 the statistical inference for the optimal individualized treatment relies on assumptions that
 are generally believed to be false, and can lead to biased results.</p>
@@ -542,9 +542,9 @@ fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data,
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
    type         param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.4805404 0.5837569 0.02540543 0.5339631 0.6335506
+1:  TSM E[Y_{A=NULL}] 0.4803822 0.5802068 0.02546697 0.5302924 0.6301211
    psi_transformed lower_transformed upper_transformed
-1:       0.5837569         0.5339631         0.6335506</code></pre>
+1:       0.5802068         0.5302924         0.6301211</code></pre>
 <p>We can see that the estimate of <span class="math inline">\(psi_0\)</span> is <span class="math inline">\(0.58\)</span>, and that the confidence interval covers our true mean under the true optimal individualized treatment.</p>
 </div>
 <div id="learning-the-mean-outcome-under-the-optimal-rule-with-q-learning" class="section level3">
@@ -637,10 +637,10 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.4305285 0.5656301 0.02721046 0.5122986 0.6189616
+   type         param  init_est  tmle_est        se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.4335057 0.5630962 0.0270528 0.5100737 0.6161187
    psi_transformed lower_transformed upper_transformed
-1:       0.5656301         0.5122986         0.6189616</code></pre>
+1:       0.5630962         0.5100737         0.6161187</code></pre>
 <p>We can see that the estimate of <span class="math inline">\(psi_0\)</span> is <span class="math inline">\(0.56\)</span>, and that the confidence
 interval covers our true mean under the true optimal individualized treatment.</p>
 </div>
@@ -664,10 +664,10 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type       param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=W3}] 0.4259914 0.5602212 0.02752245 0.5062782 0.6141642
+   type       param init_est  tmle_est         se    lower     upper
+1:  TSM E[Y_{A=W3}] 0.425557 0.5534084 0.02724255 0.500014 0.6068029
    psi_transformed lower_transformed upper_transformed
-1:       0.5602212         0.5062782         0.6141642</code></pre>
+1:       0.5534084          0.500014         0.6068029</code></pre>
 <p>Therefore even though the user specified all baseline covariates as the basis
 for rule estimation, a simpler rule based on only <span class="math inline">\(W_3\)</span> is sufficient to
 maximize the mean under the optimal individualized treatment.</p>
@@ -690,7 +690,7 @@ initial_likelihood &lt;-<span class="st"> </span>tmle_spec_Q<span class="op">$</
 
 <span class="co"># Estimate the parameter:</span>
 <span class="kw">Q_learning</span>(tmle_spec_Q, initial_likelihood, tmle_task)</code></pre>
-<pre><code>[1] 0.3174898</code></pre>
+<pre><code>[1] 0.3180901</code></pre>
 </div>
 <div id="variable-importance-analysis-with-optimal-individualized-interventions" class="section level2">
 <h2><span class="header-section-number">4.9</span> Variable Importance Analysis with Optimal Individualized Interventions</h2>
@@ -847,6 +847,9 @@ vim_results_Q</code></pre>
 <div id="ref-moodie2013">
 <p>“Temporary.” n.d.</p>
 </div>
+<div id="ref-robins2014">
+<p>“Temporary.” n.d.</p>
+</div>
 <div id="ref-vdl2007super">
 <p>van der Laan, Mark J, Eric C Polley, and Alan E Hubbard. 2007. “Super Learner.” <em>Statistical Applications in Genetics and Molecular Biology</em> 6 (1).</p>
 </div>
@@ -899,7 +902,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/tlverse/acic2019-workshop/edit/master/04-tmle3mopttx.Rmd",
+"link": "https://github.com/tlverse/acic2019-workshop/edit/master/05-tmle3mopttx.Rmd",
 "text": "Edit"
 },
 "history": {
