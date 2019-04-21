@@ -1,6 +1,7 @@
 # Modern Super (Machine) Learning with `sl3`
 
-_Rachael V. Phillips, Jeremy Coyle, Mark van der Laan_
+_Rachael Phillips_, based on the [`sl3` package](https://github.com/tlverse/sl3)
+by _Jeremy Coyle, Nima Hejazi, Ivana Malenica, and Oleg Sofrygin_
 
 Updated: `r Sys.Date()`
 
@@ -116,7 +117,8 @@ washb_task
 Now that we have defined our machine learning problem with the task, we are
 ready to **"make"** the machine learning algorithms.
 
-Learners have properties that indicate what features they support. We may use `sl3_list_properties()` toget a list of all properties supported by at least
+Learners have properties that indicate what features they support. We may use
+`sl3_list_properties()` toget a list of all properties supported by at least
 one learner.
 
 ```{r list_properties}
@@ -191,7 +193,7 @@ values, and we can also obtain a summary of the results.
 ```{r sl_basic-summary}
 sl_preds <- sl_fit$predict()
 head(sl_preds)
-sl_fit$print() %>% kable(format = 'latex', digits = 3)
+sl_fit$print() %>% knitr::kable(format = "markdown", digits = 3)
 ```
 ### Extensions
 
@@ -223,7 +225,7 @@ We can also select a subset of available covariates and pass only
 those variables to the modeling algorithm.
 
 Let's see how this works. Consider screening covariates based on their
-correlation with the outcome (`cor.test` p-value < .1), and `randomForest`
+correlation with the outcome (`cor.test` p-value $\leq 0.1), and `randomForest`
 variable importance (top 10 most important variables).
 
 ```{r screeners}
@@ -247,7 +249,7 @@ fancy_stack <- make_learner(Stack, cor_pipeline, new_stack)
 ```
 Now we can Super Learn with this fancy base learner stack.
 
-```{r sl_fancy}
+```{r sl_fancy, eval=FALSE}
 # run sl and predict on WASH
 sl_fancy <- Lrnr_sl$new(learners = fancy_stack, metalearner = metalearner)
 sl_fancy_fit <- sl_fancy$train(washb_task)
@@ -255,7 +257,7 @@ sl_fancy_fit <- sl_fancy$train(washb_task)
 #Error in eval(predvars, data, env) :
 #  object 'tr.Nutrition + WSH' not found
 sl_preds <- sl_fancy_fit$predict()
-sl_fancy_fit$print() %>% kable(format = 'latex', digits = 3)
+sl_fancy_fit$print() %>% knitr::kable(format = "markdown", digits = 3)
 ```
 
 **Cross-validated super learner**

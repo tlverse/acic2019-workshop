@@ -50,6 +50,16 @@ from.
 >
 > --- @szucs2017null
 
+Indeed, it is due to the widespread of availability of effectively black box
+software that the use of statistics in the scientific method amounts largely to
+a practice of "cargo-cult statistics --- the ritualistic miming of statistics
+rather than conscientious practice" of the discipline [@stark2018cargo]. What's
+more, such a _mispractice_ of statistics leads to the derivation of false
+scientific findings, owing to the fact that "increasingly often, [statistics] is
+used instead to aid and abet weak science, a role it can perform well when used
+mechanically or ritually," as opposed to its original purpose of safeguarding
+against weak science [@stark2018cargo].
+
 Our team at The University of California, Berkeley, is uniquely positioned to
 provide such an education. Spearheaded by Professor Mark van der Laan, and
 spreading rapidly by many of his students and colleagues who have greatly
@@ -78,14 +88,19 @@ pre-specified machines for answering queries, so that each data analysis is
 completely reproducible, and estimators are efficient, minimally biased, and
 provide formal statistical inference.
 
-
-<!---
-COMMENT ABOUT CARGO CULT STATISTICS PIECE
--->
+Just as the conscientious use of modern statistical methodology is necessary to
+ensure that scientific practice thrives, it remains critical to acknowledge the
+role that robust software plays in allowing practitioners direct access to
+published results. We recall that "an article...in a scientific publication is
+not the scholarship itself, it is merely advertising of the scholarship. The
+actual scholarship is the complete software development environment and the
+complete set of instructions which generated the figures," thus making the
+availability and adoption of robust statistical software key to enhancing the
+transparency that is an inherent aspect of science [@buckheit1995wavelab].
 
 For a statistical methodology to be readily accessible in practice, it is
 crucial that it is accompanied by robust user-friendly software
-@pullenayegum2016knowledge @stromberg2004write. The `tlverse` software ecosystem
+[@pullenayegum2016knowledge;@stromberg2004write]. The `tlverse` software ecosystem
 was developed to fulfill this need for the Targeted Learning methodology. Not
 only does this software facilitate computationally reproducible and efficient
 analyses, it is also a tool for Targeted Learning education since its workflow
@@ -111,7 +126,6 @@ may be useful but is not necessary. Familiarity with the `R` programming
 language will be essential. We also recommend an understanding of introductory
 causal inference. Please see __ for introductory materials for learning the `R`
 programming language and __ for causal inference learning materials.
-
 
 <!--
 
