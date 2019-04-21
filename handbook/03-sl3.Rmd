@@ -31,7 +31,7 @@ distribution that is needed to evaluate the target parameter. For this initial
 estimation, we use the super learner @van2007super, an important step in
 creating a robust estimator.
 
-#### Super learner
+### Super learner
 
 * Loss-function-based tool that uses V-fold cross-validation to obtain the best
 prediction of the relevant part of the likelihood that's needed to evaluate
@@ -85,7 +85,7 @@ set.seed(7194)
 
 # load data set and take a peek
 washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
-head(washb_data, 3) %>% kable(format = 'latex', digits = 3)
+head(washb_data, 3) %>% knitr::kable(format = "markdown", digits = 3)
 ```
 
 **1. Define the machine learning task**
@@ -195,9 +195,10 @@ sl_preds <- sl_fit$predict()
 head(sl_preds)
 sl_fit$print() %>% knitr::kable(format = "markdown", digits = 3)
 ```
-### Extensions
 
-**Customize Learner Hyperparameters**
+## Extensions
+
+### Customize Learner Hyperparameters
 
 We can customize learner hyperparameters to incorporate a diversity of different
 settings. We can also include learners from the `SuperLearner` `R` package.
@@ -219,7 +220,7 @@ new_stack <- make_learner(
 )
 ```
 
-**Screening covariates**
+### Screening covariates
 
 We can also select a subset of available covariates and pass only
 those variables to the modeling algorithm.
@@ -260,28 +261,28 @@ sl_preds <- sl_fancy_fit$predict()
 sl_fancy_fit$print() %>% knitr::kable(format = "markdown", digits = 3)
 ```
 
-**Cross-validated super learner**
+### Cross-validated super learner
 
 We can cross-validate the super learner to see how well the super learner
-performs on unseen data. This requires an “external” layer of cross-validation,
+performs on unseen data. This requires an "external" layer of cross-validation,
 also called nested cross-validation, which involves setting aside a separate
-holdout sample that we don’t use to fit the super learner. This
+holdout sample that we don't use to fit the super learner. This
 external cross validation procedure may also incorporate 10 folds, but this is
-very time consuming. The default in `sl3` is ______.
+very time consuming. The default in `sl3` is [TODO].
 
 ```{r CVsl}
 CVsl_fancy <- CV_lrnr_sl(sl_fit, washb_task, loss_squared_error)
-CVsl_fancy %>% kable(format = 'latex', digits = 3)
+CVsl_fancy %>% knitr::kable(format = "markdown", digits = 3)
 ```
 
-**Variable importance**
+### Variable importance
 
 Variable importance can be interesting and informative. Let's explore how it
 works in `sl3`.
 
 ```{r varimp}
 washb_varimp <- varimp(sl_fit, loss_squared_error, type = "permute")
-washb_varimp %>% kable(format = 'latex', digits = 3)
+washb_varimp %>% knitr::kable(format = "markdown", digits = 3)
 ```
 This function calculates the risk difference between the learner fit with a
 scrambled covariate and the learner fit with the true covariate, across all
