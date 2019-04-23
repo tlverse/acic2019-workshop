@@ -1,7 +1,6 @@
 # Modern Super (Machine) Learning with `sl3`
 
-_Rachael Phillips_, based on the [`sl3` package](https://github.com/tlverse/sl3)
-by _Jeremy Coyle, Nima Hejazi, Ivana Malenica, and Oleg Sofrygin_
+_Rachael V. Phillips, Jeremy Coyle, Mark van der Laan_
 
 Updated: `r Sys.Date()`
 
@@ -31,7 +30,7 @@ distribution that is needed to evaluate the target parameter. For this initial
 estimation, we use the super learner @van2007super, an important step in
 creating a robust estimator.
 
-### Super learner
+#### Super learner
 
 * Loss-function-based tool that uses V-fold cross-validation to obtain the best
 prediction of the relevant part of the likelihood that's needed to evaluate
@@ -85,7 +84,7 @@ set.seed(7194)
 
 # load data set and take a peek
 washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
-head(washb_data, 3) %>% knitr::kable(format = "markdown", digits = 3)
+head(washb_data, 3) %>% kable(format = 'latex', digits = 3)
 ```
 
 **1. Define the machine learning task**
@@ -117,8 +116,7 @@ washb_task
 Now that we have defined our machine learning problem with the task, we are
 ready to **"make"** the machine learning algorithms.
 
-Learners have properties that indicate what features they support. We may use
-`sl3_list_properties()` toget a list of all properties supported by at least
+Learners have properties that indicate what features they support. We may use `sl3_list_properties()` toget a list of all properties supported by at least
 one learner.
 
 ```{r list_properties}
@@ -174,10 +172,9 @@ sl <- make_learner(Lrnr_sl,
 **3. Train the super learner on the machine learning task**
 
 The super learner algorithm fits a metalearner on the validation-set
-predictions in a cross-validated manner, thereby avoiding overfitting. This
-procedure is referred to as the *continuous* super learner. The cross-validation
-selector, or *discrete* super learner, is the base learner with the lowest
-cross-validated risk.
+predictions. This procedure is referred to as the *continuous* super learner.
+The cross-validation selector, or *discrete* super learner, is the base learner
+with the lowest cross-validated risk.
 
 Now we are ready to **"train"** our super learner on our `sl3_task` object.
 
@@ -193,15 +190,15 @@ values, and we can also obtain a summary of the results.
 ```{r sl_basic-summary}
 sl_preds <- sl_fit$predict()
 head(sl_preds)
-sl_fit$print() %>% knitr::kable(format = "markdown", digits = 3)
+sl_fit$print() %>% kable(format = 'latex', digits = 3)
 ```
-
 ## Extensions
 
 ### Customize Learner Hyperparameters
 
 We can customize learner hyperparameters to incorporate a diversity of different
-settings. We can also include learners from the `SuperLearner` `R` package.
+settings. We can also include learners from the `SuperLearner` `R` package. Documentation for the learners and their hyperparameters can be found in the
+[`sl3 Learners Reference`](https://tlverse.org/sl3/reference/index.html#section-sl-learners).
 
 ```{r extra-lrnr}
 lrnr_ranger100 <- make_learner(Lrnr_ranger, num.trees = 100)
@@ -226,12 +223,12 @@ We can also select a subset of available covariates and pass only
 those variables to the modeling algorithm.
 
 Let's see how this works. Consider screening covariates based on their
-correlation with the outcome (`cor.test` p-value $\leq 0.1), and `randomForest`
+correlation with the outcome (`cor.test` p-value < .1), and `randomForest`
 variable importance (top 10 most important variables).
 
 ```{r screeners}
 screen_cor <- Lrnr_pkg_SuperLearner_screener$new("screen.corP")
-#screen_rf <- Lrnr_pkg_SuperLearner_screener$new("screen.randomForest")
+screen_rf <- Lrnr_pkg_SuperLearner_screener$new("screen.randomForest")
 ```
 Now we need to **"pipe"**  only those selected covariates to the modeling
 algorithm. To accomplish this, we need to make a `Pipeline`, which is a just
@@ -240,39 +237,36 @@ to define the task for the next learner.
 
 ```{r screeners-pipe}
 cor_pipeline <- make_learner(Pipeline, screen_cor, new_stack)
-#rf_pipeline <- make_learner(Pipeline, screen_rf, new_stack)
+rf_pipeline <- make_learner(Pipeline, screen_rf, new_stack)
 ```
 Lastly, we just have to stack all of these pipelines together, so we may use
 them as base learners in our super learner.
 
 ```{r screeners-stack}
-fancy_stack <- make_learner(Stack, cor_pipeline, new_stack)
+fancy_stack <- make_learner(Stack, cor_pipeline, rf_pipeline, new_stack)
+dt <- delayed_learner_train(fancy_stack, washb_task)
+plot(dt, color=FALSE, height="300px")
 ```
 Now we can Super Learn with this fancy base learner stack.
 
-```{r sl_fancy, eval=FALSE}
-# run sl and predict on WASH
+```{r sl_fancy}
 sl_fancy <- Lrnr_sl$new(learners = fancy_stack, metalearner = metalearner)
 sl_fancy_fit <- sl_fancy$train(washb_task)
-#Failed on Lrnr_pkg_SuperLearner_screener_screen.randomForest
-#Error in eval(predvars, data, env) :
-#  object 'tr.Nutrition + WSH' not found
 sl_preds <- sl_fancy_fit$predict()
-sl_fancy_fit$print() %>% knitr::kable(format = "markdown", digits = 3)
+sl_fancy_fit$print() %>% kable(format = 'latex', digits = 3)
 ```
 
 ### Cross-validated super learner
 
 We can cross-validate the super learner to see how well the super learner
-performs on unseen data. This requires an "external" layer of cross-validation,
+performs on unseen data. This requires an “external” layer of cross-validation,
 also called nested cross-validation, which involves setting aside a separate
-holdout sample that we don't use to fit the super learner. This
-external cross validation procedure may also incorporate 10 folds, but this is
-very time consuming. The default in `sl3` is [TODO].
+holdout sample that we don’t use to fit the super learner. This
+external cross validation procedure may also incorporate 10 folds, which is the default in `sl3`.
 
 ```{r CVsl}
 CVsl_fancy <- CV_lrnr_sl(sl_fit, washb_task, loss_squared_error)
-CVsl_fancy %>% knitr::kable(format = "markdown", digits = 3)
+CVsl_fancy %>% kable(format = 'latex', digits = 3)
 ```
 
 ### Variable importance
@@ -281,8 +275,8 @@ Variable importance can be interesting and informative. Let's explore how it
 works in `sl3`.
 
 ```{r varimp}
-washb_varimp <- varimp(sl_fit, loss_squared_error, type = "permute")
-washb_varimp %>% knitr::kable(format = "markdown", digits = 3)
+washb_varimp <- varimp(sl_fit, loss_squared_error)
+washb_varimp %>% kable(format = 'latex', digits = 3)
 ```
 This function calculates the risk difference between the learner fit with a
 scrambled covariate and the learner fit with the true covariate, across all
@@ -292,8 +286,8 @@ the variable is in the prediction.
 ## Exercise
 ### Predicting myocardial infarction with `sl3`
 
-Using the `chspred` data, use `sl3` to predict myocardial infarcation (`mi`)
-using the available covariate data.
+Using the `chspred` data, loaded below, use `sl3` to predict myocardial
+infarction (`mi`) using the available covariate data.
 
 Work with a buddy. You have 20 minutes.
 
@@ -303,3 +297,33 @@ In the etherpad, submit your group's answers to the following questions.
 risk of the discrete super learner?
 2. What was the cross validated risk of the continuous super learner?
 3. Did your group face any challenges?
+
+```{r, ex-setup}
+# load the data set
+db_data <-
+  url("https://raw.githubusercontent.com/benkeser/sllecture/master/chspred.csv")
+chspred <- read_csv(file = db_data, col_names = TRUE)
+# take a quick peek
+head(chspred, 3)
+```
+
+## Concluding Remarks
+
+* The general ensemble learning approach of super learner can be applied to a
+diversity of estimation and prediction problems that can be defined by a loss
+function.
+
+* Plug-in estimators of the estimand are desirable because a plug-in estimator respects both the local and global constraints of the statistical model.
+
+* Asymptotically linear estimators are also advantageous, since they converge to
+the estimand at $1/\sqrt{n}$ rate, and thereby permit formal statistical
+inference.
+
+* If we plug in the estimator returned by super learner into the target
+parameter mapping, then we would end up with an estimator that has the same
+bias as what we plugged in. This estimator would not be asymptotically linear.
+
+* Targeted maximum likelihood estimation (TMLE) is a general strategy that
+succeeds in constructing asymptotically linear plug-in estimators.
+
+* In following lessons, we focus on .
