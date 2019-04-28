@@ -8,17 +8,17 @@ Updated: `r Sys.Date()`
 By the end of this lesson you will be able to:
 
 1. Assemble an ensemble of learners based on the properties that identify what
-features they support.
+   features they support.
 2. Customize learner hyperparameters to incorporate a diversity of different
-settings.
+   settings.
 3. Select a subset of available covariates and pass only those variables to the
-modeling algorithm.
+   modeling algorithm.
 4. Fit an ensemble with nested cross-validation to obtain an estimate of the
-performance of the ensemble itself.
+   performance of the ensemble itself.
 5. Calculate `sl3` variable importance metrics.
 6. Interpret the discrete and continuous super learner fits.
 7. Rationalize the need to remove bias from the super learner to make an optimal
-bias–variance tradeoff for the parameter of interest.
+   bias-variance tradeoff for the parameter of interest.
 
 ## Introduction
 
@@ -27,35 +27,36 @@ construct the TMLE; an asymptotically efficient substitution estimator of this
 target quantity. The first step in this estimation procedure is an initial
 estimate of the data-generating distribution, or the relevant part of this
 distribution that is needed to evaluate the target parameter. For this initial
-estimation, we use the super learner @van2007super, an important step in
+estimation, we use the super learner [@van2007super], an important step in
 creating a robust estimator.
 
 #### Super learner
 
 * Loss-function-based tool that uses V-fold cross-validation to obtain the best
-prediction of the relevant part of the likelihood that's needed to evaluate
-target parameter.
+  prediction of the relevant part of the likelihood that's needed to evaluate
+  target parameter.
 
 * Requires expressing the estimand as the minimizer of an expected loss, and
-proposing a library of algorithms ("learners" in `sl3` nomenclature) that we
-think might be consistent with the true data-generating distribution.
+  proposing a library of algorithms ("learners" in `sl3` nomenclature) that we
+  think might be consistent with the true data-generating distribution.
 
 * Proven to be asymptotically as accurate as the best possible prediction
-algorithm that is tested @vdl2003unified @van2006oracle.
+  algorithm that is tested [@vdl2003unified; @van2006oracle].
 
 * The *discrete super learner*, or cross-validated selector, is the algorithm in
-the library that minimizes the V-fold cross-validated empirical risk.
+  the library that minimizes the V-fold cross-validated empirical risk.
 
 * The *continuous super learner* is a weighted average of the library of
-algorithms, where the weights are chosen to minimize the V-fold cross-validated
-empirical risk of the library. Restricting the weights ("metalearner" in `sl3`
-nomenclature) to be positive and sum to one (convex combination) has been shown
-to improve upon the discrete super learner @polley2010super @van2007super.
+  algorithms, where the weights are chosen to minimize the V-fold
+  cross-validated empirical risk of the library. Restricting the weights
+  ("metalearner" in `sl3` nomenclature) to be positive and sum to one (convex
+  combination) has been shown to improve upon the discrete super learner
+  [@polley2010super; @van2007super].
 
 ## Basic Implementation
 
 We begin by illustrating the basic functionality of the super learner
-algorithm as implemented in `sl3`. `sl3` implementation consists of the
+algorithm as implemented in `sl3`. The `sl3` implementation consists of the
 following steps:
 
 0. Load the necessary libraries and data
@@ -93,7 +94,7 @@ To define the machine learning **"task"** (predict weight-for-height z-score
 `whz` using the available covariate data), we need to create an `sl3_Task`
 object. The `sl3_Task` keeps track of the roles the variables play in the
 machine learning problem, the data, and any metadata (e.g., observational-level
-weights, id, offset).
+weights, IDs, offset).
 
 ```{r task}
 # specify the outcome and covariates
@@ -116,7 +117,8 @@ washb_task
 Now that we have defined our machine learning problem with the task, we are
 ready to **"make"** the machine learning algorithms.
 
-Learners have properties that indicate what features they support. We may use `sl3_list_properties()` toget a list of all properties supported by at least
+Learners have properties that indicate what features they support. We may use
+`sl3_list_properties()` toget a list of all properties supported by at least
 one learner.
 
 ```{r list_properties}
@@ -197,8 +199,10 @@ sl_fit$print() %>% kable(format = 'latex', digits = 3)
 ### Customize Learner Hyperparameters
 
 We can customize learner hyperparameters to incorporate a diversity of different
-settings. We can also include learners from the `SuperLearner` `R` package. Documentation for the learners and their hyperparameters can be found in the
-[`sl3 Learners Reference`](https://tlverse.org/sl3/reference/index.html#section-sl-learners).
+settings. We can also include learners from the `SuperLearner` `R` package.
+Documentation for the learners and their hyperparameters can be found in the
+[`sl3 Learners
+Reference`](https://tlverse.org/sl3/reference/index.html#section-sl-learners).
 
 ```{r extra-lrnr}
 lrnr_ranger100 <- make_learner(Lrnr_ranger, num.trees = 100)
@@ -223,7 +227,7 @@ We can also select a subset of available covariates and pass only
 those variables to the modeling algorithm.
 
 Let's see how this works. Consider screening covariates based on their
-correlation with the outcome (`cor.test` p-value < .1), and `randomForest`
+correlation with the outcome of interest (`cor.test` p-value < 0.1), and `randomForest`
 variable importance (top 10 most important variables).
 
 ```{r screeners}
@@ -259,12 +263,13 @@ sl_fancy_fit$print() %>% kable(format = 'latex', digits = 3)
 ### Cross-validated super learner
 
 We can cross-validate the super learner to see how well the super learner
-performs on unseen data. This requires an “external” layer of cross-validation,
+performs on unseen data. This requires an "external" layer of cross-validation,
 also called nested cross-validation, which involves setting aside a separate
 holdout sample that we don’t use to fit the super learner. This
-external cross validation procedure may also incorporate 10 folds, which is the default in `sl3`.
+external cross validation procedure may also incorporate 10 folds, which is the
+default in `sl3`.
 
-```{r CVsl}
+```{r CVsl, eval=FALSE}
 CVsl_fancy <- CV_lrnr_sl(sl_fit, washb_task, loss_squared_error)
 CVsl_fancy %>% kable(format = 'latex', digits = 3)
 ```
@@ -274,7 +279,7 @@ CVsl_fancy %>% kable(format = 'latex', digits = 3)
 Variable importance can be interesting and informative. Let's explore how it
 works in `sl3`.
 
-```{r varimp}
+```{r varimp, eval=FALSE}
 washb_varimp <- varimp(sl_fit, loss_squared_error)
 washb_varimp %>% kable(format = 'latex', digits = 3)
 ```
@@ -301,7 +306,7 @@ risk of the discrete super learner?
 ```{r, ex-setup}
 # load the data set
 db_data <-
-  url("https://raw.githubusercontent.com/benkeser/sllecture/master/chspred.csv")
+ url("https://raw.githubusercontent.com/benkeser/sllecture/master/chspred.csv")
 chspred <- read_csv(file = db_data, col_names = TRUE)
 # take a quick peek
 head(chspred, 3)
@@ -310,20 +315,21 @@ head(chspred, 3)
 ## Concluding Remarks
 
 * The general ensemble learning approach of super learner can be applied to a
-diversity of estimation and prediction problems that can be defined by a loss
-function.
+  diversity of estimation and prediction problems that can be defined by a loss
+  function.
 
-* Plug-in estimators of the estimand are desirable because a plug-in estimator respects both the local and global constraints of the statistical model.
+* Plug-in estimators of the estimand are desirable because a plug-in estimator
+  respects both the local and global constraints of the statistical model.
 
 * Asymptotically linear estimators are also advantageous, since they converge to
-the estimand at $1/\sqrt{n}$ rate, and thereby permit formal statistical
-inference.
+  the estimand at $1/\sqrt{n}$ rate, and thereby permit formal statistical
+  inference.
 
 * If we plug in the estimator returned by super learner into the target
-parameter mapping, then we would end up with an estimator that has the same
-bias as what we plugged in. This estimator would not be asymptotically linear.
+  parameter mapping, then we would end up with an estimator that has the same
+  bias as what we plugged in. This estimator would not be asymptotically linear.
 
 * Targeted maximum likelihood estimation (TMLE) is a general strategy that
-succeeds in constructing asymptotically linear plug-in estimators.
+  succeeds in constructing asymptotically linear plug-in estimators.
 
-* In following lessons, we focus on .
+* In following lessons, we focus on ...
