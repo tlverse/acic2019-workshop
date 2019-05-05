@@ -21,16 +21,8 @@ Handbook**](http://tlverse.org/acic2019-workshop), by Mark van der Laan, Alan
 Hubbard, Jeremy Coyle, Nima Hejazi, Ivana Malenica, and Rachael Phillips.
 For a work-in-progress draft of the unabridged book, please see
 https://tlverse.org/tlverse-handbook or the associated GitHub repository:
-https://github.com/tlverse/tlverse-handbook.
-
-This workshop handbook is built using RStudio's
+https://github.com/tlverse/tlverse-handbook. These workshop materials are built
+using RStudio's
 [`bookdown`](https://www.rstudio.com/resources/webinars/introducing-bookdown/) 
 package; for more information on how to use `bookdown` see
 [bookdown.org](https://bookdown.org/).
-
-Please note that this work is written under a [Contributor Code of
-Conduct](CONDUCT.md) and released under a [CC-BY-NC-SA
-license](https://creativecommons.org/licenses/by-nc-sa/3.0/us/). By
-participating in this project (for example, by submitting a [pull
-request](https://github.com/tlverse/tlverse-handbook/issues) with suggestions or
-edits) you agree to abide by its terms.

@@ -1,10 +1,12 @@
-# Welcome to the `tlverse` {#tlverse-intro}
+# Welcome to the `tlverse` {#intro}
 
 ## Learning Objectives
-1. Understand the `tlverse` concept
+
+1. Understand the `tlverse` ecosystem conceptually
 2. Identify the core components of the `tlverse`
-3. Install `tlverse` R packages
-4. Learn about the WASH Benefits example data
+3. Install `tlverse` `R` packages
+4. Understand the Targeted Learning roadmap
+5. Learn about the WASH Benefits example data
 
 ## What is the `tlverse`?
 
@@ -13,9 +15,9 @@ the [`tidyverse` ecosystem](https://tidyverse.org) of R packages.
 
 By analogy to the [`tidyverse`](https://tidyverse.org/):
 
-> The tidyverse is an opinionated collection of R packages designed for data
+> The `tidyverse` is an opinionated collection of R packages designed for data
 > science. All packages share an underlying design philosophy, grammar, and data
-> structures. 
+> structures.
 
 So, the [`tlverse`](https://tlverse.org) is
 
@@ -88,10 +90,13 @@ devtools::install_github("tlverse/tlverse")
 ```
 
 The `tlverse` depends on a large number of other packages that are also hosted
-on GitHub. Because of this, you may see the followig error:
+on GitHub. Because of this, you may see the following error:
+
 ```
 Error: HTTP error 403.
-  API rate limit exceeded for 71.204.135.82. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)
+  API rate limit exceeded for 71.204.135.82. (But here's the good news:
+  Authenticated requests get a higher rate limit. Check out the documentation
+  for more details.)
 
   Rate limit remaining: 0/60
   Rate limit reset at: 2019-03-04 19:39:05 UTC
@@ -102,30 +107,208 @@ Error: HTTP error 403.
 ```
 
 This just means that R tried to install too many packages from GitHub in too
-short of a window. To fix this, you need to tell R how to use github as your
+short of a window. To fix this, you need to tell R how to use GitHub as your
 user (you'll need a GitHub user account). Follow these two steps:
 
 1. Use `usethis::browse_github_pat()` to create a Personal Access Token.
 2. Use `usethis::edit_r_environ()` and add the token as `GITHUB_PAT`.
 
-## Example Data - WASH Benefits
+## The Targeted Learning Roadmap
 
-<!-- This will be it's own chapter written by Alan. Including an expert here for now -->
+A central goal of the Targeted Learning statistical paradigm is to estimate
+scientifically relevant parameters in realistic (usually nonparametric) models.
+
+### The statistical Model
+
+For a given data set $O = (W, A, Y)$, the distribution of the observed data as
+follows: $P(O)=P(W,A,Y)=P(W)P(A|W)P(Y|A,W)$. To estimate a parameter of
+interest, the researcher does not necessarily need to specify these whole
+distributions and conditional distributions. Each estimator requires certain
+parts of the distribution, for example some require estimates of $E(Y|A,W)=$
+mean of $Y$ within subgroups $(A,W)$, or the regression of the outcome on the
+exposure and confounders.
+
+At this stage in the road map the researcher specifies what statistical model
+she will use to estimate $E(Y|A,W)$ or other elements of the probability
+distribution that are needed to estimate the parameter of interest. By
+"statistical model" here we mean any constraints on the model form that are
+imposed by knowledge about the process - known aspects of how the data were
+generated.  Typically, the true model is a very big model, with few constraints
+if any on the data-generating distribution, or a semi-parametric model. Thus,
+with few constraints on the data-generating distribution, and a potentially
+large number of covariates, data-adaptive, machine-learning approaches are the
+only practical option. The remainder of the course is how to do this as
+efficiently and robustly as possible, depending on the goal of the analysis.
+
+### The Causal Model
+
+The next step is to use a causal framework to formalize the experiment and
+thereby define the parameter of interest. Causal graphs are one useful tool to
+express what we know about the causal relations among variables that are
+relevant to the question under study [@pearl2009causality]. An illustration
+shows a simple causal graph, specifically a directed acyclic graph or DAG, to
+depict the causal relations between variables with a simple example of a binary
+exposure A, a binary outcome Y, and one categorical confounding variable W.
+
+The $U_W$, $U_A$, and $U_Y$ are the unmeasured exogenous background
+characteristics that influence the value of each variable.  Alternatively, the
+same causal relations among variables can be represented with a series of
+equations:
+\begin{eqnarray*}
+  W &=& f_W(U_W) \\
+  A &=& f_A(W,U_A) \\
+  Y &=& f_Y(W,A,U_Y).
+\end{eqnarray*}
+
+Here $f_W, f_A$ and $f_Y$ denote that each variable ($W, A$ and $Y$
+respectively) is a function of its parents and unmeasured background
+characteristics, but there is no imposition of any particular functional
+constraints.  For this reason, they are called non-parametric structural
+equations. The DAG and this series of non-parametric structural equations
+represent the same information.
+
+## Parameter of Interest
+
+The first hypothetical experiment we will consider is assigning exposure to the
+whole population and observing the outcome, and then assigning no exposure to
+the whole population and observing the outcome. On the non-parametric structural
+equations, this corresponds to a comparison of the outcome distribution in the
+population under two interventions:
+1. A is set to 1 for all individuals, and
+2. A is set to 0 for all individuals. These interventions imply two new
+   nonparametric structural equation models with first being:
+\begin{eqnarray*}
+  W &=& f_W(U_W) \\
+  A &=& 1 \\
+  Y(1)&=&f_Y(W,1,U_Y),
+\end{eqnarray*}
+and second just replacing the intervention of $A=1$ to $A=0$,
+\begin{eqnarray*}
+  W &=& f_W(U_W) \\
+  A &=& 0 \\
+  Y(0)&=&f_Y(W,0,U_Y).
+\end{eqnarray*}
+
+In these equations, A is no longer a function of W because we have intervened on
+the graph, setting A to the values 1 and 0. The new symbols Y(1) and Y(0)
+indicate the outcome variable in our population if it were generated by the
+respective NPSEMs above; these are often called counterfactuals. The difference
+between the means of the outcome under these two interventions defines a
+parameter that is often called the "Average Treatment Effect" (ATE), denoted
+\begin{equation}\label{eqn:ate}
+  ATE = E_X(Y(1)-Y(0)),
+\end{equation}
+where $E_X$ is the mean under the theoretical full data: $X = (W, Y(1), Y(0))$.
+
+### Identifiability
+
+Because we can never observe both $Y(0)$ (counterfactual when $A=0$) and $Y(1)$,
+we can not estimate \ref{ate} directly. Thus, we have to make assumptions to
+estimate this quantity from $O \sim P_0$, or the data-generating distribution.
+Fortunately, given our causal model shown in the graph above, we can, with a
+couple of more assumptions, estimate the ATE even from observational data.
+First, the causal graph implies that $Y(a) \perp A$ for all $a \in \mathcal{A}$,
+which is the randomization assumption. Outside of the graph, one also needs a
+non-interference assumption (say the $Y$'s are independent) and positivity
+($0<P_0(A=a\mid W)< 1$ for all $a$ and $W$). Given these assumptions, one can
+re-write the ATE as a function of $P_0$, specifically
+\begin{equation}
+\label{estimand}
+ATE = E_0(Y(1)=Y(0)) = E_0\left( E_0[Y \mid A=1,W]-E_0[Y \mid A=0,W] \right),
+\end{equation}
+or the difference in predicted values for each subject in population and then
+averaging over those subjects. Thus, a parameter of a theoretical "full" data
+distribution can be represented as an estimand of the observed data-distribution.
+Significantly, there is nothing about the representation in \ref{estimand} that
+requires parameteric assumptions, so that the regressions on the right hand side
+can be estimated freely with machine learning. With different parameters, there
+will be potentially different identifiability assumptions and the resulting
+estimands can be functions of different components of $P_0$. We discuss several
+more complex ones in later parts of this workshop.
+
+## Estimator
+
+We will discuss more in the specific sections later, but the goals of the
+estimator should be, among sensible (asymptotically consistent, regular)
+estimators
+
+1. They are asymptotically efficient in the statistical model of interest.
+2. They can be constructed for finite sample performance improvements.
+
+## Inference
+
+The estimators we discuss are asymptotically linear, meaning that the difference
+in the estimate $\Psi(P_n)$ and the true parameter ($\Psi(P_0)$) can be
+represented in first order by a i.i.d. sum:
+\begin{equation}\label{eqn:IC}
+  \Psi(P_n) - \Psi(P_0) = \frac{1}{n} IC(O_i; \nu) + op(1/\sqrt{n})
+\end{equation}
+where $IC(O_i; \nu)$ is a function of the data and possibly other parameters
+$\nu$. Thus, in the univariate case, one can derive a 95\% confidence interval
+as:
+\begin{equation}\label{eqn:CI}
+  \Psi(P^{\star}_n) \pm 1.96 \sqrt{\frac{\hat{\sigma}^2}{n}},
+\end{equation}
+where $SE=\sqrt{\frac{\hat{\sigma}^2}{n}}$ and $\hat{\sigma}^2$ is the sample
+variance of the estimated IC's: $IC(O;\hat{\nu})$. One can use the functional
+delta method to derive the influence curve if a parameter of interest may be
+written as a function of other asymptotically linear estimators.
+
+## The WASH Benefits Example Dataset
+
 The data come from the Effect of water quality, sanitation, hand washing, and
-nutritional interventions on child development in rural
-Bangladesh (WASH Benefits Bangladesh):
-a cluster-randomised controlled trial (@luby2018effects). The study enrolled
-enrolled pregnant women in their first or second trimester from rural villages
-of Gazipur, Kishoreganj, Mymensingh, and Tangail districts of central
-Bangladesh, with an average
-of eight women per cluster. Groups of eight geographically adjacent clusters
-were block-randomised, using a random number generator, into six intervention
-groups (all of which received weekly visits from a community health promoter
-for the first 6 months and every 2 weeks for the next 18 months) and a
-double-sized control group (no intervention or health promoter visit). The six
-intervention groups were: chlorinated drinking water; improved sanitation;
-handwashing with soap; combined water, sanitation, and handwashing; improved
-nutrition through counselling and provision of lipid-based nutrient supplements;
-and combined water, sanitation, handwashing, and nutrition. In the workshop, we
-concentrate child-growth (size for age) as the outcome. This trial was
-registered with ClinicalTrials.gov, number NCT01590095.
+nutritional interventions on child development in rural Bangladesh (WASH
+Benefits Bangladesh): a cluster-randomised controlled trial [@luby2018effects].
+The study enrolled enrolled pregnant women in their first or second trimester
+from rural villages of Gazipur, Kishoreganj, Mymensingh, and Tangail districts
+of central Bangladesh, with an average of eight women per cluster. Groups of
+eight geographically adjacent clusters were block-randomised, using a random
+number generator, into six intervention groups (all of which received weekly
+visits from a community health promoter for the first 6 months and every 2 weeks
+for the next 18 months) and a double-sized control group (no intervention or
+health promoter visit). The six intervention groups were: chlorinated drinking
+water; improved sanitation; handwashing with soap; combined water, sanitation,
+and handwashing; improved nutrition through counselling and provision of
+lipid-based nutrient supplements; and combined water, sanitation, handwashing,
+and nutrition. In the workshop, we concentrate child-growth (size for age) as
+the outcome. For referene, this trial was registered with ClinicalTrials.gov as
+number NCT01590095.
+
+```{r load_washb_data_intro, message=FALSE, warning=FALSE}
+library(here)
+library(tidyverse)
+
+# read in data
+dat <- read_csv(here("data", "washb_data.csv"))
+dat
+```
+
+For the purposes of this workshop, we we start by treating the data as
+independent and identically distributed (i.i.d.) random draws from a very large
+target population. We could, with available options, account for the clustering
+of the data (within sampled geographic units), but, for simplification, we avoid
+these details in these workshop presentations, although modifications of our
+methodology for biased samples, repeated measures, etc., are available.
+
+We have 28 variables measured, of which 1 variable is set to be the outcome of
+interest. This outcome, $Y$, is the weight-for-height Z-score (`whz` in `dat`);
+the treatment of interest, $A$, is the randomized treatment group (`tr` in
+`dat`); and the adjustment set, $W$, consists simply of *everything else*. This
+results in our observed data structure being $n$ i.i.d. copies of $O_i = (W_i,
+A_i, Y_i)$, for $i = 1, \ldots, n$.
+
+### The variables
+
+Using the [`skimr` package](https://CRAN.R-project.org/package=skimr), we can
+quickly summarize the variables measured in the WASH Benefits data set:
+
+```{r skim_washb_data, message=FALSE, warning=FALSE}
+library(skimr)
+skim(dat)
+```
+
+A convenient summary of the relevant variables is given just above, complete
+with a small visualization describing the marginal characteristics of each
+covariate. Note that the *asset* variables reflect socio-economic status of the
+study participants. Notice also the uniform distribution of the treatment groups
+(with twice as many controls); this is, of course, by design.

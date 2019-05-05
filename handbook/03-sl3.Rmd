@@ -81,12 +81,14 @@ library(sl3)
 library(SuperLearner)
 library(origami)
 library(knitr)
-
 set.seed(7194)
+```
 
+```{r load_data_sl3, message=FALSE, warning=FALSE}
 # load data set and take a peek
 washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
-head(washb_data, 3) %>% kable(format = 'markdown', digits = 3)
+head(washb_data, 3) %>%
+  kable(format = "markdown", digits = 3)
 ```
 
 **1. Define the machine learning task**
@@ -97,7 +99,7 @@ object. The `sl3_Task` keeps track of the roles the variables play in the
 machine learning problem, the data, and any metadata (e.g., observational-level
 weights, IDs, offset).
 
-```{r task}
+```{r task, message=FALSE, warning=FALSE}
 # specify the outcome and covariates
 outcome <- "whz"
 covars <- colnames(washb_data)[-which(names(washb_data) == outcome)]
