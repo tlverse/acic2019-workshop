@@ -21,9 +21,9 @@ always_allow_html: yes
 url: 'https\://tlverse.org/acic2019-workshop/'
 github-repo: tlverse/acic2019-workshop
 graphics: yes
-description: "An open-source and fully-reproducible electronic handbook
-  accompanying a full-day short-course on applying the targeted learning
-  methodology in practice using the [`tlverse` software
+description: "An open-source and fully-reproducible electronic set of teaching
+  materials accompanying a full-day short-course on applying the Targeted
+  Learning methodology in practice using the [`tlverse` software
   ecosystem](https://github.com/tlverse)."
 #cover-image: "img/tlverse_book_cover.png"
 #apple-touch-icon: "img/logos/favicons/apple-touch-icon.png"

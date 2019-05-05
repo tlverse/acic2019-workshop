@@ -1,4 +1,4 @@
-TITLE=handbook
+TITLE=acic2019_workshop
 
 .PHONY: all
 all: book
