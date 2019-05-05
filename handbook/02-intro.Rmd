@@ -118,87 +118,90 @@ user (you'll need a GitHub user account). Follow these two steps:
 A central goal of the Targeted Learning statistical paradigm is to estimate
 scientifically relevant parameters in realistic (usually nonparametric) models.
 
-### The statistical Model
+### The Statistical Model
 
-For a given data set $O = (W, A, Y)$, the distribution of the observed data as
-follows: $P(O)=P(W,A,Y)=P(W)P(A|W)P(Y|A,W)$. To estimate a parameter of
-interest, the researcher does not necessarily need to specify these whole
-distributions and conditional distributions. Each estimator requires certain
-parts of the distribution, for example some require estimates of $E(Y|A,W)=$
-mean of $Y$ within subgroups $(A,W)$, or the regression of the outcome on the
-exposure and confounders.
+For a given data set $O = (W, A, Y)$, the distribution of the observed data may
+be written as follows: $P(O) = P(W, A, Y) = P(W)P (A \mid W) P(Y \mid A, W)$. To
+estimate a parameter of interest, a researcher need not necessarily be able to
+specify these whole or conditional distributions. Rather, each estimator only
+requires that certain parts of the distribution be known; for example, some may
+require estimates of $\mathbb{E}(Y \mid A, W)$, the mean of $Y$ within subgroups
+$(A, W)$, or the regression of the outcome on the exposure and confounders.
 
-At this stage in the road map the researcher specifies what statistical model
-she will use to estimate $E(Y|A,W)$ or other elements of the probability
-distribution that are needed to estimate the parameter of interest. By
-"statistical model" here we mean any constraints on the model form that are
-imposed by knowledge about the process - known aspects of how the data were
-generated.  Typically, the true model is a very big model, with few constraints
-if any on the data-generating distribution, or a semi-parametric model. Thus,
-with few constraints on the data-generating distribution, and a potentially
-large number of covariates, data-adaptive, machine-learning approaches are the
-only practical option. The remainder of the course is how to do this as
-efficiently and robustly as possible, depending on the goal of the analysis.
+At this stage in the roadmap, the researcher must specify a choice of
+statistical model to be used in estimating $\mathbb{E}(Y \mid A, W)$ or other
+elements of the probability distribution needed to estimate the parameter of
+interest. Here, _statistical model_ means any constraints on the model form that
+may be imposed by knowledge about the data-generating process -- that is, known
+aspects of how the data were generated. Typically, the _true model_ is a very
+large model, placing few constraints, if any, on the data-generating
+distribution, or a semi-parametric model. With few constraints on the
+data-generating distribution, and a potentially large number of covariates,
+data-adaptive, machine-learning approaches remain the only practical option for
+estimating components of the likelihood. The remainder of this course concerns
+how to do this as efficiently and robustly as possible, depending on the goal of
+the analysis.
 
 ### The Causal Model
 
-The next step is to use a causal framework to formalize the experiment and
-thereby define the parameter of interest. Causal graphs are one useful tool to
-express what we know about the causal relations among variables that are
-relevant to the question under study [@pearl2009causality]. An illustration
-shows a simple causal graph, specifically a directed acyclic graph or DAG, to
-depict the causal relations between variables with a simple example of a binary
-exposure A, a binary outcome Y, and one categorical confounding variable W.
-
-The $U_W$, $U_A$, and $U_Y$ are the unmeasured exogenous background
-characteristics that influence the value of each variable.  Alternatively, the
-same causal relations among variables can be represented with a series of
-equations:
-\begin{eqnarray*}
-  W &=& f_W(U_W) \\
-  A &=& f_A(W,U_A) \\
-  Y &=& f_Y(W,A,U_Y).
-\end{eqnarray*}
-
-Here $f_W, f_A$ and $f_Y$ denote that each variable ($W, A$ and $Y$
-respectively) is a function of its parents and unmeasured background
-characteristics, but there is no imposition of any particular functional
-constraints.  For this reason, they are called non-parametric structural
-equations. The DAG and this series of non-parametric structural equations
-represent the same information.
+The next step in the roadmap is to use a causal framework to formalize the
+experiment and thereby define the parameter of interest. Causal graphs are one
+useful tool to express what we know about the causal relations among variables
+that are relevant to the question under study [@pearl2009causality]. While
+directed acyclic graphs (DAGs) provide a convenient means by which to visualize
+causal relations between variables, the same causal relations among variables
+can be represented via a set of structural equations:
+\begin{align*}
+  W &= f_W(U_W) \\
+  A &= f_A(W, U_A) \\
+  Y &= f_Y(W, A, U_Y),
+\end{align*}
+where $U_W$, $U_A$, and $U_Y$ represent the unmeasured exogenous background
+characteristics that influence the value of each variable. In the NPSEM, $f_W$,
+$f_A$ and $f_Y$ denote that each variable (for $W$, $A$ and $Y$, respectively)
+is a function of its parents and unmeasured background characteristics, but note
+that there is no imposition of any particular functional constraints. For this
+reason, they are called non-parametric structural equation models (NPSEMs). The
+DAG and set of nonparametric structural equations represent exactly the same
+information and so may be used interchangeably.
 
 ## Parameter of Interest
 
 The first hypothetical experiment we will consider is assigning exposure to the
 whole population and observing the outcome, and then assigning no exposure to
-the whole population and observing the outcome. On the non-parametric structural
+the whole population and observing the outcome. On the nonparametric structural
 equations, this corresponds to a comparison of the outcome distribution in the
 population under two interventions:
-1. A is set to 1 for all individuals, and
-2. A is set to 0 for all individuals. These interventions imply two new
-   nonparametric structural equation models with first being:
-\begin{eqnarray*}
-  W &=& f_W(U_W) \\
-  A &=& 1 \\
-  Y(1)&=&f_Y(W,1,U_Y),
-\end{eqnarray*}
-and second just replacing the intervention of $A=1$ to $A=0$,
-\begin{eqnarray*}
-  W &=& f_W(U_W) \\
-  A &=& 0 \\
-  Y(0)&=&f_Y(W,0,U_Y).
-\end{eqnarray*}
 
-In these equations, A is no longer a function of W because we have intervened on
-the graph, setting A to the values 1 and 0. The new symbols Y(1) and Y(0)
-indicate the outcome variable in our population if it were generated by the
-respective NPSEMs above; these are often called counterfactuals. The difference
-between the means of the outcome under these two interventions defines a
-parameter that is often called the "Average Treatment Effect" (ATE), denoted
+1. $A$ is set to $1$ for all individuals, and
+2. $A$ is set to $0$ for all individuals.
+
+These interventions imply two new nonparametric structural equation models. For
+the case $A = 1$, we have
+\begin{align*}
+  W &= f_W(U_W) \\
+  A &= 1 \\
+  Y(1) &= f_Y(W, 1, U_Y),
+\end{align*}
+and for the case $A=0$,
+\begin{align*}
+  W &= f_W(U_W) \\
+  A &= 0 \\
+  Y(1) &= f_Y(W, 0, U_Y).
+\end{align*}
+
+In these equations, $A$ is no longer a function of $W$ because we have
+intervened on the system, setting $A$ deterministically to either of the values
+$1$ or $0$. The new symbols $Y(1)$ and $Y(0)$ indicate the outcome variable in
+our population if it were generated by the respective NPSEMs above; these are
+often called counterfactuals. The difference between the means of the outcome
+under these two interventions defines a parameter that is often called the
+"Average Treatment Effect" (ATE), denoted
 \begin{equation}\label{eqn:ate}
-  ATE = E_X(Y(1)-Y(0)),
+  ATE = \mathbb{E}_X(Y(1)-Y(0)),
 \end{equation}
-where $E_X$ is the mean under the theoretical full data: $X = (W, Y(1), Y(0))$.
+where $\mathbb{E}_X$ is the mean under the theoretical (unobserved) full data
+$X = (W, Y(1), Y(0))$.
 
 ### Identifiability
 
@@ -256,23 +259,29 @@ written as a function of other asymptotically linear estimators.
 
 ## The WASH Benefits Example Dataset
 
-The data come from the Effect of water quality, sanitation, hand washing, and
-nutritional interventions on child development in rural Bangladesh (WASH
-Benefits Bangladesh): a cluster-randomised controlled trial [@luby2018effects].
-The study enrolled enrolled pregnant women in their first or second trimester
-from rural villages of Gazipur, Kishoreganj, Mymensingh, and Tangail districts
-of central Bangladesh, with an average of eight women per cluster. Groups of
-eight geographically adjacent clusters were block-randomised, using a random
-number generator, into six intervention groups (all of which received weekly
-visits from a community health promoter for the first 6 months and every 2 weeks
-for the next 18 months) and a double-sized control group (no intervention or
-health promoter visit). The six intervention groups were: chlorinated drinking
-water; improved sanitation; handwashing with soap; combined water, sanitation,
-and handwashing; improved nutrition through counselling and provision of
-lipid-based nutrient supplements; and combined water, sanitation, handwashing,
-and nutrition. In the workshop, we concentrate child-growth (size for age) as
-the outcome. For referene, this trial was registered with ClinicalTrials.gov as
-number NCT01590095.
+The data come from a study of the effect of water quality, sanitation, hand
+washing, and nutritional interventions on child development in rural Bangladesh
+(WASH Benefits Bangladesh): a cluster-randomised controlled trial
+[@luby2018effects]. The study enrolled pregnant women in their first or second
+trimester from the rural villages of Gazipur, Kishoreganj, Mymensingh, and
+Tangail districts of central Bangladesh, with an average of eight women per
+cluster. Groups of eight geographically adjacent clusters were block-randomised,
+using a random number generator, into six intervention groups (all of which
+received weekly visits from a community health promoter for the first 6 months
+and every 2 weeks for the next 18 months) and a double-sized control group (no
+intervention or health promoter visit). The six intervention groups were:
+
+1. chlorinated drinking water;
+2. improved sanitation;
+3. handwashing with soap;
+4. combined water, sanitation, and hand washing;
+5. improved nutrition through counseling and provision of lipid-based nutrient
+   supplements; and
+6. combined water, sanitation, handwashing, and nutrition.
+
+In the workshop, we concentrate on child growth (size for age) as the outcome of
+interest. For referene, this trial was registered with ClinicalTrials.gov as
+NCT01590095.
 
 ```{r load_washb_data_intro, message=FALSE, warning=FALSE}
 library(here)
