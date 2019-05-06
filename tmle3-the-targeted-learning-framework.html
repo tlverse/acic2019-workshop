@@ -191,7 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#example-tmle3-for-ate"><i class="fa fa-check"></i><b>3.2</b> Example: <code>tmle3</code> for ATE</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#load-the-data"><i class="fa fa-check"></i><b>3.2.1</b> Load the Data</a></li>
 <li class="chapter" data-level="3.2.2" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#define-the-variable-roles"><i class="fa fa-check"></i><b>3.2.2</b> Define the variable roles</a></li>
-<li class="chapter" data-level="3.2.3" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#handle-missingness"><i class="fa fa-check"></i><b>3.2.3</b> Handle Missingness</a></li>
+<li class="chapter" data-level="3.2.3" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#handling-missingness"><i class="fa fa-check"></i><b>3.2.3</b> Handling Missingness</a></li>
 <li class="chapter" data-level="3.2.4" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#create-a-spec-object"><i class="fa fa-check"></i><b>3.2.4</b> Create a “Spec” Object</a></li>
 <li class="chapter" data-level="3.2.5" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#define-the-learners"><i class="fa fa-check"></i><b>3.2.5</b> Define the learners</a></li>
 <li class="chapter" data-level="3.2.6" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#fit-the-tmle"><i class="fa fa-check"></i><b>3.2.6</b> Fit the TMLE</a></li>
@@ -277,8 +277,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Updated: 2019-05-06</p>
 <div id="learning-objectives-2" class="section level2">
 <h2><span class="header-section-number">3.1</span> Learning Objectives</h2>
-<!--- appears as "X.1: Learning Objectives" in the book, where X is the chapter
-corresponding to stochastic interventions -->
 <ol style="list-style-type: decimal">
 <li>Use <code>tmle3</code> to estimate an Average Treatment Effect (ATE)</li>
 <li>Understand <code>tmle3</code> “Specs”</li>
@@ -288,10 +286,10 @@ corresponding to stochastic interventions -->
 </div>
 <div id="example-tmle3-for-ate" class="section level2">
 <h2><span class="header-section-number">3.2</span> Example: <code>tmle3</code> for ATE</h2>
-<p>We’ll illustrate the most basic use of TMLE using the WASH Benefits data introduced earlier and estimating an Average Treatment Effect (ATE)</p>
-<!-- This will be covered in detail in Alan's roadmap chapter, but we should remind people -->
-<p>As a reminder, the ATE is identified with the following statistical parameter (under assumptions):
-<span class="math inline">\(ATE = E_0(Y(1)=Y(0)) = E_0\left( E_0[Y \mid A=1,W]-E_0[Y \mid A=0,W] \right),\)</span></p>
+<p>We’ll illustrate the most basic use of TMLE using the WASH Benefits data
+introduced earlier and estimating an Average Treatment Effect (ATE).</p>
+<p>As a reminder, the ATE is identified with the following statistical parameter
+(under assumptions): <span class="math inline">\(ATE = \mathbb{E}_0(Y(1)-Y(0)) = \mathbb{E}_0\left(\mathbb{E}_0[Y \mid A=1,W]-\mathbb{E}_0[Y \mid A=0,W] \right)\)</span></p>
 <div id="load-the-data" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Load the Data</h3>
 <p>We’ll use the same WASH Benefits data as the earlier chapters:</p>
@@ -303,7 +301,11 @@ washb_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span cla
 </div>
 <div id="define-the-variable-roles" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> Define the variable roles</h3>
-<p>We’ll use the common W (covariates), A (treatment/intervention), Y (outcome) data structure. <code>tmle3</code> needs to know what variables in the dataset correspond to each of these roles. We use a list of character vectors to tell it. We call this a “Node List” as it corresponds to the nodes in a Directed Acyclic Graph (DAG), a way of displaying causal relationships between variables.</p>
+<p>We’ll use the common W (covariates), A (treatment/intervention), Y (outcome)
+data structure. <code>tmle3</code> needs to know what variables in the dataset correspond
+to each of these roles. We use a list of character vectors to tell it. We call
+this a “Node List” as it corresponds to the nodes in a Directed Acyclic Graph
+(DAG), a way of displaying causal relationships between variables.</p>
 <pre class="sourceCode r"><code class="sourceCode r">node_list &lt;-<span class="st"> </span><span class="kw">list</span>(
   <span class="dt">W =</span> <span class="kw">c</span>(
     <span class="st">&quot;month&quot;</span>, <span class="st">&quot;aged&quot;</span>, <span class="st">&quot;sex&quot;</span>, <span class="st">&quot;momage&quot;</span>, <span class="st">&quot;momedu&quot;</span>,
@@ -318,8 +320,8 @@ washb_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span cla
   <span class="dt">Y =</span> <span class="st">&quot;whz&quot;</span>
 )</code></pre>
 </div>
-<div id="handle-missingness" class="section level3">
-<h3><span class="header-section-number">3.2.3</span> Handle Missingness</h3>
+<div id="handling-missingness" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Handling Missingness</h3>
 <p>Currently, missingness in <code>tmle3</code> is handled in a fairly simple way:</p>
 <ul>
 <li>Missing covariates are median (for continuous) or mode (for discrete)
@@ -359,12 +361,22 @@ lrnr_xgboost &lt;-<span class="st"> </span><span class="kw">make_learner</span>(
 
 <span class="co"># define metalearners appropriate to data types</span>
 ls_metalearner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_nnls)
-mn_metalearner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_solnp, metalearner_linear_multinomial, loss_loglik_multinomial)
-sl_Y &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(<span class="dt">learners =</span> <span class="kw">list</span>(lrnr_mean, lrnr_xgboost), <span class="dt">metalearner =</span> ls_metalearner)
-sl_A &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(<span class="dt">learners =</span> <span class="kw">list</span>(lrnr_mean, lrnr_xgboost), <span class="dt">metalearner =</span> mn_metalearner)
+mn_metalearner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(
+  Lrnr_solnp, metalearner_linear_multinomial,
+  loss_loglik_multinomial
+)
+sl_Y &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(
+  <span class="dt">learners =</span> <span class="kw">list</span>(lrnr_mean, lrnr_xgboost),
+  <span class="dt">metalearner =</span> ls_metalearner
+)
+sl_A &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(
+  <span class="dt">learners =</span> <span class="kw">list</span>(lrnr_mean, lrnr_xgboost),
+  <span class="dt">metalearner =</span> mn_metalearner
+)
 
 learner_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">A =</span> sl_A, <span class="dt">Y =</span> sl_Y)</code></pre>
-<p>Here, we use a SuperLearner as defined in the previous chapter. In the future, we plan to include reasonable defaults learners.</p>
+<p>Here, we use a Super Learner as defined in the previous chapter. In the future,
+we plan to include reasonable defaults learners.</p>
 </div>
 <div id="fit-the-tmle" class="section level3">
 <h3><span class="header-section-number">3.2.6</span> Fit the TMLE</h3>
@@ -396,7 +408,7 @@ generate the objects necessary to define and fit a TMLE.</p>
 <div id="tmle3_task" class="section level3">
 <h3><span class="header-section-number">3.3.1</span> <code>tmle3_task</code></h3>
 <p>First is, a <code>tmle3_Task</code>, analogous to an <code>sl3_Task</code>, containing the data we’re
-fitting the TMLE to, as well as an NP-SEM generated from the <code>node_list</code> defined
+fitting the TMLE to, as well as an NPSEM generated from the <code>node_list</code> defined
 above, describing the variables and their relationships.</p>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_task &lt;-<span class="st"> </span>ate_spec<span class="op">$</span><span class="kw">make_tmle_task</span>(washb_data, node_list)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_task<span class="op">$</span>npsem</code></pre>
@@ -457,7 +469,8 @@ not, etc).</p>
 <pre class="sourceCode r"><code class="sourceCode r">targeted_likelihood &lt;-<span class="st"> </span>Targeted_Likelihood<span class="op">$</span><span class="kw">new</span>(initial_likelihood)</code></pre>
 <p>When constructing the targeted likelihood, you can specify different update
 options. See the documentation for <code>tmle3_Update</code> for details of the different
-options. For example, you can disable CV-TMLE (the default in <code>tmle3</code>) as follows:</p>
+options. For example, you can disable CV-TMLE (the default in <code>tmle3</code>) as
+follows:</p>
 <pre class="sourceCode r"><code class="sourceCode r">targeted_likelihood_no_cv &lt;-
 <span class="st">  </span>Targeted_Likelihood<span class="op">$</span><span class="kw">new</span>(initial_likelihood,
     <span class="dt">updater =</span> <span class="kw">list</span>(<span class="dt">cvtmle =</span> <span class="ot">FALSE</span>)
@@ -523,8 +536,8 @@ Param_TSM: E[Y_{A=WSH}]
 Param_TSM: E[Y_{A=Water}]</code></pre>
 <p>This spec generates a Treatment Specific Mean (TSM) for each level of the
 exposure variable. Note that we must first generate a new targeted likelihood,
-as the old one was targeted to the ATE. However, we can recycle the initial likelihood we fit above,
-saving us a super learner step.</p>
+as the old one was targeted to the ATE. However, we can recycle the initial
+likelihood we fit above, saving us a super learner step.</p>
 <div id="delta-method" class="section level3">
 <h3><span class="header-section-number">3.4.1</span> Delta Method</h3>
 <p>We can also define parameters based on Delta Method Transformations of other
@@ -598,7 +611,8 @@ cpp<span class="op">$</span>haz01 &lt;-<span class="st"> </span><span class="kw"
 <p>We’re interested in using this simplified data to estimate an Average Treatment
 Effect (ATE):</p>
 <p><span class="math display">\[\Psi(P_0) = E_0(E_0[Y|A=1,W]-E_0[Y|A=0,W])\]</span></p>
-<!-- The purely statistical (noncausal) parameter can be interpreted as the average
+<!--
+The purely statistical (noncausal) parameter can be interpreted as the average
 of the difference in means across the strata for $W$, and only requires the
 positivity assumption, that the conditional treatment assignment probabilities
 are positive for each possible $w:P_0(A=1|W =w)>0$ and $P_0(A=0|W =w)>0$ for
@@ -606,24 +620,26 @@ each possible $w$.
 
 To interpret this parameter as causal, specifically the causal risk difference
 $E_0Y_1-E_0Y_0$, then we would also need to make the randomization assumption
-stating that $A$ is independent of the counterfactuals $(Y_0,Y_1)$ within strata
-of $W$. This assumption might have been included in the original SCM
+stating that $A$ is independent of the counterfactuals $(Y_0,Y_1)$ within
+strata of $W$. This assumption might have been included in the original SCM
 $\mathcal{M}^F$, but, if one knows there are unmeasured confounders, then the
-model $\mathcal{M}^{F\*}$ would be more restrictive by enforcing this ``known to
-be wrong'' randomization assumption. Still, this assumption does not change the
-statistical model $\mathcal{M}$, and as a consequence, it does not affect the
-estimation problem either. Thus, the theorem's that establish desirable
+model $\mathcal{M}^{F\*}$ would be more restrictive by enforcing this "known
+to be wrong" randomization assumption. Still, this assumption does not change
+the statistical model $\mathcal{M}$, and as a consequence, it does not affect
+the estimation problem either. Thus, the theorem's that establish desirable
 properties of the TMLE, still hold even when this non-testable randomization
 assumption is violated.
 
 We proceed with implementing a targeted minimum loss-based estimator (TMLE),
-an efficient substitution estimator which is not only asymptotically consistent,
-asymptotically normally distributed, and asymptotically efficient, but also
-tailored to have robust finite sample performance. -->
+an efficient substitution estimator which is not only asymptotically
+consistent, asymptotically normally distributed, and asymptotically efficient,
+but also tailored to have robust finite sample performance.
+-->
 <ol style="list-style-type: decimal">
 <li>Define the variable roles <span class="math inline">\((W,A,Y)\)</span> by creating a list of these nodes.
 Include the following baseline covariates in <span class="math inline">\(W\)</span>: <code>apgar1</code>, <code>apgar5</code>,
-<code>gagebrth</code>, <code>mage</code>, <code>meducyrs</code>, <code>sexn</code>. Both <span class="math inline">\(A\)</span> and <span class="math inline">\(Y\)</span> are specified above.</li>
+<code>gagebrth</code>, <code>mage</code>, <code>meducyrs</code>, <code>sexn</code>. Both <span class="math inline">\(A\)</span> and <span class="math inline">\(Y\)</span> are specified
+above.</li>
 <li>Implement a <code>tmle3_Spec</code> object that bundles a set of components into a
 <em>specification</em>. We are interested in specifying the ATE, for which we use
 <code>tmle_ATE()</code>.</li>
@@ -634,16 +650,14 @@ Include the following baseline covariates in <span class="math inline">\(W\)</sp
 object. The list names should be <code>A</code> (defining the Super Learner for
 estimating <span class="math inline">\(g\)</span>) and <code>Y</code> (defining the Super Learner for estimating <span class="math inline">\(Q\)</span>).</li>
 <li>Fit the tmle with the <code>tmle3</code> function. At a minimum, this function will
-requires specification of (1) the <code>tmle3_Spec</code>, which we defined in Step 2; (2)
-the data; (3) the list of nodes, which defined the varible roles in Step 1; and</li>
-</ol>
-<ol start="4" style="list-style-type: decimal">
-<li>the list of Super Learners for estimating <span class="math inline">\(g\)</span> and <span class="math inline">\(Q\)</span>, which we defined in
-Step 6. Note: Like before, you will need to make a data copy to deal with
-<code>data.table</code> weirdness (<code>cpp2 &lt;- data.table::copy(cpp)</code>) and use <code>cpp2</code> to fit
-the tmle.</li>
-</ol>
-<ol start="8" style="list-style-type: decimal">
+requires specification of (1) the <code>tmle3_Spec</code>, which we defined in Step 2;
+<ol start="2" style="list-style-type: decimal">
+<li>the data; (3) the list of nodes, which defined the variable roles in Step
+1; and (4) the list of Super Learners for estimating <span class="math inline">\(g\)</span> and <span class="math inline">\(Q\)</span>, which we
+defined in Step 6. Note: Like before, you will need to make a data copy to
+deal with <code>data.table</code> weirdness (<code>cpp2 &lt;- data.table::copy(cpp)</code>) and use
+<code>cpp2</code> to fit the TMLE.</li>
+</ol></li>
 <li>Interpret the <code>tmle3</code> fit both causally and statistically.</li>
 </ol>
 </div>
