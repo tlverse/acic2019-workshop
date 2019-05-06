@@ -281,7 +281,7 @@ works in `sl3`.
 
 ```{r varimp}
 washb_varimp <- varimp(sl_fit, loss_squared_error)
-washb_varimp %>% kable(format = 'html', digits = 3)
+washb_varimp %>% kable(format = "markdown", digits = 3)
 ```
 This function calculates the risk difference between the learner fit with a
 scrambled covariate and the learner fit with the true covariate, across all
@@ -309,7 +309,7 @@ db_data <-
  url("https://raw.githubusercontent.com/benkeser/sllecture/master/chspred.csv")
 chspred <- read_csv(file = db_data, col_names = TRUE)
 # take a quick peek
-head(chspred, 3)
+head(chspred, 3) %>% kable(format = "markdown", digits = 3)
 ```
 
 ## Concluding Remarks
