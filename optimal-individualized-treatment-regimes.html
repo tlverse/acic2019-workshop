@@ -181,7 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4.3" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#cross-validated-super-learner"><i class="fa fa-check"></i><b>2.4.3</b> Cross-validated super learner</a></li>
 <li class="chapter" data-level="2.4.4" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#variable-importance"><i class="fa fa-check"></i><b>2.4.4</b> Variable importance</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#exercises"><i class="fa fa-check"></i><b>2.5</b> Exercises</a><ul>
+<li class="chapter" data-level="2.5" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#exercise"><i class="fa fa-check"></i><b>2.5</b> Exercise</a><ul>
 <li class="chapter" data-level="2.5.1" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#predicting-myocardial-infarction-with-sl3"><i class="fa fa-check"></i><b>2.5.1</b> Predicting myocardial infarction with <code>sl3</code></a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#concluding-remarks"><i class="fa fa-check"></i><b>2.6</b> Concluding Remarks</a></li>
@@ -243,7 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5.4" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#directly-targeting-the-msm-parameter-beta"><i class="fa fa-check"></i><b>5.5.4</b> Directly Targeting the MSM Parameter <span class="math inline">\(\beta\)</span></a></li>
 <li class="chapter" data-level="5.5.5" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#example-with-the-wash-benefits-data"><i class="fa fa-check"></i><b>5.5.5</b> Example with the WASH Benefits Data</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#exercises-1"><i class="fa fa-check"></i><b>5.6</b> Exercises</a><ul>
+<li class="chapter" data-level="5.6" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#exercises"><i class="fa fa-check"></i><b>5.6</b> Exercises</a><ul>
 <li class="chapter" data-level="5.6.1" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#review-of-key-concepts"><i class="fa fa-check"></i><b>5.6.1</b> Review of Key Concepts</a></li>
 <li class="chapter" data-level="5.6.2" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#the-ideas-in-action"><i class="fa fa-check"></i><b>5.6.2</b> The Ideas in Action</a></li>
 <li class="chapter" data-level="5.6.3" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#advanced-topics"><i class="fa fa-check"></i><b>5.6.3</b> Advanced Topics</a></li>
@@ -731,10 +731,10 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.4947895 0.5719898 0.02547084 0.5220678 0.6219117
+   type         param  init_est  tmle_est        se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.4988473 0.5996295 0.0249554 0.5507179 0.6485412
    psi_transformed lower_transformed upper_transformed
-1:       0.5719898         0.5220678         0.6219117</code></pre>
+1:       0.5996295         0.5507179         0.6485412</code></pre>
 <p>We can see that the estimate of <span class="math inline">\(psi_0\)</span> is <span class="math inline">\(0.58\)</span>, and that the confidence
 interval covers our true mean under the true optimal individualized treatment.</p>
 </div>
@@ -852,10 +852,10 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, <span class="dt">data =</span> washb_data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param   init_est   tmle_est         se     lower      upper
-1:  TSM E[Y_{A=NULL}] -0.5608609 -0.4963205 0.04295714 -0.580515 -0.4121261
+   type         param   init_est   tmle_est        se      lower      upper
+1:  TSM E[Y_{A=NULL}] -0.5585406 -0.4813527 0.0434812 -0.5665743 -0.3961311
    psi_transformed lower_transformed upper_transformed
-1:      -0.4963205         -0.580515        -0.4121261</code></pre>
+1:      -0.4813527        -0.5665743        -0.3961311</code></pre>
 
 </div>
 </div>
