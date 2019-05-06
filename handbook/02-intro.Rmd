@@ -264,7 +264,7 @@ represented in first order by a i.i.d. sum:
 where $IC(O_i; \nu)$ is a function of the data and possibly other parameters
 $\nu$. Importantly, such estimators have mean-zero Gaussian limiting
 distributions; thus, in the univariate case, one has that
-\begin{equation}\label{eqn:IC}
+\begin{equation}\label{eqn:limit_dist}
   \sqrt{n}(\Psi(P_n) - \Psi(P_0)) = N(0, (IC(O_i; \nu))^2),
 \end{equation}
 so that inference for the estimator of interest may be obtained in terms of
