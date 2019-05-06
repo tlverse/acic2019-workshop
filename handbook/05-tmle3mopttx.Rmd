@@ -243,7 +243,7 @@ lrn2 <- Lrnr_glm_fast$new()
 lrn3 <- Lrnr_hal9001$new()
 
 Q_learner <- Lrnr_sl$new(
-  learners = list(xgboost_50, xgboost_100, xgboost_500,lrn1, lrn2),
+  learners = list(xgboost_50, xgboost_100, xgboost_500, lrn1, lrn2),
   metalearner = Lrnr_nnls$new()
 )
 
@@ -253,7 +253,7 @@ g_learner <- Lrnr_sl$new(
 )
 
 b_learner <- Lrnr_sl$new(
-  learners = list(xgboost_50, xgboost_100, xgboost_500,lrn1, lrn2),
+  learners = list(xgboost_50, xgboost_100, xgboost_500, lrn1, lrn2),
   metalearner = Lrnr_nnls$new()
 )
 ```
@@ -563,10 +563,12 @@ head(washb_data, 3)
 * All the other collected baseline covariates correspond to $W$.
 
 ```{r washb_data_npsem_mopttx, message=FALSE, warning=FALSE, cache=FALSE}
-node_list <- list(W = names(washb_data)[!(names(washb_data) %in%
-                                          c("whz", "tr"))],
-                  A = "tr",
-                  Y = "whz")
+node_list <- list(
+  W = names(washb_data)[!(names(washb_data) %in%
+    c("whz", "tr"))],
+  A = "tr",
+  Y = "whz"
+)
 ```
 
 ```{r sl3_lrnrs_washb_mopttx}
@@ -621,6 +623,6 @@ tmle_spec <- tmle3_mopttx_blip_revere(
 
 ```{r fit_tmle_auto_washb_mopttx, eval=T}
 # fit the TML estimator
-fit <- tmle3(tmle_spec, data=washb_data, node_list, learner_list)
+fit <- tmle3(tmle_spec, data = washb_data, node_list, learner_list)
 fit
 ```
