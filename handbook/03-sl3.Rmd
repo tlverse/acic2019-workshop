@@ -1,6 +1,7 @@
 # Modern Super (Machine) Learning with `sl3`
 
-_Rachael V. Phillips, Jeremy Coyle, Mark van der Laan_
+_Rachael Phillips_, based on the [`sl3` package](https://github.com/tlverse/sl3)
+by _Jeremy Coyle, Nima Hejazi, Ivana Malenica, and Oleg Sofrygin_
 
 Updated: `r Sys.Date()`
 
@@ -85,7 +86,8 @@ set.seed(7194)
 
 # load data set and take a peek
 washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
-head(washb_data, 3) %>% kable(format = "markdown", digits = 3)
+head(washb_data, 3) %>%
+  kable(format = "markdown", digits = 3)
 ```
 
 **1. Define the machine learning task**
@@ -166,8 +168,8 @@ are ready to make the super learner.
 
 ```{r make sl}
 sl <- make_learner(Lrnr_sl,
-                   learners = stack,
-                   metalearner = metalearner
+  learners = stack,
+  metalearner = metalearner
 )
 ```
 
@@ -192,7 +194,8 @@ values, and we can also obtain a summary of the results.
 ```{r sl_basic-summary}
 sl_preds <- sl_fit$predict()
 head(sl_preds)
-sl_fit$print() %>% kable(format = "markdown", digits = 3)
+sl_fit$print() %>%
+  kable(format = "markdown", digits = 3)
 ```
 ## Extensions
 
@@ -249,7 +252,7 @@ them as base learners in our super learner.
 ```{r screeners-stack}
 fancy_stack <- make_learner(Stack, cor_pipeline, rf_pipeline, new_stack)
 dt <- delayed_learner_train(fancy_stack, washb_task)
-plot(dt, color=FALSE, height="300px")
+plot(dt, color = FALSE, height = "300px")
 ```
 Now we can Super Learn with this fancy base learner stack.
 
@@ -257,7 +260,8 @@ Now we can Super Learn with this fancy base learner stack.
 sl_fancy <- Lrnr_sl$new(learners = fancy_stack, metalearner = metalearner)
 sl_fancy_fit <- sl_fancy$train(washb_task)
 sl_preds <- sl_fancy_fit$predict()
-sl_fancy_fit$print() %>% kable(format = "markdown", digits = 3)
+sl_fancy_fit$print() %>%
+  kable(format = "markdown", digits = 3)
 ```
 
 ### Cross-validated super learner
@@ -271,7 +275,8 @@ default in `sl3`.
 
 ```{r CVsl, eval=FALSE}
 CVsl <- CV_lrnr_sl(sl_fit, washb_task, loss_squared_error)
-CVsl %>% kable(format = "markdown", digits = 3)
+CVsl %>%
+  kable(format = "markdown", digits = 3)
 ```
 
 ### Variable importance
@@ -287,7 +292,8 @@ is in the prediction.
 
 ```{r varimp}
 washb_varimp <- varimp(sl_fit, loss_squared_error)
-washb_varimp %>% kable(format = "markdown", digits = 3)
+washb_varimp %>%
+  kable(format = "markdown", digits = 3)
 ```
 
 ## Exercise
@@ -308,10 +314,11 @@ risk of the discrete super learner?
 ```{r, ex-setup}
 # load the data set
 db_data <-
- url("https://raw.githubusercontent.com/benkeser/sllecture/master/chspred.csv")
+  url("https://raw.githubusercontent.com/benkeser/sllecture/master/chspred.csv")
 chspred <- read_csv(file = db_data, col_names = TRUE)
 # take a quick peek
-head(chspred, 3) %>% kable(format = "markdown", digits = 3)
+head(chspred, 3) %>%
+  kable(format = "markdown", digits = 3)
 ```
 
 ## Concluding Remarks
