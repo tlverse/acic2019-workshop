@@ -1,7 +1,6 @@
 # Modern Super (Machine) Learning with `sl3`
 
-_Rachael Phillips_, based on the [`sl3` package](https://github.com/tlverse/sl3)
-by _Jeremy Coyle, Nima Hejazi, Ivana Malenica, and Oleg Sofrygin_
+_Rachael V. Phillips, Jeremy Coyle, Mark van der Laan_
 
 Updated: `r Sys.Date()`
 
@@ -81,14 +80,12 @@ library(sl3)
 library(SuperLearner)
 library(origami)
 library(knitr)
-set.seed(7194)
-```
 
-```{r load_data_sl3, message=FALSE, warning=FALSE}
+set.seed(7194)
+
 # load data set and take a peek
 washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
-head(washb_data, 3) %>%
-  kable(format = "markdown", digits = 3)
+head(washb_data, 3) %>% kable(format = 'html', digits = 3)
 ```
 
 **1. Define the machine learning task**
@@ -99,7 +96,7 @@ object. The `sl3_Task` keeps track of the roles the variables play in the
 machine learning problem, the data, and any metadata (e.g., observational-level
 weights, IDs, offset).
 
-```{r task, message=FALSE, warning=FALSE}
+```{r task}
 # specify the outcome and covariates
 outcome <- "whz"
 covars <- colnames(washb_data)[-which(names(washb_data) == outcome)]
@@ -169,8 +166,8 @@ are ready to make the super learner.
 
 ```{r make sl}
 sl <- make_learner(Lrnr_sl,
-  learners = stack,
-  metalearner = metalearner
+                   learners = stack,
+                   metalearner = metalearner
 )
 ```
 
@@ -195,8 +192,7 @@ values, and we can also obtain a summary of the results.
 ```{r sl_basic-summary}
 sl_preds <- sl_fit$predict()
 head(sl_preds)
-sl_fit$print() %>%
-  kable(format = "markdown", digits = 3)
+sl_fit$print() %>% kable(format = 'html', digits = 3)
 ```
 ## Extensions
 
@@ -253,16 +249,15 @@ them as base learners in our super learner.
 ```{r screeners-stack}
 fancy_stack <- make_learner(Stack, cor_pipeline, rf_pipeline, new_stack)
 dt <- delayed_learner_train(fancy_stack, washb_task)
-plot(dt, color = FALSE, height = "300px")
+plot(dt, color=FALSE, height="300px")
 ```
 Now we can Super Learn with this fancy base learner stack.
 
-```{r sl_fancy, eval=FALSE}
+```{r sl_fancy, eval = FALSE}
 sl_fancy <- Lrnr_sl$new(learners = fancy_stack, metalearner = metalearner)
 sl_fancy_fit <- sl_fancy$train(washb_task)
 sl_preds <- sl_fancy_fit$predict()
-sl_fancy_fit$print() %>%
-  kable(format = "markdown", digits = 3)
+sl_fancy_fit$print() %>% kable(format = 'html', digits = 3)
 ```
 
 ### Cross-validated super learner
@@ -276,8 +271,7 @@ default in `sl3`.
 
 ```{r CVsl, eval=FALSE}
 CVsl_fancy <- CV_lrnr_sl(sl_fit, washb_task, loss_squared_error)
-CVsl_fancy %>%
-  kable(format = "markdown", digits = 3)
+CVsl_fancy %>% kable(format = 'html', digits = 3)
 ```
 
 ### Variable importance
@@ -285,18 +279,16 @@ CVsl_fancy %>%
 Variable importance can be interesting and informative. Let's explore how it
 works in `sl3`.
 
-```{r varimp, eval=FALSE}
+```{r varimp}
 washb_varimp <- varimp(sl_fit, loss_squared_error)
-washb_varimp %>%
-  kable(format = "markdown", digits = 3)
+washb_varimp %>% kable(format = 'html', digits = 3)
 ```
 This function calculates the risk difference between the learner fit with a
 scrambled covariate and the learner fit with the true covariate, across all
 covariates. In this manner, the larger the risk difference the more important
 the variable is in the prediction.
 
-## Exercises
-
+## Exercise
 ### Predicting myocardial infarction with `sl3`
 
 Using the `chspred` data, loaded below, use `sl3` to predict myocardial
@@ -307,14 +299,14 @@ Work with a buddy. You have 20 minutes.
 In the etherpad, submit your group's answers to the following questions.
 
 1. Which learner was the discrete super learner? What was the cross validated
-   risk of the discrete super learner?
+risk of the discrete super learner?
 2. What was the cross validated risk of the continuous super learner?
 3. Did your group face any challenges?
 
-```{r ex-setup}
+```{r, ex-setup}
 # load the data set
 db_data <-
-  url("https://raw.githubusercontent.com/benkeser/sllecture/master/chspred.csv")
+ url("https://raw.githubusercontent.com/benkeser/sllecture/master/chspred.csv")
 chspred <- read_csv(file = db_data, col_names = TRUE)
 # take a quick peek
 head(chspred, 3)
@@ -339,5 +331,3 @@ head(chspred, 3)
 
 * Targeted maximum likelihood estimation (TMLE) is a general strategy that
   succeeds in constructing asymptotically linear plug-in estimators.
-
-* In following lessons, we will focus on ...
