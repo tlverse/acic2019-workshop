@@ -621,7 +621,7 @@ with the lowest cross-validated risk.</p>
 values, and we can also obtain a summary of the results.</p>
 <pre class="sourceCode r"><code class="sourceCode r">sl_preds &lt;-<span class="st"> </span>sl_fit<span class="op">$</span><span class="kw">predict</span>()
 <span class="kw">head</span>(sl_preds)</code></pre>
-<pre><code>[1] -0.5211889 -0.9170701 -0.7712202 -0.7981600 -0.6407110 -0.7139374</code></pre>
+<pre><code>[1] -0.5224811 -0.8884895 -0.7766193 -0.7877265 -0.6533041 -0.7124711</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">sl_fit<span class="op">$</span><span class="kw">print</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">kable</span>(<span class="dt">format =</span> <span class="st">&quot;markdown&quot;</span>, <span class="dt">digits =</span> <span class="dv">3</span>)</code></pre>
 <pre><code>[1] &quot;SuperLearner:&quot;
@@ -632,23 +632,23 @@ List of 4
  $ : chr &quot;Lrnr_glmnet_NULL_deviance_10_1_100_TRUE&quot;
 [1] &quot;Lrnr_nnls&quot;
                                      lrnrs   weights
-1:                           Lrnr_glm_TRUE 0.1717642
+1:                           Lrnr_glm_TRUE 0.1689413
 2:                               Lrnr_mean 0.0000000
-3:                    Lrnr_ranger_500_TRUE 0.4575112
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.3767000
+3:                    Lrnr_ranger_500_TRUE 0.4395329
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.3964031
 [1] &quot;Cross-validated risk (MSE, squared error loss):&quot;
                                    learner coefficients mean_risk    SE_risk
 1:                           Lrnr_glm_TRUE           NA  1.018612 0.02380402
 2:                               Lrnr_mean           NA  1.065282 0.02502664
-3:                    Lrnr_ranger_500_TRUE           NA  1.014235 0.02348712
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.013062 0.02361955
-5:                            SuperLearner           NA  1.007631 0.02344429
+3:                    Lrnr_ranger_500_TRUE           NA  1.014690 0.02349352
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.012710 0.02358637
+5:                            SuperLearner           NA  1.007802 0.02343245
       fold_SD fold_min_risk fold_max_risk
 1: 0.07799191     0.8956048      1.134940
 2: 0.09191791     0.9264292      1.196647
-3: 0.08380057     0.8734308      1.146760
-4: 0.07922575     0.8827079      1.130300
-5: 0.08103984     0.8725998      1.132209</code></pre>
+3: 0.08567049     0.8712470      1.153930
+4: 0.07971494     0.8826677      1.130114
+5: 0.08182432     0.8724510      1.135579</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -683,18 +683,18 @@ List of 4
 <tr class="odd">
 <td align="left">Lrnr_ranger_500_TRUE</td>
 <td align="right">NA</td>
-<td align="right">1.014</td>
+<td align="right">1.015</td>
 <td align="right">0.023</td>
-<td align="right">0.084</td>
-<td align="right">0.873</td>
-<td align="right">1.147</td>
+<td align="right">0.086</td>
+<td align="right">0.871</td>
+<td align="right">1.154</td>
 </tr>
 <tr class="even">
 <td align="left">Lrnr_glmnet_NULL_deviance_10_1_100_TRUE</td>
 <td align="right">NA</td>
 <td align="right">1.013</td>
 <td align="right">0.024</td>
-<td align="right">0.079</td>
+<td align="right">0.080</td>
 <td align="right">0.883</td>
 <td align="right">1.130</td>
 </tr>
@@ -703,9 +703,9 @@ List of 4
 <td align="right">NA</td>
 <td align="right">1.008</td>
 <td align="right">0.023</td>
-<td align="right">0.081</td>
-<td align="right">0.873</td>
-<td align="right">1.132</td>
+<td align="right">0.082</td>
+<td align="right">0.872</td>
+<td align="right">1.136</td>
 </tr>
 </tbody>
 </table>
@@ -751,8 +751,8 @@ them as base learners in our super learner.</p>
 <pre class="sourceCode r"><code class="sourceCode r">fancy_stack &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Stack, cor_pipeline, rf_pipeline, new_stack)
 dt &lt;-<span class="st"> </span><span class="kw">delayed_learner_train</span>(fancy_stack, washb_task)
 <span class="kw">plot</span>(dt, <span class="dt">color =</span> <span class="ot">FALSE</span>, <span class="dt">height =</span> <span class="st">&quot;300px&quot;</span>)</code></pre>
-<p><div id="htmlwidget-ac65ada05c763b61c923" style="width:100%;height:300px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ac65ada05c763b61c923">{"x":{"nodes":{"id":["e15044bc-7026-11e9-a732-42010a1400e2","e1502c20-7026-11e9-a732-42010a1400e2","e14d31dc-7026-11e9-a732-42010a1400e2","e14d0ad6-7026-11e9-a732-42010a1400e2","e14b688e-7026-11e9-a732-42010a1400e2","e14cbef0-7026-11e9-a732-42010a1400e2","e14b8738-7026-11e9-a732-42010a1400e2","e14c954c-7026-11e9-a732-42010a1400e2","e14ba1fa-7026-11e9-a732-42010a1400e2","e14bbbea-7026-11e9-a732-42010a1400e2","e14bd4d6-7026-11e9-a732-42010a1400e2","e14beed0-7026-11e9-a732-42010a1400e2","e14c0924-7026-11e9-a732-42010a1400e2","e14c249a-7026-11e9-a732-42010a1400e2","e14c4880-7026-11e9-a732-42010a1400e2","e14c6f86-7026-11e9-a732-42010a1400e2","e14f0eb2-7026-11e9-a732-42010a1400e2","e14ef4ea-7026-11e9-a732-42010a1400e2","e14d663e-7026-11e9-a732-42010a1400e2","e14ec1f0-7026-11e9-a732-42010a1400e2","e14d8a60-7026-11e9-a732-42010a1400e2","e14ea710-7026-11e9-a732-42010a1400e2","e14db0d0-7026-11e9-a732-42010a1400e2","e14ddb50-7026-11e9-a732-42010a1400e2","e14e027e-7026-11e9-a732-42010a1400e2","e14e24b6-7026-11e9-a732-42010a1400e2","e14e3eba-7026-11e9-a732-42010a1400e2","e14e59b8-7026-11e9-a732-42010a1400e2","e14e72c2-7026-11e9-a732-42010a1400e2","e14e8d34-7026-11e9-a732-42010a1400e2","e15012a8-7026-11e9-a732-42010a1400e2","e14ff796-7026-11e9-a732-42010a1400e2","e14f2df2-7026-11e9-a732-42010a1400e2","e14f46e8-7026-11e9-a732-42010a1400e2","e14f5fac-7026-11e9-a732-42010a1400e2","e14f7848-7026-11e9-a732-42010a1400e2","e14f9238-7026-11e9-a732-42010a1400e2","e14faa34-7026-11e9-a732-42010a1400e2","e14fc654-7026-11e9-a732-42010a1400e2","e14fdf4a-7026-11e9-a732-42010a1400e2"],"label":["Stack","bundle","Pipeline(Lrnr_pkg_SuperLearner_screener_screen.corP->Stack)","bundle","Lrnr_pkg_SuperLearner_screener_screen.corP","Stack","chain","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Lrnr_ranger_1000_TRUE","Lrnr_ranger_100_TRUE","Lrnr_pkg_SuperLearner_SL.gam","Lrnr_pkg_SuperLearner_SL.bayesglm","Pipeline(Lrnr_pkg_SuperLearner_screener_screen.randomForest->Stack)","bundle","Lrnr_pkg_SuperLearner_screener_screen.randomForest","Stack","chain","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Lrnr_ranger_1000_TRUE","Lrnr_ranger_100_TRUE","Lrnr_pkg_SuperLearner_SL.gam","Lrnr_pkg_SuperLearner_SL.bayesglm","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Lrnr_ranger_1000_TRUE","Lrnr_ranger_100_TRUE","Lrnr_pkg_SuperLearner_SL.gam","Lrnr_pkg_SuperLearner_SL.bayesglm"],"level":[1,2,3,4,9,5,8,6,7,7,7,7,7,7,7,7,3,4,9,5,8,6,7,7,7,7,7,7,7,7,3,4,5,5,5,5,5,5,5,5],"sequential":[true,true,true,true,false,true,true,true,false,false,false,false,false,false,false,false,true,true,false,true,true,true,false,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,false],"state":["waiting","waiting","waiting","waiting","ready","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","ready","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","ready","ready","ready","ready","ready","ready","ready","ready"],"group":["none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none"]},"edges":{"from":["e14b688e-7026-11e9-a732-42010a1400e2","e14b688e-7026-11e9-a732-42010a1400e2","e14b8738-7026-11e9-a732-42010a1400e2","e14b8738-7026-11e9-a732-42010a1400e2","e14ba1fa-7026-11e9-a732-42010a1400e2","e14b8738-7026-11e9-a732-42010a1400e2","e14bbbea-7026-11e9-a732-42010a1400e2","e14b8738-7026-11e9-a732-42010a1400e2","e14bd4d6-7026-11e9-a732-42010a1400e2","e14b8738-7026-11e9-a732-42010a1400e2","e14beed0-7026-11e9-a732-42010a1400e2","e14b8738-7026-11e9-a732-42010a1400e2","e14c0924-7026-11e9-a732-42010a1400e2","e14b8738-7026-11e9-a732-42010a1400e2","e14c249a-7026-11e9-a732-42010a1400e2","e14b8738-7026-11e9-a732-42010a1400e2","e14c4880-7026-11e9-a732-42010a1400e2","e14b8738-7026-11e9-a732-42010a1400e2","e14c6f86-7026-11e9-a732-42010a1400e2","e14c954c-7026-11e9-a732-42010a1400e2","e14cbef0-7026-11e9-a732-42010a1400e2","e14d0ad6-7026-11e9-a732-42010a1400e2","e14d31dc-7026-11e9-a732-42010a1400e2","e14d663e-7026-11e9-a732-42010a1400e2","e14d663e-7026-11e9-a732-42010a1400e2","e14d8a60-7026-11e9-a732-42010a1400e2","e14d8a60-7026-11e9-a732-42010a1400e2","e14db0d0-7026-11e9-a732-42010a1400e2","e14d8a60-7026-11e9-a732-42010a1400e2","e14ddb50-7026-11e9-a732-42010a1400e2","e14d8a60-7026-11e9-a732-42010a1400e2","e14e027e-7026-11e9-a732-42010a1400e2","e14d8a60-7026-11e9-a732-42010a1400e2","e14e24b6-7026-11e9-a732-42010a1400e2","e14d8a60-7026-11e9-a732-42010a1400e2","e14e3eba-7026-11e9-a732-42010a1400e2","e14d8a60-7026-11e9-a732-42010a1400e2","e14e59b8-7026-11e9-a732-42010a1400e2","e14d8a60-7026-11e9-a732-42010a1400e2","e14e72c2-7026-11e9-a732-42010a1400e2","e14d8a60-7026-11e9-a732-42010a1400e2","e14e8d34-7026-11e9-a732-42010a1400e2","e14ea710-7026-11e9-a732-42010a1400e2","e14ec1f0-7026-11e9-a732-42010a1400e2","e14ef4ea-7026-11e9-a732-42010a1400e2","e14f0eb2-7026-11e9-a732-42010a1400e2","e14f2df2-7026-11e9-a732-42010a1400e2","e14f46e8-7026-11e9-a732-42010a1400e2","e14f5fac-7026-11e9-a732-42010a1400e2","e14f7848-7026-11e9-a732-42010a1400e2","e14f9238-7026-11e9-a732-42010a1400e2","e14faa34-7026-11e9-a732-42010a1400e2","e14fc654-7026-11e9-a732-42010a1400e2","e14fdf4a-7026-11e9-a732-42010a1400e2","e14ff796-7026-11e9-a732-42010a1400e2","e15012a8-7026-11e9-a732-42010a1400e2","e1502c20-7026-11e9-a732-42010a1400e2"],"to":["e14d0ad6-7026-11e9-a732-42010a1400e2","e14b8738-7026-11e9-a732-42010a1400e2","e14cbef0-7026-11e9-a732-42010a1400e2","e14ba1fa-7026-11e9-a732-42010a1400e2","e14c954c-7026-11e9-a732-42010a1400e2","e14bbbea-7026-11e9-a732-42010a1400e2","e14c954c-7026-11e9-a732-42010a1400e2","e14bd4d6-7026-11e9-a732-42010a1400e2","e14c954c-7026-11e9-a732-42010a1400e2","e14beed0-7026-11e9-a732-42010a1400e2","e14c954c-7026-11e9-a732-42010a1400e2","e14c0924-7026-11e9-a732-42010a1400e2","e14c954c-7026-11e9-a732-42010a1400e2","e14c249a-7026-11e9-a732-42010a1400e2","e14c954c-7026-11e9-a732-42010a1400e2","e14c4880-7026-11e9-a732-42010a1400e2","e14c954c-7026-11e9-a732-42010a1400e2","e14c6f86-7026-11e9-a732-42010a1400e2","e14c954c-7026-11e9-a732-42010a1400e2","e14cbef0-7026-11e9-a732-42010a1400e2","e14d0ad6-7026-11e9-a732-42010a1400e2","e14d31dc-7026-11e9-a732-42010a1400e2","e1502c20-7026-11e9-a732-42010a1400e2","e14ef4ea-7026-11e9-a732-42010a1400e2","e14d8a60-7026-11e9-a732-42010a1400e2","e14ec1f0-7026-11e9-a732-42010a1400e2","e14db0d0-7026-11e9-a732-42010a1400e2","e14ea710-7026-11e9-a732-42010a1400e2","e14ddb50-7026-11e9-a732-42010a1400e2","e14ea710-7026-11e9-a732-42010a1400e2","e14e027e-7026-11e9-a732-42010a1400e2","e14ea710-7026-11e9-a732-42010a1400e2","e14e24b6-7026-11e9-a732-42010a1400e2","e14ea710-7026-11e9-a732-42010a1400e2","e14e3eba-7026-11e9-a732-42010a1400e2","e14ea710-7026-11e9-a732-42010a1400e2","e14e59b8-7026-11e9-a732-42010a1400e2","e14ea710-7026-11e9-a732-42010a1400e2","e14e72c2-7026-11e9-a732-42010a1400e2","e14ea710-7026-11e9-a732-42010a1400e2","e14e8d34-7026-11e9-a732-42010a1400e2","e14ea710-7026-11e9-a732-42010a1400e2","e14ec1f0-7026-11e9-a732-42010a1400e2","e14ef4ea-7026-11e9-a732-42010a1400e2","e14f0eb2-7026-11e9-a732-42010a1400e2","e1502c20-7026-11e9-a732-42010a1400e2","e14ff796-7026-11e9-a732-42010a1400e2","e14ff796-7026-11e9-a732-42010a1400e2","e14ff796-7026-11e9-a732-42010a1400e2","e14ff796-7026-11e9-a732-42010a1400e2","e14ff796-7026-11e9-a732-42010a1400e2","e14ff796-7026-11e9-a732-42010a1400e2","e14ff796-7026-11e9-a732-42010a1400e2","e14ff796-7026-11e9-a732-42010a1400e2","e15012a8-7026-11e9-a732-42010a1400e2","e1502c20-7026-11e9-a732-42010a1400e2","e15044bc-7026-11e9-a732-42010a1400e2"],"label":["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":"to"},"layout":{"hierarchical":{"enabled":true,"levelSeparation":500,"nodeSpacing":200,"direction":"RL"}},"groups":{"useDefaultGroups":true,"none":{"color":{"border":"black","background":"white"}}}},"groups":["none"],"width":"100%","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+<p><div id="htmlwidget-958620ba7beeb6abd333" style="width:100%;height:300px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-958620ba7beeb6abd333">{"x":{"nodes":{"id":["6fb665d6-7029-11e9-960c-42010a140099","6fb64c7c-7029-11e9-960c-42010a140099","6fb38154-7029-11e9-960c-42010a140099","6fb3693a-7029-11e9-960c-42010a140099","6fb1b9d2-7029-11e9-960c-42010a140099","6fb33578-7029-11e9-960c-42010a140099","6fb1ec7c-7029-11e9-960c-42010a140099","6fb3191c-7029-11e9-960c-42010a140099","6fb22368-7029-11e9-960c-42010a140099","6fb25892-7029-11e9-960c-42010a140099","6fb27a8e-7029-11e9-960c-42010a140099","6fb29582-7029-11e9-960c-42010a140099","6fb2b1f2-7029-11e9-960c-42010a140099","6fb2cbe2-7029-11e9-960c-42010a140099","6fb2e622-7029-11e9-960c-42010a140099","6fb2ffea-7029-11e9-960c-42010a140099","6fb53328-7029-11e9-960c-42010a140099","6fb51a96-7029-11e9-960c-42010a140099","6fb3a152-7029-11e9-960c-42010a140099","6fb4e5b2-7029-11e9-960c-42010a140099","6fb3b8ae-7029-11e9-960c-42010a140099","6fb4cbe0-7029-11e9-960c-42010a140099","6fb3d6c2-7029-11e9-960c-42010a140099","6fb3f1ca-7029-11e9-960c-42010a140099","6fb4186c-7029-11e9-960c-42010a140099","6fb43e78-7029-11e9-960c-42010a140099","6fb462b8-7029-11e9-960c-42010a140099","6fb47ef6-7029-11e9-960c-42010a140099","6fb498aa-7029-11e9-960c-42010a140099","6fb4b2d6-7029-11e9-960c-42010a140099","6fb63250-7029-11e9-960c-42010a140099","6fb617fc-7029-11e9-960c-42010a140099","6fb55092-7029-11e9-960c-42010a140099","6fb56906-7029-11e9-960c-42010a140099","6fb5812a-7029-11e9-960c-42010a140099","6fb59a16-7029-11e9-960c-42010a140099","6fb5b4e2-7029-11e9-960c-42010a140099","6fb5cd56-7029-11e9-960c-42010a140099","6fb5e692-7029-11e9-960c-42010a140099","6fb5ff56-7029-11e9-960c-42010a140099"],"label":["Stack","bundle","Pipeline(Lrnr_pkg_SuperLearner_screener_screen.corP->Stack)","bundle","Lrnr_pkg_SuperLearner_screener_screen.corP","Stack","chain","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Lrnr_ranger_1000_TRUE","Lrnr_ranger_100_TRUE","Lrnr_pkg_SuperLearner_SL.gam","Lrnr_pkg_SuperLearner_SL.bayesglm","Pipeline(Lrnr_pkg_SuperLearner_screener_screen.randomForest->Stack)","bundle","Lrnr_pkg_SuperLearner_screener_screen.randomForest","Stack","chain","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Lrnr_ranger_1000_TRUE","Lrnr_ranger_100_TRUE","Lrnr_pkg_SuperLearner_SL.gam","Lrnr_pkg_SuperLearner_SL.bayesglm","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Lrnr_ranger_1000_TRUE","Lrnr_ranger_100_TRUE","Lrnr_pkg_SuperLearner_SL.gam","Lrnr_pkg_SuperLearner_SL.bayesglm"],"level":[1,2,3,4,9,5,8,6,7,7,7,7,7,7,7,7,3,4,9,5,8,6,7,7,7,7,7,7,7,7,3,4,5,5,5,5,5,5,5,5],"sequential":[true,true,true,true,false,true,true,true,false,false,false,false,false,false,false,false,true,true,false,true,true,true,false,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,false],"state":["waiting","waiting","waiting","waiting","ready","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","ready","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","ready","ready","ready","ready","ready","ready","ready","ready"],"group":["none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none"]},"edges":{"from":["6fb1b9d2-7029-11e9-960c-42010a140099","6fb1b9d2-7029-11e9-960c-42010a140099","6fb1ec7c-7029-11e9-960c-42010a140099","6fb1ec7c-7029-11e9-960c-42010a140099","6fb22368-7029-11e9-960c-42010a140099","6fb1ec7c-7029-11e9-960c-42010a140099","6fb25892-7029-11e9-960c-42010a140099","6fb1ec7c-7029-11e9-960c-42010a140099","6fb27a8e-7029-11e9-960c-42010a140099","6fb1ec7c-7029-11e9-960c-42010a140099","6fb29582-7029-11e9-960c-42010a140099","6fb1ec7c-7029-11e9-960c-42010a140099","6fb2b1f2-7029-11e9-960c-42010a140099","6fb1ec7c-7029-11e9-960c-42010a140099","6fb2cbe2-7029-11e9-960c-42010a140099","6fb1ec7c-7029-11e9-960c-42010a140099","6fb2e622-7029-11e9-960c-42010a140099","6fb1ec7c-7029-11e9-960c-42010a140099","6fb2ffea-7029-11e9-960c-42010a140099","6fb3191c-7029-11e9-960c-42010a140099","6fb33578-7029-11e9-960c-42010a140099","6fb3693a-7029-11e9-960c-42010a140099","6fb38154-7029-11e9-960c-42010a140099","6fb3a152-7029-11e9-960c-42010a140099","6fb3a152-7029-11e9-960c-42010a140099","6fb3b8ae-7029-11e9-960c-42010a140099","6fb3b8ae-7029-11e9-960c-42010a140099","6fb3d6c2-7029-11e9-960c-42010a140099","6fb3b8ae-7029-11e9-960c-42010a140099","6fb3f1ca-7029-11e9-960c-42010a140099","6fb3b8ae-7029-11e9-960c-42010a140099","6fb4186c-7029-11e9-960c-42010a140099","6fb3b8ae-7029-11e9-960c-42010a140099","6fb43e78-7029-11e9-960c-42010a140099","6fb3b8ae-7029-11e9-960c-42010a140099","6fb462b8-7029-11e9-960c-42010a140099","6fb3b8ae-7029-11e9-960c-42010a140099","6fb47ef6-7029-11e9-960c-42010a140099","6fb3b8ae-7029-11e9-960c-42010a140099","6fb498aa-7029-11e9-960c-42010a140099","6fb3b8ae-7029-11e9-960c-42010a140099","6fb4b2d6-7029-11e9-960c-42010a140099","6fb4cbe0-7029-11e9-960c-42010a140099","6fb4e5b2-7029-11e9-960c-42010a140099","6fb51a96-7029-11e9-960c-42010a140099","6fb53328-7029-11e9-960c-42010a140099","6fb55092-7029-11e9-960c-42010a140099","6fb56906-7029-11e9-960c-42010a140099","6fb5812a-7029-11e9-960c-42010a140099","6fb59a16-7029-11e9-960c-42010a140099","6fb5b4e2-7029-11e9-960c-42010a140099","6fb5cd56-7029-11e9-960c-42010a140099","6fb5e692-7029-11e9-960c-42010a140099","6fb5ff56-7029-11e9-960c-42010a140099","6fb617fc-7029-11e9-960c-42010a140099","6fb63250-7029-11e9-960c-42010a140099","6fb64c7c-7029-11e9-960c-42010a140099"],"to":["6fb3693a-7029-11e9-960c-42010a140099","6fb1ec7c-7029-11e9-960c-42010a140099","6fb33578-7029-11e9-960c-42010a140099","6fb22368-7029-11e9-960c-42010a140099","6fb3191c-7029-11e9-960c-42010a140099","6fb25892-7029-11e9-960c-42010a140099","6fb3191c-7029-11e9-960c-42010a140099","6fb27a8e-7029-11e9-960c-42010a140099","6fb3191c-7029-11e9-960c-42010a140099","6fb29582-7029-11e9-960c-42010a140099","6fb3191c-7029-11e9-960c-42010a140099","6fb2b1f2-7029-11e9-960c-42010a140099","6fb3191c-7029-11e9-960c-42010a140099","6fb2cbe2-7029-11e9-960c-42010a140099","6fb3191c-7029-11e9-960c-42010a140099","6fb2e622-7029-11e9-960c-42010a140099","6fb3191c-7029-11e9-960c-42010a140099","6fb2ffea-7029-11e9-960c-42010a140099","6fb3191c-7029-11e9-960c-42010a140099","6fb33578-7029-11e9-960c-42010a140099","6fb3693a-7029-11e9-960c-42010a140099","6fb38154-7029-11e9-960c-42010a140099","6fb64c7c-7029-11e9-960c-42010a140099","6fb51a96-7029-11e9-960c-42010a140099","6fb3b8ae-7029-11e9-960c-42010a140099","6fb4e5b2-7029-11e9-960c-42010a140099","6fb3d6c2-7029-11e9-960c-42010a140099","6fb4cbe0-7029-11e9-960c-42010a140099","6fb3f1ca-7029-11e9-960c-42010a140099","6fb4cbe0-7029-11e9-960c-42010a140099","6fb4186c-7029-11e9-960c-42010a140099","6fb4cbe0-7029-11e9-960c-42010a140099","6fb43e78-7029-11e9-960c-42010a140099","6fb4cbe0-7029-11e9-960c-42010a140099","6fb462b8-7029-11e9-960c-42010a140099","6fb4cbe0-7029-11e9-960c-42010a140099","6fb47ef6-7029-11e9-960c-42010a140099","6fb4cbe0-7029-11e9-960c-42010a140099","6fb498aa-7029-11e9-960c-42010a140099","6fb4cbe0-7029-11e9-960c-42010a140099","6fb4b2d6-7029-11e9-960c-42010a140099","6fb4cbe0-7029-11e9-960c-42010a140099","6fb4e5b2-7029-11e9-960c-42010a140099","6fb51a96-7029-11e9-960c-42010a140099","6fb53328-7029-11e9-960c-42010a140099","6fb64c7c-7029-11e9-960c-42010a140099","6fb617fc-7029-11e9-960c-42010a140099","6fb617fc-7029-11e9-960c-42010a140099","6fb617fc-7029-11e9-960c-42010a140099","6fb617fc-7029-11e9-960c-42010a140099","6fb617fc-7029-11e9-960c-42010a140099","6fb617fc-7029-11e9-960c-42010a140099","6fb617fc-7029-11e9-960c-42010a140099","6fb617fc-7029-11e9-960c-42010a140099","6fb63250-7029-11e9-960c-42010a140099","6fb64c7c-7029-11e9-960c-42010a140099","6fb665d6-7029-11e9-960c-42010a140099"],"label":["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":"to"},"layout":{"hierarchical":{"enabled":true,"levelSeparation":500,"nodeSpacing":200,"direction":"RL"}},"groups":{"useDefaultGroups":true,"none":{"color":{"border":"black","background":"white"}}}},"groups":["none"],"width":"100%","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
 Now we can Super Learn with this fancy base learner stack.</p>
 <pre class="sourceCode r"><code class="sourceCode r">sl_fancy &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(<span class="dt">learners =</span> fancy_stack, <span class="dt">metalearner =</span> metalearner)
 sl_fancy_fit &lt;-<span class="st"> </span>sl_fancy<span class="op">$</span><span class="kw">train</span>(washb_task)
@@ -794,119 +794,119 @@ washb_varimp <span class="op">%&gt;%</span>
 <tbody>
 <tr class="odd">
 <td align="left">aged</td>
-<td align="right">0.450</td>
+<td align="right">0.436</td>
 </tr>
 <tr class="even">
 <td align="left">momedu</td>
-<td align="right">0.419</td>
+<td align="right">0.408</td>
 </tr>
 <tr class="odd">
 <td align="left">tr</td>
-<td align="right">0.418</td>
+<td align="right">0.404</td>
 </tr>
 <tr class="even">
-<td align="left">month</td>
-<td align="right">0.416</td>
+<td align="left">momheight</td>
+<td align="right">0.403</td>
 </tr>
 <tr class="odd">
-<td align="left">asset_refrig</td>
-<td align="right">0.415</td>
+<td align="left">month</td>
+<td align="right">0.402</td>
 </tr>
 <tr class="even">
 <td align="left">asset_chair</td>
-<td align="right">0.415</td>
+<td align="right">0.402</td>
 </tr>
 <tr class="odd">
-<td align="left">elec</td>
-<td align="right">0.414</td>
+<td align="left">asset_refrig</td>
+<td align="right">0.401</td>
 </tr>
 <tr class="even">
 <td align="left">Nlt18</td>
-<td align="right">0.414</td>
+<td align="right">0.401</td>
 </tr>
 <tr class="odd">
-<td align="left">floor</td>
-<td align="right">0.414</td>
-</tr>
-<tr class="even">
 <td align="left">asset_chouki</td>
-<td align="right">0.413</td>
-</tr>
-<tr class="odd">
-<td align="left">momheight</td>
-<td align="right">0.413</td>
+<td align="right">0.399</td>
 </tr>
 <tr class="even">
-<td align="left">asset_table</td>
-<td align="right">0.412</td>
+<td align="left">elec</td>
+<td align="right">0.399</td>
 </tr>
 <tr class="odd">
-<td align="left">asset_moto</td>
-<td align="right">0.412</td>
-</tr>
-<tr class="even">
 <td align="left">momage</td>
-<td align="right">0.412</td>
-</tr>
-<tr class="odd">
-<td align="left">hfiacat</td>
-<td align="right">0.412</td>
+<td align="right">0.399</td>
 </tr>
 <tr class="even">
-<td align="left">walls</td>
-<td align="right">0.412</td>
-</tr>
-<tr class="odd">
-<td align="left">asset_bike</td>
-<td align="right">0.412</td>
-</tr>
-<tr class="even">
-<td align="left">fracode</td>
-<td align="right">0.412</td>
-</tr>
-<tr class="odd">
 <td align="left">asset_wardrobe</td>
-<td align="right">0.412</td>
-</tr>
-<tr class="even">
-<td align="left">watmin</td>
-<td align="right">0.412</td>
+<td align="right">0.399</td>
 </tr>
 <tr class="odd">
-<td align="left">delta_momage</td>
-<td align="right">0.411</td>
+<td align="left">fracode</td>
+<td align="right">0.399</td>
 </tr>
 <tr class="even">
+<td align="left">hfiacat</td>
+<td align="right">0.399</td>
+</tr>
+<tr class="odd">
+<td align="left">walls</td>
+<td align="right">0.399</td>
+</tr>
+<tr class="even">
+<td align="left">asset_moto</td>
+<td align="right">0.398</td>
+</tr>
+<tr class="odd">
 <td align="left">sex</td>
-<td align="right">0.411</td>
-</tr>
-<tr class="odd">
-<td align="left">asset_sewmach</td>
-<td align="right">0.411</td>
+<td align="right">0.398</td>
 </tr>
 <tr class="even">
-<td align="left">roof</td>
-<td align="right">0.411</td>
-</tr>
-<tr class="odd">
-<td align="left">delta_momheight</td>
-<td align="right">0.411</td>
-</tr>
-<tr class="even">
-<td align="left">asset_tv</td>
-<td align="right">0.411</td>
+<td align="left">floor</td>
+<td align="right">0.398</td>
 </tr>
 <tr class="odd">
 <td align="left">asset_mobile</td>
-<td align="right">0.410</td>
+<td align="right">0.398</td>
+</tr>
+<tr class="even">
+<td align="left">asset_sewmach</td>
+<td align="right">0.398</td>
+</tr>
+<tr class="odd">
+<td align="left">delta_momage</td>
+<td align="right">0.398</td>
+</tr>
+<tr class="even">
+<td align="left">asset_table</td>
+<td align="right">0.398</td>
+</tr>
+<tr class="odd">
+<td align="left">roof</td>
+<td align="right">0.398</td>
+</tr>
+<tr class="even">
+<td align="left">asset_tv</td>
+<td align="right">0.398</td>
+</tr>
+<tr class="odd">
+<td align="left">asset_bike</td>
+<td align="right">0.398</td>
 </tr>
 <tr class="even">
 <td align="left">asset_khat</td>
-<td align="right">0.410</td>
+<td align="right">0.398</td>
+</tr>
+<tr class="odd">
+<td align="left">delta_momheight</td>
+<td align="right">0.397</td>
+</tr>
+<tr class="even">
+<td align="left">watmin</td>
+<td align="right">0.397</td>
 </tr>
 <tr class="odd">
 <td align="left">Ncomp</td>
-<td align="right">0.410</td>
+<td align="right">0.396</td>
 </tr>
 </tbody>
 </table>
