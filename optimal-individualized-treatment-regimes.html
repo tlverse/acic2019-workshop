@@ -571,10 +571,10 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type       param  init_est  tmle_est         se    lower     upper
-1:  TSM E[Y_{A=W3}] 0.4345327 0.5675065 0.02675428 0.515069 0.6199439
+   type       param  init_est  tmle_est        se     lower     upper
+1:  TSM E[Y_{A=W3}] 0.4339779 0.5539245 0.0272129 0.5005882 0.6072608
    psi_transformed lower_transformed upper_transformed
-1:       0.5675065          0.515069         0.6199439</code></pre>
+1:       0.5539245         0.5005882         0.6072608</code></pre>
 <ul>
 <li>Even though the user specified all baseline covariates as the basis
 for rule estimation, a simpler rule based on only <span class="math inline">\(W_3\)</span> is sufficient to
@@ -731,10 +731,10 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.4987662 0.5986982 0.02503101 0.5496383 0.6477581
+   type         param  init_est  tmle_est        se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.4914666 0.5796591 0.0251308 0.5304036 0.6289145
    psi_transformed lower_transformed upper_transformed
-1:       0.5986982         0.5496383         0.6477581</code></pre>
+1:       0.5796591         0.5304036         0.6289145</code></pre>
 <p>We can see that the estimate of <span class="math inline">\(psi_0\)</span> is <span class="math inline">\(0.58\)</span>, and that the confidence
 interval covers our true mean under the true optimal individualized treatment.</p>
 </div>
@@ -852,10 +852,10 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, <span class="dt">data =</span> washb_data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param   init_est   tmle_est         se      lower      upper
-1:  TSM E[Y_{A=NULL}] -0.5581545 -0.4882481 0.04424441 -0.5749655 -0.4015306
+   type         param   init_est   tmle_est         se      lower     upper
+1:  TSM E[Y_{A=NULL}] -0.5566983 -0.4665254 0.04274127 -0.5502968 -0.382754
    psi_transformed lower_transformed upper_transformed
-1:      -0.4882481        -0.5749655        -0.4015306</code></pre>
+1:      -0.4665254        -0.5502968         -0.382754</code></pre>
 
 </div>
 </div>
