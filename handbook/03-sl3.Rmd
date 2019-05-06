@@ -85,7 +85,7 @@ set.seed(7194)
 
 # load data set and take a peek
 washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
-head(washb_data, 3) %>% kable(format = 'html', digits = 3)
+head(washb_data, 3) %>% kable(format = "markdown", digits = 3)
 ```
 
 **1. Define the machine learning task**
@@ -192,7 +192,7 @@ values, and we can also obtain a summary of the results.
 ```{r sl_basic-summary}
 sl_preds <- sl_fit$predict()
 head(sl_preds)
-sl_fit$print() %>% kable(format = 'html', digits = 3)
+sl_fit$print() %>% kable(format = "markdown", digits = 3)
 ```
 ## Extensions
 
@@ -257,7 +257,7 @@ Now we can Super Learn with this fancy base learner stack.
 sl_fancy <- Lrnr_sl$new(learners = fancy_stack, metalearner = metalearner)
 sl_fancy_fit <- sl_fancy$train(washb_task)
 sl_preds <- sl_fancy_fit$predict()
-sl_fancy_fit$print() %>% kable(format = 'html', digits = 3)
+sl_fancy_fit$print() %>% kable(format = "markdown", digits = 3)
 ```
 
 ### Cross-validated super learner
@@ -270,8 +270,8 @@ external cross validation procedure may also incorporate 10 folds, which is the
 default in `sl3`.
 
 ```{r CVsl, eval=FALSE}
-CVsl_fancy <- CV_lrnr_sl(sl_fit, washb_task, loss_squared_error)
-CVsl_fancy %>% kable(format = 'html', digits = 3)
+CVsl <- CV_lrnr_sl(sl_fit, washb_task, loss_squared_error)
+CVsl %>% kable(format = "markdown", digits = 3)
 ```
 
 ### Variable importance
