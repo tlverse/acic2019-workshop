@@ -527,7 +527,7 @@ for the main intervention in WASH Benefits data.
 To start, let's load the data, convert all columns to be of class `numeric`, 
 and take a quick look at it:
 
-```{r load-washb-data, message=FALSE, warning=FALSE, cache=FALSE}
+```{r load-washb-data-mopttx, message=FALSE, warning=FALSE, cache=FALSE}
 washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
 washb_data <- washb_data[!is.na(momage), lapply(.SD, as.numeric)]
 head(washb_data, 3)
