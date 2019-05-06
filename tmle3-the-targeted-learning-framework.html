@@ -208,7 +208,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.1" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#delta-method"><i class="fa fa-check"></i><b>3.4.1</b> Delta Method</a></li>
 <li class="chapter" data-level="3.4.2" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#fit"><i class="fa fa-check"></i><b>3.4.2</b> Fit</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#summary"><i class="fa fa-check"></i><b>3.5</b> Summary</a></li>
+<li class="chapter" data-level="3.5" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#exercise-1"><i class="fa fa-check"></i><b>3.5</b> Exercise</a></li>
+<li class="chapter" data-level="3.6" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#summary"><i class="fa fa-check"></i><b>3.6</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html"><i class="fa fa-check"></i><b>4</b> Optimal Individualized Treatment Regimes</a><ul>
 <li class="chapter" data-level="4.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#learning-objectives-3"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
@@ -377,14 +378,14 @@ can extra results from the summary by indexing into it:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(tmle_fit)</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
    type                                    param    init_est    tmle_est
-1:  ATE ATE[Y_{A=Nutrition + WSH}-Y_{A=Control}] 0.002293998 0.003045927
-          se       lower     upper psi_transformed lower_transformed
-1: 0.0507697 -0.09646086 0.1025527     0.003045927       -0.09646086
+1:  ATE ATE[Y_{A=Nutrition + WSH}-Y_{A=Control}] 0.002374285 0.004919129
+           se       lower     upper psi_transformed lower_transformed
+1: 0.05093973 -0.09492091 0.1047592     0.004919129       -0.09492091
    upper_transformed
-1:         0.1025527</code></pre>
+1:         0.1047592</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">estimates &lt;-<span class="st"> </span>tmle_fit<span class="op">$</span>summary<span class="op">$</span>psi_transformed
 <span class="kw">print</span>(estimates)</code></pre>
-<pre><code>[1] 0.003045927</code></pre>
+<pre><code>[1] 0.004919129</code></pre>
 </div>
 </div>
 <div id="tmle3-components" class="section level2">
@@ -434,17 +435,17 @@ the <code>learner_list</code>) above.</p>
 estimates for each observation:</p>
 <pre class="sourceCode r"><code class="sourceCode r">initial_likelihood<span class="op">$</span><span class="kw">get_likelihoods</span>(tmle_task)</code></pre>
 <pre><code>                 W         A          Y
-   1: 0.0002129925 0.2486322 -0.6658931
-   2: 0.0002129925 0.2536795 -0.6370743
-   3: 0.0002129925 0.2569725 -0.6240505
-   4: 0.0002129925 0.2724880 -0.6024446
-   5: 0.0002129925 0.2529103 -0.5421270
+   1: 0.0002129925 0.2478116 -0.6636675
+   2: 0.0002129925 0.2546811 -0.6366056
+   3: 0.0002129925 0.2591630 -0.6243758
+   4: 0.0002129925 0.2802803 -0.6040870
+   5: 0.0002129925 0.2536342 -0.5474464
   ---                                  
-4691: 0.0002129925 0.1329209 -0.4569311
-4692: 0.0002129925 0.1264925 -0.4769967
-4693: 0.0002129925 0.1266721 -0.5671240
-4694: 0.0002129925 0.1626099 -0.8324243
-4695: 0.0002129925 0.1292518 -0.5390235</code></pre>
+4691: 0.0002129925 0.1349251 -0.4674441
+4692: 0.0002129925 0.1261758 -0.4862865
+4693: 0.0002129925 0.1264204 -0.5709195
+4694: 0.0002129925 0.1753331 -0.8200469
+4695: 0.0002129925 0.1299314 -0.5445321</code></pre>
 <!-- TODO: make helper to get learners out of fit objects -->
 </div>
 <div id="targeted-likelihood-updater" class="section level3">
@@ -483,11 +484,11 @@ manually fit a <code>tmle3</code>:</p>
 <span class="kw">print</span>(tmle_fit_manual)</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
    type                                    param    init_est    tmle_est
-1:  ATE ATE[Y_{A=Nutrition + WSH}-Y_{A=Control}] 0.002578118 0.008899332
-           se      lower    upper psi_transformed lower_transformed
-1: 0.05048901 -0.0900573 0.107856     0.008899332        -0.0900573
+1:  ATE ATE[Y_{A=Nutrition + WSH}-Y_{A=Control}] 0.002420953 0.005688114
+           se       lower     upper psi_transformed lower_transformed
+1: 0.05066608 -0.09361558 0.1049918     0.005688114       -0.09361558
    upper_transformed
-1:          0.107856</code></pre>
+1:         0.1049918</code></pre>
 <p>The result is equivalent to fitting using the <code>tmle3</code> function as above.</p>
 </div>
 </div>
@@ -553,36 +554,101 @@ tmle_fit_multiparam &lt;-<span class="st"> </span><span class="kw">fit_tmle3</sp
 <span class="kw">print</span>(tmle_fit_multiparam)</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
    type                                       param     init_est     tmle_est
-1:  TSM                            E[Y_{A=Control}] -0.596066376 -0.625920187
-2:  TSM                        E[Y_{A=Handwashing}] -0.609324118 -0.637943228
-3:  TSM                          E[Y_{A=Nutrition}] -0.604589056 -0.622058718
-4:  TSM                    E[Y_{A=Nutrition + WSH}] -0.593488258 -0.617068646
-5:  TSM                         E[Y_{A=Sanitation}] -0.589076043 -0.579542375
-6:  TSM                                E[Y_{A=WSH}] -0.526929513 -0.442918895
-7:  TSM                              E[Y_{A=Water}] -0.576738152 -0.532529747
-8:  ATE E[Y_{A=Nutrition + WSH}] - E[Y_{A=Control}]  0.002578118  0.008851541
-           se       lower      upper psi_transformed lower_transformed
-1: 0.02988362 -0.68449100 -0.5673494    -0.625920187       -0.68449100
-2: 0.04190417 -0.72007389 -0.5558126    -0.637943228       -0.72007389
-3: 0.04227115 -0.70490864 -0.5392088    -0.622058718       -0.70490864
-4: 0.04082359 -0.69708142 -0.5370559    -0.617068646       -0.69708142
-5: 0.04205307 -0.66196488 -0.4971199    -0.579542375       -0.66196488
-6: 0.04469403 -0.53051759 -0.3553202    -0.442918895       -0.53051759
-7: 0.03867828 -0.60833779 -0.4567217    -0.532529747       -0.60833779
-8: 0.05047128 -0.09007036  0.1077734     0.008851541       -0.09007036
+1:  TSM                            E[Y_{A=Control}] -0.598097569 -0.620355839
+2:  TSM                        E[Y_{A=Handwashing}] -0.610547103 -0.641610265
+3:  TSM                          E[Y_{A=Nutrition}] -0.606100696 -0.622523827
+4:  TSM                    E[Y_{A=Nutrition + WSH}] -0.595676615 -0.614469201
+5:  TSM                         E[Y_{A=Sanitation}] -0.591533375 -0.590238665
+6:  TSM                                E[Y_{A=WSH}] -0.533175373 -0.444067807
+7:  TSM                              E[Y_{A=Water}] -0.579947617 -0.536383461
+8:  ATE E[Y_{A=Nutrition + WSH}] - E[Y_{A=Control}]  0.002420953  0.005886638
+           se      lower      upper psi_transformed lower_transformed
+1: 0.02980701 -0.6787765 -0.5619352    -0.620355839        -0.6787765
+2: 0.04204793 -0.7240227 -0.5591978    -0.641610265        -0.7240227
+3: 0.04253932 -0.7058994 -0.5391483    -0.622523827        -0.7058994
+4: 0.04110326 -0.6950301 -0.5339083    -0.614469201        -0.6950301
+5: 0.04209751 -0.6727483 -0.5077291    -0.590238665        -0.6727483
+6: 0.04483865 -0.5319499 -0.3561857    -0.444067807        -0.5319499
+7: 0.03928547 -0.6133816 -0.4593853    -0.536383461        -0.6133816
+8: 0.05066116 -0.0934074  0.1051807     0.005886638        -0.0934074
    upper_transformed
-1:        -0.5673494
-2:        -0.5558126
-3:        -0.5392088
-4:        -0.5370559
-5:        -0.4971199
-6:        -0.3553202
-7:        -0.4567217
-8:         0.1077734</code></pre>
+1:        -0.5619352
+2:        -0.5591978
+3:        -0.5391483
+4:        -0.5339083
+5:        -0.5077291
+6:        -0.3561857
+7:        -0.4593853
+8:         0.1051807</code></pre>
 </div>
+</div>
+<div id="exercise-1" class="section level2">
+<h2><span class="header-section-number">3.5</span> Exercise</h2>
+<p>We’ll use data from the Collaborative Perinatal Project (CPP), available in the
+<code>sl3</code> package. To simplify this example, we define a binary intervention
+variable, <code>parity01</code> – an indicator of having one or more children before the
+current child and a binary outcome, <code>haz01</code> – an indicator of having an above
+average height for age.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load the data set</span>
+<span class="kw">data</span>(cpp)
+cpp &lt;-<span class="st"> </span>cpp[<span class="op">!</span><span class="kw">is.na</span>(cpp[, <span class="st">&quot;haz&quot;</span>]), ]
+cpp<span class="op">$</span>parity01 &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(cpp<span class="op">$</span>parity <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)
+cpp[<span class="kw">is.na</span>(cpp)] &lt;-<span class="st"> </span><span class="dv">0</span>
+cpp<span class="op">$</span>haz01 &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(cpp<span class="op">$</span>haz <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</code></pre>
+<p>We’re interested in using this simplified data to estimate an Average Treatment
+Effect (ATE):</p>
+<p><span class="math display">\[\Psi(P_0) = E_0(E_0[Y|A=1,W]-E_0[Y|A=0,W])\]</span></p>
+<!-- The purely statistical (noncausal) parameter can be interpreted as the average
+of the difference in means across the strata for $W$, and only requires the
+positivity assumption, that the conditional treatment assignment probabilities
+are positive for each possible $w:P_0(A=1|W =w)>0$ and $P_0(A=0|W =w)>0$ for
+each possible $w$.
+
+To interpret this parameter as causal, specifically the causal risk difference
+$E_0Y_1-E_0Y_0$, then we would also need to make the randomization assumption
+stating that $A$ is independent of the counterfactuals $(Y_0,Y_1)$ within strata
+of $W$. This assumption might have been included in the original SCM
+$\mathcal{M}^F$, but, if one knows there are unmeasured confounders, then the
+model $\mathcal{M}^{F\*}$ would be more restrictive by enforcing this ``known to
+be wrong'' randomization assumption. Still, this assumption does not change the
+statistical model $\mathcal{M}$, and as a consequence, it does not affect the
+estimation problem either. Thus, the theorem's that establish desirable
+properties of the TMLE, still hold even when this non-testable randomization
+assumption is violated.
+
+We proceed with implementing a targeted minimum loss-based estimator (TMLE),
+an efficient substitution estimator which is not only asymptotically consistent,
+asymptotically normally distributed, and asymptotically efficient, but also
+tailored to have robust finite sample performance. -->
+<ol style="list-style-type: decimal">
+<li>Define the variable roles <span class="math inline">\((W,A,Y)\)</span> by creating a list of these nodes.
+Include the following baseline covariates in <span class="math inline">\(W\)</span>: <code>apgar1</code>, <code>apgar5</code>,
+<code>gagebrth</code>, <code>mage</code>, <code>meducyrs</code>, <code>sexn</code>. Both <span class="math inline">\(A\)</span> and <span class="math inline">\(Y\)</span> are specified above.</li>
+<li>Implement a <code>tmle3_Spec</code> object that bundles a set of components into a
+<em>specification</em>. We are interested in specifying the ATE, for which we use
+<code>tmle_ATE()</code>.</li>
+<li>Define <code>sl3</code> base learners to estimate <span class="math inline">\(Q = E(Y|A,Y)\)</span> and <span class="math inline">\(g=P(A|W)\)</span>.</li>
+<li>Define metalearners appropriate for data types.</li>
+<li>Define a Super Learner for estimating <span class="math inline">\(Q\)</span> and another for estimating <span class="math inline">\(g\)</span>.</li>
+<li>Create a list of the two Super Learners defined in Step 5 and call this
+object. The list names should be <code>A</code> (defining the Super Learner for
+estimating <span class="math inline">\(g\)</span>) and <code>Y</code> (defining the Super Learner for estimating <span class="math inline">\(Q\)</span>).</li>
+<li>Fit the tmle with the <code>tmle3</code> function. At a minimum, this function will
+requires specification of (1) the <code>tmle3_Spec</code>, which we defined in Step 2; (2)
+the data; (3) the list of nodes, which defined the varible roles in Step 1; and</li>
+</ol>
+<ol start="4" style="list-style-type: decimal">
+<li>the list of Super Learners for estimating <span class="math inline">\(g\)</span> and <span class="math inline">\(Q\)</span>, which we defined in
+Step 6. Note: Like before, you will need to make a data copy to deal with
+<code>data.table</code> weirdness (<code>cpp2 &lt;- data.table::copy(cpp)</code>) and use <code>cpp2</code> to fit
+the tmle.</li>
+</ol>
+<ol start="8" style="list-style-type: decimal">
+<li>Interpret the <code>tmle3</code> fit both causally and statistically.</li>
+</ol>
 </div>
 <div id="summary" class="section level2">
-<h2><span class="header-section-number">3.5</span> Summary</h2>
+<h2><span class="header-section-number">3.6</span> Summary</h2>
 <p><code>tmle3</code> is a general purpose framework for generating TML estimates. The
 easiest way to use it is to use a predefined spec, allowing you to just fill in
 the blanks for the data, variable roles, and <code>sl3</code> learners. However, digging
