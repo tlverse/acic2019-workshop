@@ -211,10 +211,17 @@ teaching methodology.
 * [pre-workshop survey](https://forms.gle/u6iZHYjd81RBwQVv7)
 * [post-workshop survey]()
 
-**Etherpad**
-Blah blah etherpad.
 
-* [etherpad](https://etherpad.net/p/acic2019-tlverse)
+**Etherpad**
+We will use this Etherpad for chatting, taking notes, and sharing URLs and bits
+of code.
+
+* [https://etherpad.net/p/acic2019-tlverse](https://etherpad.net/p/acic2019-tlverse)
+
+**Code**
+`R` script files for each section of the workshop are available via the GitHub
+repository for the short course. See
+https://github.com/tlverse/acic2019-workshop/tree/master/handbook/R
 
 ## Setup instructions
 
