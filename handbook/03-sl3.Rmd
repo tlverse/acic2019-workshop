@@ -257,7 +257,7 @@ plot(dt, color = FALSE, height = "300px")
 ```
 Now we can Super Learn with this fancy base learner stack.
 
-```{r sl_fancy}
+```{r sl_fancy, eval=FALSE}
 sl_fancy <- Lrnr_sl$new(learners = fancy_stack, metalearner = metalearner)
 sl_fancy_fit <- sl_fancy$train(washb_task)
 sl_preds <- sl_fancy_fit$predict()
@@ -311,7 +311,7 @@ In the etherpad, submit your group's answers to the following questions.
 2. What was the cross validated risk of the continuous super learner?
 3. Did your group face any challenges?
 
-```{r, ex-setup}
+```{r ex-setup}
 # load the data set
 db_data <-
   url("https://raw.githubusercontent.com/benkeser/sllecture/master/chspred.csv")
