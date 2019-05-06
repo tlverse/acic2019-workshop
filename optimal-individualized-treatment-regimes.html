@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Optimal Individualized Treatment Regimes | The Hitchhiker’s Guide to the tlverse</title>
+  <title>Chapter 4 Optimal Individualized Treatment Regimes | The tlverse Software Ecosystem for Causal Inference</title>
   <meta name="description" content="An open-source and fully-reproducible electronic set of teaching materials accompanying a full-day short-course on applying the Targeted Learning methodology in practice using the tlverse software ecosystem." />
   <meta name="generator" content="bookdown  and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Optimal Individualized Treatment Regimes | The Hitchhiker’s Guide to the tlverse" />
+  <meta property="og:title" content="Chapter 4 Optimal Individualized Treatment Regimes | The tlverse Software Ecosystem for Causal Inference" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://tlverse.org/acic2019-workshop/" />
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="tlverse/acic2019-workshop" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Optimal Individualized Treatment Regimes | The Hitchhiker’s Guide to the tlverse" />
+  <meta name="twitter:title" content="Chapter 4 Optimal Individualized Treatment Regimes | The tlverse Software Ecosystem for Causal Inference" />
   
   <meta name="twitter:description" content="An open-source and fully-reproducible electronic set of teaching materials accompanying a full-day short-course on applying the Targeted Learning methodology in practice using the tlverse software ecosystem." />
   
@@ -145,6 +145,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#ivana-malenica"><i class="fa fa-check"></i>Ivana Malenica</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#rachael-phillips"><i class="fa fa-check"></i>Rachael Phillips</a></li>
 </ul></li>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#important-links"><i class="fa fa-check"></i><b>0.1</b> Important links</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#setup-instructions"><i class="fa fa-check"></i><b>0.2</b> Setup instructions</a><ul>
+<li class="chapter" data-level="0.2.1" data-path="index.html"><a href="index.html#r-and-rstudio"><i class="fa fa-check"></i><b>0.2.1</b> R and RStudio</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i>Motivation</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Welcome to the <code>tlverse</code></a><ul>
@@ -258,7 +262,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Hitchhiker’s Guide to the <code>tlverse</code></a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The <code>tlverse</code> Software Ecosystem for Causal Inference</a>
           </h1>
         </div>
 
@@ -727,10 +731,10 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est  tmle_est       se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.4892972 0.5864695 0.024578 0.5382975 0.6346415
+   type         param  init_est  tmle_est         se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.4947895 0.5719898 0.02547084 0.5220678 0.6219117
    psi_transformed lower_transformed upper_transformed
-1:       0.5864695         0.5382975         0.6346415</code></pre>
+1:       0.5719898         0.5220678         0.6219117</code></pre>
 <p>We can see that the estimate of <span class="math inline">\(psi_0\)</span> is <span class="math inline">\(0.58\)</span>, and that the confidence
 interval covers our true mean under the true optimal individualized treatment.</p>
 </div>
@@ -848,10 +852,10 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, <span class="dt">data =</span> washb_data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param   init_est   tmle_est         se      lower      upper
-1:  TSM E[Y_{A=NULL}] -0.5583834 -0.4824834 0.04319349 -0.5671411 -0.3978257
+   type         param   init_est   tmle_est         se     lower      upper
+1:  TSM E[Y_{A=NULL}] -0.5608609 -0.4963205 0.04295714 -0.580515 -0.4121261
    psi_transformed lower_transformed upper_transformed
-1:      -0.4824834        -0.5671411        -0.3978257</code></pre>
+1:      -0.4963205         -0.580515        -0.4121261</code></pre>
 
 </div>
 </div>

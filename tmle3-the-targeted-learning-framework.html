@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 tmle3 – The Targeted Learning Framework | The Hitchhiker’s Guide to the tlverse</title>
+  <title>Chapter 3 tmle3 – The Targeted Learning Framework | The tlverse Software Ecosystem for Causal Inference</title>
   <meta name="description" content="An open-source and fully-reproducible electronic set of teaching materials accompanying a full-day short-course on applying the Targeted Learning methodology in practice using the tlverse software ecosystem." />
   <meta name="generator" content="bookdown  and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 tmle3 – The Targeted Learning Framework | The Hitchhiker’s Guide to the tlverse" />
+  <meta property="og:title" content="Chapter 3 tmle3 – The Targeted Learning Framework | The tlverse Software Ecosystem for Causal Inference" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://tlverse.org/acic2019-workshop/" />
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="tlverse/acic2019-workshop" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 tmle3 – The Targeted Learning Framework | The Hitchhiker’s Guide to the tlverse" />
+  <meta name="twitter:title" content="Chapter 3 tmle3 – The Targeted Learning Framework | The tlverse Software Ecosystem for Causal Inference" />
   
   <meta name="twitter:description" content="An open-source and fully-reproducible electronic set of teaching materials accompanying a full-day short-course on applying the Targeted Learning methodology in practice using the tlverse software ecosystem." />
   
@@ -145,6 +145,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#ivana-malenica"><i class="fa fa-check"></i>Ivana Malenica</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#rachael-phillips"><i class="fa fa-check"></i>Rachael Phillips</a></li>
 </ul></li>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#important-links"><i class="fa fa-check"></i><b>0.1</b> Important links</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#setup-instructions"><i class="fa fa-check"></i><b>0.2</b> Setup instructions</a><ul>
+<li class="chapter" data-level="0.2.1" data-path="index.html"><a href="index.html#r-and-rstudio"><i class="fa fa-check"></i><b>0.2.1</b> R and RStudio</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i>Motivation</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Welcome to the <code>tlverse</code></a><ul>
@@ -258,7 +262,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Hitchhiker’s Guide to the <code>tlverse</code></a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The <code>tlverse</code> Software Ecosystem for Causal Inference</a>
           </h1>
         </div>
 
@@ -372,15 +376,15 @@ learner_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span cl
 can extra results from the summary by indexing into it:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(tmle_fit)</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type                                    param   init_est   tmle_est
-1:  ATE ATE[Y_{A=Nutrition + WSH}-Y_{A=Control}] 0.00248149 0.01227672
-           se       lower     upper psi_transformed lower_transformed
-1: 0.05061045 -0.08691793 0.1114714      0.01227672       -0.08691793
+   type                                    param    init_est     tmle_est
+1:  ATE ATE[Y_{A=Nutrition + WSH}-Y_{A=Control}] 0.002317169 -0.004776934
+           se      lower      upper psi_transformed lower_transformed
+1: 0.05064013 -0.1040298 0.09447589    -0.004776934        -0.1040298
    upper_transformed
-1:         0.1114714</code></pre>
+1:        0.09447589</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">estimates &lt;-<span class="st"> </span>tmle_fit<span class="op">$</span>summary<span class="op">$</span>psi_transformed
 <span class="kw">print</span>(estimates)</code></pre>
-<pre><code>[1] 0.01227672</code></pre>
+<pre><code>[1] -0.004776934</code></pre>
 </div>
 </div>
 <div id="tmle3-components" class="section level2">

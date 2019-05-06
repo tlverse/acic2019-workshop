@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Modern Super (Machine) Learning with sl3 | The Hitchhiker’s Guide to the tlverse</title>
+  <title>Chapter 2 Modern Super (Machine) Learning with sl3 | The tlverse Software Ecosystem for Causal Inference</title>
   <meta name="description" content="An open-source and fully-reproducible electronic set of teaching materials accompanying a full-day short-course on applying the Targeted Learning methodology in practice using the tlverse software ecosystem." />
   <meta name="generator" content="bookdown  and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Modern Super (Machine) Learning with sl3 | The Hitchhiker’s Guide to the tlverse" />
+  <meta property="og:title" content="Chapter 2 Modern Super (Machine) Learning with sl3 | The tlverse Software Ecosystem for Causal Inference" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://tlverse.org/acic2019-workshop/" />
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="tlverse/acic2019-workshop" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Modern Super (Machine) Learning with sl3 | The Hitchhiker’s Guide to the tlverse" />
+  <meta name="twitter:title" content="Chapter 2 Modern Super (Machine) Learning with sl3 | The tlverse Software Ecosystem for Causal Inference" />
   
   <meta name="twitter:description" content="An open-source and fully-reproducible electronic set of teaching materials accompanying a full-day short-course on applying the Targeted Learning methodology in practice using the tlverse software ecosystem." />
   
@@ -145,6 +145,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#ivana-malenica"><i class="fa fa-check"></i>Ivana Malenica</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#rachael-phillips"><i class="fa fa-check"></i>Rachael Phillips</a></li>
 </ul></li>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#important-links"><i class="fa fa-check"></i><b>0.1</b> Important links</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#setup-instructions"><i class="fa fa-check"></i><b>0.2</b> Setup instructions</a><ul>
+<li class="chapter" data-level="0.2.1" data-path="index.html"><a href="index.html#r-and-rstudio"><i class="fa fa-check"></i><b>0.2.1</b> R and RStudio</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i>Motivation</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Welcome to the <code>tlverse</code></a><ul>
@@ -258,7 +262,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Hitchhiker’s Guide to the <code>tlverse</code></a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The <code>tlverse</code> Software Ecosystem for Causal Inference</a>
           </h1>
         </div>
 
@@ -613,7 +617,7 @@ with the lowest cross-validated risk.</p>
 values, and we can also obtain a summary of the results.</p>
 <pre class="sourceCode r"><code class="sourceCode r">sl_preds &lt;-<span class="st"> </span>sl_fit<span class="op">$</span><span class="kw">predict</span>()
 <span class="kw">head</span>(sl_preds)</code></pre>
-<pre><code>[1] -0.4997494 -0.8964642 -0.7562438 -0.7932772 -0.6486918 -0.7166409</code></pre>
+<pre><code>[1] -0.5208810 -0.8731371 -0.7986578 -0.8396575 -0.6666933 -0.6968535</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">sl_fit<span class="op">$</span><span class="kw">print</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">kable</span>(<span class="dt">format =</span> <span class="st">&quot;markdown&quot;</span>, <span class="dt">digits =</span> <span class="dv">3</span>)</code></pre>
 <pre><code>[1] &quot;SuperLearner:&quot;
@@ -624,23 +628,23 @@ List of 4
  $ : chr &quot;Lrnr_glmnet_NULL_deviance_10_1_100_TRUE&quot;
 [1] &quot;Lrnr_nnls&quot;
                                      lrnrs   weights
-1:                           Lrnr_glm_TRUE 0.1273015
+1:                           Lrnr_glm_TRUE 0.1538435
 2:                               Lrnr_mean 0.0000000
-3:                    Lrnr_ranger_500_TRUE 0.4577358
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.4217219
+3:                    Lrnr_ranger_500_TRUE 0.5004867
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.3543011
 [1] &quot;Cross-validated risk (MSE, squared error loss):&quot;
                                    learner coefficients mean_risk    SE_risk
 1:                           Lrnr_glm_TRUE           NA  1.018612 0.02380402
 2:                               Lrnr_mean           NA  1.065282 0.02502664
-3:                    Lrnr_ranger_500_TRUE           NA  1.013789 0.02349505
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.012260 0.02359234
-5:                            SuperLearner           NA  1.007216 0.02343847
+3:                    Lrnr_ranger_500_TRUE           NA  1.011750 0.02341316
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.012579 0.02359874
+5:                            SuperLearner           NA  1.006175 0.02339232
       fold_SD fold_min_risk fold_max_risk
 1: 0.07799191     0.8956048      1.134940
 2: 0.09191791     0.9264292      1.196647
-3: 0.08491904     0.8708621      1.143583
-4: 0.07926963     0.8825757      1.130114
-5: 0.08164479     0.8712370      1.131007</code></pre>
+3: 0.08332562     0.8697385      1.147091
+4: 0.07922370     0.8825757      1.130066
+5: 0.08104700     0.8702910      1.133035</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -675,16 +679,16 @@ List of 4
 <tr class="odd">
 <td align="left">Lrnr_ranger_500_TRUE</td>
 <td align="right">NA</td>
-<td align="right">1.014</td>
+<td align="right">1.012</td>
 <td align="right">0.023</td>
-<td align="right">0.085</td>
-<td align="right">0.871</td>
-<td align="right">1.144</td>
+<td align="right">0.083</td>
+<td align="right">0.870</td>
+<td align="right">1.147</td>
 </tr>
 <tr class="even">
 <td align="left">Lrnr_glmnet_NULL_deviance_10_1_100_TRUE</td>
 <td align="right">NA</td>
-<td align="right">1.012</td>
+<td align="right">1.013</td>
 <td align="right">0.024</td>
 <td align="right">0.079</td>
 <td align="right">0.883</td>
@@ -693,11 +697,11 @@ List of 4
 <tr class="odd">
 <td align="left">SuperLearner</td>
 <td align="right">NA</td>
-<td align="right">1.007</td>
+<td align="right">1.006</td>
 <td align="right">0.023</td>
-<td align="right">0.082</td>
-<td align="right">0.871</td>
-<td align="right">1.131</td>
+<td align="right">0.081</td>
+<td align="right">0.870</td>
+<td align="right">1.133</td>
 </tr>
 </tbody>
 </table>
@@ -743,8 +747,8 @@ them as base learners in our super learner.</p>
 <pre class="sourceCode r"><code class="sourceCode r">fancy_stack &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Stack, cor_pipeline, rf_pipeline, new_stack)
 dt &lt;-<span class="st"> </span><span class="kw">delayed_learner_train</span>(fancy_stack, washb_task)
 <span class="kw">plot</span>(dt, <span class="dt">color =</span> <span class="ot">FALSE</span>, <span class="dt">height =</span> <span class="st">&quot;300px&quot;</span>)</code></pre>
-<p><div id="htmlwidget-6b958620ba7beeb6abd3" style="width:100%;height:300px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6b958620ba7beeb6abd3">{"x":{"nodes":{"id":["be1b754c-6fcd-11e9-9a0d-42010a140011","be1b5fbc-6fcd-11e9-9a0d-42010a140011","be18fdc6-6fcd-11e9-9a0d-42010a140011","be18e7f0-6fcd-11e9-9a0d-42010a140011","be177f1e-6fcd-11e9-9a0d-42010a140011","be18b97e-6fcd-11e9-9a0d-42010a140011","be17ae08-6fcd-11e9-9a0d-42010a140011","be189674-6fcd-11e9-9a0d-42010a140011","be17d054-6fcd-11e9-9a0d-42010a140011","be17ebc0-6fcd-11e9-9a0d-42010a140011","be180470-6fcd-11e9-9a0d-42010a140011","be181c12-6fcd-11e9-9a0d-42010a140011","be1833b4-6fcd-11e9-9a0d-42010a140011","be184aca-6fcd-11e9-9a0d-42010a140011","be186276-6fcd-11e9-9a0d-42010a140011","be187b26-6fcd-11e9-9a0d-42010a140011","be1a6530-6fcd-11e9-9a0d-42010a140011","be1a4e10-6fcd-11e9-9a0d-42010a140011","be191b8a-6fcd-11e9-9a0d-42010a140011","be1a1da0-6fcd-11e9-9a0d-42010a140011","be1930b6-6fcd-11e9-9a0d-42010a140011","be1a0504-6fcd-11e9-9a0d-42010a140011","be194966-6fcd-11e9-9a0d-42010a140011","be196086-6fcd-11e9-9a0d-42010a140011","be197896-6fcd-11e9-9a0d-42010a140011","be198f70-6fcd-11e9-9a0d-42010a140011","be19a6a4-6fcd-11e9-9a0d-42010a140011","be19c0b2-6fcd-11e9-9a0d-42010a140011","be19d796-6fcd-11e9-9a0d-42010a140011","be19eeb6-6fcd-11e9-9a0d-42010a140011","be1b4a22-6fcd-11e9-9a0d-42010a140011","be1b324e-6fcd-11e9-9a0d-42010a140011","be1a809c-6fcd-11e9-9a0d-42010a140011","be1a95dc-6fcd-11e9-9a0d-42010a140011","be1aac02-6fcd-11e9-9a0d-42010a140011","be1ac142-6fcd-11e9-9a0d-42010a140011","be1ad844-6fcd-11e9-9a0d-42010a140011","be1af0b8-6fcd-11e9-9a0d-42010a140011","be1b07b0-6fcd-11e9-9a0d-42010a140011","be1b1d68-6fcd-11e9-9a0d-42010a140011"],"label":["Stack","bundle","Pipeline(Lrnr_pkg_SuperLearner_screener_screen.corP->Stack)","bundle","Lrnr_pkg_SuperLearner_screener_screen.corP","Stack","chain","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Lrnr_ranger_1000_TRUE","Lrnr_ranger_100_TRUE","Lrnr_pkg_SuperLearner_SL.gam","Lrnr_pkg_SuperLearner_SL.bayesglm","Pipeline(Lrnr_pkg_SuperLearner_screener_screen.randomForest->Stack)","bundle","Lrnr_pkg_SuperLearner_screener_screen.randomForest","Stack","chain","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Lrnr_ranger_1000_TRUE","Lrnr_ranger_100_TRUE","Lrnr_pkg_SuperLearner_SL.gam","Lrnr_pkg_SuperLearner_SL.bayesglm","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Lrnr_ranger_1000_TRUE","Lrnr_ranger_100_TRUE","Lrnr_pkg_SuperLearner_SL.gam","Lrnr_pkg_SuperLearner_SL.bayesglm"],"level":[1,2,3,4,9,5,8,6,7,7,7,7,7,7,7,7,3,4,9,5,8,6,7,7,7,7,7,7,7,7,3,4,5,5,5,5,5,5,5,5],"sequential":[true,true,true,true,false,true,true,true,false,false,false,false,false,false,false,false,true,true,false,true,true,true,false,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,false],"state":["waiting","waiting","waiting","waiting","ready","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","ready","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","ready","ready","ready","ready","ready","ready","ready","ready"],"group":["none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none"]},"edges":{"from":["be177f1e-6fcd-11e9-9a0d-42010a140011","be177f1e-6fcd-11e9-9a0d-42010a140011","be17ae08-6fcd-11e9-9a0d-42010a140011","be17ae08-6fcd-11e9-9a0d-42010a140011","be17d054-6fcd-11e9-9a0d-42010a140011","be17ae08-6fcd-11e9-9a0d-42010a140011","be17ebc0-6fcd-11e9-9a0d-42010a140011","be17ae08-6fcd-11e9-9a0d-42010a140011","be180470-6fcd-11e9-9a0d-42010a140011","be17ae08-6fcd-11e9-9a0d-42010a140011","be181c12-6fcd-11e9-9a0d-42010a140011","be17ae08-6fcd-11e9-9a0d-42010a140011","be1833b4-6fcd-11e9-9a0d-42010a140011","be17ae08-6fcd-11e9-9a0d-42010a140011","be184aca-6fcd-11e9-9a0d-42010a140011","be17ae08-6fcd-11e9-9a0d-42010a140011","be186276-6fcd-11e9-9a0d-42010a140011","be17ae08-6fcd-11e9-9a0d-42010a140011","be187b26-6fcd-11e9-9a0d-42010a140011","be189674-6fcd-11e9-9a0d-42010a140011","be18b97e-6fcd-11e9-9a0d-42010a140011","be18e7f0-6fcd-11e9-9a0d-42010a140011","be18fdc6-6fcd-11e9-9a0d-42010a140011","be191b8a-6fcd-11e9-9a0d-42010a140011","be191b8a-6fcd-11e9-9a0d-42010a140011","be1930b6-6fcd-11e9-9a0d-42010a140011","be1930b6-6fcd-11e9-9a0d-42010a140011","be194966-6fcd-11e9-9a0d-42010a140011","be1930b6-6fcd-11e9-9a0d-42010a140011","be196086-6fcd-11e9-9a0d-42010a140011","be1930b6-6fcd-11e9-9a0d-42010a140011","be197896-6fcd-11e9-9a0d-42010a140011","be1930b6-6fcd-11e9-9a0d-42010a140011","be198f70-6fcd-11e9-9a0d-42010a140011","be1930b6-6fcd-11e9-9a0d-42010a140011","be19a6a4-6fcd-11e9-9a0d-42010a140011","be1930b6-6fcd-11e9-9a0d-42010a140011","be19c0b2-6fcd-11e9-9a0d-42010a140011","be1930b6-6fcd-11e9-9a0d-42010a140011","be19d796-6fcd-11e9-9a0d-42010a140011","be1930b6-6fcd-11e9-9a0d-42010a140011","be19eeb6-6fcd-11e9-9a0d-42010a140011","be1a0504-6fcd-11e9-9a0d-42010a140011","be1a1da0-6fcd-11e9-9a0d-42010a140011","be1a4e10-6fcd-11e9-9a0d-42010a140011","be1a6530-6fcd-11e9-9a0d-42010a140011","be1a809c-6fcd-11e9-9a0d-42010a140011","be1a95dc-6fcd-11e9-9a0d-42010a140011","be1aac02-6fcd-11e9-9a0d-42010a140011","be1ac142-6fcd-11e9-9a0d-42010a140011","be1ad844-6fcd-11e9-9a0d-42010a140011","be1af0b8-6fcd-11e9-9a0d-42010a140011","be1b07b0-6fcd-11e9-9a0d-42010a140011","be1b1d68-6fcd-11e9-9a0d-42010a140011","be1b324e-6fcd-11e9-9a0d-42010a140011","be1b4a22-6fcd-11e9-9a0d-42010a140011","be1b5fbc-6fcd-11e9-9a0d-42010a140011"],"to":["be18e7f0-6fcd-11e9-9a0d-42010a140011","be17ae08-6fcd-11e9-9a0d-42010a140011","be18b97e-6fcd-11e9-9a0d-42010a140011","be17d054-6fcd-11e9-9a0d-42010a140011","be189674-6fcd-11e9-9a0d-42010a140011","be17ebc0-6fcd-11e9-9a0d-42010a140011","be189674-6fcd-11e9-9a0d-42010a140011","be180470-6fcd-11e9-9a0d-42010a140011","be189674-6fcd-11e9-9a0d-42010a140011","be181c12-6fcd-11e9-9a0d-42010a140011","be189674-6fcd-11e9-9a0d-42010a140011","be1833b4-6fcd-11e9-9a0d-42010a140011","be189674-6fcd-11e9-9a0d-42010a140011","be184aca-6fcd-11e9-9a0d-42010a140011","be189674-6fcd-11e9-9a0d-42010a140011","be186276-6fcd-11e9-9a0d-42010a140011","be189674-6fcd-11e9-9a0d-42010a140011","be187b26-6fcd-11e9-9a0d-42010a140011","be189674-6fcd-11e9-9a0d-42010a140011","be18b97e-6fcd-11e9-9a0d-42010a140011","be18e7f0-6fcd-11e9-9a0d-42010a140011","be18fdc6-6fcd-11e9-9a0d-42010a140011","be1b5fbc-6fcd-11e9-9a0d-42010a140011","be1a4e10-6fcd-11e9-9a0d-42010a140011","be1930b6-6fcd-11e9-9a0d-42010a140011","be1a1da0-6fcd-11e9-9a0d-42010a140011","be194966-6fcd-11e9-9a0d-42010a140011","be1a0504-6fcd-11e9-9a0d-42010a140011","be196086-6fcd-11e9-9a0d-42010a140011","be1a0504-6fcd-11e9-9a0d-42010a140011","be197896-6fcd-11e9-9a0d-42010a140011","be1a0504-6fcd-11e9-9a0d-42010a140011","be198f70-6fcd-11e9-9a0d-42010a140011","be1a0504-6fcd-11e9-9a0d-42010a140011","be19a6a4-6fcd-11e9-9a0d-42010a140011","be1a0504-6fcd-11e9-9a0d-42010a140011","be19c0b2-6fcd-11e9-9a0d-42010a140011","be1a0504-6fcd-11e9-9a0d-42010a140011","be19d796-6fcd-11e9-9a0d-42010a140011","be1a0504-6fcd-11e9-9a0d-42010a140011","be19eeb6-6fcd-11e9-9a0d-42010a140011","be1a0504-6fcd-11e9-9a0d-42010a140011","be1a1da0-6fcd-11e9-9a0d-42010a140011","be1a4e10-6fcd-11e9-9a0d-42010a140011","be1a6530-6fcd-11e9-9a0d-42010a140011","be1b5fbc-6fcd-11e9-9a0d-42010a140011","be1b324e-6fcd-11e9-9a0d-42010a140011","be1b324e-6fcd-11e9-9a0d-42010a140011","be1b324e-6fcd-11e9-9a0d-42010a140011","be1b324e-6fcd-11e9-9a0d-42010a140011","be1b324e-6fcd-11e9-9a0d-42010a140011","be1b324e-6fcd-11e9-9a0d-42010a140011","be1b324e-6fcd-11e9-9a0d-42010a140011","be1b324e-6fcd-11e9-9a0d-42010a140011","be1b4a22-6fcd-11e9-9a0d-42010a140011","be1b5fbc-6fcd-11e9-9a0d-42010a140011","be1b754c-6fcd-11e9-9a0d-42010a140011"],"label":["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":"to"},"layout":{"hierarchical":{"enabled":true,"levelSeparation":500,"nodeSpacing":200,"direction":"RL"}},"groups":{"useDefaultGroups":true,"none":{"color":{"border":"black","background":"white"}}}},"groups":["none"],"width":"100%","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+<p><div id="htmlwidget-1a1a4f9189295480f05f" style="width:100%;height:300px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1a1a4f9189295480f05f">{"x":{"nodes":{"id":["76011bc0-6fd4-11e9-9d1a-42010a14001e","760102d4-6fd4-11e9-9d1a-42010a14001e","75fe02d2-6fd4-11e9-9d1a-42010a14001e","75fde946-6fd4-11e9-9d1a-42010a14001e","75fc8754-6fd4-11e9-9d1a-42010a14001e","75fdb674-6fd4-11e9-9d1a-42010a14001e","75fca2c0-6fd4-11e9-9d1a-42010a14001e","75fd97de-6fd4-11e9-9d1a-42010a14001e","75fcbee0-6fd4-11e9-9d1a-42010a14001e","75fcd8ee-6fd4-11e9-9d1a-42010a14001e","75fcf374-6fd4-11e9-9d1a-42010a14001e","75fd1160-6fd4-11e9-9d1a-42010a14001e","75fd2b5a-6fd4-11e9-9d1a-42010a14001e","75fd45ea-6fd4-11e9-9d1a-42010a14001e","75fd60d4-6fd4-11e9-9d1a-42010a14001e","75fd7a60-6fd4-11e9-9d1a-42010a14001e","75ffc6f8-6fd4-11e9-9d1a-42010a14001e","75ffa204-6fd4-11e9-9d1a-42010a14001e","75fe2456-6fd4-11e9-9d1a-42010a14001e","75ff56fa-6fd4-11e9-9d1a-42010a14001e","75fe3f04-6fd4-11e9-9d1a-42010a14001e","75ff3b84-6fd4-11e9-9d1a-42010a14001e","75fe5ab6-6fd4-11e9-9d1a-42010a14001e","75fe7d8e-6fd4-11e9-9d1a-42010a14001e","75fe995e-6fd4-11e9-9d1a-42010a14001e","75feb344-6fd4-11e9-9d1a-42010a14001e","75fed090-6fd4-11e9-9d1a-42010a14001e","75feeb98-6fd4-11e9-9d1a-42010a14001e","75ff05ec-6fd4-11e9-9d1a-42010a14001e","75ff213a-6fd4-11e9-9d1a-42010a14001e","7600e8b2-6fd4-11e9-9d1a-42010a14001e","7600ccd8-6fd4-11e9-9d1a-42010a14001e","75fff43e-6fd4-11e9-9d1a-42010a14001e","7600109a-6fd4-11e9-9d1a-42010a14001e","76002b0c-6fd4-11e9-9d1a-42010a14001e","76004510-6fd4-11e9-9d1a-42010a14001e","76005db6-6fd4-11e9-9d1a-42010a14001e","76007c38-6fd4-11e9-9d1a-42010a14001e","76009678-6fd4-11e9-9d1a-42010a14001e","7600b3a6-6fd4-11e9-9d1a-42010a14001e"],"label":["Stack","bundle","Pipeline(Lrnr_pkg_SuperLearner_screener_screen.corP->Stack)","bundle","Lrnr_pkg_SuperLearner_screener_screen.corP","Stack","chain","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Lrnr_ranger_1000_TRUE","Lrnr_ranger_100_TRUE","Lrnr_pkg_SuperLearner_SL.gam","Lrnr_pkg_SuperLearner_SL.bayesglm","Pipeline(Lrnr_pkg_SuperLearner_screener_screen.randomForest->Stack)","bundle","Lrnr_pkg_SuperLearner_screener_screen.randomForest","Stack","chain","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Lrnr_ranger_1000_TRUE","Lrnr_ranger_100_TRUE","Lrnr_pkg_SuperLearner_SL.gam","Lrnr_pkg_SuperLearner_SL.bayesglm","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Lrnr_ranger_1000_TRUE","Lrnr_ranger_100_TRUE","Lrnr_pkg_SuperLearner_SL.gam","Lrnr_pkg_SuperLearner_SL.bayesglm"],"level":[1,2,3,4,9,5,8,6,7,7,7,7,7,7,7,7,3,4,9,5,8,6,7,7,7,7,7,7,7,7,3,4,5,5,5,5,5,5,5,5],"sequential":[true,true,true,true,false,true,true,true,false,false,false,false,false,false,false,false,true,true,false,true,true,true,false,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,false],"state":["waiting","waiting","waiting","waiting","ready","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","ready","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","ready","ready","ready","ready","ready","ready","ready","ready"],"group":["none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none"]},"edges":{"from":["75fc8754-6fd4-11e9-9d1a-42010a14001e","75fc8754-6fd4-11e9-9d1a-42010a14001e","75fca2c0-6fd4-11e9-9d1a-42010a14001e","75fca2c0-6fd4-11e9-9d1a-42010a14001e","75fcbee0-6fd4-11e9-9d1a-42010a14001e","75fca2c0-6fd4-11e9-9d1a-42010a14001e","75fcd8ee-6fd4-11e9-9d1a-42010a14001e","75fca2c0-6fd4-11e9-9d1a-42010a14001e","75fcf374-6fd4-11e9-9d1a-42010a14001e","75fca2c0-6fd4-11e9-9d1a-42010a14001e","75fd1160-6fd4-11e9-9d1a-42010a14001e","75fca2c0-6fd4-11e9-9d1a-42010a14001e","75fd2b5a-6fd4-11e9-9d1a-42010a14001e","75fca2c0-6fd4-11e9-9d1a-42010a14001e","75fd45ea-6fd4-11e9-9d1a-42010a14001e","75fca2c0-6fd4-11e9-9d1a-42010a14001e","75fd60d4-6fd4-11e9-9d1a-42010a14001e","75fca2c0-6fd4-11e9-9d1a-42010a14001e","75fd7a60-6fd4-11e9-9d1a-42010a14001e","75fd97de-6fd4-11e9-9d1a-42010a14001e","75fdb674-6fd4-11e9-9d1a-42010a14001e","75fde946-6fd4-11e9-9d1a-42010a14001e","75fe02d2-6fd4-11e9-9d1a-42010a14001e","75fe2456-6fd4-11e9-9d1a-42010a14001e","75fe2456-6fd4-11e9-9d1a-42010a14001e","75fe3f04-6fd4-11e9-9d1a-42010a14001e","75fe3f04-6fd4-11e9-9d1a-42010a14001e","75fe5ab6-6fd4-11e9-9d1a-42010a14001e","75fe3f04-6fd4-11e9-9d1a-42010a14001e","75fe7d8e-6fd4-11e9-9d1a-42010a14001e","75fe3f04-6fd4-11e9-9d1a-42010a14001e","75fe995e-6fd4-11e9-9d1a-42010a14001e","75fe3f04-6fd4-11e9-9d1a-42010a14001e","75feb344-6fd4-11e9-9d1a-42010a14001e","75fe3f04-6fd4-11e9-9d1a-42010a14001e","75fed090-6fd4-11e9-9d1a-42010a14001e","75fe3f04-6fd4-11e9-9d1a-42010a14001e","75feeb98-6fd4-11e9-9d1a-42010a14001e","75fe3f04-6fd4-11e9-9d1a-42010a14001e","75ff05ec-6fd4-11e9-9d1a-42010a14001e","75fe3f04-6fd4-11e9-9d1a-42010a14001e","75ff213a-6fd4-11e9-9d1a-42010a14001e","75ff3b84-6fd4-11e9-9d1a-42010a14001e","75ff56fa-6fd4-11e9-9d1a-42010a14001e","75ffa204-6fd4-11e9-9d1a-42010a14001e","75ffc6f8-6fd4-11e9-9d1a-42010a14001e","75fff43e-6fd4-11e9-9d1a-42010a14001e","7600109a-6fd4-11e9-9d1a-42010a14001e","76002b0c-6fd4-11e9-9d1a-42010a14001e","76004510-6fd4-11e9-9d1a-42010a14001e","76005db6-6fd4-11e9-9d1a-42010a14001e","76007c38-6fd4-11e9-9d1a-42010a14001e","76009678-6fd4-11e9-9d1a-42010a14001e","7600b3a6-6fd4-11e9-9d1a-42010a14001e","7600ccd8-6fd4-11e9-9d1a-42010a14001e","7600e8b2-6fd4-11e9-9d1a-42010a14001e","760102d4-6fd4-11e9-9d1a-42010a14001e"],"to":["75fde946-6fd4-11e9-9d1a-42010a14001e","75fca2c0-6fd4-11e9-9d1a-42010a14001e","75fdb674-6fd4-11e9-9d1a-42010a14001e","75fcbee0-6fd4-11e9-9d1a-42010a14001e","75fd97de-6fd4-11e9-9d1a-42010a14001e","75fcd8ee-6fd4-11e9-9d1a-42010a14001e","75fd97de-6fd4-11e9-9d1a-42010a14001e","75fcf374-6fd4-11e9-9d1a-42010a14001e","75fd97de-6fd4-11e9-9d1a-42010a14001e","75fd1160-6fd4-11e9-9d1a-42010a14001e","75fd97de-6fd4-11e9-9d1a-42010a14001e","75fd2b5a-6fd4-11e9-9d1a-42010a14001e","75fd97de-6fd4-11e9-9d1a-42010a14001e","75fd45ea-6fd4-11e9-9d1a-42010a14001e","75fd97de-6fd4-11e9-9d1a-42010a14001e","75fd60d4-6fd4-11e9-9d1a-42010a14001e","75fd97de-6fd4-11e9-9d1a-42010a14001e","75fd7a60-6fd4-11e9-9d1a-42010a14001e","75fd97de-6fd4-11e9-9d1a-42010a14001e","75fdb674-6fd4-11e9-9d1a-42010a14001e","75fde946-6fd4-11e9-9d1a-42010a14001e","75fe02d2-6fd4-11e9-9d1a-42010a14001e","760102d4-6fd4-11e9-9d1a-42010a14001e","75ffa204-6fd4-11e9-9d1a-42010a14001e","75fe3f04-6fd4-11e9-9d1a-42010a14001e","75ff56fa-6fd4-11e9-9d1a-42010a14001e","75fe5ab6-6fd4-11e9-9d1a-42010a14001e","75ff3b84-6fd4-11e9-9d1a-42010a14001e","75fe7d8e-6fd4-11e9-9d1a-42010a14001e","75ff3b84-6fd4-11e9-9d1a-42010a14001e","75fe995e-6fd4-11e9-9d1a-42010a14001e","75ff3b84-6fd4-11e9-9d1a-42010a14001e","75feb344-6fd4-11e9-9d1a-42010a14001e","75ff3b84-6fd4-11e9-9d1a-42010a14001e","75fed090-6fd4-11e9-9d1a-42010a14001e","75ff3b84-6fd4-11e9-9d1a-42010a14001e","75feeb98-6fd4-11e9-9d1a-42010a14001e","75ff3b84-6fd4-11e9-9d1a-42010a14001e","75ff05ec-6fd4-11e9-9d1a-42010a14001e","75ff3b84-6fd4-11e9-9d1a-42010a14001e","75ff213a-6fd4-11e9-9d1a-42010a14001e","75ff3b84-6fd4-11e9-9d1a-42010a14001e","75ff56fa-6fd4-11e9-9d1a-42010a14001e","75ffa204-6fd4-11e9-9d1a-42010a14001e","75ffc6f8-6fd4-11e9-9d1a-42010a14001e","760102d4-6fd4-11e9-9d1a-42010a14001e","7600ccd8-6fd4-11e9-9d1a-42010a14001e","7600ccd8-6fd4-11e9-9d1a-42010a14001e","7600ccd8-6fd4-11e9-9d1a-42010a14001e","7600ccd8-6fd4-11e9-9d1a-42010a14001e","7600ccd8-6fd4-11e9-9d1a-42010a14001e","7600ccd8-6fd4-11e9-9d1a-42010a14001e","7600ccd8-6fd4-11e9-9d1a-42010a14001e","7600ccd8-6fd4-11e9-9d1a-42010a14001e","7600e8b2-6fd4-11e9-9d1a-42010a14001e","760102d4-6fd4-11e9-9d1a-42010a14001e","76011bc0-6fd4-11e9-9d1a-42010a14001e"],"label":["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":"to"},"layout":{"hierarchical":{"enabled":true,"levelSeparation":500,"nodeSpacing":200,"direction":"RL"}},"groups":{"useDefaultGroups":true,"none":{"color":{"border":"black","background":"white"}}}},"groups":["none"],"width":"100%","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
 Now we can Super Learn with this fancy base learner stack.</p>
 <pre class="sourceCode r"><code class="sourceCode r">sl_fancy &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(<span class="dt">learners =</span> fancy_stack, <span class="dt">metalearner =</span> metalearner)
 sl_fancy_fit &lt;-<span class="st"> </span>sl_fancy<span class="op">$</span><span class="kw">train</span>(washb_task)
