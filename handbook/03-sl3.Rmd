@@ -276,17 +276,19 @@ CVsl %>% kable(format = "markdown", digits = 3)
 
 ### Variable importance
 
-Variable importance can be interesting and informative. Let's explore how it
-works in `sl3`.
+Variable importance can be interesting and informative. The `sl3` `varimp`
+function returns a table with variables listed in decreasing order of
+importance, in which the measure of importance is based on a risk difference
+between the learner fit with a permuted covariate and the learner fit with the
+true covariate, across all covariates.
+
+In this manner, the larger the risk difference, the more important the variable
+is in the prediction.
 
 ```{r varimp}
 washb_varimp <- varimp(sl_fit, loss_squared_error)
 washb_varimp %>% kable(format = "markdown", digits = 3)
 ```
-This function calculates the risk difference between the learner fit with a
-scrambled covariate and the learner fit with the true covariate, across all
-covariates. In this manner, the larger the risk difference the more important
-the variable is in the prediction.
 
 ## Exercise
 ### Predicting myocardial infarction with `sl3`
