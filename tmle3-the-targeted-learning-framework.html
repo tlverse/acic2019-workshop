@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Motivation | The Hitchhiker’s Guide to the tlverse</title>
+  <title>Chapter 3 tmle3 – The Targeted Learning Framework | The Hitchhiker’s Guide to the tlverse</title>
   <meta name="description" content="An open-source and fully-reproducible electronic set of teaching materials accompanying a full-day short-course on applying the Targeted Learning methodology in practice using the tlverse software ecosystem." />
   <meta name="generator" content="bookdown  and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Motivation | The Hitchhiker’s Guide to the tlverse" />
+  <meta property="og:title" content="Chapter 3 tmle3 – The Targeted Learning Framework | The Hitchhiker’s Guide to the tlverse" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://tlverse.org/acic2019-workshop/" />
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="tlverse/acic2019-workshop" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Motivation | The Hitchhiker’s Guide to the tlverse" />
+  <meta name="twitter:title" content="Chapter 3 tmle3 – The Targeted Learning Framework | The Hitchhiker’s Guide to the tlverse" />
   
   <meta name="twitter:description" content="An open-source and fully-reproducible electronic set of teaching materials accompanying a full-day short-course on applying the Targeted Learning methodology in practice using the tlverse software ecosystem." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="img/logos/favicons/favicon.png" type="image/x-icon" />
-<link rel="prev" href="index.html">
-<link rel="next" href="intro.html">
+<link rel="prev" href="modern-super-machine-learning-with-sl3.html">
+<link rel="next" href="optimal-individualized-treatment-regimes.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -266,147 +266,326 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="motivation" class="section level1 unnumbered">
-<h1>Motivation</h1>
-<blockquote>
-<p>“One enemy of robust science is our humanity — our appetite for
-being right, and our tendency to find patterns in noise, to see supporting
-evidence for what we already believe is true, and to ignore the facts that do
-not fit.”</p>
-<p>— <span class="citation">(“Let’s Think About Cognitive Bias” <a href="#ref-naturenews_2015">2015</a>)</span>.</p>
-</blockquote>
-<p>Scientific research is at a unique point in history. The need to improve rigor
-and reproducibility in our field is greater than ever; corroboration moves
-science forward, yet there is a growing alarm about results that cannot be
-reproduced and that report false discoveries <span class="citation">Baker (<a href="#ref-baker2016there">2016</a>)</span>. Consequences of
-not meeting this need will result in further decline in the rate of scientific
-progression, the reputation of the sciences, and the public’s trust in its
-findings <span class="citation">Munafò et al. (<a href="#ref-munafo2017manifesto">2017</a>)</span> <span class="citation">(“How Scientists Fool Themselves – and How They Can Stop” <a href="#ref-naturenews2_2015">2015</a>)</span>.</p>
-<blockquote>
-<p>“The key question we want to answer when seeing the results of any scientific
-study is whether we can trust the data analysis.”</p>
-<p>— <span class="citation">Peng (<a href="#ref-peng2015reproducibility">2015</a>)</span></p>
-</blockquote>
-<p>Unfortunately, at its current state the culture of data analysis and statistics
-actually enables human bias through improper model selection. All hypothesis
-tests and estimators are derived from statistical models, so to obtain valid
-estimates and inference it is critical that statistical model contains the
-process that generated the data. Perhaps treatment was randomized or only
-depended on a small number of baseline covariates; this knowledge should and
-can be incorporated in the model. Alternatively, maybe the data is
-observational, and there is no knowledge about the data-generating process (DGP).
-If this is the case, then the statistical model should contain <em>all</em> data
-distributions. In practice; however, models are not selected based on knowledge
-of the DGP, instead models are often selected based on (1) the p-values they
-yield, (2) their convenience of implementation, and/or (3) an analysts loyalty
-to a particular model. This problem of ``cargo-cult statistics — the
-ritualistic miming of statistics rather than conscientious practice,’’
-<span class="citation">Stark and Saltelli (<a href="#ref-stark2018cargo">2018</a>)</span> allows one to make arbitrary modeling choices, even though
-these choices result in different answers to the same research question. This
-presents a fundamental drive behind the epidemic of false positives that
-scientific research is suffering from <span class="citation">(<span class="citeproc-not-found" data-reference-id="van2014entering"><strong>???</strong></span>)</span>.</p>
-<blockquote>
-<p>“We suggest that the weak statistical understanding is probably due to
-inadequate “statistics lite” education. This approach does not build up
-appropriate mathematical fundamentals and does not provide scientifically
-rigorous introduction into statistics. Hence, students’ knowledge may remain
-imprecise, patchy, and prone to serious misunderstandings. What this approach
-achieves, however, is providing students with false confidence of being able
-to use inferential tools whereas they usually only interpret the p-value
-provided by black box statistical software. While this educational problem
-remains unaddressed, poor statistical practices will prevail regardless of
-what procedures and measures may be favored and/or banned by editorials.&quot;</p>
-<p>— <span class="citation">Szucs and Ioannidis (<a href="#ref-szucs2017null">2017</a>)</span></p>
-</blockquote>
-<p>Our team at The University of California, Berkeley, is uniquely positioned to
-provide such an education. Spearheaded by Professor Mark van der Laan, and
-spreading rapidly by many of his students and colleagues who have greatly
-enriched the field, the aptly named “Targeted Learning” methodology targets the
-scientific question at hand and is counter to the current culture of
-“convenience statistics” which opens the door to biased estimation, misleading
-results, and false discoveries. Targeted Learning restores the fundamentals that
-formalized the field of statistics, such as the that facts that a statistical
-model represents real knowledge about the experiment that generated the data,
-and a target parameter represents what we are seeking to learn from the data as
-a feature of the distribution that generated it <span class="citation">van der Laan and Starmans (<a href="#ref-vdl2014entering">2014</a>)</span>. In this way,
-Targeted Learning defines a truth and establishes a principled standard for
-estimation, thereby inhibiting these all-too-human biases (e.g., hindsight bias,
-confirmation bias, and outcome bias) from infiltrating analysis.</p>
-<blockquote>
-<p>“The key for effective classical [statistical] inference is to have
-well-defined questions and an analysis plan that tests those questions.”</p>
-<p>— <span class="citation">Nosek et al. (<a href="#ref-nosek2018preregistration">2018</a>)</span></p>
-</blockquote>
-<p>The objective for this handbook is to provide training to students, researchers,
-industry professionals, faculty in science, public health, statistics, and other
-fields to empower them with the necessary knowledge and skills to utilize the
-sound methodology of Targeted Learning — a technique that provides tailored
-pre-specified machines for answering queries, so that each data analysis is
-completely reproducible, and estimators are efficient, minimally biased, and
-provide formal statistical inference.</p>
-<p>For a statistical methodology to be readily accessible in practice, it is
-crucial that it is accompanied by robust user-friendly software
-<span class="citation">Pullenayegum et al. (<a href="#ref-pullenayegum2016knowledge">2016</a>)</span> <span class="citation">Stromberg and others (<a href="#ref-stromberg2004write">2004</a>)</span>. The <code>tlverse</code> software ecosystem
-was developed to fulfill this need for the Targeted Learning methodology. Not
-only does this software facilitate computationally reproducible and efficient
-analyses, it is also a tool for Targeted Learning education since its workflow
-mirrors that of the methodology. In particular, the <code>tlverse</code> paradigm does not
-focus on implementing a specific estimator or a small set of related estimators.
-Instead, the focus is on exposing the statistical framework of Targeted Learning
-itself — all <code>R</code> packages in the <code>tlverse</code> ecosystem directly model
-the key objects defined in the mathematical and theoretical framework of
-Targeted Learning. What’s more, the <code>tlverse</code> <code>R</code> packages share a core set
-of design principles centered on extensibility, allowing for them to be used in
-conjunction with each other and built upon one other in a cohesive fashion.</p>
-<p>In this handbook, the reader will embark on a journey through the <code>tlverse</code>
-ecosystem. Guided by <code>R</code> programming exercises, case studies, and
-intuitive explanation readers will build a toolbox for applying the Targeted
-Learning statistical methodology, which will translate to real-world causal
-inference analyses. The reader need not be a fully trained
-statistician to begin understanding and applying these methods. However, it is
-highly recommended for the reader to have an understanding of basic statistical
-concepts such as confounding, probability distributions, confidence intervals,
-hypothesis tests, and regression. Advanced knowledge of mathematical statistics
-may be useful but is not necessary. Familiarity with the <code>R</code> programming
-language will be essential. We also recommend an understanding of introductory
-causal inference. Please see __ for introductory materials for learning the <code>R</code>
-programming language and __ for causal inference learning materials.</p>
+<div id="tmle3-the-targeted-learning-framework" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> <code>tmle3</code> – The Targeted Learning Framework</h1>
+<p><em>Jeremy Coyle</em>, based on the <a href="https://github.com/tlverse/tmle3"><code>tmle3</code> package</a></p>
+<p>Updated: 2019-05-06</p>
+<div id="learning-objectives-2" class="section level2">
+<h2><span class="header-section-number">3.1</span> Learning Objectives</h2>
+<!--- appears as "X.1: Learning Objectives" in the book, where X is the chapter
+corresponding to stochastic interventions -->
+<ol style="list-style-type: decimal">
+<li>Use <code>tmle3</code> to estimate an Average Treatment Effect (ATE)</li>
+<li>Understand <code>tmle3</code> “Specs”</li>
+<li>Fit <code>tmle3</code> for a custom set of parameters</li>
+<li>Use the delta method to estimate transformations of parameters</li>
+</ol>
+</div>
+<div id="example-tmle3-for-ate" class="section level2">
+<h2><span class="header-section-number">3.2</span> Example: <code>tmle3</code> for ATE</h2>
+<p>We’ll illustrate the most basic use of TMLE using the WASH Benefits data introduced earlier and estimating an Average Treatment Effect (ATE)</p>
+<!-- This will be covered in detail in Alan's roadmap chapter, but we should remind people -->
+<p>As a reminder, the ATE is identified with the following statistical parameter (under assumptions):
+<span class="math inline">\(ATE = E_0(Y(1)=Y(0)) = E_0\left( E_0[Y \mid A=1,W]-E_0[Y \mid A=0,W] \right),\)</span></p>
+<div id="load-the-data" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Load the Data</h3>
+<p>We’ll use the same WASH Benefits data as the earlier chapters:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(here)
+<span class="kw">library</span>(data.table)
+<span class="kw">library</span>(tmle3)
+<span class="kw">library</span>(sl3)
+washb_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;washb_data.csv&quot;</span>), <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>)</code></pre>
+</div>
+<div id="define-the-variable-roles" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Define the variable roles</h3>
+<p>We’ll use the common W (covariates), A (treatment/intervention), Y (outcome) data structure. <code>tmle3</code> needs to know what variables in the dataset correspond to each of these roles. We use a list of character vectors to tell it. We call this a “Node List” as it corresponds to the nodes in a Directed Acyclic Graph (DAG), a way of displaying causal relationships between variables.</p>
+<pre class="sourceCode r"><code class="sourceCode r">node_list &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="dt">W =</span> <span class="kw">c</span>(
+    <span class="st">&quot;month&quot;</span>, <span class="st">&quot;aged&quot;</span>, <span class="st">&quot;sex&quot;</span>, <span class="st">&quot;momage&quot;</span>, <span class="st">&quot;momedu&quot;</span>,
+    <span class="st">&quot;momheight&quot;</span>, <span class="st">&quot;hfiacat&quot;</span>, <span class="st">&quot;Nlt18&quot;</span>, <span class="st">&quot;Ncomp&quot;</span>, <span class="st">&quot;watmin&quot;</span>,
+    <span class="st">&quot;elec&quot;</span>, <span class="st">&quot;floor&quot;</span>, <span class="st">&quot;walls&quot;</span>, <span class="st">&quot;roof&quot;</span>, <span class="st">&quot;asset_wardrobe&quot;</span>,
+    <span class="st">&quot;asset_table&quot;</span>, <span class="st">&quot;asset_chair&quot;</span>, <span class="st">&quot;asset_khat&quot;</span>,
+    <span class="st">&quot;asset_chouki&quot;</span>, <span class="st">&quot;asset_tv&quot;</span>, <span class="st">&quot;asset_refrig&quot;</span>,
+    <span class="st">&quot;asset_bike&quot;</span>, <span class="st">&quot;asset_moto&quot;</span>, <span class="st">&quot;asset_sewmach&quot;</span>,
+    <span class="st">&quot;asset_mobile&quot;</span>
+  ),
+  <span class="dt">A =</span> <span class="st">&quot;tr&quot;</span>,
+  <span class="dt">Y =</span> <span class="st">&quot;whz&quot;</span>
+)</code></pre>
+</div>
+<div id="handle-missingness" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Handle Missingness</h3>
+<p>Currently, missingness in <code>tmle3</code> is handled in a fairly simple way:</p>
+<ul>
+<li>Missing covariates are median (for continuous) or mode (for discrete)
+imputed, and additional covariates indicating imputation are generated</li>
+<li>Observations missing either treatment or outcome variables are excluded.</li>
+</ul>
+<p>We plan to implement IPCW-TMLE to more efficiently handle missingness in the
+treatment and outcome variables.</p>
+<p>These steps are implemented in the <code>process_missing</code> function in <code>tmle3</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">processed &lt;-<span class="st"> </span><span class="kw">process_missing</span>(washb_data, node_list)
+washb_data &lt;-<span class="st"> </span>processed<span class="op">$</span>data
+node_list &lt;-<span class="st"> </span>processed<span class="op">$</span>node_list</code></pre>
+</div>
+<div id="create-a-spec-object" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> Create a “Spec” Object</h3>
+<p><code>tmle3</code> is general, and allows most components of the TMLE procedure to be
+specified in a modular way. However, most end-users will not be interested in
+manually specifying all of these components. Therefore, <code>tmle3</code> implements a
+<code>tmle3_Spec</code> object that bundles a set ofcomponents into a <em>specification</em>
+that, with minimal additional detail, can be run by an end-user.</p>
+<p>We’ll start with using one of the specs, and then work our way down into the
+internals of <code>tmle3</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">ate_spec &lt;-<span class="st"> </span><span class="kw">tmle_ATE</span>(
+  <span class="dt">treatment_level =</span> <span class="st">&quot;Nutrition + WSH&quot;</span>,
+  <span class="dt">control_level =</span> <span class="st">&quot;Control&quot;</span>
+)</code></pre>
+</div>
+<div id="define-the-learners" class="section level3">
+<h3><span class="header-section-number">3.2.5</span> Define the learners</h3>
+<p>Currently, the only other thing a user must define are the <code>sl3</code> learners used
+to estimate the relevant factors of the likelihood: Q and g.</p>
+<p>This takes the form of a list of <code>sl3</code> learners, one for each likelihood factor
+to be estimated with <code>sl3</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># choose base learners</span>
+lrnr_mean &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_mean)
+lrnr_xgboost &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_xgboost)
 
+<span class="co"># define metalearners appropriate to data types</span>
+ls_metalearner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_nnls)
+mn_metalearner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_solnp, metalearner_linear_multinomial, loss_loglik_multinomial)
+sl_Y &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(<span class="dt">learners =</span> <span class="kw">list</span>(lrnr_mean, lrnr_xgboost), <span class="dt">metalearner =</span> ls_metalearner)
+sl_A &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(<span class="dt">learners =</span> <span class="kw">list</span>(lrnr_mean, lrnr_xgboost), <span class="dt">metalearner =</span> mn_metalearner)
+
+learner_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">A =</span> sl_A, <span class="dt">Y =</span> sl_Y)</code></pre>
+<p>Here, we use a SuperLearner as defined in the previous chapter. In the future, we plan to include reasonable defaults learners.</p>
 </div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-baker2016there">
-<p>Baker, Monya. 2016. “Is There a Reproducibility Crisis? A Nature Survey Lifts the Lid on How Researchers View the Crisis Rocking Science and What They Think Will Help.” <em>Nature</em> 533 (7604). Nature Publishing Group: 452–55.</p>
+<div id="fit-the-tmle" class="section level3">
+<h3><span class="header-section-number">3.2.6</span> Fit the TMLE</h3>
+<p>We now have everything we need to fit the tmle using <code>tmle3</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">tmle_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(ate_spec, washb_data, node_list, learner_list)</code></pre>
 </div>
-<div id="ref-naturenews2_2015">
-<p>“How Scientists Fool Themselves – and How They Can Stop.” 2015. <em>Nature</em> 526 (7572). Springer Nature.</p>
+<div id="evaluate-the-estimates" class="section level3">
+<h3><span class="header-section-number">3.2.7</span> Evaluate the Estimates</h3>
+<p>We can see the summary results by printing the fit object. Alternatively, we
+can extra results from the summary by indexing into it:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(tmle_fit)</code></pre>
+<pre><code>A tmle3_Fit that took 1 step(s)
+   type                                    param    init_est   tmle_est
+1:  ATE ATE[Y_{A=Nutrition + WSH}-Y_{A=Control}] 0.002402891 0.01085794
+           se       lower     upper psi_transformed lower_transformed
+1: 0.05047612 -0.08807345 0.1097893      0.01085794       -0.08807345
+   upper_transformed
+1:         0.1097893</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">estimates &lt;-<span class="st"> </span>tmle_fit<span class="op">$</span>summary<span class="op">$</span>psi_transformed
+<span class="kw">print</span>(estimates)</code></pre>
+<pre><code>[1] 0.01085794</code></pre>
 </div>
-<div id="ref-naturenews_2015">
-<p>“Let’s Think About Cognitive Bias.” 2015. <em>Nature</em> 526 (7572). Springer Nature.</p>
 </div>
-<div id="ref-munafo2017manifesto">
-<p>Munafò, Marcus R, Brian A Nosek, Dorothy VM Bishop, Katherine S Button, Christopher D Chambers, Nathalie Percie Du Sert, Uri Simonsohn, Eric-Jan Wagenmakers, Jennifer J Ware, and John PA Ioannidis. 2017. “A Manifesto for Reproducible Science.” <em>Nature Human Behaviour</em> 1 (1). Nature Publishing Group: 0021.</p>
+<div id="tmle3-components" class="section level2">
+<h2><span class="header-section-number">3.3</span> <code>tmle3</code> Components</h2>
+<p>Now that we’ve successfully used a spec to obtain a TML estimate, let’s look
+under the hood at the components. The spec has a number of functions that
+generate the objects necessary to define and fit a TMLE.</p>
+<div id="tmle3_task" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> <code>tmle3_task</code></h3>
+<p>First is, a <code>tmle3_Task</code>, analogous to an <code>sl3_Task</code>, containing the data we’re
+fitting the TMLE to, as well as an NP-SEM generated from the <code>node_list</code> defined
+above, describing the variables and their relationships.</p>
+<pre class="sourceCode r"><code class="sourceCode r">tmle_task &lt;-<span class="st"> </span>ate_spec<span class="op">$</span><span class="kw">make_tmle_task</span>(washb_data, node_list)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">tmle_task<span class="op">$</span>npsem</code></pre>
+<pre><code>$W
+tmle3_Node: W
+    Variables: month, aged, sex, momedu, hfiacat, Nlt18, Ncomp, watmin, elec, floor, walls, roof, asset_wardrobe, asset_table, asset_chair, asset_khat, asset_chouki, asset_tv, asset_refrig, asset_bike, asset_moto, asset_sewmach, asset_mobile, momage, momheight, delta_momage, delta_momheight
+    Parents: 
+
+$A
+tmle3_Node: A
+    Variables: tr
+    Parents: W
+
+$Y
+tmle3_Node: Y
+    Variables: whz
+    Parents: A, W</code></pre>
 </div>
-<div id="ref-nosek2018preregistration">
-<p>Nosek, Brian A, Charles R Ebersole, Alexander C DeHaven, and David T Mellor. 2018. “The Preregistration Revolution.” <em>Proceedings of the National Academy of Sciences</em> 115 (11). National Acad Sciences: 2600–2606.</p>
+<div id="initial-likelihood" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Initial Likelihood</h3>
+<p>Next, is an object representing the likelihood, factorized according to the
+NPSEM described above:</p>
+<pre class="sourceCode r"><code class="sourceCode r">initial_likelihood &lt;-<span class="st"> </span>ate_spec<span class="op">$</span><span class="kw">make_initial_likelihood</span>(
+  tmle_task,
+  learner_list
+)
+<span class="kw">print</span>(initial_likelihood)</code></pre>
+<pre><code>W: Lf_emp
+A: LF_fit
+Y: LF_fit</code></pre>
+<p>These components of the likelihood indicate how the factors were estimated: the
+marginal distribution of <span class="math inline">\(W\)</span> was estimated using NP-MLE, and the conditional
+distributions of <span class="math inline">\(A\)</span> and <span class="math inline">\(Y\)</span> were estimated using <code>sl3</code> fits (as defined with
+the <code>learner_list</code>) above.</p>
+<p>We can use this in tandem with the <code>tmle_task</code> object to obtain likelihood
+estimates for each observation:</p>
+<pre class="sourceCode r"><code class="sourceCode r">initial_likelihood<span class="op">$</span><span class="kw">get_likelihoods</span>(tmle_task)</code></pre>
+<pre><code>                 W         A          Y
+   1: 0.0002129925 0.2470725 -0.6551015
+   2: 0.0002129925 0.2555831 -0.6294646
+   3: 0.0002129925 0.2611358 -0.6178788
+   4: 0.0002129925 0.2872981 -0.5986583
+   5: 0.0002129925 0.2542861 -0.5450002
+  ---                                  
+4691: 0.0002129925 0.1367302 -0.4692107
+4692: 0.0002129925 0.1258907 -0.4870609
+4693: 0.0002129925 0.1261936 -0.5672374
+4694: 0.0002129925 0.1867918 -0.8032464
+4695: 0.0002129925 0.1305435 -0.5422394</code></pre>
+<!-- TODO: make helper to get learners out of fit objects -->
 </div>
-<div id="ref-peng2015reproducibility">
-<p>Peng, Roger. 2015. “The Reproducibility Crisis in Science: A Statistical Counterattack.” <em>Significance</em> 12 (3). Wiley Online Library: 30–32.</p>
+<div id="targeted-likelihood-updater" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> Targeted Likelihood (updater)</h3>
+<p>We also need to define a “Targeted Likelihood” object. This is a special type
+of likelihood that is able to be updated using an <code>tmle3_Update</code> object. This
+object defines the update strategy (e.g. submodel, loss function, CV-TMLE or
+not, etc).</p>
+<pre class="sourceCode r"><code class="sourceCode r">targeted_likelihood &lt;-<span class="st"> </span>Targeted_Likelihood<span class="op">$</span><span class="kw">new</span>(initial_likelihood)</code></pre>
+<p>When constructing the targeted likelihood, you can specify different update
+options. See the documentation for <code>tmle3_Update</code> for details of the different
+options. For example, you can disable CV-TMLE (the default in <code>tmle3</code>) as follows:</p>
+<pre class="sourceCode r"><code class="sourceCode r">targeted_likelihood_no_cv &lt;-
+<span class="st">  </span>Targeted_Likelihood<span class="op">$</span><span class="kw">new</span>(initial_likelihood,
+    <span class="dt">updater =</span> <span class="kw">list</span>(<span class="dt">cvtmle =</span> <span class="ot">FALSE</span>)
+  )</code></pre>
 </div>
-<div id="ref-pullenayegum2016knowledge">
-<p>Pullenayegum, Eleanor M, Robert W Platt, Melanie Barwick, Brian M Feldman, Martin Offringa, and Lehana Thabane. 2016. “Knowledge Translation in Biostatistics: A Survey of Current Practices, Preferences, and Barriers to the Dissemination and Uptake of New Statistical Methods.” <em>Statistics in Medicine</em> 35 (6). Wiley Online Library: 805–18.</p>
+<div id="parameter-mapping" class="section level3">
+<h3><span class="header-section-number">3.3.4</span> Parameter Mapping</h3>
+<p>Finally, we need to define the parameters of interest. Here, the spec defines a
+single parameter, the ATE. In the next section, we’ll see how to add additional
+parameters.</p>
+<pre class="sourceCode r"><code class="sourceCode r">tmle_params &lt;-<span class="st"> </span>ate_spec<span class="op">$</span><span class="kw">make_params</span>(tmle_task, targeted_likelihood)
+<span class="kw">print</span>(tmle_params)</code></pre>
+<pre><code>[[1]]
+Param_ATE: ATE[Y_{A=Nutrition + WSH}-Y_{A=Control}]</code></pre>
 </div>
-<div id="ref-stark2018cargo">
-<p>Stark, Philip B, and Andrea Saltelli. 2018. “Cargo-Cult Statistics and Scientific Crisis.” <em>Significance</em> 15 (4). Wiley Online Library: 40–43.</p>
+<div id="putting-it-all-together" class="section level3">
+<h3><span class="header-section-number">3.3.5</span> Putting it all together</h3>
+<p>Having used the spec to manually generate all these components, we can now
+manually fit a <code>tmle3</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">tmle_fit_manual &lt;-<span class="st"> </span><span class="kw">fit_tmle3</span>(
+  tmle_task, targeted_likelihood, tmle_params,
+  targeted_likelihood<span class="op">$</span>updater
+)
+<span class="kw">print</span>(tmle_fit_manual)</code></pre>
+<pre><code>A tmle3_Fit that took 1 step(s)
+   type                                    param    init_est    tmle_est
+1:  ATE ATE[Y_{A=Nutrition + WSH}-Y_{A=Control}] 0.002293473 0.006470858
+          se       lower     upper psi_transformed lower_transformed
+1: 0.0509382 -0.09336617 0.1063079     0.006470858       -0.09336617
+   upper_transformed
+1:         0.1063079</code></pre>
+<p>The result is equivalent to fitting using the <code>tmle3</code> function as above.</p>
 </div>
-<div id="ref-stromberg2004write">
-<p>Stromberg, Arnold, and others. 2004. “Why Write Statistical Software? The Case of Robust Statistical Methods.”</p>
 </div>
-<div id="ref-szucs2017null">
-<p>Szucs, Denes, and John Ioannidis. 2017. “When Null Hypothesis Significance Testing Is Unsuitable for Research: A Reassessment.” <em>Frontiers in Human Neuroscience</em> 11. Frontiers: 390.</p>
+<div id="fitting-tmle3-with-multiple-parameters" class="section level2">
+<h2><span class="header-section-number">3.4</span> Fitting <code>tmle3</code> with multiple parameters</h2>
+<p>Above, we fit a <code>tmle3</code> with just one parameter. <code>tmle3</code> also supports fitting
+multiple parameters simultaneously. To illustrate this, we’ll use the
+<code>tmle_TSM_all</code> spec:</p>
+<pre class="sourceCode r"><code class="sourceCode r">tsm_spec &lt;-<span class="st"> </span><span class="kw">tmle_TSM_all</span>()
+targeted_likelihood &lt;-<span class="st"> </span>Targeted_Likelihood<span class="op">$</span><span class="kw">new</span>(initial_likelihood)
+all_tsm_params &lt;-<span class="st"> </span>tsm_spec<span class="op">$</span><span class="kw">make_params</span>(tmle_task, targeted_likelihood)
+<span class="kw">print</span>(all_tsm_params)</code></pre>
+<pre><code>[[1]]
+Param_TSM: E[Y_{A=Control}]
+
+[[2]]
+Param_TSM: E[Y_{A=Handwashing}]
+
+[[3]]
+Param_TSM: E[Y_{A=Nutrition}]
+
+[[4]]
+Param_TSM: E[Y_{A=Nutrition + WSH}]
+
+[[5]]
+Param_TSM: E[Y_{A=Sanitation}]
+
+[[6]]
+Param_TSM: E[Y_{A=WSH}]
+
+[[7]]
+Param_TSM: E[Y_{A=Water}]</code></pre>
+<p>This spec generates a Treatment Specific Mean (TSM) for each level of the
+exposure variable. Note that we must first generate a new targeted likelihood,
+as the old one was targeted to the ATE. However, we can recycle the initial likelihood we fit above,
+saving us a super learner step.</p>
+<div id="delta-method" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Delta Method</h3>
+<p>We can also define parameters based on Delta Method Transformations of other
+parameters. For instance, we can estimate a ATE using the delta method and two
+of the above TSM parameters:</p>
+<pre class="sourceCode r"><code class="sourceCode r">ate_param &lt;-<span class="st"> </span><span class="kw">define_param</span>(
+  Param_delta, targeted_likelihood,
+  delta_param_ATE,
+  <span class="kw">list</span>(all_tsm_params[[<span class="dv">1</span>]], all_tsm_params[[<span class="dv">4</span>]])
+)
+<span class="kw">print</span>(ate_param)</code></pre>
+<pre><code>Param_delta: E[Y_{A=Nutrition + WSH}] - E[Y_{A=Control}]</code></pre>
+<p>This can similarly be used to estimate other derived parameters like Relative
+Risks, and Population Attributable Risks</p>
 </div>
-<div id="ref-vdl2014entering">
-<p>van der Laan, Mark J, and Richard JCM Starmans. 2014. “Entering the Era of Data Science: Targeted Learning and the Integration of Statistics and Computational Data Analysis.” <em>Advances in Statistics</em> 2014. Hindawi.</p>
+<div id="fit" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Fit</h3>
+<p>We can now fit a TMLE simultaneously for all TSM parameters, as well as the
+above defined ATE parameter</p>
+<pre class="sourceCode r"><code class="sourceCode r">all_params &lt;-<span class="st"> </span><span class="kw">c</span>(all_tsm_params, ate_param)
+
+tmle_fit_multiparam &lt;-<span class="st"> </span><span class="kw">fit_tmle3</span>(
+  tmle_task, targeted_likelihood, all_params,
+  targeted_likelihood<span class="op">$</span>updater
+)
+
+<span class="kw">print</span>(tmle_fit_multiparam)</code></pre>
+<pre><code>A tmle3_Fit that took 1 step(s)
+   type                                       param     init_est     tmle_est
+1:  TSM                            E[Y_{A=Control}] -0.592984286 -0.624534782
+2:  TSM                        E[Y_{A=Handwashing}] -0.604778263 -0.648217698
+3:  TSM                          E[Y_{A=Nutrition}] -0.600565991 -0.606243024
+4:  TSM                    E[Y_{A=Nutrition + WSH}] -0.590690813 -0.617765597
+5:  TSM                         E[Y_{A=Sanitation}] -0.586765743 -0.586008503
+6:  TSM                                E[Y_{A=WSH}] -0.531480707 -0.431194928
+7:  TSM                              E[Y_{A=Water}] -0.575790058 -0.535234126
+8:  ATE E[Y_{A=Nutrition + WSH}] - E[Y_{A=Control}]  0.002293473  0.006769185
+           se       lower      upper psi_transformed lower_transformed
+1: 0.02994281 -0.68322162 -0.5658479    -0.624534782       -0.68322162
+2: 0.04224202 -0.73101053 -0.5654249    -0.648217698       -0.73101053
+3: 0.04261113 -0.68975931 -0.5227267    -0.606243024       -0.68975931
+4: 0.04134745 -0.69880512 -0.5367261    -0.617765597       -0.69880512
+5: 0.04250927 -0.66932514 -0.5026919    -0.586008503       -0.66932514
+6: 0.04510160 -0.51959244 -0.3427974    -0.431194928       -0.51959244
+7: 0.03904901 -0.61176877 -0.4586995    -0.535234126       -0.61176877
+8: 0.05092529 -0.09304255  0.1065809     0.006769185       -0.09304255
+   upper_transformed
+1:        -0.5658479
+2:        -0.5654249
+3:        -0.5227267
+4:        -0.5367261
+5:        -0.5026919
+6:        -0.3427974
+7:        -0.4586995
+8:         0.1065809</code></pre>
+</div>
+</div>
+<div id="summary" class="section level2">
+<h2><span class="header-section-number">3.5</span> Summary</h2>
+<p><code>tmle3</code> is a general purpose framework for generating TML estimates. The
+easiest way to use it is to use a predefined spec, allowing you to just fill in
+the blanks for the data, variable roles, and <code>sl3</code> learners. However, digging
+under the hood allows users to specify a wide range of TMLEs. In the next
+sections, we’ll see how this framework can be used to estimate advanced
+parameters such as optimal treatments and shift interventions.</p>
+
 </div>
 </div>
             </section>
@@ -414,8 +593,8 @@ programming language and __ for causal inference learning materials.</p>
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="intro.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="modern-super-machine-learning-with-sl3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="optimal-individualized-treatment-regimes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -445,7 +624,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/tlverse/acic2019-workshop/edit/master/01-preface.Rmd",
+"link": "https://github.com/tlverse/acic2019-workshop/edit/master/04-tmle3.Rmd",
 "text": "Edit"
 },
 "history": {

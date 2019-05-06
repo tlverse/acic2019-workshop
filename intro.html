@@ -5,20 +5,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Welcome to the tlverse | The Hitchhiker’s Guide to the tlverse</title>
-  <meta name="description" content="An open-source and fully-reproducible electronic handbook accompanying a full-day short-course on applying the targeted learning methodology in practice using the tlverse software ecosystem." />
+  <meta name="description" content="An open-source and fully-reproducible electronic set of teaching materials accompanying a full-day short-course on applying the Targeted Learning methodology in practice using the tlverse software ecosystem." />
   <meta name="generator" content="bookdown  and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Welcome to the tlverse | The Hitchhiker’s Guide to the tlverse" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://tlverse.org/acic2019-workshop/" />
   
-  <meta property="og:description" content="An open-source and fully-reproducible electronic handbook accompanying a full-day short-course on applying the targeted learning methodology in practice using the tlverse software ecosystem." />
+  <meta property="og:description" content="An open-source and fully-reproducible electronic set of teaching materials accompanying a full-day short-course on applying the Targeted Learning methodology in practice using the tlverse software ecosystem." />
   <meta name="github-repo" content="tlverse/acic2019-workshop" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 1 Welcome to the tlverse | The Hitchhiker’s Guide to the tlverse" />
   
-  <meta name="twitter:description" content="An open-source and fully-reproducible electronic handbook accompanying a full-day short-course on applying the targeted learning methodology in practice using the tlverse software ecosystem." />
+  <meta name="twitter:description" content="An open-source and fully-reproducible electronic set of teaching materials accompanying a full-day short-course on applying the Targeted Learning methodology in practice using the tlverse software ecosystem." />
   
 
 <meta name="author" content="Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana Malenica, Rachael Phillips" />
@@ -46,6 +46,10 @@
 
 
 
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/vis-4.20.1/vis.css" rel="stylesheet" />
+<script src="libs/vis-4.20.1/vis.min.js"></script>
+<script src="libs/visNetwork-binding-2.0.6/visNetwork.js"></script>
 
 
 <style type="text/css">
@@ -148,100 +152,97 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#what-is-the-tlverse"><i class="fa fa-check"></i><b>1.2</b> What is the <code>tlverse</code>?</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#tlverse-components"><i class="fa fa-check"></i><b>1.3</b> <code>tlverse</code> components</a></li>
 <li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#installation"><i class="fa fa-check"></i><b>1.4</b> Installation</a></li>
-<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#example-data---wash-benefits"><i class="fa fa-check"></i><b>1.5</b> Example Data - WASH Benefits</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#the-targeted-learning-roadmap"><i class="fa fa-check"></i><b>1.5</b> The Targeted Learning Roadmap</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#the-statistical-model"><i class="fa fa-check"></i><b>1.5.1</b> The Statistical Model</a></li>
+<li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#the-causal-model"><i class="fa fa-check"></i><b>1.5.2</b> The Causal Model</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#the-parameter-of-interest"><i class="fa fa-check"></i><b>1.6</b> The Parameter of Interest</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#identifiability"><i class="fa fa-check"></i><b>1.6.1</b> Identifiability</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#estimator"><i class="fa fa-check"></i><b>1.6.2</b> Estimator</a></li>
+<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#inference"><i class="fa fa-check"></i><b>1.6.3</b> Inference</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#the-wash-benefits-example-dataset"><i class="fa fa-check"></i><b>1.7</b> The WASH Benefits Example Dataset</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="intro.html"><a href="intro.html#the-variables"><i class="fa fa-check"></i><b>1.7.1</b> The variables</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html"><i class="fa fa-check"></i><b>2</b> Modern Super (Machine) Learning with <code>sl3</code></a><ul>
 <li class="chapter" data-level="2.1" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#learning-objectives-1"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#background"><i class="fa fa-check"></i><b>2.2</b> Background</a></li>
-<li class="chapter" data-level="2.3" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#modern-super-machine-learning-with-sl3-1"><i class="fa fa-check"></i><b>2.3</b> Modern Super (Machine) Learning with <code>sl3</code></a><ul>
-<li class="chapter" data-level="2.3.1" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#basic-implementation"><i class="fa fa-check"></i><b>2.3.1</b> Basic Implementation</a></li>
-<li class="chapter" data-level="2.3.2" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#extensions"><i class="fa fa-check"></i><b>2.3.2</b> Extensions</a></li>
+<li class="chapter" data-level="2.2" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#introduction"><i class="fa fa-check"></i><b>2.2</b> Introduction</a></li>
+<li class="chapter" data-level="2.3" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#basic-implementation"><i class="fa fa-check"></i><b>2.3</b> Basic Implementation</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#wash-benefits-study-example"><i class="fa fa-check"></i><b>2.3.1</b> WASH Benefits Study Example</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#exercise"><i class="fa fa-check"></i><b>2.4</b> Exercise</a></li>
-<li class="chapter" data-level="2.5" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#appendix-more-advanced-extensions-of-sl3"><i class="fa fa-check"></i><b>2.5</b> Appendix: More advanced extensions of <code>sl3</code></a><ul>
-<li class="chapter" data-level="2.5.1" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#variable-importance"><i class="fa fa-check"></i><b>2.5.1</b> Variable importance</a></li>
+<li class="chapter" data-level="2.4" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#extensions"><i class="fa fa-check"></i><b>2.4</b> Extensions</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#customize-learner-hyperparameters"><i class="fa fa-check"></i><b>2.4.1</b> Customize Learner Hyperparameters</a></li>
+<li class="chapter" data-level="2.4.2" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#screening-covariates"><i class="fa fa-check"></i><b>2.4.2</b> Screening covariates</a></li>
+<li class="chapter" data-level="2.4.3" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#cross-validated-super-learner"><i class="fa fa-check"></i><b>2.4.3</b> Cross-validated super learner</a></li>
+<li class="chapter" data-level="2.4.4" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#variable-importance"><i class="fa fa-check"></i><b>2.4.4</b> Variable importance</a></li>
 </ul></li>
+<li class="chapter" data-level="2.5" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#exercises"><i class="fa fa-check"></i><b>2.5</b> Exercises</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#predicting-myocardial-infarction-with-sl3"><i class="fa fa-check"></i><b>2.5.1</b> Predicting myocardial infarction with <code>sl3</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html"><i class="fa fa-check"></i><b>3</b> <code>tmle3</code> – Targeted Learning Framework</a><ul>
-<li class="chapter" data-level="3.1" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="3.2" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#example-tmle3-for-ate"><i class="fa fa-check"></i><b>3.2</b> Example: <code>tmle3</code> for ATE</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#load-the-data"><i class="fa fa-check"></i><b>3.2.1</b> Load the Data</a></li>
-<li class="chapter" data-level="3.2.2" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#define-the-variable-roles"><i class="fa fa-check"></i><b>3.2.2</b> Define the variable roles</a></li>
-<li class="chapter" data-level="3.2.3" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#handle-missingness"><i class="fa fa-check"></i><b>3.2.3</b> Handle Missingness</a></li>
-<li class="chapter" data-level="3.2.4" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#create-a-spec-object"><i class="fa fa-check"></i><b>3.2.4</b> Create a “Spec” Object</a></li>
-<li class="chapter" data-level="3.2.5" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#define-the-learners"><i class="fa fa-check"></i><b>3.2.5</b> Define the learners</a></li>
-<li class="chapter" data-level="3.2.6" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#fit-the-tmle"><i class="fa fa-check"></i><b>3.2.6</b> Fit the TMLE</a></li>
-<li class="chapter" data-level="3.2.7" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#evaluate-the-estimates"><i class="fa fa-check"></i><b>3.2.7</b> Evaluate the Estimates</a></li>
+<li class="chapter" data-level="2.6" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#concluding-remarks"><i class="fa fa-check"></i><b>2.6</b> Concluding Remarks</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#tmle3-components"><i class="fa fa-check"></i><b>3.3</b> <code>tmle3</code> Components</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#tmle3_task"><i class="fa fa-check"></i><b>3.3.1</b> <code>tmle3_task</code></a></li>
-<li class="chapter" data-level="3.3.2" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#initial-likelihood"><i class="fa fa-check"></i><b>3.3.2</b> Initial Likelihood</a></li>
-<li class="chapter" data-level="3.3.3" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#targeted-likelihood-updater"><i class="fa fa-check"></i><b>3.3.3</b> Targeted Likelihood (updater)</a></li>
-<li class="chapter" data-level="3.3.4" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#parameter-mapping"><i class="fa fa-check"></i><b>3.3.4</b> Parameter Mapping</a></li>
-<li class="chapter" data-level="3.3.5" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#putting-it-all-together"><i class="fa fa-check"></i><b>3.3.5</b> Putting it all together</a></li>
+<li class="chapter" data-level="3" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html"><i class="fa fa-check"></i><b>3</b> <code>tmle3</code> – The Targeted Learning Framework</a><ul>
+<li class="chapter" data-level="3.1" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#example-tmle3-for-ate"><i class="fa fa-check"></i><b>3.2</b> Example: <code>tmle3</code> for ATE</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#load-the-data"><i class="fa fa-check"></i><b>3.2.1</b> Load the Data</a></li>
+<li class="chapter" data-level="3.2.2" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#define-the-variable-roles"><i class="fa fa-check"></i><b>3.2.2</b> Define the variable roles</a></li>
+<li class="chapter" data-level="3.2.3" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#handle-missingness"><i class="fa fa-check"></i><b>3.2.3</b> Handle Missingness</a></li>
+<li class="chapter" data-level="3.2.4" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#create-a-spec-object"><i class="fa fa-check"></i><b>3.2.4</b> Create a “Spec” Object</a></li>
+<li class="chapter" data-level="3.2.5" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#define-the-learners"><i class="fa fa-check"></i><b>3.2.5</b> Define the learners</a></li>
+<li class="chapter" data-level="3.2.6" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#fit-the-tmle"><i class="fa fa-check"></i><b>3.2.6</b> Fit the TMLE</a></li>
+<li class="chapter" data-level="3.2.7" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#evaluate-the-estimates"><i class="fa fa-check"></i><b>3.2.7</b> Evaluate the Estimates</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#fitting-tmle3-with-multiple-parameters"><i class="fa fa-check"></i><b>3.4</b> Fitting <code>tmle3</code> with multiple parameters</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#delta-method"><i class="fa fa-check"></i><b>3.4.1</b> Delta Method</a></li>
-<li class="chapter" data-level="3.4.2" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#fit"><i class="fa fa-check"></i><b>3.4.2</b> Fit</a></li>
+<li class="chapter" data-level="3.3" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#tmle3-components"><i class="fa fa-check"></i><b>3.3</b> <code>tmle3</code> Components</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#tmle3_task"><i class="fa fa-check"></i><b>3.3.1</b> <code>tmle3_task</code></a></li>
+<li class="chapter" data-level="3.3.2" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#initial-likelihood"><i class="fa fa-check"></i><b>3.3.2</b> Initial Likelihood</a></li>
+<li class="chapter" data-level="3.3.3" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#targeted-likelihood-updater"><i class="fa fa-check"></i><b>3.3.3</b> Targeted Likelihood (updater)</a></li>
+<li class="chapter" data-level="3.3.4" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#parameter-mapping"><i class="fa fa-check"></i><b>3.3.4</b> Parameter Mapping</a></li>
+<li class="chapter" data-level="3.3.5" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#putting-it-all-together"><i class="fa fa-check"></i><b>3.3.5</b> Putting it all together</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="tmle3-targeted-learning-framework.html"><a href="tmle3-targeted-learning-framework.html#summary"><i class="fa fa-check"></i><b>3.5</b> Summary</a></li>
+<li class="chapter" data-level="3.4" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#fitting-tmle3-with-multiple-parameters"><i class="fa fa-check"></i><b>3.4</b> Fitting <code>tmle3</code> with multiple parameters</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#delta-method"><i class="fa fa-check"></i><b>3.4.1</b> Delta Method</a></li>
+<li class="chapter" data-level="3.4.2" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#fit"><i class="fa fa-check"></i><b>3.4.2</b> Fit</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#summary"><i class="fa fa-check"></i><b>3.5</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html"><i class="fa fa-check"></i><b>4</b> Optimal Individualized Treatment Regimes</a><ul>
 <li class="chapter" data-level="4.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#learning-objectives-3"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="4.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#introduction-to-optimal-individualized-interventions"><i class="fa fa-check"></i><b>4.2</b> Introduction to Optimal Individualized Interventions</a></li>
 <li class="chapter" data-level="4.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#data-structure-and-notation"><i class="fa fa-check"></i><b>4.3</b> Data Structure and Notation</a></li>
-<li class="chapter" data-level="4.4" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#defining-the-causal-effect-of-an-optimal-individualized-intervention"><i class="fa fa-check"></i><b>4.4</b> Defining the Causal Effect of an Optimal Individualized Intervention</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#binary-treatment"><i class="fa fa-check"></i><b>4.4.1</b> Binary treatment</a></li>
-<li class="chapter" data-level="4.4.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#categorical-treatment"><i class="fa fa-check"></i><b>4.4.2</b> Categorical treatment</a></li>
-<li class="chapter" data-level="4.4.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#why-cv-tmle"><i class="fa fa-check"></i><b>4.4.3</b> Why CV-TMLE?</a></li>
+<li class="chapter" data-level="4.4" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#defining-the-causal-effect-of-an-optimal-individualized-intervention"><i class="fa fa-check"></i><b>4.4</b> Defining the Causal Effect of an Optimal Individualized Intervention</a></li>
+<li class="chapter" data-level="4.5" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#binary-treatment"><i class="fa fa-check"></i><b>4.5</b> Binary treatment</a></li>
+<li class="chapter" data-level="4.6" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#extensions-to-causal-effect-of-an-optimal-individualized-intervention"><i class="fa fa-check"></i><b>4.6</b> Extensions to Causal Effect of an Optimal Individualized Intervention</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#simpler-rules"><i class="fa fa-check"></i><b>4.6.1</b> Simpler Rules</a></li>
+<li class="chapter" data-level="4.6.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#realistic-optimal-individual-regimes"><i class="fa fa-check"></i><b>4.6.2</b> Realistic Optimal Individual Regimes</a></li>
+<li class="chapter" data-level="4.6.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#variable-importance-analysis"><i class="fa fa-check"></i><b>4.6.3</b> Variable Importance Analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#interpreting-the-causal-effect-of-an-optimal-individualized-intervention"><i class="fa fa-check"></i><b>4.5</b> Interpreting the Causal Effect of an Optimal Individualized Intervention</a></li>
-<li class="chapter" data-level="4.6" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#evaluating-the-causal-effect-of-an-optimal-individualized-intervention-with-categorical-treatment"><i class="fa fa-check"></i><b>4.6</b> Evaluating the Causal Effect of an Optimal Individualized Intervention with Categorical Treatment</a><ul>
-<li class="chapter" data-level="4.6.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#simulated-data"><i class="fa fa-check"></i><b>4.6.1</b> Simulated Data</a></li>
-<li class="chapter" data-level="4.6.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#constructing-optimal-stacked-regressions-with-sl3"><i class="fa fa-check"></i><b>4.6.2</b> Constructing Optimal Stacked Regressions with <code>sl3</code></a></li>
-<li class="chapter" data-level="4.6.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#targeted-estimation-of-the-mean-under-the-optimal-individualized-interventions-effects"><i class="fa fa-check"></i><b>4.6.3</b> Targeted Estimation of the Mean under the Optimal Individualized Interventions Effects</a></li>
-<li class="chapter" data-level="4.6.4" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#learning-the-mean-outcome-under-the-optimal-rule-with-q-learning"><i class="fa fa-check"></i><b>4.6.4</b> Learning the Mean Outcome under the Optimal Rule with Q-learning</a></li>
-</ul></li>
-<li class="chapter" data-level="4.7" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#evaluating-the-causal-effect-of-an-optimal-individualized-intervention-with-binary-treatment"><i class="fa fa-check"></i><b>4.7</b> Evaluating the Causal Effect of an Optimal Individualized Intervention with Binary Treatment</a><ul>
-<li class="chapter" data-level="4.7.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#simulated-data-1"><i class="fa fa-check"></i><b>4.7.1</b> Simulated Data</a></li>
-<li class="chapter" data-level="4.7.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#constructing-optimal-stacked-regressions-with-sl3-1"><i class="fa fa-check"></i><b>4.7.2</b> Constructing Optimal Stacked Regressions with <code>sl3</code></a></li>
-<li class="chapter" data-level="4.7.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#targeted-estimation-of-the-mean-under-the-optimal-individualized-interventions-effects-1"><i class="fa fa-check"></i><b>4.7.3</b> Targeted Estimation of the Mean under the Optimal Individualized Interventions Effects</a></li>
-<li class="chapter" data-level="4.7.4" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#extension-simpler-rules"><i class="fa fa-check"></i><b>4.7.4</b> Extension: Simpler Rules</a></li>
-</ul></li>
-<li class="chapter" data-level="4.8" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#learning-the-mean-outcome-under-the-optimal-rule-with-q-learning-1"><i class="fa fa-check"></i><b>4.8</b> Learning the Mean Outcome under the Optimal Rule with Q-learning</a></li>
-<li class="chapter" data-level="4.9" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#variable-importance-analysis-with-optimal-individualized-interventions"><i class="fa fa-check"></i><b>4.9</b> Variable Importance Analysis with Optimal Individualized Interventions</a><ul>
-<li class="chapter" data-level="4.9.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#simulated-data-2"><i class="fa fa-check"></i><b>4.9.1</b> Simulated Data</a></li>
-<li class="chapter" data-level="4.9.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#constructing-optimal-stacked-regressions-with-sl3-2"><i class="fa fa-check"></i><b>4.9.2</b> Constructing Optimal Stacked Regressions with <code>sl3</code></a></li>
-<li class="chapter" data-level="4.9.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#variable-importance-using-targeted-estimation-of-the-mean-under-the-optimal-individualized-interventions-effects"><i class="fa fa-check"></i><b>4.9.3</b> Variable Importance using Targeted Estimation of the Mean under the Optimal Individualized Interventions Effects</a></li>
-<li class="chapter" data-level="4.9.4" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#variable-importance-using-q-learning"><i class="fa fa-check"></i><b>4.9.4</b> Variable Importance using Q-learning</a></li>
-</ul></li>
-<li class="chapter" data-level="4.10" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#exercises"><i class="fa fa-check"></i><b>4.10</b> Exercises</a><ul>
-<li class="chapter" data-level="4.10.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#basicsreview"><i class="fa fa-check"></i><b>4.10.1</b> Basics/Review</a></li>
-<li class="chapter" data-level="4.10.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#using-the-ideas"><i class="fa fa-check"></i><b>4.10.2</b> Using the Ideas</a></li>
-<li class="chapter" data-level="4.10.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#advanced"><i class="fa fa-check"></i><b>4.10.3</b> Advanced</a></li>
-</ul></li>
+<li class="chapter" data-level="4.7" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#categorical-treatment"><i class="fa fa-check"></i><b>4.7</b> Categorical treatment</a></li>
+<li class="chapter" data-level="4.8" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#exercise-optimal-individualized-intervention-with-categorical-treatment"><i class="fa fa-check"></i><b>4.8</b> Exercise: Optimal Individualized Intervention with Categorical Treatment</a></li>
+<li class="chapter" data-level="4.9" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#exercise-wash-benefits-data"><i class="fa fa-check"></i><b>4.9</b> Exercise: WASH Benefits Data</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html"><i class="fa fa-check"></i><b>5</b> Stochastic Treatment Regimes</a><ul>
 <li class="chapter" data-level="5.1" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#learning-objectives-4"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="5.2" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#introduction-to-stochastic-interventions"><i class="fa fa-check"></i><b>5.2</b> Introduction to Stochastic Interventions</a></li>
-<li class="chapter" data-level="5.3" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#data-structure-and-notation-1"><i class="fa fa-check"></i><b>5.3</b> Data Structure and Notation</a></li>
-<li class="chapter" data-level="5.4" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#defining-the-causal-effect-of-a-stochastic-intervention"><i class="fa fa-check"></i><b>5.4</b> Defining the Causal Effect of a Stochastic Intervention</a></li>
-<li class="chapter" data-level="5.5" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#interpreting-the-causal-effect-of-a-stochastic-intervention"><i class="fa fa-check"></i><b>5.5</b> Interpreting the Causal Effect of a Stochastic Intervention</a></li>
-<li class="chapter" data-level="5.6" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#evaluating-the-causal-effect-of-a-stochastic-intervention"><i class="fa fa-check"></i><b>5.6</b> Evaluating the Causal Effect of a Stochastic Intervention</a><ul>
-<li class="chapter" data-level="5.6.1" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#simulate-data"><i class="fa fa-check"></i><b>5.6.1</b> Simulate Data</a></li>
-<li class="chapter" data-level="5.6.2" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#targeted-estimation-of-stochastic-interventions-effects"><i class="fa fa-check"></i><b>5.6.2</b> Targeted Estimation of Stochastic Interventions Effects</a></li>
-<li class="chapter" data-level="5.6.3" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#statistical-inference-for-targeted-maximum-likelihood-estimates"><i class="fa fa-check"></i><b>5.6.3</b> Statistical Inference for Targeted Maximum Likelihood Estimates</a></li>
+<li class="chapter" data-level="5.2" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#introduction-1"><i class="fa fa-check"></i><b>5.2</b> Introduction</a></li>
+<li class="chapter" data-level="5.3" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#stochastic-interventions"><i class="fa fa-check"></i><b>5.3</b> Stochastic Interventions</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#identifying-the-causal-effect-of-a-stochastic-intervention"><i class="fa fa-check"></i><b>5.3.1</b> Identifying the Causal Effect of a Stochastic Intervention</a></li>
+<li class="chapter" data-level="5.3.2" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#interpreting-the-causal-effect-of-a-stochastic-intervention"><i class="fa fa-check"></i><b>5.3.2</b> Interpreting the Causal Effect of a Stochastic Intervention</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#extensions-variable-importance-analysis-with-stochastic-interventions"><i class="fa fa-check"></i><b>5.7</b> Extensions: Variable Importance Analysis with Stochastic Interventions</a><ul>
-<li class="chapter" data-level="5.7.1" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#defining-a-grid-of-counterfactual-interventions"><i class="fa fa-check"></i><b>5.7.1</b> Defining a grid of counterfactual interventions</a></li>
-<li class="chapter" data-level="5.7.2" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#initializing-vimshift-through-its-tmle3_spec"><i class="fa fa-check"></i><b>5.7.2</b> Initializing <code>vimshift</code> through its <code>tmle3_Spec</code></a></li>
-<li class="chapter" data-level="5.7.3" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#targeted-estimation-of-stochastic-interventions-effects-1"><i class="fa fa-check"></i><b>5.7.3</b> Targeted Estimation of Stochastic Interventions Effects</a></li>
-<li class="chapter" data-level="5.7.4" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#inference-with-marginal-structural-models"><i class="fa fa-check"></i><b>5.7.4</b> Inference with Marginal Structural Models</a></li>
+<li class="chapter" data-level="5.4" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#estimating-the-causal-effect-of-a-stochastic-intervention-with-tmle3shift"><i class="fa fa-check"></i><b>5.4</b> Estimating the Causal Effect of a Stochastic Intervention with <code>tmle3shift</code></a><ul>
+<li class="chapter" data-level="5.4.1" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#simulate-data-1"><i class="fa fa-check"></i><b>5.4.1</b> Simulate Data</a></li>
+<li class="chapter" data-level="5.4.2" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#targeted-estimation-of-stochastic-interventions-effects"><i class="fa fa-check"></i><b>5.4.2</b> Targeted Estimation of Stochastic Interventions Effects</a></li>
 </ul></li>
-<li class="chapter" data-level="5.8" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#exercises-1"><i class="fa fa-check"></i><b>5.8</b> Exercises</a><ul>
-<li class="chapter" data-level="5.8.1" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#basicsreview-1"><i class="fa fa-check"></i><b>5.8.1</b> Basics/Review</a></li>
-<li class="chapter" data-level="5.8.2" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#using-the-ideas-1"><i class="fa fa-check"></i><b>5.8.2</b> Using the Ideas</a></li>
-<li class="chapter" data-level="5.8.3" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#advanced-1"><i class="fa fa-check"></i><b>5.8.3</b> Advanced</a></li>
+<li class="chapter" data-level="5.5" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#stochastic-interventions-over-a-grid-of-counterfactual-shifts"><i class="fa fa-check"></i><b>5.5</b> Stochastic Interventions over a Grid of Counterfactual Shifts</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#initializing-vimshift-through-its-tmle3_spec"><i class="fa fa-check"></i><b>5.5.1</b> Initializing <code>vimshift</code> through its <code>tmle3_Spec</code></a></li>
+<li class="chapter" data-level="5.5.2" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#targeted-estimation-of-stochastic-intervention-effects"><i class="fa fa-check"></i><b>5.5.2</b> Targeted Estimation of Stochastic Intervention Effects</a></li>
+<li class="chapter" data-level="5.5.3" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#inference-with-marginal-structural-models"><i class="fa fa-check"></i><b>5.5.3</b> Inference with Marginal Structural Models</a></li>
+<li class="chapter" data-level="5.5.4" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#directly-targeting-the-msm-parameter-beta"><i class="fa fa-check"></i><b>5.5.4</b> Directly Targeting the MSM Parameter <span class="math inline">\(\beta\)</span></a></li>
+<li class="chapter" data-level="5.5.5" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#example-with-the-wash-benefits-data"><i class="fa fa-check"></i><b>5.5.5</b> Example with the WASH Benefits Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#exercises-1"><i class="fa fa-check"></i><b>5.6</b> Exercises</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#review-of-key-concepts"><i class="fa fa-check"></i><b>5.6.1</b> Review of Key Concepts</a></li>
+<li class="chapter" data-level="5.6.2" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#the-ideas-in-action"><i class="fa fa-check"></i><b>5.6.2</b> The Ideas in Action</a></li>
+<li class="chapter" data-level="5.6.3" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#advanced-topics"><i class="fa fa-check"></i><b>5.6.3</b> Advanced Topics</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -269,12 +270,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 1</span> Welcome to the <code>tlverse</code></h1>
 <div id="learning-objectives" class="section level2">
 <h2><span class="header-section-number">1.1</span> Learning Objectives</h2>
-<!--- appears as "X.1: Learning Objectives" in the book, where X is the chapter
-corresponding to stochastic interventions -->
 <ol style="list-style-type: decimal">
-<li>Understand the <code>tlverse</code> concept</li>
+<li>Understand the <code>tlverse</code> ecosystem conceptually</li>
 <li>Identify the core components of the <code>tlverse</code></li>
-<li>Install <code>tlverse</code> R packages</li>
+<li>Install <code>tlverse</code> <code>R</code> packages</li>
+<li>Understand the Targeted Learning roadmap</li>
 <li>Learn about the WASH Benefits example data</li>
 </ol>
 </div>
@@ -284,7 +284,7 @@ corresponding to stochastic interventions -->
 the <a href="https://tidyverse.org"><code>tidyverse</code> ecosystem</a> of R packages.</p>
 <p>By analogy to the <a href="https://tidyverse.org/"><code>tidyverse</code></a>:</p>
 <blockquote>
-<p>The tidyverse is an opinionated collection of R packages designed for data
+<p>The <code>tidyverse</code> is an opinionated collection of R packages designed for data
 science. All packages share an underlying design philosophy, grammar, and data
 structures.</p>
 </blockquote>
@@ -366,9 +366,11 @@ can use the <code>devtools</code> package to install them:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
 devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;tlverse/tlverse&quot;</span>)</code></pre>
 <p>The <code>tlverse</code> depends on a large number of other packages that are also hosted
-on GitHub. Because of this, you may see the followig error:</p>
+on GitHub. Because of this, you may see the following error:</p>
 <pre><code>Error: HTTP error 403.
-  API rate limit exceeded for 71.204.135.82. (But here&#39;s the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)
+  API rate limit exceeded for 71.204.135.82. (But here&#39;s the good news:
+  Authenticated requests get a higher rate limit. Check out the documentation
+  for more details.)
 
   Rate limit remaining: 0/60
   Rate limit reset at: 2019-03-04 19:39:05 UTC
@@ -377,39 +379,318 @@ on GitHub. Because of this, you may see the followig error:</p>
   - Use `usethis::browse_github_pat()` to create a Personal Access Token.
   - Use `usethis::edit_r_environ()` and add the token as `GITHUB_PAT`.</code></pre>
 <p>This just means that R tried to install too many packages from GitHub in too
-short of a window. To fix this, you need to tell R how to use github as your
+short of a window. To fix this, you need to tell R how to use GitHub as your
 user (you’ll need a GitHub user account). Follow these two steps:</p>
 <ol style="list-style-type: decimal">
 <li>Use <code>usethis::browse_github_pat()</code> to create a Personal Access Token.</li>
 <li>Use <code>usethis::edit_r_environ()</code> and add the token as <code>GITHUB_PAT</code>.</li>
 </ol>
 </div>
-<div id="example-data---wash-benefits" class="section level2">
-<h2><span class="header-section-number">1.5</span> Example Data - WASH Benefits</h2>
-<!-- This will be it's own chapter written by Alan. Including an expert here for now -->
-<p>The data come from the Effect of water quality, sanitation, hand washing, and
-nutritional interventions on child development in rural
-Bangladesh (WASH Benefits Bangladesh):
-a cluster-randomised controlled trial (<span class="citation">(“Temporary,” <a href="#ref-luby2018effects">n.d.</a>)</span>). The study enrolled
-enrolled pregnant women in their first or second trimester from rural villages
-of Gazipur, Kishoreganj, Mymensingh, and Tangail districts of central
-Bangladesh, with an average
-of eight women per cluster. Groups of eight geographically adjacent clusters
-were block-randomised, using a random number generator, into six intervention
-groups (all of which received weekly visits from a community health promoter
-for the first 6 months and every 2 weeks for the next 18 months) and a
-double-sized control group (no intervention or health promoter visit). The six
-intervention groups were: chlorinated drinking water; improved sanitation;
-handwashing with soap; combined water, sanitation, and handwashing; improved
-nutrition through counselling and provision of lipid-based nutrient supplements;
-and combined water, sanitation, handwashing, and nutrition. In the workshop, we
-concentrate child-growth (size for age) as the outcome. This trial was
-registered with ClinicalTrials.gov, number NCT01590095.</p>
+<div id="the-targeted-learning-roadmap" class="section level2">
+<h2><span class="header-section-number">1.5</span> The Targeted Learning Roadmap</h2>
+<p>A central goal of the Targeted Learning statistical paradigm is to estimate
+scientifically relevant parameters in realistic (usually nonparametric) models.</p>
+<div id="the-statistical-model" class="section level3">
+<h3><span class="header-section-number">1.5.1</span> The Statistical Model</h3>
+<p>For a given data set <span class="math inline">\(O = (W, A, Y)\)</span>, the distribution of the observed data may
+be written as follows: <span class="math inline">\(P(O) = P(W, A, Y) = P(W)P (A \mid W) P(Y \mid A, W)\)</span>. To
+estimate a parameter of interest, a researcher need not necessarily be able to
+specify these whole or conditional distributions. Rather, each estimator only
+requires that certain parts of the distribution be known; for example, some may
+require estimates of <span class="math inline">\(\mathbb{E}(Y \mid A, W)\)</span>, the mean of <span class="math inline">\(Y\)</span> within subgroups
+<span class="math inline">\((A, W)\)</span>, or the regression of the outcome on the exposure and confounders.</p>
+<p>At this stage in the roadmap, the researcher must specify a choice of
+statistical model to be used in estimating <span class="math inline">\(\mathbb{E}(Y \mid A, W)\)</span> or other
+elements of the probability distribution needed to estimate the parameter of
+interest. Here, <em>statistical model</em> means any constraints on the model form that
+may be imposed by knowledge about the data-generating process – that is, known
+aspects of how the data were generated. Typically, the <em>true model</em> is a very
+large model, placing few constraints, if any, on the data-generating
+distribution, or a semi-parametric model. With few constraints on the
+data-generating distribution, and a potentially large number of covariates,
+data-adaptive, machine-learning approaches remain the only practical option for
+estimating components of the likelihood. The remainder of this course concerns
+how to do this as efficiently and robustly as possible, depending on the goal of
+the analysis.</p>
+</div>
+<div id="the-causal-model" class="section level3">
+<h3><span class="header-section-number">1.5.2</span> The Causal Model</h3>
+<p>The next step in the roadmap is to use a causal framework to formalize the
+experiment and thereby define the parameter of interest. Causal graphs are one
+useful tool to express what we know about the causal relations among variables
+that are relevant to the question under study <span class="citation">(Pearl <a href="#ref-pearl2009causality">2009</a>)</span>. While
+directed acyclic graphs (DAGs) provide a convenient means by which to visualize
+causal relations between variables, the same causal relations among variables
+can be represented via a set of structural equations:
+<span class="math display">\[\begin{align*}
+  W &amp;= f_W(U_W) \\
+  A &amp;= f_A(W, U_A) \\
+  Y &amp;= f_Y(W, A, U_Y),
+\end{align*}\]</span>
+where <span class="math inline">\(U_W\)</span>, <span class="math inline">\(U_A\)</span>, and <span class="math inline">\(U_Y\)</span> represent the unmeasured exogenous background
+characteristics that influence the value of each variable. In the NPSEM, <span class="math inline">\(f_W\)</span>,
+<span class="math inline">\(f_A\)</span> and <span class="math inline">\(f_Y\)</span> denote that each variable (for <span class="math inline">\(W\)</span>, <span class="math inline">\(A\)</span> and <span class="math inline">\(Y\)</span>, respectively)
+is a function of its parents and unmeasured background characteristics, but note
+that there is no imposition of any particular functional constraints. For this
+reason, they are called non-parametric structural equation models (NPSEMs). The
+DAG and set of nonparametric structural equations represent exactly the same
+information and so may be used interchangeably.</p>
+</div>
+</div>
+<div id="the-parameter-of-interest" class="section level2">
+<h2><span class="header-section-number">1.6</span> The Parameter of Interest</h2>
+<p>The first hypothetical experiment we will consider is assigning exposure to the
+whole population and observing the outcome, and then assigning no exposure to
+the whole population and observing the outcome. On the nonparametric structural
+equations, this corresponds to a comparison of the outcome distribution in the
+population under two interventions:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(A\)</span> is set to <span class="math inline">\(1\)</span> for all individuals, and</li>
+<li><span class="math inline">\(A\)</span> is set to <span class="math inline">\(0\)</span> for all individuals.</li>
+</ol>
+<p>These interventions imply two new nonparametric structural equation models. For
+the case <span class="math inline">\(A = 1\)</span>, we have
+<span class="math display">\[\begin{align*}
+  W &amp;= f_W(U_W) \\
+  A &amp;= 1 \\
+  Y(1) &amp;= f_Y(W, 1, U_Y),
+\end{align*}\]</span>
+and for the case <span class="math inline">\(A=0\)</span>,
+<span class="math display">\[\begin{align*}
+  W &amp;= f_W(U_W) \\
+  A &amp;= 0 \\
+  Y(1) &amp;= f_Y(W, 0, U_Y).
+\end{align*}\]</span></p>
+<p>In these equations, <span class="math inline">\(A\)</span> is no longer a function of <span class="math inline">\(W\)</span> because we have
+intervened on the system, setting <span class="math inline">\(A\)</span> deterministically to either of the values
+<span class="math inline">\(1\)</span> or <span class="math inline">\(0\)</span>. The new symbols <span class="math inline">\(Y(1)\)</span> and <span class="math inline">\(Y(0)\)</span> indicate the outcome variable in
+our population if it were generated by the respective NPSEMs above; these are
+often called <em>counterfactuals</em>. The difference between the means of the outcome
+under these two interventions defines a parameter that is often called the
+“average treatment effect” (ATE), denoted
+<span class="math display">\[\begin{equation}\label{eqn:ate}
+  ATE = \mathbb{E}_X(Y(1)-Y(0)),
+\end{equation}\]</span>
+where <span class="math inline">\(\mathbb{E}_X\)</span> is the mean under the theoretical (unobserved) full data
+<span class="math inline">\(X = (W, Y(1), Y(0))\)</span>.</p>
+<div id="identifiability" class="section level3">
+<h3><span class="header-section-number">1.6.1</span> Identifiability</h3>
+<p>Because we can never observe both <span class="math inline">\(Y(0)\)</span> (the counterfactual outcome when <span class="math inline">\(A=0\)</span>)
+and <span class="math inline">\(Y(1)\)</span>, we cannot estimate  directly. Instead, we have to make
+assumptions under which this quantity may be estimated from the observed data
+<span class="math inline">\(O \sim P_0\)</span> under the data-generating distribution <span class="math inline">\(P_0\)</span>. Fortunately, given
+the causal model specified in the NPSEM above, we can, with a handful of
+untestable assumptions, estimate the ATE, even from observational data. These
+assumptions may be summarized as follows</p>
+<ol style="list-style-type: decimal">
+<li>The causal graph implies <span class="math inline">\(Y(a) \perp A\)</span> for all <span class="math inline">\(a \in \mathcal{A}\)</span>, which
+is the <em>randomization</em> assumption. In the case of observational data, the
+analogous assumption is <em>strong ignorability</em> $<span class="math inline">\(Y(a) \perp A \mid W\)</span> for all
+<span class="math inline">\(a \in \mathcal{A}\)</span>.</li>
+<li>Although not represented in the causal graph, also required is the assumption
+of no interference between units (that is, the <span class="math inline">\(Y\)</span>’s are independent)</li>
+<li>It is also necessary that all observed units, across strata defined by <span class="math inline">\(W\)</span>,
+have a bounded (non-deterministic) probability of receiving treatment –
+that is, <span class="math inline">\(0 &lt; P_0(A = a \mid W) &lt; 1\)</span> for all <span class="math inline">\(a\)</span> and <span class="math inline">\(W\)</span>). This assumption is
+referred to as <em>positivity</em>.</li>
+</ol>
+<p>Given these assumptions, the ATE may be re-written as a function of <span class="math inline">\(P_0\)</span>,
+specifically
+<span class="math display">\[\begin{equation}\label{eqn:estimand}
+  ATE = \mathbb{E}_0(Y(1) - Y(0)) = \mathbb{E}_0
+    \left(\mathbb{E}_0[Y \mid A = 1, W] - \mathbb{E}_0[Y \mid A = 0, W]\right),
+\end{equation}\]</span>
+or the difference in the predicted outcome values for each subject, under the
+contrast of treatment conditions (<span class="math inline">\(A = 0\)</span> vs. <span class="math inline">\(A = 1\)</span>), in the population,
+averaged over all observations. Thus, a parameter of a theoretical “full” data
+distribution can be represented as an estimand of the observed data
+distribution. Significantly, there is nothing about the representation in
+ that requires parameteric assumptions; thus, the regressions
+on the right hand side may be estimated freely with machine learning. With
+different parameters, there will be potentially different identifiability
+assumptions and the resulting estimands can be functions of different components
+of <span class="math inline">\(P_0\)</span>. We discuss several more complex estimands in later sections of this
+workshop.</p>
+</div>
+<div id="estimator" class="section level3">
+<h3><span class="header-section-number">1.6.2</span> Estimator</h3>
+<p>Although we will discuss more in later sections, the goals of the estimators we
+desire should be that, among sensible (asymptotically consistent, regular)
+estimators,</p>
+<ol style="list-style-type: decimal">
+<li>the estimator be asymptotically efficient in the statistical model of
+interest, and</li>
+<li>the estimator can be constructed for finite-sample performance improvements,
+relative to other estimators in the same class.</li>
+</ol>
+</div>
+<div id="inference" class="section level3">
+<h3><span class="header-section-number">1.6.3</span> Inference</h3>
+<p>The estimators we discuss are asymptotically linear, meaning that the difference
+in the estimate <span class="math inline">\(\Psi(P_n)\)</span> and the true parameter (<span class="math inline">\(\Psi(P_0)\)</span>) can be
+represented in first order by a i.i.d. sum:
+<span class="math display">\[\begin{equation}\label{eqn:IC}
+  \Psi(P_n) - \Psi(P_0) = \frac{1}{n} IC(O_i; \nu) + op(1/\sqrt{n})
+\end{equation}\]</span>
+where <span class="math inline">\(IC(O_i; \nu)\)</span> is a function of the data and possibly other parameters
+<span class="math inline">\(\nu\)</span>. Importantly, such estimators have mean-zero Gaussian limiting
+distributions; thus, in the univariate case, one has that
+<span class="math display">\[\begin{equation}\label{eqn:IC}
+  \sqrt{n}(\Psi(P_n) - \Psi(P_0)) = N(0, (IC(O_i; \nu))^2),
+\end{equation}\]</span>
+so that inference for the estimator of interest may be obtained in terms of
+the influence function. For this simple case, a 95% confidence interval may be
+derived as:
+<span class="math display">\[\begin{equation}\label{eqn:CI}
+  \Psi(P^{\star}_n) \pm 1.96 \sqrt{\frac{\hat{\sigma}^2}{n}},
+\end{equation}\]</span>
+where <span class="math inline">\(SE=\sqrt{\frac{\hat{\sigma}^2}{n}}\)</span> and <span class="math inline">\(\hat{\sigma}^2\)</span> is the sample
+variance of the estimated IC’s: <span class="math inline">\(IC(O; \hat{\nu})\)</span>. One can use the functional
+delta method to derive the influence curve if a parameter of interest may be
+written as a function of other asymptotically linear estimators.</p>
+</div>
+</div>
+<div id="the-wash-benefits-example-dataset" class="section level2">
+<h2><span class="header-section-number">1.7</span> The WASH Benefits Example Dataset</h2>
+<p>The data come from a study of the effect of water quality, sanitation, hand
+washing, and nutritional interventions on child development in rural Bangladesh
+(WASH Benefits Bangladesh): a cluster-randomised controlled trial
+<span class="citation">(“Temporary,” <a href="#ref-luby2018effects">n.d.</a>)</span>. The study enrolled pregnant women in their first or second
+trimester from the rural villages of Gazipur, Kishoreganj, Mymensingh, and
+Tangail districts of central Bangladesh, with an average of eight women per
+cluster. Groups of eight geographically adjacent clusters were block-randomised,
+using a random number generator, into six intervention groups (all of which
+received weekly visits from a community health promoter for the first 6 months
+and every 2 weeks for the next 18 months) and a double-sized control group (no
+intervention or health promoter visit). The six intervention groups were:</p>
+<ol style="list-style-type: decimal">
+<li>chlorinated drinking water;</li>
+<li>improved sanitation;</li>
+<li>handwashing with soap;</li>
+<li>combined water, sanitation, and hand washing;</li>
+<li>improved nutrition through counseling and provision of lipid-based nutrient
+supplements; and</li>
+<li>combined water, sanitation, handwashing, and nutrition.</li>
+</ol>
+<p>In the workshop, we concentrate on child growth (size for age) as the outcome of
+interest. For referene, this trial was registered with ClinicalTrials.gov as
+NCT01590095.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(here)
+<span class="kw">library</span>(tidyverse)
 
+<span class="co"># read in data</span>
+dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;washb_data.csv&quot;</span>))
+dat</code></pre>
+<pre><code># A tibble: 4,695 x 28
+     whz tr    fracode month  aged sex   momage momedu momheight hfiacat Nlt18
+   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
+ 1  0    Cont… N05265      9   268 male      30 Prima…      146. Food S…     3
+ 2 -1.16 Cont… N05265      9   286 male      25 Prima…      149. Modera…     2
+ 3 -1.05 Cont… N08002      9   264 male      25 Prima…      152. Food S…     1
+ 4 -1.26 Cont… N08002      9   252 fema…     28 Prima…      140. Food S…     3
+ 5 -0.59 Cont… N06531      9   336 fema…     19 Secon…      151. Food S…     2
+ 6 -0.51 Cont… N06531      9   304 male      20 Secon…      154. Severe…     0
+ 7 -2.46 Cont… N08002      9   336 fema…     19 Prima…      151. Food S…     2
+ 8 -0.6  Cont… N06528      9   312 fema…     25 No ed…      142. Food S…     2
+ 9 -0.23 Cont… N06528      9   322 male      30 Secon…      153. Food S…     1
+10 -0.14 Cont… N06453      9   376 male      30 No ed…      156. Modera…     2
+# … with 4,685 more rows, and 17 more variables: Ncomp &lt;dbl&gt;, watmin &lt;dbl&gt;,
+#   elec &lt;dbl&gt;, floor &lt;dbl&gt;, walls &lt;dbl&gt;, roof &lt;dbl&gt;, asset_wardrobe &lt;dbl&gt;,
+#   asset_table &lt;dbl&gt;, asset_chair &lt;dbl&gt;, asset_khat &lt;dbl&gt;, asset_chouki &lt;dbl&gt;,
+#   asset_tv &lt;dbl&gt;, asset_refrig &lt;dbl&gt;, asset_bike &lt;dbl&gt;, asset_moto &lt;dbl&gt;,
+#   asset_sewmach &lt;dbl&gt;, asset_mobile &lt;dbl&gt;</code></pre>
+<p>For the purposes of this workshop, we we start by treating the data as
+independent and identically distributed (i.i.d.) random draws from a very large
+target population. We could, with available options, account for the clustering
+of the data (within sampled geographic units), but, for simplification, we avoid
+these details in these workshop presentations, although modifications of our
+methodology for biased samples, repeated measures, etc., are available.</p>
+<p>We have 28 variables measured, of which 1 variable is set to be the outcome of
+interest. This outcome, <span class="math inline">\(Y\)</span>, is the weight-for-height Z-score (<code>whz</code> in <code>dat</code>);
+the treatment of interest, <span class="math inline">\(A\)</span>, is the randomized treatment group (<code>tr</code> in
+<code>dat</code>); and the adjustment set, <span class="math inline">\(W\)</span>, consists simply of <em>everything else</em>. This
+results in our observed data structure being <span class="math inline">\(n\)</span> i.i.d. copies of <span class="math inline">\(O_i = (W_i, A_i, Y_i)\)</span>, for <span class="math inline">\(i = 1, \ldots, n\)</span>.</p>
+<div id="the-variables" class="section level3">
+<h3><span class="header-section-number">1.7.1</span> The variables</h3>
+<p>Using the <a href="https://CRAN.R-project.org/package=skimr"><code>skimr</code> package</a>, we can
+quickly summarize the variables measured in the WASH Benefits data set:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(skimr)
+<span class="kw">skim</span>(dat)</code></pre>
+<pre><code>Skim summary statistics
+ n obs: 4695 
+ n variables: 28 
+
+── Variable type:character ─────────────────────────────────────────────────────
+ variable missing complete    n min max empty n_unique
+  fracode       0     4695 4695   2   6     0       20
+  hfiacat       0     4695 4695  11  24     0        4
+   momedu       0     4695 4695  12  15     0        3
+      sex       0     4695 4695   4   6     0        2
+       tr       0     4695 4695   3  15     0        7
+
+── Variable type:numeric ───────────────────────────────────────────────────────
+       variable missing complete    n    mean    sd     p0    p25   p50    p75
+           aged       0     4695 4695 266.32  52.17  42    230    266   303   
+     asset_bike       0     4695 4695   0.32   0.47   0      0      0     1   
+    asset_chair       0     4695 4695   0.73   0.44   0      0      1     1   
+   asset_chouki       0     4695 4695   0.78   0.41   0      1      1     1   
+     asset_khat       0     4695 4695   0.61   0.49   0      0      1     1   
+   asset_mobile       0     4695 4695   0.86   0.35   0      1      1     1   
+     asset_moto       0     4695 4695   0.066  0.25   0      0      0     0   
+   asset_refrig       0     4695 4695   0.079  0.27   0      0      0     0   
+  asset_sewmach       0     4695 4695   0.065  0.25   0      0      0     0   
+    asset_table       0     4695 4695   0.73   0.44   0      0      1     1   
+       asset_tv       0     4695 4695   0.3    0.46   0      0      0     1   
+ asset_wardrobe       0     4695 4695   0.17   0.37   0      0      0     0   
+           elec       0     4695 4695   0.6    0.49   0      0      1     1   
+          floor       0     4695 4695   0.11   0.31   0      0      0     0   
+         momage      18     4677 4695  23.91   5.24  14     20     23    27   
+      momheight      31     4664 4695 150.5    5.23 120.65 147.05 150.6 154.06
+          month       0     4695 4695   6.45   3.33   1      4      6     9   
+          Ncomp       0     4695 4695  11.04   6.35   2      6     10    14   
+          Nlt18       0     4695 4695   1.6    1.25   0      1      1     2   
+           roof       0     4695 4695   0.99   0.12   0      1      1     1   
+          walls       0     4695 4695   0.72   0.45   0      0      1     1   
+         watmin       0     4695 4695   0.95   9.48   0      0      0     1   
+            whz       0     4695 4695  -0.59   1.03  -4.67  -1.28  -0.6   0.08
+   p100     hist
+ 460    ▁▁▂▇▇▅▁▁
+   1    ▇▁▁▁▁▁▁▃
+   1    ▃▁▁▁▁▁▁▇
+   1    ▂▁▁▁▁▁▁▇
+   1    ▅▁▁▁▁▁▁▇
+   1    ▁▁▁▁▁▁▁▇
+   1    ▇▁▁▁▁▁▁▁
+   1    ▇▁▁▁▁▁▁▁
+   1    ▇▁▁▁▁▁▁▁
+   1    ▃▁▁▁▁▁▁▇
+   1    ▇▁▁▁▁▁▁▃
+   1    ▇▁▁▁▁▁▁▂
+   1    ▆▁▁▁▁▁▁▇
+   1    ▇▁▁▁▁▁▁▁
+  60    ▅▇▅▂▁▁▁▁
+ 168    ▁▁▁▂▇▇▂▁
+  12    ▅▃▇▃▂▇▃▅
+  52    ▇▇▃▁▁▁▁▁
+  10    ▇▃▂▁▁▁▁▁
+   1    ▁▁▁▁▁▁▁▇
+   1    ▃▁▁▁▁▁▁▇
+ 600    ▇▁▁▁▁▁▁▁
+   4.97 ▁▁▅▇▃▁▁▁</code></pre>
+<p>A convenient summary of the relevant variables is given just above, complete
+with a small visualization describing the marginal characteristics of each
+covariate. Note that the <em>asset</em> variables reflect socio-economic status of the
+study participants. Notice also the uniform distribution of the treatment groups
+(with twice as many controls); this is, of course, by design.</p>
+
+</div>
 </div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
+<div id="ref-pearl2009causality">
+<p>Pearl, Judea. 2009. <em>Causality: Models, Reasoning, and Inference</em>. Cambridge University Press.</p>
+</div>
 <div id="ref-luby2018effects">
 <p>“Temporary.” n.d.</p>
 </div>
@@ -457,7 +738,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["handbook.pdf", "handbook.epub"],
+"download": ["acic2019_workshop.pdf", "acic2019_workshop.epub"],
 "toc": {
 "collapse": "subsection"
 }
