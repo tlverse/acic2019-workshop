@@ -258,9 +258,8 @@ Now we can Super Learn with this fancy base learner stack.
 
 ```{r sl_fancy, eval = FALSE}
 sl_fancy <- Lrnr_sl$new(learners = fancy_stack, metalearner = metalearner)
-sl_fancy_fit <- sl_fancy$train(washb_task)
-sl_preds <- sl_fancy_fit$predict()
-sl_fancy_fit$print() %>%
+sl_fancy_feast <- sl_fancy$train(washb_task)
+sl_fancy_feast$print() %>%
   kable(format = "markdown", digits = 3)
 ```
 
