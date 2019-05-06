@@ -106,24 +106,24 @@ causal questions, each motivated by a case study, alongside statistical
 methodology and software for assessing the causal claim of interest. A sample
 schedule may take the form:
 
-* 09:30AM--09:45AM: [Why we need a statistical
+* 09:00AM--09:15AM: [Why we need a statistical
     revolution](https://senseaboutscienceusa.org/super-learning-and-the-revolution-in-knowledge/)
-* 09:45AM--10:15AM: The Roadmap, and the [WASH
+* 09:15AM--09:45AM: The Roadmap, and the [WASH
     Benefits](http://www.washbenefits.net/) data
-* 10:15AM--10:30AM: Introduction to the [`tlverse` software
+* 09:45AM--10:00AM: Introduction to the [`tlverse` software
     ecosystem](https://tlverse.org)
-* 10:30AM--10:45AM: Morning break
-* 10:45AM--11:45AM: Super (machine) learning with the
+* 10:00AM--10:30AM: Morning coffee break
+* 10:30AM--11:15AM: Super (machine) learning with the
     [`sl3`](https://github.com/tlverse/sl3) package
-* 11:45AM--12:30PM: Targeted learning for causal inference with the
+* 11:15AM--12:00PM: Targeted learning for causal inference with the
     [`tmle3`](https://github.com/tlverse/tmle3) package
-* 12:30PM--1:30PM: Lunch break
-* 01:30PM--02:45PM: Optimal treatment regimes and the
+* 12:00PM--1:00PM: Lunch break
+* 01:00PM--02:00PM: Optimal treatment regimes and the
     [`tmle3mopttx`](https://github.com/tlverse/tmle3mopttx) package
-* 02:45PM--03:00PM: Afternoon break
-* 3:00PM--4:00PM: Stochastic treatment regimes and the
+* 02:00PM--02:30PM: Afternoon coffee break
+* 2:30PM--3:30PM: Stochastic treatment regimes and the
     [`tmle3shift`](https://github.com/tlverse/tmle3shift) package
-* 04:00PM--4:30PM: _Coda_: [Why we need a statistical
+* 03:30PM--4:00PM: _Coda_: [Why we need a statistical
     revolution](https://senseaboutscienceusa.org/super-learning-and-the-revolution-in-knowledge/)
 
 ## About the instructors {-}
