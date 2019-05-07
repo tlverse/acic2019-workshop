@@ -100,14 +100,22 @@ assumptions may be summarized as follows
 
 1. The causal graph implies $Y(a) \perp A$ for all $a \in \mathcal{A}$, which
    is the _randomization_ assumption. In the case of observational data, the
-   analogous assumption is _strong ignorability_ $$Y(a) \perp A \mid W$ for all
-   $a \in \mathcal{A}$.
+   analogous assumption is _strong ignorability_ or _no unmeasured confounding_
+   $Y(a) \perp A \mid W$ for all $a \in \mathcal{A}$;
 2. Although not represented in the causal graph, also required is the assumption
-   of no interference between units (that is, the $Y$'s are independent)
-3. It is also necessary that all observed units, across strata defined by $W$,
+   of no interference between units, that is, the outcome for unit $i$ $Y_i$ is
+   not affected by exposure for unit $j$ $A_j$ unless $i=j$;
+3. _Consistency_ of the treatment mechanism is also required, i.e., the outcome
+   for unit $i$ is $Y_i(a)$ whenever $A_i = a$, an assumption also known as "no
+   other versions of treatment";
+4. It is also necessary that all observed units, across strata defined by $W$,
    have a bounded (non-deterministic) probability of receiving treatment --
    that is, $0 < P_0(A = a \mid W) < 1$ for all $a$ and $W$). This assumption is
    referred to as _positivity_.
+
+_Remark_: Together, (2) and (3), the assumptions of no interference and
+consistency, respectively, are jointly referred to as the *stable unit
+treatment value assumption* (SUTVA).
 
 Given these assumptions, the ATE may be re-written as a function of $P_0$,
 specifically
