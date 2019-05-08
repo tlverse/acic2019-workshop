@@ -32,7 +32,7 @@ lrn2 <- Lrnr_glm_fast$new()
 lrn3 <- Lrnr_hal9001$new()
 
 Q_learner <- Lrnr_sl$new(
-  learners = list(xgboost_50, xgboost_100, xgboost_500,lrn1, lrn2),
+  learners = list(xgboost_50, xgboost_100, xgboost_500, lrn1, lrn2),
   metalearner = Lrnr_nnls$new()
 )
 
@@ -42,7 +42,7 @@ g_learner <- Lrnr_sl$new(
 )
 
 b_learner <- Lrnr_sl$new(
-  learners = list(xgboost_50, xgboost_100, xgboost_500,lrn1, lrn2),
+  learners = list(xgboost_50, xgboost_100, xgboost_500, lrn1, lrn2),
   metalearner = Lrnr_nnls$new()
 )
 
@@ -177,18 +177,22 @@ fit <- tmle3(tmle_spec, data, node_list, learner_list)
 fit
 
 
-## ----load-washb-data, message=FALSE, warning=FALSE, cache=FALSE----------
+## ----load_washb_data_mopttx, message=FALSE, warning=FALSE, cache=FALSE----
 washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
 washb_data <- washb_data[!is.na(momage), lapply(.SD, as.numeric)]
 head(washb_data, 3)
 
 
-## ----washb-data-npsem-shift, message=FALSE, warning=FALSE, cache=FALSE----
-node_list <- list(W = names(washb_data)[!(names(washb_data) %in% c("whz", "tr"))],
-                  A = "tr", Y = "whz")
+## ----washb_data_npsem_mopttx, message=FALSE, warning=FALSE, cache=FALSE----
+node_list <- list(
+  W = names(washb_data)[!(names(washb_data) %in%
+    c("whz", "tr"))],
+  A = "tr",
+  Y = "whz"
+)
 
 
-## ----sl3_lrnrs-WASH------------------------------------------------------
+## ----sl3_lrnrs_washb_mopttx----------------------------------------------
 xgboost_100 <- Lrnr_xgboost$new(nrounds = 100)
 xgboost_500 <- Lrnr_xgboost$new(nrounds = 500)
 glm_fast <- Lrnr_glm_fast$new()
@@ -221,7 +225,7 @@ b_learner <- create_mv_learners(learners = learners)
 learner_list <- list(Y = Q_learner, A = g_learner, B = b_learner)
 
 
-## ----spec_init_WASH------------------------------------------------------
+## ----spec_init_washb_mopttx----------------------------------------------
 table(washb_data$momedu)
 table(washb_data$floor)
 table(washb_data$asset_refrig)
@@ -233,8 +237,8 @@ tmle_spec <- tmle3_mopttx_blip_revere(
 )
 
 
-## ----fit_tmle_auto_washb, eval=T-----------------------------------------
+## ----fit_tmle_auto_washb_mopttx, eval=T----------------------------------
 # fit the TML estimator
-fit <- tmle3(tmle_spec, data=washb_data, node_list, learner_list)
+fit <- tmle3(tmle_spec, data = washb_data, node_list, learner_list)
 fit
 

@@ -116,16 +116,18 @@ tmle_msm_fit <- tmle3(tmle_msm_spec, data, node_list, learner_list)
 tmle_msm_fit
 
 
-## ----load-washb-data, message=FALSE, warning=FALSE, cache=FALSE----------
+## ----load-washb-data-shift, message=FALSE, warning=FALSE, cache=FALSE----
 washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
 washb_data <- washb_data[!is.na(momage), lapply(.SD, as.numeric)]
 head(washb_data, 3)
 
 
 ## ----washb-data-npsem-shift, message=FALSE, warning=FALSE, cache=FALSE----
-node_list <- list(W = names(washb_data)[!(names(washb_data) %in%
-                                          c("whz", "momage"))],
-                  A = "momage", Y = "whz")
+node_list <- list(
+  W = names(washb_data)[!(names(washb_data) %in%
+    c("whz", "momage"))],
+  A = "momage", Y = "whz"
+)
 
 
 ## ----vim_spec_init_washb, message=FALSE, warning=FALSE-------------------

@@ -1,8 +1,3 @@
-## ----installation, eval=FALSE--------------------------------------------
-## install.packages("devtools")
-## devtools::install_github("tlverse/tlverse")
-
-
 ## ----load_washb_data_intro, message=FALSE, warning=FALSE-----------------
 library(here)
 library(tidyverse)
