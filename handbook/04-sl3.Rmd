@@ -1,4 +1,4 @@
-# Modern Super (Machine) Learning with `sl3`
+# Modern Machine Learning with `sl3`
 
 _Rachael Phillips_, based on the [`sl3` package](https://github.com/tlverse/sl3)
 by _Jeremy Coyle, Nima Hejazi, Ivana Malenica, and Oleg Sofrygin_
@@ -31,7 +31,7 @@ distribution that is needed to evaluate the target parameter. For this initial
 estimation, we use the super learner [@van2007super], an important step in
 creating a robust estimator.
 
-#### Super learner
+#### Super Learner
 
 * Loss-function-based tool that uses V-fold cross-validation to obtain the best
   prediction of the relevant part of the likelihood that's needed to evaluate
@@ -53,6 +53,9 @@ creating a robust estimator.
   ("metalearner" in `sl3` nomenclature) to be positive and sum to one (convex
   combination) has been shown to improve upon the discrete super learner
   [@polley2010super; @van2007super].
+
+ * This background material is described in greater detail in the accompanying
+ [`sl3` chapter](https://tlverse.org/tlverse-handbook/modern-machine-learning-with-sl3.html#introduction-1) of the `tlverse` handbook.
 
 ## Basic Implementation
 
@@ -96,7 +99,7 @@ To define the machine learning **"task"** (predict weight-for-height z-score
 `whz` using the available covariate data), we need to create an `sl3_Task`
 object. The `sl3_Task` keeps track of the roles the variables play in the
 machine learning problem, the data, and any metadata (e.g., observational-level
-weights, IDs, offset).
+weights, id, offset).
 
 ```{r task}
 # specify the outcome and covariates
@@ -120,16 +123,16 @@ Now that we have defined our machine learning problem with the task, we are
 ready to **"make"** the machine learning algorithms.
 
 Learners have properties that indicate what features they support. We may use
-`sl3_list_properties()` toget a list of all properties supported by at least
+`sl3_list_properties()` to get a list of all properties supported by at least
 one learner.
 
-```{r list_properties}
+```{r list-properties}
 sl3_list_properties()
 ```
 Since we have a continuous outcome, we may identify the learners that support
 this outcome type with `sl3_list_learners()`.
 
-```{r list_learners}
+```{r list-learners}
 sl3_list_learners(c("continuous"))
 ```
 
@@ -166,7 +169,7 @@ metalearner <- make_learner(Lrnr_nnls)
 Now that we have made a library/stack of base learners and a metalearner, we
 are ready to make the super learner.
 
-```{r make sl}
+```{r make-sl}
 sl <- make_learner(Lrnr_sl,
   learners = stack,
   metalearner = metalearner
@@ -180,9 +183,10 @@ predictions. This procedure is referred to as the *continuous* super learner.
 The cross-validation selector, or *discrete* super learner, is the base learner
 with the lowest cross-validated risk.
 
-Now we are ready to **"train"** our super learner on our `sl3_task` object.
+Now we are ready to **"train"** our super learner on our `sl3_task` object,
+`washb_task`.
 
-```{r sl_basic}
+```{r sl-basic}
 sl_fit <- sl$train(washb_task)
 ```
 
@@ -191,7 +195,7 @@ sl_fit <- sl$train(washb_task)
 Now that we have fit the super learner, we are ready to obtain our predicted
 values, and we can also obtain a summary of the results.
 
-```{r sl_basic-summary}
+```{r sl-basic-summary}
 sl_preds <- sl_fit$predict()
 head(sl_preds)
 sl_fit$print() %>%
@@ -224,18 +228,16 @@ new_stack <- make_learner(
 )
 ```
 
-### Screening covariates
+### Screening Covariates
 
 We can also select a subset of available covariates and pass only
 those variables to the modeling algorithm.
 
-Let's see how this works. Consider screening covariates based on their
-correlation with the outcome of interest (`cor.test` p-value < 0.1), and `randomForest`
-variable importance (top 10 most important variables).
+Consider screening covariates based on their correlation with the outcome of
+interest (`cor.test` p-value $\leq 0.1$).
 
 ```{r screeners}
 screen_cor <- Lrnr_pkg_SuperLearner_screener$new("screen.corP")
-screen_rf <- Lrnr_pkg_SuperLearner_screener$new("screen.randomForest")
 ```
 Now we need to **"pipe"**  only those selected covariates to the modeling
 algorithm. To accomplish this, we need to make a `Pipeline`, which is a just
@@ -244,41 +246,50 @@ to define the task for the next learner.
 
 ```{r screeners-pipe}
 cor_pipeline <- make_learner(Pipeline, screen_cor, new_stack)
-rf_pipeline <- make_learner(Pipeline, screen_rf, new_stack)
 ```
-Lastly, we just have to stack all of these pipelines together, so we may use
-them as base learners in our super learner.
+Now, our learners will be preceded by a screening step. Let's also consider the
+`new_stack`, just to compare how the feature selection methods perform in
+comparison to the methods without feature selection. Analogous to what we have
+seen before, we have to stack the pipeline and `new_stack` together, so we may
+use them as base learners in our super learner.
 
 ```{r screeners-stack}
-fancy_stack <- make_learner(Stack, cor_pipeline, rf_pipeline, new_stack)
+fancy_stack <- make_learner(Stack, cor_pipeline, new_stack)
 dt <- delayed_learner_train(fancy_stack, washb_task)
 plot(dt, color = FALSE, height = "300px")
 ```
 Now we can Super Learn with this fancy base learner stack.
 
-```{r sl_fancy, eval = FALSE}
+```{r sl-fancy, eval = FALSE}
 sl_fancy <- Lrnr_sl$new(learners = fancy_stack, metalearner = metalearner)
-sl_fancy_feast <- sl_fancy$train(washb_task)
-sl_fancy_feast$print() %>%
+sl_fit_fancy<- sl_fancy$train(washb_task)
+sl_fit_fancy$print() %>%
   kable(format = "markdown", digits = 3)
 ```
 
-### Cross-validated super learner
+### Cross-validated Super Learner
 
 We can cross-validate the super learner to see how well the super learner
 performs on unseen data. This requires an "external" layer of cross-validation,
 also called nested cross-validation, which involves setting aside a separate
 holdout sample that we don’t use to fit the super learner. This
 external cross validation procedure may also incorporate 10 folds, which is the
-default in `sl3`.
+default in `sl3`. However, we will incorporate 2 outer folds of
+cross-validation, for computational efficiency.
 
-```{r CVsl, eval=FALSE}
-CVsl <- CV_lrnr_sl(sl_fit, washb_task, loss_squared_error)
+```{r CVsl}
+washb_task_new <- make_sl3_Task(
+  data = washb_data,
+  covariates = covars,
+  outcome = outcome,
+  folds = make_folds(washb_data, fold_fun = folds_vfold, V = 2)
+)
+CVsl <- CV_lrnr_sl(sl_fit_fancy, washb_task_new, loss_squared_error)
 CVsl %>%
   kable(format = "markdown", digits = 3)
 ```
 
-### Variable importance
+### Variable Importance Analysis with `sl3`
 
 Variable importance can be interesting and informative. The `sl3` `varimp`
 function returns a table with variables listed in decreasing order of
@@ -290,13 +301,13 @@ In this manner, the larger the risk difference, the more important the variable
 is in the prediction.
 
 ```{r varimp}
-washb_varimp <- varimp(sl_fit, loss_squared_error)
+washb_varimp <- varimp(sl_fit_fancy, loss_squared_error)
 washb_varimp %>%
   kable(format = "markdown", digits = 3)
 ```
 
 ## Exercise
-### Predicting myocardial infarction with `sl3`
+### Predicting Myocardial Infarction with `sl3`
 
 Using the `chspred` data, loaded below, use `sl3` to predict myocardial
 infarction (`mi`) using the available covariate data.
