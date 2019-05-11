@@ -278,7 +278,7 @@ external cross validation procedure may also incorporate 10 folds, which is the
 default in `sl3`. However, we will incorporate 2 outer folds of
 cross-validation, for computational efficiency.
 
-```{r CVsl}
+```{r CVsl, eval=FALSE}
 washb_task_new <- make_sl3_Task(
   data = washb_data,
   covariates = covars,
@@ -301,13 +301,14 @@ true covariate, across all covariates.
 In this manner, the larger the risk difference, the more important the variable
 is in the prediction.
 
-```{r varimp}
+```{r varimp, eval=FALSE}
 washb_varimp <- varimp(sl_fit_fancy, loss_squared_error)
 washb_varimp %>%
   kable(format = "markdown", digits = 3)
 ```
 
 ## Exercise
+
 ### Predicting Myocardial Infarction with `sl3`
 
 Using the `chspred` data, loaded below, use `sl3` to predict myocardial
