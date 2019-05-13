@@ -1,133 +1,237 @@
-# Welcome to the `tlverse` {#intro}
+# The Targeted Learning Roadmap {#intro}
 
-## Learning Objectives
-<!--- appears as "X.1: Learning Objectives" in the book, where X is the chapter
-corresponding to stochastic interventions -->
-1. Understand the `tlverse` concept
-2. Identify the core components of the `tlverse`
-3. Install `tlverse` R packages
-4. Learn about the WASH Benefits example data
+A central goal of the Targeted Learning statistical paradigm is to estimate
+scientifically relevant parameters in realistic (usually nonparametric) models.
 
-## What is the `tlverse`?
+## The Statistical Model
 
-The `tlverse` is a new framework for doing Targeted Learning in R, inspired by
-the [`tidyverse` ecosystem](https://tidyverse.org) of R packages.
+For a given data set $O = (W, A, Y)$, the distribution of the observed data may
+be written as follows: $P(O) = P(W, A, Y) = P(W)P (A \mid W) P(Y \mid A, W)$. To
+estimate a parameter of interest, a researcher need not necessarily be able to
+specify these whole or conditional distributions. Rather, each estimator only
+requires that certain parts of the distribution be known; for example, some may
+require estimates of $\mathbb{E}(Y \mid A, W)$, the mean of $Y$ within subgroups
+$(A, W)$, or the regression of the outcome on the exposure and confounders.
 
-By analogy to the [`tidyverse`](https://tidyverse.org/):
+At this stage in the roadmap, the researcher must specify a choice of
+statistical model to be used in estimating $\mathbb{E}(Y \mid A, W)$ or other
+elements of the probability distribution needed to estimate the parameter of
+interest. Here, _statistical model_ means any constraints on the model form that
+may be imposed by knowledge about the data-generating process -- that is, known
+aspects of how the data were generated. Typically, the _true model_ is a very
+large model, placing few constraints, if any, on the data-generating
+distribution, or a semi-parametric model. With few constraints on the
+data-generating distribution, and a potentially large number of covariates,
+data-adaptive, machine-learning approaches remain the only practical option for
+estimating components of the likelihood. The remainder of this course concerns
+how to do this as efficiently and robustly as possible, depending on the goal of
+the analysis.
 
-> The tidyverse is an opinionated collection of R packages designed for data
-> science. All packages share an underlying design philosophy, grammar, and data
-> structures. 
+## The Causal Model
 
-So, the [`tlverse`](https://tlverse.org) is
+The next step in the roadmap is to use a causal framework to formalize the
+experiment and thereby define the parameter of interest. Causal graphs are one
+useful tool to express what we know about the causal relations among variables
+that are relevant to the question under study [@pearl2009causality]. While
+directed acyclic graphs (DAGs) provide a convenient means by which to visualize
+causal relations between variables, the same causal relations among variables
+can be represented via a set of structural equations:
+\begin{align*}
+  W &= f_W(U_W) \\
+  A &= f_A(W, U_A) \\
+  Y &= f_Y(W, A, U_Y),
+\end{align*}
+where $U_W$, $U_A$, and $U_Y$ represent the unmeasured exogenous background
+characteristics that influence the value of each variable. In the NPSEM, $f_W$,
+$f_A$ and $f_Y$ denote that each variable (for $W$, $A$ and $Y$, respectively)
+is a function of its parents and unmeasured background characteristics, but note
+that there is no imposition of any particular functional constraints. For this
+reason, they are called non-parametric structural equation models (NPSEMs). The
+DAG and set of nonparametric structural equations represent exactly the same
+information and so may be used interchangeably.
 
-* an opinionated collection of R packages for Targeted Learning
-* sharing an underlying philosophy, grammar, and set of data structures
+## The Parameter of Interest
 
-## `tlverse` components
+The first hypothetical experiment we will consider is assigning exposure to the
+whole population and observing the outcome, and then assigning no exposure to
+the whole population and observing the outcome. On the nonparametric structural
+equations, this corresponds to a comparison of the outcome distribution in the
+population under two interventions:
 
-These are the main packages that represent the **core** of the `tlverse`:
+1. $A$ is set to $1$ for all individuals, and
+2. $A$ is set to $0$ for all individuals.
 
-* [`sl3`](https://github.com/tlverse/sl3): Modern Super Learning with Pipelines
-  * _What?_ A modern object-oriented re-implementation of the Super Learner
-    algorithm, employing recently developed paradigms for `R` programming.
-  * _Why?_ A design that leverages modern tools for fast computation, is
-    forward-looking, and can form one of the cornerstones of the `tlverse`.
+These interventions imply two new nonparametric structural equation models. For
+the case $A = 1$, we have
+\begin{align*}
+  W &= f_W(U_W) \\
+  A &= 1 \\
+  Y(1) &= f_Y(W, 1, U_Y),
+\end{align*}
+and for the case $A=0$,
+\begin{align*}
+  W &= f_W(U_W) \\
+  A &= 0 \\
+  Y(1) &= f_Y(W, 0, U_Y).
+\end{align*}
 
-* [`tmle3`](https://github.com/tlverse/tmle3): An Engine for Targeted Learning
-  * _What?_ A generalized framework that simplifies Targeted Learning by
-    identifying and implementing a series of common statistical estimation
-    procedures.
-  * _Why?_ A common interface and engine that accommodates current algorithmic
-    approaches to Targeted Learning and is still flexible enough to remain the
-    engine even as new techniques are developed.
+In these equations, $A$ is no longer a function of $W$ because we have
+intervened on the system, setting $A$ deterministically to either of the values
+$1$ or $0$. The new symbols $Y(1)$ and $Y(0)$ indicate the outcome variable in
+our population if it were generated by the respective NPSEMs above; these are
+often called _counterfactuals_. The difference between the means of the outcome
+under these two interventions defines a parameter that is often called the
+"average treatment effect" (ATE), denoted
+\begin{equation}\label{eqn:ate}
+  ATE = \mathbb{E}_X(Y(1)-Y(0)),
+\end{equation}
+where $\mathbb{E}_X$ is the mean under the theoretical (unobserved) full data
+$X = (W, Y(1), Y(0))$.
 
-In addition to the engines that drive development in the `tlverse`, there are
-some supporting packages -- in particular, we have two...
+## Identifiability
 
-* [`origami`](https://github.com/tlverse/origami): A Generalized Framework for
-   Cross-Validation
-  * _What?_ A generalized framework for flexible cross-validation
-  * _Why?_ Cross-validation is a key part of ensuring error estimates are honest
-    and preventing overfitting. It is an essential part of the both the Super
-    Learner algorithm and Targeted Learning.
+Because we can never observe both $Y(0)$ (the counterfactual outcome when $A=0$)
+and $Y(1)$, we cannot estimate \ref{eqn:ate} directly. Instead, we have to make
+assumptions under which this quantity may be estimated from the observed data
+$O \sim P_0$ under the data-generating distribution $P_0$. Fortunately, given
+the causal model specified in the NPSEM above, we can, with a handful of
+untestable assumptions, estimate the ATE, even from observational data. These
+assumptions may be summarized as follows
 
-* [`delayed`](https://github.com/tlverse/delayed): Parallelization Framework for
-   Dependent Tasks
-  * _What?_ A framework for delayed computations (futures) based on task
-    dependencies.
-  * _Why?_ Efficient allocation of compute resources is essential when deploying
-    large-scale, computationally intensive algorithms.
+1. The causal graph implies $Y(a) \perp A$ for all $a \in \mathcal{A}$, which
+   is the _randomization_ assumption. In the case of observational data, the
+   analogous assumption is _strong ignorability_ or _no unmeasured confounding_
+   $Y(a) \perp A \mid W$ for all $a \in \mathcal{A}$;
+2. Although not represented in the causal graph, also required is the assumption
+   of no interference between units, that is, the outcome for unit $i$ $Y_i$ is
+   not affected by exposure for unit $j$ $A_j$ unless $i=j$;
+3. _Consistency_ of the treatment mechanism is also required, i.e., the outcome
+   for unit $i$ is $Y_i(a)$ whenever $A_i = a$, an assumption also known as "no
+   other versions of treatment";
+4. It is also necessary that all observed units, across strata defined by $W$,
+   have a bounded (non-deterministic) probability of receiving treatment --
+   that is, $0 < P_0(A = a \mid W) < 1$ for all $a$ and $W$). This assumption is
+   referred to as _positivity_.
 
-A key principle of the `tlverse` is extensibility. That is, we want to support
-new Targeted Learning estimators as they are developed. The model for this is
-new estimators are implemented in additional packages using the core packages
-above. There are currently two featured examples of this:
+_Remark_: Together, (2) and (3), the assumptions of no interference and
+consistency, respectively, are jointly referred to as the *stable unit
+treatment value assumption* (SUTVA).
 
-* [`tmle3mopttx`](https://github.com/tlverse/tmle3mopttx): Optimal Treatments
-  in `tlverse`
-  * _What?_ Learn an optimal rule and estimate the mean outcome under the rule
-  * _Why?_ Optimal Treatment is a powerful tool in precision healthcare and
-    other settings where a one-size-fits-all treatment approach is not
-    appropriate.
+Given these assumptions, the ATE may be re-written as a function of $P_0$,
+specifically
+\begin{equation}\label{eqn:estimand}
+  ATE = \mathbb{E}_0(Y(1) - Y(0)) = \mathbb{E}_0
+    \left(\mathbb{E}_0[Y \mid A = 1, W] - \mathbb{E}_0[Y \mid A = 0, W]\right),
+\end{equation}
+or the difference in the predicted outcome values for each subject, under the
+contrast of treatment conditions ($A = 0$ vs. $A = 1$), in the population,
+averaged over all observations. Thus, a parameter of a theoretical "full" data
+distribution can be represented as an estimand of the observed data
+distribution. Significantly, there is nothing about the representation in
+\ref{eqn:estimand} that requires parameteric assumptions; thus, the regressions
+on the right hand side may be estimated freely with machine learning. With
+different parameters, there will be potentially different identifiability
+assumptions and the resulting estimands can be functions of different components
+of $P_0$. We discuss several more complex estimands in later sections of this
+workshop.
 
-* [`tmle3shift`](https://github.com/tlverse/tmle3shift): Shift Interventions in
-  `tlverse`
-  * _What?_ Shift interventions for continuous treatments
-  * _Why?_ Not all treatment variables are discrete. Being able to estimate the
-    effects of continuous treatment represents a powerful extension of the
-    Targeted Learning approach.
+## Estimator
 
-## Installation
+Although we will discuss more in later sections, the goals of the estimators we
+desire should be that, among sensible (asymptotically consistent, regular)
+estimators,
 
-The `tlverse` ecosystem of packages are currently hosted at
-https://github.com/tlverse, not yet on [CRAN](http://cran.r-project.org/). You
-can use the `devtools` package to install them:
+1. the estimator be asymptotically efficient in the statistical model of
+   interest, and
+2. the estimator can be constructed for finite-sample performance improvements,
+   relative to other estimators in the same class.
 
-```{r installation, eval=FALSE}
-install.packages("devtools")
-devtools::install_github("tlverse/tlverse")
+### Inference
+
+The estimators we discuss are asymptotically linear, meaning that the difference
+in the estimate $\Psi(P_n)$ and the true parameter ($\Psi(P_0)$) can be
+represented in first order by a i.i.d. sum:
+\begin{equation}\label{eqn:IC}
+  \Psi(P_n) - \Psi(P_0) = \frac{1}{n} IC(O_i; \nu) + op(1/\sqrt{n})
+\end{equation}
+where $IC(O_i; \nu)$ is a function of the data and possibly other parameters
+$\nu$. Importantly, such estimators have mean-zero Gaussian limiting
+distributions; thus, in the univariate case, one has that
+\begin{equation}\label{eqn:limit_dist}
+  \sqrt{n}(\Psi(P_n) - \Psi(P_0)) = N(0, (IC(O_i; \nu))^2),
+\end{equation}
+so that inference for the estimator of interest may be obtained in terms of
+the influence function. For this simple case, a 95\% confidence interval may be
+derived as:
+\begin{equation}\label{eqn:CI}
+  \Psi(P^{\star}_n) \pm 1.96 \sqrt{\frac{\hat{\sigma}^2}{n}},
+\end{equation}
+where $SE=\sqrt{\frac{\hat{\sigma}^2}{n}}$ and $\hat{\sigma}^2$ is the sample
+variance of the estimated IC's: $IC(O; \hat{\nu})$. One can use the functional
+delta method to derive the influence curve if a parameter of interest may be
+written as a function of other asymptotically linear estimators.
+
+## The WASH Benefits Example Dataset
+
+The data come from a study of the effect of water quality, sanitation, hand
+washing, and nutritional interventions on child development in rural Bangladesh
+(WASH Benefits Bangladesh): a cluster-randomised controlled trial
+[@luby2018effects]. The study enrolled pregnant women in their first or second
+trimester from the rural villages of Gazipur, Kishoreganj, Mymensingh, and
+Tangail districts of central Bangladesh, with an average of eight women per
+cluster. Groups of eight geographically adjacent clusters were block-randomised,
+using a random number generator, into six intervention groups (all of which
+received weekly visits from a community health promoter for the first 6 months
+and every 2 weeks for the next 18 months) and a double-sized control group (no
+intervention or health promoter visit). The six intervention groups were:
+
+1. chlorinated drinking water;
+2. improved sanitation;
+3. handwashing with soap;
+4. combined water, sanitation, and hand washing;
+5. improved nutrition through counseling and provision of lipid-based nutrient
+   supplements; and
+6. combined water, sanitation, handwashing, and nutrition.
+
+In the workshop, we concentrate on child growth (size for age) as the outcome of
+interest. For referene, this trial was registered with ClinicalTrials.gov as
+NCT01590095.
+
+```{r load_washb_data_intro, message=FALSE, warning=FALSE}
+library(here)
+library(tidyverse)
+
+# read in data
+dat <- read_csv(here("data", "washb_data.csv"))
+dat
 ```
 
-The `tlverse` depends on a large number of other packages that are also hosted
-on GitHub. Because of this, you may see the followig error:
+For the purposes of this workshop, we we start by treating the data as
+independent and identically distributed (i.i.d.) random draws from a very large
+target population. We could, with available options, account for the clustering
+of the data (within sampled geographic units), but, for simplification, we avoid
+these details in these workshop presentations, although modifications of our
+methodology for biased samples, repeated measures, etc., are available.
+
+We have 28 variables measured, of which 1 variable is set to be the outcome of
+interest. This outcome, $Y$, is the weight-for-height Z-score (`whz` in `dat`);
+the treatment of interest, $A$, is the randomized treatment group (`tr` in
+`dat`); and the adjustment set, $W$, consists simply of *everything else*. This
+results in our observed data structure being $n$ i.i.d. copies of $O_i = (W_i,
+A_i, Y_i)$, for $i = 1, \ldots, n$.
+
+### The variables
+
+Using the [`skimr` package](https://CRAN.R-project.org/package=skimr), we can
+quickly summarize the variables measured in the WASH Benefits data set:
+
+```{r skim_washb_data, message=FALSE, warning=FALSE}
+library(skimr)
+skim(dat)
 ```
-Error: HTTP error 403.
-  API rate limit exceeded for 71.204.135.82. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)
 
-  Rate limit remaining: 0/60
-  Rate limit reset at: 2019-03-04 19:39:05 UTC
-
-  To increase your GitHub API rate limit
-  - Use `usethis::browse_github_pat()` to create a Personal Access Token.
-  - Use `usethis::edit_r_environ()` and add the token as `GITHUB_PAT`.
-```
-
-This just means that R tried to install too many packages from GitHub in too
-short of a window. To fix this, you need to tell R how to use github as your
-user (you'll need a GitHub user account). Follow these two steps:
-
-1. Use `usethis::browse_github_pat()` to create a Personal Access Token.
-2. Use `usethis::edit_r_environ()` and add the token as `GITHUB_PAT`.
-
-## Example Data - WASH Benefits
-
-<!-- This will be it's own chapter written by Alan. Including an expert here for now -->
-The data come from the Effect of water quality, sanitation, hand washing, and
-nutritional interventions on child development in rural
-Bangladesh (WASH Benefits Bangladesh):
-a cluster-randomised controlled trial (@luby2018effects). The study enrolled
-enrolled pregnant women in their first or second trimester from rural villages
-of Gazipur, Kishoreganj, Mymensingh, and Tangail districts of central
-Bangladesh, with an average
-of eight women per cluster. Groups of eight geographically adjacent clusters
-were block-randomised, using a random number generator, into six intervention
-groups (all of which received weekly visits from a community health promoter
-for the first 6 months and every 2 weeks for the next 18 months) and a
-double-sized control group (no intervention or health promoter visit). The six
-intervention groups were: chlorinated drinking water; improved sanitation;
-handwashing with soap; combined water, sanitation, and handwashing; improved
-nutrition through counselling and provision of lipid-based nutrient supplements;
-and combined water, sanitation, handwashing, and nutrition. In the workshop, we
-concentrate child-growth (size for age) as the outcome. This trial was
-registered with ClinicalTrials.gov, number NCT01590095.
+A convenient summary of the relevant variables is given just above, complete
+with a small visualization describing the marginal characteristics of each
+covariate. Note that the *asset* variables reflect socio-economic status of the
+study participants. Notice also the uniform distribution of the treatment groups
+(with twice as many controls); this is, of course, by design.
