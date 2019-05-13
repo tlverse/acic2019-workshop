@@ -37,7 +37,7 @@ Imports:
   tmle3mopttx,
   tmle3shift,
   haldensify,
-  kableEztra
+  kableExtra
 Remotes:
   github::rstudio/bookdown,
   github::Rdatatable/data.table,
