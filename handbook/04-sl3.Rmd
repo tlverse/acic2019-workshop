@@ -33,7 +33,7 @@ distribution that is needed to evaluate the target parameter. For this initial
 estimation, we use the super learner [@van2007super], an important step in
 creating a robust estimator.
 
-#### Super Learner
+#### Super Learner {-}
 
 * Loss-function-based tool that uses V-fold cross-validation to obtain the best
   prediction of the relevant part of the likelihood that's needed to evaluate
