@@ -1,12 +1,16 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 # The Targeted Learning Roadmap {#intro}
 
 A central goal of the Targeted Learning statistical paradigm is to estimate
 scientifically relevant parameters in realistic (usually nonparametric) models.
 
 ## The Statistical Model
-
-For a given data set $O = (W, A, Y)$, the distribution of the observed data may
-be written as follows: $P(O) = P(W, A, Y) = P(W)P (A \mid W) P(Y \mid A, W)$. To
+Assume we have an i.i.d. sample of confounders, a binary intervention of interest, and an outcome, or are observed data is  $O = (W, A, Y)$. The distribution of the observed data may
+be factorized as follows: $P(O) = P(W, A, Y) = P(W)P (A \mid W) P(Y \mid A, W)$. To
 estimate a parameter of interest, a researcher need not necessarily be able to
 specify these whole or conditional distributions. Rather, each estimator only
 requires that certain parts of the distribution be known; for example, some may
@@ -32,9 +36,23 @@ the analysis.
 The next step in the roadmap is to use a causal framework to formalize the
 experiment and thereby define the parameter of interest. Causal graphs are one
 useful tool to express what we know about the causal relations among variables
-that are relevant to the question under study [@pearl2009causality]. While
-directed acyclic graphs (DAGs) provide a convenient means by which to visualize
-causal relations between variables, the same causal relations among variables
+that are relevant to the question under study [@pearl2009causality]. 
+
+Ignoring error terms, we will assume the following ordering of the variables in $O$.
+
+```{r, echo=F}
+library(DiagrammeR)
+DiagrammeR("
+  graph LR
+    W-->A
+    W-->Y
+    A-->Y
+")
+```
+
+While
+directed acyclic graphs (DAGs - like above) provide a convenient means by which to visualize
+causal relations between variables, the  causal relations among variables
 can be represented via a set of structural equations:
 \begin{align*}
   W &= f_W(U_W) \\
@@ -44,8 +62,7 @@ can be represented via a set of structural equations:
 where $U_W$, $U_A$, and $U_Y$ represent the unmeasured exogenous background
 characteristics that influence the value of each variable. In the NPSEM, $f_W$,
 $f_A$ and $f_Y$ denote that each variable (for $W$, $A$ and $Y$, respectively)
-is a function of its parents and unmeasured background characteristics, but note
-that there is no imposition of any particular functional constraints. For this
+is a function of its parents and unmeasured background characteristics, but one typically has little information about  particular functional constraints (e.g., linear, logit-linear, only one interaction, etc.). For this
 reason, they are called non-parametric structural equation models (NPSEMs). The
 DAG and set of nonparametric structural equations represent exactly the same
 information and so may be used interchangeably.
@@ -135,7 +152,13 @@ assumptions and the resulting estimands can be functions of different components
 of $P_0$. We discuss several more complex estimands in later sections of this
 workshop.
 
-## Estimator
+## Estimators: SuperLearning and Targeted Maximum Likelihood
+
+
+<object data="NatureSlides.pdf" width="750px" height="750px">
+    <embed src="NatureSlides.pdf">
+    </embed>
+</object>
 
 Although we will discuss more in later sections, the goals of the estimators we
 desire should be that, among sensible (asymptotically consistent, regular)
