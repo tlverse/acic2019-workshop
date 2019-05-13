@@ -51,70 +51,45 @@
 <link href="libs/vis-4.20.1/vis.css" rel="stylesheet" />
 <script src="libs/vis-4.20.1/vis.min.js"></script>
 <script src="libs/visNetwork-binding-2.0.6/visNetwork.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -292,70 +267,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> The Targeted Learning Roadmap</h1>
-<p>A central goal of the Targeted Learning statistical paradigm is to estimate
-scientifically relevant parameters in realistic (usually nonparametric) models.</p>
+<p>A central goal of the Targeted Learning statistical paradigm is to estimate scientifically relevant parameters in realistic (usually nonparametric) models.</p>
 <div id="the-statistical-model" class="section level2">
 <h2><span class="header-section-number">1.1</span> The Statistical Model</h2>
-<p>Assume we have an i.i.d. sample of confounders, a binary intervention of interest, and an outcome, or are observed data is <span class="math inline">\(O = (W, A, Y)\)</span>. The distribution of the observed data may
-be factorized as follows: <span class="math inline">\(P(O) = P(W, A, Y) = P(W)P (A \mid W) P(Y \mid A, W)\)</span>. To
-estimate a parameter of interest, a researcher need not necessarily be able to
-specify these whole or conditional distributions. Rather, each estimator only
-requires that certain parts of the distribution be known; for example, some may
-require estimates of <span class="math inline">\(\mathbb{E}(Y \mid A, W)\)</span>, the mean of <span class="math inline">\(Y\)</span> within subgroups
-<span class="math inline">\((A, W)\)</span>, or the regression of the outcome on the exposure and confounders.</p>
-<p>At this stage in the roadmap, the researcher must specify a choice of
-statistical model to be used in estimating <span class="math inline">\(\mathbb{E}(Y \mid A, W)\)</span> or other
-elements of the probability distribution needed to estimate the parameter of
-interest. Here, <em>statistical model</em> means any constraints on the model form that
-may be imposed by knowledge about the data-generating process – that is, known
-aspects of how the data were generated. Typically, the <em>true model</em> is a very
-large model, placing few constraints, if any, on the data-generating
-distribution, or a semi-parametric model. With few constraints on the
-data-generating distribution, and a potentially large number of covariates,
-data-adaptive, machine-learning approaches remain the only practical option for
-estimating components of the likelihood. The remainder of this course concerns
-how to do this as efficiently and robustly as possible, depending on the goal of
-the analysis.</p>
+<p>Assume we have an i.i.d. sample of confounders, a binary intervention of interest, and an outcome, or are observed data is <span class="math inline">\(O = (W, A, Y)\)</span>. The distribution of the observed data may be factorized as follows: <span class="math inline">\(P(O) = P(W, A, Y) = P(W)P (A \mid W) P(Y \mid A, W)\)</span>. To estimate a parameter of interest, a researcher need not necessarily be able to specify these whole or conditional distributions. Rather, each estimator only requires that certain parts of the distribution be known; for example, some may require estimates of <span class="math inline">\(\mathbb{E}(Y \mid A, W)\)</span>, the mean of <span class="math inline">\(Y\)</span> within subgroups <span class="math inline">\((A, W)\)</span>, or the regression of the outcome on the exposure and confounders.</p>
+<p>At this stage in the roadmap, the researcher must specify a choice of statistical model to be used in estimating <span class="math inline">\(\mathbb{E}(Y \mid A, W)\)</span> or other elements of the probability distribution needed to estimate the parameter of interest. Here, <em>statistical model</em> means any constraints on the model form that may be imposed by knowledge about the data-generating process – that is, known aspects of how the data were generated. Typically, the <em>true model</em> is a very large model, placing few constraints, if any, on the data-generating distribution, or a semi-parametric model. With few constraints on the data-generating distribution, and a potentially large number of covariates, data-adaptive, machine-learning approaches remain the only practical option for estimating components of the likelihood. The remainder of this course concerns how to do this as efficiently and robustly as possible, depending on the goal of the analysis.</p>
 </div>
 <div id="the-causal-model" class="section level2">
 <h2><span class="header-section-number">1.2</span> The Causal Model</h2>
-<p>The next step in the roadmap is to use a causal framework to formalize the
-experiment and thereby define the parameter of interest. Causal graphs are one
-useful tool to express what we know about the causal relations among variables
-that are relevant to the question under study <span class="citation">(Pearl <a href="#ref-pearl2009causality">2009</a>)</span>.</p>
+<p>The next step in the roadmap is to use a causal framework to formalize the experiment and thereby define the parameter of interest. Causal graphs are one useful tool to express what we know about the causal relations among variables that are relevant to the question under study <span class="citation">(Pearl <a href="#ref-pearl2009causality">2009</a>)</span>.</p>
 <p>Ignoring error terms, we will assume the following ordering of the variables in <span class="math inline">\(O\)</span>.</p>
-<div id="htmlwidget-ee61d0984883a3912900" style="width:200px;height:300px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ee61d0984883a3912900">{"x":{"nodes":{"id":["W","A","Y"],"label":["W","A","Y"]},"edges":{"from":["W","W","A"],"to":["A","Y","Y"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":true}},"layout":{"randomSeed":25}},"groups":null,"width":"200px","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
-<p>While
-directed acyclic graphs (DAGs - like above) provide a convenient means by which to visualize
-causal relations between variables, the causal relations among variables
-can be represented via a set of structural equations:
+<div id="htmlwidget-5143a1f14d69193bea68" style="width:200px;height:300px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5143a1f14d69193bea68">{"x":{"nodes":{"id":["W","A","Y"],"label":["W","A","Y"]},"edges":{"from":["W","W","A"],"to":["A","Y","Y"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":true}},"layout":{"randomSeed":25}},"groups":null,"width":"200px","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+While directed acyclic graphs (DAGs - like above) provide a convenient means by which to visualize causal relations between variables, the causal relations among variables can be represented via a set of structural equations:
 <span class="math display">\[\begin{align*}
   W &amp;= f_W(U_W) \\
   A &amp;= f_A(W, U_A) \\
   Y &amp;= f_Y(W, A, U_Y),
 \end{align*}\]</span>
-where <span class="math inline">\(U_W\)</span>, <span class="math inline">\(U_A\)</span>, and <span class="math inline">\(U_Y\)</span> represent the unmeasured exogenous background
-characteristics that influence the value of each variable. In the NPSEM, <span class="math inline">\(f_W\)</span>,
-<span class="math inline">\(f_A\)</span> and <span class="math inline">\(f_Y\)</span> denote that each variable (for <span class="math inline">\(W\)</span>, <span class="math inline">\(A\)</span> and <span class="math inline">\(Y\)</span>, respectively)
-is a function of its parents and unmeasured background characteristics, but one typically has little information about particular functional constraints (e.g., linear, logit-linear, only one interaction, etc.). For this
-reason, they are called non-parametric structural equation models (NPSEMs). The
-DAG and set of nonparametric structural equations represent exactly the same
-information and so may be used interchangeably.</p>
+<p>where <span class="math inline">\(U_W\)</span>, <span class="math inline">\(U_A\)</span>, and <span class="math inline">\(U_Y\)</span> represent the unmeasured exogenous background characteristics that influence the value of each variable. In the NPSEM, <span class="math inline">\(f_W\)</span>, <span class="math inline">\(f_A\)</span> and <span class="math inline">\(f_Y\)</span> denote that each variable (for <span class="math inline">\(W\)</span>, <span class="math inline">\(A\)</span> and <span class="math inline">\(Y\)</span>, respectively) is a function of its parents and unmeasured background characteristics, but one typically has little information about particular functional constraints (e.g., linear, logit-linear, only one interaction, etc.). For this reason, they are called non-parametric structural equation models (NPSEMs). The DAG and set of nonparametric structural equations represent exactly the same information and so may be used interchangeably.</p>
 </div>
 <div id="the-parameter-of-interest" class="section level2">
 <h2><span class="header-section-number">1.3</span> The Parameter of Interest</h2>
-<p>The first hypothetical experiment we will consider is assigning exposure to the
-whole population and observing the outcome, and then assigning no exposure to
-the whole population and observing the outcome. On the nonparametric structural
-equations, this corresponds to a comparison of the outcome distribution in the
-population under two interventions:</p>
+<p>The first hypothetical experiment we will consider is assigning exposure to the whole population and observing the outcome, and then assigning no exposure to the whole population and observing the outcome. On the nonparametric structural equations, this corresponds to a comparison of the outcome distribution in the population under two interventions:</p>
 <ol style="list-style-type: decimal">
 <li><span class="math inline">\(A\)</span> is set to <span class="math inline">\(1\)</span> for all individuals, and</li>
 <li><span class="math inline">\(A\)</span> is set to <span class="math inline">\(0\)</span> for all individuals.</li>
 </ol>
-<p>These interventions imply two new nonparametric structural equation models. For
-the case <span class="math inline">\(A = 1\)</span>, we have
+These interventions imply two new nonparametric structural equation models. For the case <span class="math inline">\(A = 1\)</span>, we have
 <span class="math display">\[\begin{align*}
   W &amp;= f_W(U_W) \\
   A &amp;= 1 \\
@@ -366,78 +305,39 @@ and for the case <span class="math inline">\(A=0\)</span>,
   W &amp;= f_W(U_W) \\
   A &amp;= 0 \\
   Y(1) &amp;= f_Y(W, 0, U_Y).
-\end{align*}\]</span></p>
-<p>In these equations, <span class="math inline">\(A\)</span> is no longer a function of <span class="math inline">\(W\)</span> because we have
-intervened on the system, setting <span class="math inline">\(A\)</span> deterministically to either of the values
-<span class="math inline">\(1\)</span> or <span class="math inline">\(0\)</span>. The new symbols <span class="math inline">\(Y(1)\)</span> and <span class="math inline">\(Y(0)\)</span> indicate the outcome variable in
-our population if it were generated by the respective NPSEMs above; these are
-often called <em>counterfactuals</em>. The difference between the means of the outcome
-under these two interventions defines a parameter that is often called the
-“average treatment effect” (ATE), denoted
+\end{align*}\]</span>
+In these equations, <span class="math inline">\(A\)</span> is no longer a function of <span class="math inline">\(W\)</span> because we have intervened on the system, setting <span class="math inline">\(A\)</span> deterministically to either of the values <span class="math inline">\(1\)</span> or <span class="math inline">\(0\)</span>. The new symbols <span class="math inline">\(Y(1)\)</span> and <span class="math inline">\(Y(0)\)</span> indicate the outcome variable in our population if it were generated by the respective NPSEMs above; these are often called <em>counterfactuals</em>. The difference between the means of the outcome under these two interventions defines a parameter that is often called the “average treatment effect” (ATE), denoted
 <span class="math display">\[\begin{equation}\label{eqn:ate}
   ATE = \mathbb{E}_X(Y(1)-Y(0)),
 \end{equation}\]</span>
-where <span class="math inline">\(\mathbb{E}_X\)</span> is the mean under the theoretical (unobserved) full data
-<span class="math inline">\(X = (W, Y(1), Y(0))\)</span>.</p>
+<p>where <span class="math inline">\(\mathbb{E}_X\)</span> is the mean under the theoretical (unobserved) full data <span class="math inline">\(X = (W, Y(1), Y(0))\)</span>.</p>
 </div>
 <div id="identifiability" class="section level2">
 <h2><span class="header-section-number">1.4</span> Identifiability</h2>
-<p>Because we can never observe both <span class="math inline">\(Y(0)\)</span> (the counterfactual outcome when <span class="math inline">\(A=0\)</span>)
-and <span class="math inline">\(Y(1)\)</span>, we cannot estimate  directly. Instead, we have to make
-assumptions under which this quantity may be estimated from the observed data
-<span class="math inline">\(O \sim P_0\)</span> under the data-generating distribution <span class="math inline">\(P_0\)</span>. Fortunately, given
-the causal model specified in the NPSEM above, we can, with a handful of
-untestable assumptions, estimate the ATE, even from observational data. These
-assumptions may be summarized as follows</p>
+<p>Because we can never observe both <span class="math inline">\(Y(0)\)</span> (the counterfactual outcome when <span class="math inline">\(A=0\)</span>) and <span class="math inline">\(Y(1)\)</span>, we cannot estimate  directly. Instead, we have to make assumptions under which this quantity may be estimated from the observed data <span class="math inline">\(O \sim P_0\)</span> under the data-generating distribution <span class="math inline">\(P_0\)</span>. Fortunately, given the causal model specified in the NPSEM above, we can, with a handful of untestable assumptions, estimate the ATE, even from observational data. These assumptions may be summarized as follows</p>
 <ol style="list-style-type: decimal">
-<li>The causal graph implies <span class="math inline">\(Y(a) \perp A\)</span> for all <span class="math inline">\(a \in \mathcal{A}\)</span>, which
-is the <em>randomization</em> assumption. In the case of observational data, the
-analogous assumption is <em>strong ignorability</em> or <em>no unmeasured confounding</em>
-<span class="math inline">\(Y(a) \perp A \mid W\)</span> for all <span class="math inline">\(a \in \mathcal{A}\)</span>;</li>
-<li>Although not represented in the causal graph, also required is the assumption
-of no interference between units, that is, the outcome for unit <span class="math inline">\(i\)</span> <span class="math inline">\(Y_i\)</span> is
-not affected by exposure for unit <span class="math inline">\(j\)</span> <span class="math inline">\(A_j\)</span> unless <span class="math inline">\(i=j\)</span>;</li>
-<li><em>Consistency</em> of the treatment mechanism is also required, i.e., the outcome
-for unit <span class="math inline">\(i\)</span> is <span class="math inline">\(Y_i(a)\)</span> whenever <span class="math inline">\(A_i = a\)</span>, an assumption also known as “no
-other versions of treatment”;</li>
-<li>It is also necessary that all observed units, across strata defined by <span class="math inline">\(W\)</span>,
-have a bounded (non-deterministic) probability of receiving treatment –
-that is, <span class="math inline">\(0 &lt; P_0(A = a \mid W) &lt; 1\)</span> for all <span class="math inline">\(a\)</span> and <span class="math inline">\(W\)</span>). This assumption is
-referred to as <em>positivity</em>.</li>
+<li>The causal graph implies <span class="math inline">\(Y(a) \perp A\)</span> for all <span class="math inline">\(a \in \mathcal{A}\)</span>, which is the <em>randomization</em> assumption. In the case of observational data, the analogous assumption is <em>strong ignorability</em> or <em>no unmeasured confounding</em> <span class="math inline">\(Y(a) \perp A \mid W\)</span> for all <span class="math inline">\(a \in \mathcal{A}\)</span>;</li>
+<li>Although not represented in the causal graph, also required is the assumption of no interference between units, that is, the outcome for unit <span class="math inline">\(i\)</span> <span class="math inline">\(Y_i\)</span> is not affected by exposure for unit <span class="math inline">\(j\)</span> <span class="math inline">\(A_j\)</span> unless <span class="math inline">\(i=j\)</span>;</li>
+<li><em>Consistency</em> of the treatment mechanism is also required, i.e., the outcome for unit <span class="math inline">\(i\)</span> is <span class="math inline">\(Y_i(a)\)</span> whenever <span class="math inline">\(A_i = a\)</span>, an assumption also known as “no other versions of treatment”;</li>
+<li>It is also necessary that all observed units, across strata defined by <span class="math inline">\(W\)</span>, have a bounded (non-deterministic) probability of receiving treatment – that is, <span class="math inline">\(0 &lt; P_0(A = a \mid W) &lt; 1\)</span> for all <span class="math inline">\(a\)</span> and <span class="math inline">\(W\)</span>). This assumption is referred to as <em>positivity</em>.</li>
 </ol>
-<p><em>Remark</em>: Together, (2) and (3), the assumptions of no interference and
-consistency, respectively, are jointly referred to as the <em>stable unit
-treatment value assumption</em> (SUTVA).</p>
-<p>Given these assumptions, the ATE may be re-written as a function of <span class="math inline">\(P_0\)</span>,
-specifically
+<p><em>Remark</em>: Together, (2) and (3), the assumptions of no interference and consistency, respectively, are jointly referred to as the <em>stable unit treatment value assumption</em> (SUTVA).</p>
+Given these assumptions, the ATE may be re-written as a function of <span class="math inline">\(P_0\)</span>, specifically
 <span class="math display">\[\begin{equation}\label{eqn:estimand}
   ATE = \mathbb{E}_0(Y(1) - Y(0)) = \mathbb{E}_0
     \left(\mathbb{E}_0[Y \mid A = 1, W] - \mathbb{E}_0[Y \mid A = 0, W]\right),
 \end{equation}\]</span>
-or the difference in the predicted outcome values for each subject, under the
-contrast of treatment conditions (<span class="math inline">\(A = 0\)</span> vs. <span class="math inline">\(A = 1\)</span>), in the population,
-averaged over all observations. Thus, a parameter of a theoretical “full” data
-distribution can be represented as an estimand of the observed data
-distribution. Significantly, there is nothing about the representation in
- that requires parameteric assumptions; thus, the regressions
-on the right hand side may be estimated freely with machine learning. With
-different parameters, there will be potentially different identifiability
-assumptions and the resulting estimands can be functions of different components
-of <span class="math inline">\(P_0\)</span>. We discuss several more complex estimands in later sections of this
-workshop.</p>
+<p>or the difference in the predicted outcome values for each subject, under the contrast of treatment conditions (<span class="math inline">\(A = 0\)</span> vs. <span class="math inline">\(A = 1\)</span>), in the population, averaged over all observations. Thus, a parameter of a theoretical “full” data distribution can be represented as an estimand of the observed data distribution. Significantly, there is nothing about the representation in  that requires parameteric assumptions; thus, the regressions on the right hand side may be estimated freely with machine learning. With different parameters, there will be potentially different identifiability assumptions and the resulting estimands can be functions of different components of <span class="math inline">\(P_0\)</span>. We discuss several more complex estimands in later sections of this workshop.</p>
 </div>
 <div id="estimators-superlearning-and-targeted-maximum-likelihood" class="section level2">
 <h2><span class="header-section-number">1.5</span> Estimators: SuperLearning and Targeted Maximum Likelihood</h2>
-<p>Although we will discuss more in later sections, the goals of the estimators we
-desire should be that, among sensible (asymptotically consistent, regular)
-estimators,</p>
+<p>Although we will discuss more in later sections, the goals of the estimators we desire should be that, among sensible (asymptotically consistent, regular) estimators,</p>
 <ol style="list-style-type: decimal">
-<li>the estimator be asymptotically efficient in the statistical model of
-interest, and</li>
-<li>the estimator can be constructed for finite-sample performance improvements,
-relative to other estimators in the same class.</li>
+<li>the estimator be asymptotically efficient in the statistical model of interest, and</li>
+<li>the estimator can be constructed for finite-sample performance improvements, relative to other estimators in the same class.</li>
 </ol>
 <p>These priniciples guide our approach to estimation: Superlearning for prediction (more generally density estimation) and TMLE for estimation of our intervention parameters of interest.</p>
+<p>]</p>
 <div id="superlearning" class="section level3">
 <h3><span class="header-section-number">1.5.1</span> SuperLearning</h3>
 <ul>
@@ -449,173 +349,157 @@ relative to other estimators in the same class.</li>
 <li>It works by using cross-validation in a manner which guarantees that the resulting fit will be as good as possible, given the learners provided (note, even a convex combination of poor learners can sometimes result in good fit, though better to have good candidates).</li>
 </ul>
 <p>]</p>
+<p>The figure above shows an example of 10-fold cross-validation.</p>
+<p>Below, we show both an example of how even non-optimal learners can fit complex functions within SL as well as results of an empirial study of SL versus other learners across many data sets.</p>
+<p>]</p>
+
 </div>
 <div id="tmle" class="section level3">
 <h3><span class="header-section-number">1.5.2</span> TMLE</h3>
-<object data="NatureSlides.pdf" width="750px" height="750px">
-<embed src="NatureSlides.pdf">
-</embed>
-</object>
+<ul>
+<li>Augmentation of substitution estimators</li>
+<li>Defines a mapping from the true distribution to a parameter(s), <span class="math inline">\(\Psi(P_0)\)</span></li>
+<li>A substitution estimator uses the same mapping, but plug-in estimates of the relevant parts of distirbution <span class="math inline">\(\Psi(P_n)\)</span>.</li>
+<li>TMLE does a targed augmentation of the estimate of the relevant parts of the distribution, but uses same mapping <span class="math inline">\(\Psi(P^*_n)\)</span>.</li>
+<li>Produces a well-defined, unbiased, efficient substitution estimator of target parameters of a data-generating distribution.</li>
+<li>Updates an initial (super learner) estimate of the relevant part of the data generating distribution possibly using an estimate of a nuisance parameter (like the model of intervention given covariates).</li>
+<li>Removes asymptotic residual bias of initial estimator for the target parameter, if it uses a consistent estimator of <span class="math inline">\(g_0\)</span>.</li>
+<li>If initial estimator was consistent for the target parameter, the additional fitting of the data in the targeting step may remove finite sample bias, and preserves consistency property of the initial estimator.<br />
+</li>
+<li>If the initial estimator and the estimator of <span class="math inline">\(g_0\)</span> are both consistent, then it is also asymptotically efficient according to semi-parametric statistical model efficiency theory.<br />
+</li>
+<li>Thus, every effort is made to achieve minimal bias and the asymptotic semi-parametric efficiency bound for the variance.</li>
+</ul>
+
+<p>]</p>
+
+
+<p>]</p>
+
+<p>]</p>
 </div>
 <div id="inference" class="section level3">
 <h3><span class="header-section-number">1.5.3</span> Inference</h3>
-<p>The estimators we discuss are asymptotically linear, meaning that the difference
-in the estimate <span class="math inline">\(\Psi(P_n)\)</span> and the true parameter (<span class="math inline">\(\Psi(P_0)\)</span>) can be
-represented in first order by a i.i.d. sum:
+The estimators we discuss are asymptotically linear, meaning that the difference in the estimate <span class="math inline">\(\Psi(P_n)\)</span> and the true parameter (<span class="math inline">\(\Psi(P_0)\)</span>) can be represented in first order by a i.i.d. sum:
 <span class="math display">\[\begin{equation}\label{eqn:IC}
   \Psi(P_n) - \Psi(P_0) = \frac{1}{n} IC(O_i; \nu) + op(1/\sqrt{n})
 \end{equation}\]</span>
-where <span class="math inline">\(IC(O_i; \nu)\)</span> is a function of the data and possibly other parameters
-<span class="math inline">\(\nu\)</span>. Importantly, such estimators have mean-zero Gaussian limiting
-distributions; thus, in the univariate case, one has that
+where <span class="math inline">\(IC(O_i; \nu)\)</span> is a function of the data and possibly other parameters <span class="math inline">\(\nu\)</span>. Importantly, such estimators have mean-zero Gaussian limiting distributions; thus, in the univariate case, one has that
 <span class="math display">\[\begin{equation}\label{eqn:limit_dist}
   \sqrt{n}(\Psi(P_n) - \Psi(P_0)) = N(0, (IC(O_i; \nu))^2),
 \end{equation}\]</span>
-so that inference for the estimator of interest may be obtained in terms of
-the influence function. For this simple case, a 95% confidence interval may be
-derived as:
+so that inference for the estimator of interest may be obtained in terms of the influence function. For this simple case, a 95% confidence interval may be derived as:
 <span class="math display">\[\begin{equation}\label{eqn:CI}
   \Psi(P^{\star}_n) \pm 1.96 \sqrt{\frac{\hat{\sigma}^2}{n}},
 \end{equation}\]</span>
-where <span class="math inline">\(SE=\sqrt{\frac{\hat{\sigma}^2}{n}}\)</span> and <span class="math inline">\(\hat{\sigma}^2\)</span> is the sample
-variance of the estimated IC’s: <span class="math inline">\(IC(O; \hat{\nu})\)</span>. One can use the functional
-delta method to derive the influence curve if a parameter of interest may be
-written as a function of other asymptotically linear estimators.</p>
+<p>where <span class="math inline">\(SE=\sqrt{\frac{\hat{\sigma}^2}{n}}\)</span> and <span class="math inline">\(\hat{\sigma}^2\)</span> is the sample variance of the estimated IC’s: <span class="math inline">\(IC(O; \hat{\nu})\)</span>. One can use the functional delta method to derive the influence curve if a parameter of interest may be written as a function of other asymptotically linear estimators.</p>
 </div>
 </div>
 <div id="the-wash-benefits-example-dataset" class="section level2">
 <h2><span class="header-section-number">1.6</span> The WASH Benefits Example Dataset</h2>
-<p>The data come from a study of the effect of water quality, sanitation, hand
-washing, and nutritional interventions on child development in rural Bangladesh
-(WASH Benefits Bangladesh): a cluster-randomised controlled trial
-<span class="citation">(“Temporary,” <a href="#ref-luby2018effects">n.d.</a>)</span>. The study enrolled pregnant women in their first or second
-trimester from the rural villages of Gazipur, Kishoreganj, Mymensingh, and
-Tangail districts of central Bangladesh, with an average of eight women per
-cluster. Groups of eight geographically adjacent clusters were block-randomised,
-using a random number generator, into six intervention groups (all of which
-received weekly visits from a community health promoter for the first 6 months
-and every 2 weeks for the next 18 months) and a double-sized control group (no
-intervention or health promoter visit). The six intervention groups were:</p>
+<p>The data come from a study of the effect of water quality, sanitation, hand washing, and nutritional interventions on child development in rural Bangladesh (WASH Benefits Bangladesh): a cluster-randomised controlled trial <span class="citation">(“Temporary,” n.d.)</span>. The study enrolled pregnant women in their first or second trimester from the rural villages of Gazipur, Kishoreganj, Mymensingh, and Tangail districts of central Bangladesh, with an average of eight women per cluster. Groups of eight geographically adjacent clusters were block-randomised, using a random number generator, into six intervention groups (all of which received weekly visits from a community health promoter for the first 6 months and every 2 weeks for the next 18 months) and a double-sized control group (no intervention or health promoter visit). The six intervention groups were:</p>
 <ol style="list-style-type: decimal">
 <li>chlorinated drinking water;</li>
 <li>improved sanitation;</li>
 <li>handwashing with soap;</li>
 <li>combined water, sanitation, and hand washing;</li>
-<li>improved nutrition through counseling and provision of lipid-based nutrient
-supplements; and</li>
+<li>improved nutrition through counseling and provision of lipid-based nutrient supplements; and</li>
 <li>combined water, sanitation, handwashing, and nutrition.</li>
 </ol>
-<p>In the workshop, we concentrate on child growth (size for age) as the outcome of
-interest. For referene, this trial was registered with ClinicalTrials.gov as
-NCT01590095.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(here)
+<p>In the workshop, we concentrate on child growth (size for age) as the outcome of interest. For referene, this trial was registered with ClinicalTrials.gov as NCT01590095.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(here)
 <span class="kw">library</span>(tidyverse)
 
 <span class="co"># read in data</span>
 dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;washb_data.csv&quot;</span>))
-dat</code></pre>
-<pre><code>## # A tibble: 4,695 x 28
-##      whz tr    fracode month  aged sex   momage momedu momheight hfiacat
-##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;  
-##  1  0    Cont… N05265      9   268 male      30 Prima…      146. Food S…
-##  2 -1.16 Cont… N05265      9   286 male      25 Prima…      149. Modera…
-##  3 -1.05 Cont… N08002      9   264 male      25 Prima…      152. Food S…
-##  4 -1.26 Cont… N08002      9   252 fema…     28 Prima…      140. Food S…
-##  5 -0.59 Cont… N06531      9   336 fema…     19 Secon…      151. Food S…
-##  6 -0.51 Cont… N06531      9   304 male      20 Secon…      154. Severe…
-##  7 -2.46 Cont… N08002      9   336 fema…     19 Prima…      151. Food S…
-##  8 -0.6  Cont… N06528      9   312 fema…     25 No ed…      142. Food S…
-##  9 -0.23 Cont… N06528      9   322 male      30 Secon…      153. Food S…
-## 10 -0.14 Cont… N06453      9   376 male      30 No ed…      156. Modera…
-## # … with 4,685 more rows, and 18 more variables: Nlt18 &lt;dbl&gt;, Ncomp &lt;dbl&gt;,
-## #   watmin &lt;dbl&gt;, elec &lt;dbl&gt;, floor &lt;dbl&gt;, walls &lt;dbl&gt;, roof &lt;dbl&gt;,
-## #   asset_wardrobe &lt;dbl&gt;, asset_table &lt;dbl&gt;, asset_chair &lt;dbl&gt;,
-## #   asset_khat &lt;dbl&gt;, asset_chouki &lt;dbl&gt;, asset_tv &lt;dbl&gt;,
-## #   asset_refrig &lt;dbl&gt;, asset_bike &lt;dbl&gt;, asset_moto &lt;dbl&gt;,
-## #   asset_sewmach &lt;dbl&gt;, asset_mobile &lt;dbl&gt;</code></pre>
-<p>For the purposes of this workshop, we we start by treating the data as
-independent and identically distributed (i.i.d.) random draws from a very large
-target population. We could, with available options, account for the clustering
-of the data (within sampled geographic units), but, for simplification, we avoid
-these details in these workshop presentations, although modifications of our
-methodology for biased samples, repeated measures, etc., are available.</p>
-<p>We have 28 variables measured, of which 1 variable is set to be the outcome of
-interest. This outcome, <span class="math inline">\(Y\)</span>, is the weight-for-height Z-score (<code>whz</code> in <code>dat</code>);
-the treatment of interest, <span class="math inline">\(A\)</span>, is the randomized treatment group (<code>tr</code> in
-<code>dat</code>); and the adjustment set, <span class="math inline">\(W\)</span>, consists simply of <em>everything else</em>. This
-results in our observed data structure being <span class="math inline">\(n\)</span> i.i.d. copies of <span class="math inline">\(O_i = (W_i, A_i, Y_i)\)</span>, for <span class="math inline">\(i = 1, \ldots, n\)</span>.</p>
+dat</code></pre></div>
+<pre><code># A tibble: 4,695 x 28
+     whz tr    fracode month  aged sex   momage momedu momheight hfiacat Nlt18
+   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
+ 1  0    Cont… N05265      9   268 male      30 Prima…      146. Food S…     3
+ 2 -1.16 Cont… N05265      9   286 male      25 Prima…      149. Modera…     2
+ 3 -1.05 Cont… N08002      9   264 male      25 Prima…      152. Food S…     1
+ 4 -1.26 Cont… N08002      9   252 fema…     28 Prima…      140. Food S…     3
+ 5 -0.59 Cont… N06531      9   336 fema…     19 Secon…      151. Food S…     2
+ 6 -0.51 Cont… N06531      9   304 male      20 Secon…      154. Severe…     0
+ 7 -2.46 Cont… N08002      9   336 fema…     19 Prima…      151. Food S…     2
+ 8 -0.6  Cont… N06528      9   312 fema…     25 No ed…      142. Food S…     2
+ 9 -0.23 Cont… N06528      9   322 male      30 Secon…      153. Food S…     1
+10 -0.14 Cont… N06453      9   376 male      30 No ed…      156. Modera…     2
+# … with 4,685 more rows, and 17 more variables: Ncomp &lt;dbl&gt;, watmin &lt;dbl&gt;,
+#   elec &lt;dbl&gt;, floor &lt;dbl&gt;, walls &lt;dbl&gt;, roof &lt;dbl&gt;, asset_wardrobe &lt;dbl&gt;,
+#   asset_table &lt;dbl&gt;, asset_chair &lt;dbl&gt;, asset_khat &lt;dbl&gt;, asset_chouki &lt;dbl&gt;,
+#   asset_tv &lt;dbl&gt;, asset_refrig &lt;dbl&gt;, asset_bike &lt;dbl&gt;, asset_moto &lt;dbl&gt;,
+#   asset_sewmach &lt;dbl&gt;, asset_mobile &lt;dbl&gt;</code></pre>
+<p>For the purposes of this workshop, we we start by treating the data as independent and identically distributed (i.i.d.) random draws from a very large target population. We could, with available options, account for the clustering of the data (within sampled geographic units), but, for simplification, we avoid these details in these workshop presentations, although modifications of our methodology for biased samples, repeated measures, etc., are available.</p>
+<p>We have 28 variables measured, of which 1 variable is set to be the outcome of interest. This outcome, <span class="math inline">\(Y\)</span>, is the weight-for-height Z-score (<code>whz</code> in <code>dat</code>); the treatment of interest, <span class="math inline">\(A\)</span>, is the randomized treatment group (<code>tr</code> in <code>dat</code>); and the adjustment set, <span class="math inline">\(W\)</span>, consists simply of <em>everything else</em>. This results in our observed data structure being <span class="math inline">\(n\)</span> i.i.d. copies of <span class="math inline">\(O_i = (W_i, A_i, Y_i)\)</span>, for <span class="math inline">\(i = 1, \ldots, n\)</span>.</p>
 <div id="the-variables" class="section level3">
 <h3><span class="header-section-number">1.6.1</span> The variables</h3>
-<p>Using the <a href="https://CRAN.R-project.org/package=skimr"><code>skimr</code> package</a>, we can
-quickly summarize the variables measured in the WASH Benefits data set:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(skimr)
-<span class="kw">skim</span>(dat)</code></pre>
-<pre><code>## Skim summary statistics
-##  n obs: 4695 
-##  n variables: 28 
-## 
-## Variable type: character 
-##  variable missing complete    n min max empty n_unique
-##   fracode       0     4695 4695   2   6     0       20
-##   hfiacat       0     4695 4695  11  24     0        4
-##    momedu       0     4695 4695  12  15     0        3
-##       sex       0     4695 4695   4   6     0        2
-##        tr       0     4695 4695   3  15     0        7
-## 
-## Variable type: numeric 
-##        variable missing complete    n    mean    sd     p0    p25 median
-##            aged       0     4695 4695 266.32  52.17  42    230     266  
-##      asset_bike       0     4695 4695   0.32   0.47   0      0       0  
-##     asset_chair       0     4695 4695   0.73   0.44   0      0       1  
-##    asset_chouki       0     4695 4695   0.78   0.41   0      1       1  
-##      asset_khat       0     4695 4695   0.61   0.49   0      0       1  
-##    asset_mobile       0     4695 4695   0.86   0.35   0      1       1  
-##      asset_moto       0     4695 4695   0.066  0.25   0      0       0  
-##    asset_refrig       0     4695 4695   0.079  0.27   0      0       0  
-##   asset_sewmach       0     4695 4695   0.065  0.25   0      0       0  
-##     asset_table       0     4695 4695   0.73   0.44   0      0       1  
-##        asset_tv       0     4695 4695   0.3    0.46   0      0       0  
-##  asset_wardrobe       0     4695 4695   0.17   0.37   0      0       0  
-##            elec       0     4695 4695   0.6    0.49   0      0       1  
-##           floor       0     4695 4695   0.11   0.31   0      0       0  
-##          momage      18     4677 4695  23.91   5.24  14     20      23  
-##       momheight      31     4664 4695 150.5    5.23 120.65 147.05  150.6
-##           month       0     4695 4695   6.45   3.33   1      4       6  
-##           Ncomp       0     4695 4695  11.04   6.35   2      6      10  
-##           Nlt18       0     4695 4695   1.6    1.25   0      1       1  
-##            roof       0     4695 4695   0.99   0.12   0      1       1  
-##           walls       0     4695 4695   0.72   0.45   0      0       1  
-##          watmin       0     4695 4695   0.95   9.48   0      0       0  
-##             whz       0     4695 4695  -0.59   1.03  -4.67  -1.28   -0.6
-##     p75   p100     hist
-##  303    460    ▁▁▂▇▇▅▁▁
-##    1      1    ▇▁▁▁▁▁▁▃
-##    1      1    ▃▁▁▁▁▁▁▇
-##    1      1    ▂▁▁▁▁▁▁▇
-##    1      1    ▅▁▁▁▁▁▁▇
-##    1      1    ▁▁▁▁▁▁▁▇
-##    0      1    ▇▁▁▁▁▁▁▁
-##    0      1    ▇▁▁▁▁▁▁▁
-##    0      1    ▇▁▁▁▁▁▁▁
-##    1      1    ▃▁▁▁▁▁▁▇
-##    1      1    ▇▁▁▁▁▁▁▃
-##    0      1    ▇▁▁▁▁▁▁▂
-##    1      1    ▆▁▁▁▁▁▁▇
-##    0      1    ▇▁▁▁▁▁▁▁
-##   27     60    ▅▇▅▂▁▁▁▁
-##  154.06 168    ▁▁▁▂▇▇▂▁
-##    9     12    ▅▃▇▃▂▇▃▅
-##   14     52    ▇▇▃▁▁▁▁▁
-##    2     10    ▇▃▂▁▁▁▁▁
-##    1      1    ▁▁▁▁▁▁▁▇
-##    1      1    ▃▁▁▁▁▁▁▇
-##    1    600    ▇▁▁▁▁▁▁▁
-##    0.08   4.97 ▁▁▅▇▃▁▁▁</code></pre>
-<p>A convenient summary of the relevant variables is given just above, complete
-with a small visualization describing the marginal characteristics of each
-covariate. Note that the <em>asset</em> variables reflect socio-economic status of the
-study participants. Notice also the uniform distribution of the treatment groups
-(with twice as many controls); this is, of course, by design.</p>
+<p>Using the <a href="https://CRAN.R-project.org/package=skimr"><code>skimr</code> package</a>, we can quickly summarize the variables measured in the WASH Benefits data set:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(skimr)
+<span class="kw">skim</span>(dat)</code></pre></div>
+<pre><code>Skim summary statistics
+ n obs: 4695 
+ n variables: 28 
+
+Variable type: character 
+ variable missing complete    n min max empty n_unique
+  fracode       0     4695 4695   2   6     0       20
+  hfiacat       0     4695 4695  11  24     0        4
+   momedu       0     4695 4695  12  15     0        3
+      sex       0     4695 4695   4   6     0        2
+       tr       0     4695 4695   3  15     0        7
+
+Variable type: numeric 
+       variable missing complete    n    mean    sd     p0    p25 median    p75
+           aged       0     4695 4695 266.32  52.17  42    230     266   303   
+     asset_bike       0     4695 4695   0.32   0.47   0      0       0     1   
+    asset_chair       0     4695 4695   0.73   0.44   0      0       1     1   
+   asset_chouki       0     4695 4695   0.78   0.41   0      1       1     1   
+     asset_khat       0     4695 4695   0.61   0.49   0      0       1     1   
+   asset_mobile       0     4695 4695   0.86   0.35   0      1       1     1   
+     asset_moto       0     4695 4695   0.066  0.25   0      0       0     0   
+   asset_refrig       0     4695 4695   0.079  0.27   0      0       0     0   
+  asset_sewmach       0     4695 4695   0.065  0.25   0      0       0     0   
+    asset_table       0     4695 4695   0.73   0.44   0      0       1     1   
+       asset_tv       0     4695 4695   0.3    0.46   0      0       0     1   
+ asset_wardrobe       0     4695 4695   0.17   0.37   0      0       0     0   
+           elec       0     4695 4695   0.6    0.49   0      0       1     1   
+          floor       0     4695 4695   0.11   0.31   0      0       0     0   
+         momage      18     4677 4695  23.91   5.24  14     20      23    27   
+      momheight      31     4664 4695 150.5    5.23 120.65 147.05  150.6 154.06
+          month       0     4695 4695   6.45   3.33   1      4       6     9   
+          Ncomp       0     4695 4695  11.04   6.35   2      6      10    14   
+          Nlt18       0     4695 4695   1.6    1.25   0      1       1     2   
+           roof       0     4695 4695   0.99   0.12   0      1       1     1   
+          walls       0     4695 4695   0.72   0.45   0      0       1     1   
+         watmin       0     4695 4695   0.95   9.48   0      0       0     1   
+            whz       0     4695 4695  -0.59   1.03  -4.67  -1.28   -0.6   0.08
+   p100     hist
+ 460    ▁▁▂▇▇▅▁▁
+   1    ▇▁▁▁▁▁▁▃
+   1    ▃▁▁▁▁▁▁▇
+   1    ▂▁▁▁▁▁▁▇
+   1    ▅▁▁▁▁▁▁▇
+   1    ▁▁▁▁▁▁▁▇
+   1    ▇▁▁▁▁▁▁▁
+   1    ▇▁▁▁▁▁▁▁
+   1    ▇▁▁▁▁▁▁▁
+   1    ▃▁▁▁▁▁▁▇
+   1    ▇▁▁▁▁▁▁▃
+   1    ▇▁▁▁▁▁▁▂
+   1    ▆▁▁▁▁▁▁▇
+   1    ▇▁▁▁▁▁▁▁
+  60    ▅▇▅▂▁▁▁▁
+ 168    ▁▁▁▂▇▇▂▁
+  12    ▅▃▇▃▂▇▃▅
+  52    ▇▇▃▁▁▁▁▁
+  10    ▇▃▂▁▁▁▁▁
+   1    ▁▁▁▁▁▁▁▇
+   1    ▃▁▁▁▁▁▁▇
+ 600    ▇▁▁▁▁▁▁▁
+   4.97 ▁▁▅▇▃▁▁▁</code></pre>
+<p>A convenient summary of the relevant variables is given just above, complete with a small visualization describing the marginal characteristics of each covariate. Note that the <em>asset</em> variables reflect socio-economic status of the study participants. Notice also the uniform distribution of the treatment groups (with twice as many controls); this is, of course, by design.</p>
 
 </div>
 </div>
@@ -624,9 +508,6 @@ study participants. Notice also the uniform distribution of the treatment groups
 <div id="refs" class="references">
 <div id="ref-pearl2009causality">
 <p>Pearl, Judea. 2009. <em>Causality: Models, Reasoning, and Inference</em>. Cambridge University Press.</p>
-</div>
-<div id="ref-luby2018effects">
-<p>“Temporary.” n.d.</p>
 </div>
 </div>
             </section>
@@ -685,7 +566,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

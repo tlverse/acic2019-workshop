@@ -51,6 +51,7 @@
 <link href="libs/vis-4.20.1/vis.css" rel="stylesheet" />
 <script src="libs/vis-4.20.1/vis.min.js"></script>
 <script src="libs/visNetwork-binding-2.0.6/visNetwork.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -127,7 +128,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#the-parameter-of-interest"><i class="fa fa-check"></i><b>1.3</b> The Parameter of Interest</a></li>
 <li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#identifiability"><i class="fa fa-check"></i><b>1.4</b> Identifiability</a></li>
 <li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#estimators-superlearning-and-targeted-maximum-likelihood"><i class="fa fa-check"></i><b>1.5</b> Estimators: SuperLearning and Targeted Maximum Likelihood</a><ul>
-<li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#inference"><i class="fa fa-check"></i><b>1.5.1</b> Inference</a></li>
+<li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#superlearning"><i class="fa fa-check"></i><b>1.5.1</b> SuperLearning</a></li>
+<li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#tmle"><i class="fa fa-check"></i><b>1.5.2</b> TMLE</a></li>
+<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#inference"><i class="fa fa-check"></i><b>1.5.3</b> Inference</a></li>
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#the-wash-benefits-example-dataset"><i class="fa fa-check"></i><b>1.6</b> The WASH Benefits Example Dataset</a><ul>
 <li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#the-variables"><i class="fa fa-check"></i><b>1.6.1</b> The variables</a></li>
@@ -440,15 +443,15 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle_shift</span>(
 <h3><span class="header-section-number">6.4.2</span> Targeted Estimation of Stochastic Interventions Effects</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmle_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)</code></pre></div>
 <pre><code>
-Iter: 1 fn: 1373.9851    Pars:  0.80850 0.19150
-Iter: 2 fn: 1373.9851    Pars:  0.80850 0.19150
+Iter: 1 fn: 1375.1172    Pars:  0.80466 0.19534
+Iter: 2 fn: 1375.1172    Pars:  0.80466 0.19534
 solnp--&gt; Completed in 2 iterations</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmle_fit</code></pre></div>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.7956816 0.7959952 0.01234923 0.7717911 0.8201993
+   type         param  init_est  tmle_est        se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.7949624 0.7962191 0.0120961 0.7725112 0.8199271
    psi_transformed lower_transformed upper_transformed
-1:       0.7959952         0.7717911         0.8201993</code></pre>
+1:       0.7962191         0.7725112         0.8199271</code></pre>
 <p>The <code>print</code> method of the resultant <code>tmle_fit</code> object conveniently displays the results from computing our TML estimator.</p>
 </div>
 </div>
@@ -484,23 +487,23 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle_vimshift_delta</sp
 <p>One may walk through the step-by-step procedure for fitting the TML estimator of the mean counterfactual outcome under each shift in the grid, using the machinery exposed by the <a href="https://tlverse.org/tmle3"><code>tmle3</code> R package</a>, or simply invoke the <code>tmle3</code> wrapper function to fit the series of TML estimators (one for each parameter defined by the grid delta) in a single function call. For convenience, we choose the latter:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmle_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)</code></pre></div>
 <pre><code>
-Iter: 1 fn: 1380.2847    Pars:  0.78287 0.21713
-Iter: 2 fn: 1380.2847    Pars:  0.78287 0.21713
+Iter: 1 fn: 1379.1690    Pars:  0.79017 0.20983
+Iter: 2 fn: 1379.1690    Pars:  0.79018 0.20982
 solnp--&gt; Completed in 2 iterations</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmle_fit</code></pre></div>
 <pre><code>A tmle3_Fit that took 1 step(s)
-         type          param  init_est  tmle_est          se     lower
-1:        TSM  E[Y_{A=NULL}] 0.6264247 0.6271801 0.014391389 0.5989735
-2:        TSM  E[Y_{A=NULL}] 0.7383016 0.7390000 0.013895038 0.7117662
-3:        TSM  E[Y_{A=NULL}] 0.8427732 0.8454318 0.009895448 0.8260370
-4: MSM_linear MSM(intercept) 0.7356474 0.7370687 0.012093722 0.7133654
-5: MSM_linear     MSM(slope) 0.1077913 0.1088528 0.004440533 0.1001495
+         type          param  init_est  tmle_est          se      lower
+1:        TSM  E[Y_{A=NULL}] 0.6297435 0.6282418 0.014160421 0.60048789
+2:        TSM  E[Y_{A=NULL}] 0.7393424 0.7390000 0.013895038 0.71176623
+3:        TSM  E[Y_{A=NULL}] 0.8436103 0.8459870 0.010017388 0.82635325
+4: MSM_linear MSM(intercept) 0.7374260 0.7376430 0.012024949 0.71407457
+5: MSM_linear     MSM(slope) 0.1066805 0.1086966 0.004454446 0.09996602
        upper psi_transformed lower_transformed upper_transformed
-1: 0.6553867       0.6271801         0.5989735         0.6553867
-2: 0.7662338       0.7390000         0.7117662         0.7662338
-3: 0.8648265       0.8454318         0.8260370         0.8648265
-4: 0.7607720       0.7370687         0.7133654         0.7607720
-5: 0.1175561       0.1088528         0.1001495         0.1175561</code></pre>
+1: 0.6559957       0.6282418        0.60048789         0.6559957
+2: 0.7662338       0.7390000        0.71176623         0.7662338
+3: 0.8656207       0.8459870        0.82635325         0.8656207
+4: 0.7612115       0.7376430        0.71407457         0.7612115
+5: 0.1174271       0.1086966        0.09996602         0.1174271</code></pre>
 <p><em>Remark</em>: The <code>print</code> method of the resultant <code>tmle_fit</code> object conveniently displays the results from computing our TML estimator.</p>
 </div>
 <div id="inference-with-marginal-structural-models" class="section level3">
@@ -508,12 +511,12 @@ solnp--&gt; Completed in 2 iterations</code></pre>
 <p>Since we consider estimating the mean counterfactual outcome <span class="math inline">\(\psi_n\)</span> under several values of the intervention <span class="math inline">\(\delta\)</span>, taken from the aforementioned <span class="math inline">\(\delta\)</span>-grid, one approach for obtaining inference on a single summary measure of these estimated quantities involves leveraging working marginal structural models (MSMs). Summarizing the estimates <span class="math inline">\(\psi_n\)</span> through a working MSM allows for inference on the <em>trend</em> imposed by a <span class="math inline">\(\delta\)</span>-grid to be evaluated via a simple hypothesis test on a parameter of this working MSM. Letting <span class="math inline">\(\psi_{\delta}(P_0)\)</span> be the mean outcome under a shift <span class="math inline">\(\delta\)</span> of the treatment, we have <span class="math inline">\(\vec{\psi}_{\delta} = (\psi_{\delta}: \delta)\)</span> with corresponding estimators <span class="math inline">\(\vec{\psi}_{n, \delta} = (\psi_{n, \delta}: \delta)\)</span>. Further, let <span class="math inline">\(\beta(\vec{\psi}_{\delta}) = \phi((\psi_{\delta}: \delta))\)</span>. By a straightforward application of the delta method (discussed previously), we may write the efficient influence function of the MSM parameter <span class="math inline">\(\beta\)</span> in terms of the EIFs of each of the corresponding point estimates. Based on this, inference from a working MSM is rather straightforward. To wit, the limiting distribution for <span class="math inline">\(m_{\beta}(\delta)\)</span> may be expressed <span class="math display">\[\sqrt{n}(\beta_n - \beta_0) \to N(0,
 \Sigma),\]</span> where <span class="math inline">\(\Sigma\)</span> is the empirical covariance matrix of <span class="math inline">\(\text{EIF}_{\beta}(O)\)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmle_fit<span class="op">$</span>summary[<span class="dv">4</span><span class="op">:</span><span class="dv">5</span>, ]</code></pre></div>
-<pre><code>         type          param  init_est  tmle_est          se     lower
-1: MSM_linear MSM(intercept) 0.7356474 0.7370687 0.012093722 0.7133654
-2: MSM_linear     MSM(slope) 0.1077913 0.1088528 0.004440533 0.1001495
+<pre><code>         type          param  init_est  tmle_est          se      lower
+1: MSM_linear MSM(intercept) 0.7374260 0.7376430 0.012024949 0.71407457
+2: MSM_linear     MSM(slope) 0.1066805 0.1086966 0.004454446 0.09996602
        upper psi_transformed lower_transformed upper_transformed
-1: 0.7607720       0.7370687         0.7133654         0.7607720
-2: 0.1175561       0.1088528         0.1001495         0.1175561</code></pre>
+1: 0.7612115       0.7376430        0.71407457         0.7612115
+2: 0.1174271       0.1086966        0.09996602         0.1174271</code></pre>
 </div>
 <div id="directly-targeting-the-msm-parameter-beta" class="section level3">
 <h3><span class="header-section-number">6.5.4</span> Directly Targeting the MSM Parameter <span class="math inline">\(\beta\)</span></h3>
@@ -530,17 +533,17 @@ tmle_msm_spec &lt;-<span class="st"> </span><span class="kw">tmle_vimshift_msm</
 <span class="co"># fit the TML estimator and examine the results</span>
 tmle_msm_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_msm_spec, data, node_list, learner_list)</code></pre></div>
 <pre><code>
-Iter: 1 fn: 1373.7985    Pars:  0.78153 0.21847
-Iter: 2 fn: 1373.7985    Pars:  0.78153 0.21847
+Iter: 1 fn: 1374.2258    Pars:  0.79447 0.20553
+Iter: 2 fn: 1374.2258    Pars:  0.79447 0.20553
 solnp--&gt; Completed in 2 iterations</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmle_msm_fit</code></pre></div>
 <pre><code>A tmle3_Fit that took 100 step(s)
          type          param  init_est  tmle_est          se      lower
-1: MSM_linear MSM(intercept) 0.7367318 0.7367318 0.012133737 0.71295009
-2: MSM_linear     MSM(slope) 0.1072473 0.1072473 0.004484422 0.09845803
+1: MSM_linear MSM(intercept) 0.7371100 0.7371100 0.012014401 0.71356222
+2: MSM_linear     MSM(slope) 0.1068878 0.1068878 0.004387526 0.09828842
        upper psi_transformed lower_transformed upper_transformed
-1: 0.7605135       0.7367318        0.71295009         0.7605135
-2: 0.1160366       0.1072473        0.09845803         0.1160366</code></pre>
+1: 0.7606578       0.7371100        0.71356222         0.7606578
+2: 0.1154872       0.1068878        0.09828842         0.1154872</code></pre>
 </div>
 <div id="example-with-the-wash-benefits-data" class="section level3">
 <h3><span class="header-section-number">6.5.5</span> Example with the WASH Benefits Data</h3>
