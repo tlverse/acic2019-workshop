@@ -452,7 +452,7 @@ fit
 table(tmle_spec$return_rule)
 ```
 
-* We can see that the estimate of $psi_0$ is $0.60$, and that the confidence interval covers 
+* We can see that the estimate of $psi_0$ is $0.56$, and that the confidence interval covers 
 our true mean under the true optimal individualized treatment. 
 
 ## Extensions to Causal Effect of an OIT
@@ -590,6 +590,7 @@ tmle_spec <- tmle3_mopttx_vim(
 vim_results <- tmle3_vim(tmle_spec, data, node_list, learner_list,
   adjust_for_other_A = TRUE
 )
+
 vim_results
 ```
 
@@ -634,11 +635,12 @@ the six intervention groups aimed at improving living conditions.
 In the etherpad, submit your group's answers to the following questions.
 
 0. Think about potentially good effect modifers for the WASH Benefits data. What should
-   $V$ be and why? Based on the picked $V$, estimate the mean under the ITR for
-   the randomized $A$ listed above with weight-for-height Z-score as the outcome 
-   we want to maximize.
+   $V$ be and why? Construct an approprite `sl3` library for $A$, $Y$ and $B$. 
+   Based on the picked $V$, estimate the mean under the ITR for
+   the main randomized intervention used in the WASH Benefits trial
+   with weight-for-height Z-score as the outcome we want to maximize. 
 
-1. Using the WASH benefits data, extract the optimal ITR for exact individual. 
+1. Using the WASH benefits data, extract the optimal ITR for each individual. 
    Which intervention is the most dominant? Why do you think that is?
    
 2. Consider simpler rules for the WASH benefits data example. What set of rules
@@ -646,6 +648,20 @@ In the etherpad, submit your group's answers to the following questions.
 
 3. Using the WASH benefits data, estimate the realistic optimal ITR and the 
    corresponding value of the realistic ITR. Did the results change? 
+   
+## Summary
+
+* In summary, the mean outcome under the optimal individualized treatment is a counterfactual 
+quantity of interest representing what the mean outcome would have been if everybody, contrary 
+to the fact, received treatment that optimized their outcome. 
+
+* `tmle3mopttx` estimates the mean outcome under the optimal individualized treatment, where the candidate 
+rules are restricted to only respond to a user-supplied subset of the baseline and intermediate 
+covariates. In addition it provides options for realistic, data-adaptive interventions.
+
+* In essence, our target parameter answers the key aim of precision medicine: allocating 
+the available treatment by tailoring it to the individual characteristics of the patient, with the 
+goal of optimizing the final outcome. 
    
 ### Solutions
 
@@ -660,7 +676,7 @@ head(washb_data, 3)
 
 * As before, we specify the NPSEM via the `node_list` object.
 
-```{r washb-data-npsem-shift, message=FALSE, warning=FALSE, cache=FALSE}
+```{r washb-data-npsem-mopttx, message=FALSE, warning=FALSE, cache=FALSE}
 node_list <- list(W = names(washb_data)[!(names(washb_data) %in% c("whz", "tr"))],
                   A = "tr", Y = "whz")
 ```
@@ -754,3 +770,6 @@ tmle_spec <- tmle3_mopttx_blip_revere(
 fit <- tmle3(tmle_spec, data=washb_data, node_list, learner_list)
 fit
 ```
+
+
+
