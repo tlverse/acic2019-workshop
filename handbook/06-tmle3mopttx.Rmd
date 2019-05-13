@@ -357,7 +357,7 @@ as well as how we construct our learners.
 of the following form:
 
 $$W \sim \mathcal{N}(\bf{0},I_{4 \times 4})$$
-$$P(A|W) = \frac{1}{1+\exp^{(-(0.05*I(A=1)*W_1+0.8*I(A=2)*W_1+0.8*I(A=3)*W_1)}}$$
+$$P(A|W) = \frac{1}{1+\exp^{(-(0.05*I(A=1)*W_1+0.8*I(A=2)*W_1+0.8*I(A=3)*W_1))}}$$
 
 
 $$P(Y=1|A,W) = 0.5\text{logit}^{-1}[15I(A=1)(W_1-0.5) - 3I(A=2)(2W_1+0.5) + 3I(A=3)(3W_1-0.5)] +\text{logit}^{-1}(W_2W_1)$$
@@ -669,7 +669,7 @@ goal of optimizing the final outcome.
 * To start, let's load the data, convert all columns to be of class `numeric`, 
 and take a quick look at it:
 
-```{r load-washb-data, message=FALSE, warning=FALSE, cache=FALSE}
+```{r load-washb-data, message=FALSE, warning=FALSE, cache=FALSE, eval=FALSE}
 washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
 washb_data <- washb_data[!is.na(momage), lapply(.SD, as.numeric)]
 head(washb_data, 3)
@@ -677,7 +677,7 @@ head(washb_data, 3)
 
 * As before, we specify the NPSEM via the `node_list` object.
 
-```{r washb-data-npsem-mopttx, message=FALSE, warning=FALSE, cache=FALSE}
+```{r washb-data-npsem-mopttx, message=FALSE, warning=FALSE, cache=FALSE, eval=FALSE}
 node_list <- list(W = names(washb_data)[!(names(washb_data) %in% c("whz", "tr"))],
                   A = "tr", Y = "whz")
 ```
@@ -687,7 +687,7 @@ living conditions (floor), and possession of material items including the refrig
 We concentrate of these covariates as they might be indicative of the socio-economic status
 of individuals involved in the trial.
 
-```{r summary_WASH}
+```{r summary_WASH, eval=FALSE}
 table(washb_data$momedu)
 table(washb_data$floor)
 table(washb_data$asset_refrig)
@@ -696,7 +696,7 @@ summary(washb_data$whz)
 
 * Specify a simplified library:
 
-```{r sl3_lrnrs-WASH-mopttx}
+```{r sl3_lrnrs-WASH-mopttx, eval=FALSE}
 # Initialize few of the learners:
 lrn_xgboost_50 <- Lrnr_xgboost$new(nrounds = 50)
 lrn_xgboost_100 <- Lrnr_xgboost$new(nrounds = 100)
@@ -723,7 +723,7 @@ learner_list <- list(Y = Q_learner, A = g_learner, B = b_learner)
 
 * Initialize the Spec:
 
-```{r spec_init_WASH}
+```{r spec_init_WASH, eval=FALSE}
 ## Question 0:
 # initialize a tmle specification
 tmle_spec <- tmle3_mopttx_blip_revere(
@@ -742,7 +742,7 @@ table(tmle_spec$return_rule)
 
 * Consider simpler rules:
 
-```{r spec_init_WASH_simple_q2}
+```{r spec_init_WASH_simple_q2, eval=FALSE}
 ## Question 2:
 
 # initialize a tmle specification
@@ -760,7 +760,7 @@ table(tmle_spec$return_rule)
 
 * Consider realistic rules:
 
-```{r spec_init_WASH_simple_q3}
+```{r spec_init_WASH_simple_q3, eval=FALSE}
 ## Question 3:
 
 # initialize a tmle specification
