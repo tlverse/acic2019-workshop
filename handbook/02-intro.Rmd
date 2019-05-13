@@ -1,21 +1,25 @@
 ---
 output: html_document
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
+
 # The Targeted Learning Roadmap {#intro}
 
 A central goal of the Targeted Learning statistical paradigm is to estimate
 scientifically relevant parameters in realistic (usually nonparametric) models.
 
 ## The Statistical Model
-Assume we have an i.i.d. sample of confounders, a binary intervention of interest, and an outcome, or are observed data is  $O = (W, A, Y)$. The distribution of the observed data may
-be factorized as follows: $P(O) = P(W, A, Y) = P(W)P (A \mid W) P(Y \mid A, W)$. To
-estimate a parameter of interest, a researcher need not necessarily be able to
-specify these whole or conditional distributions. Rather, each estimator only
-requires that certain parts of the distribution be known; for example, some may
-require estimates of $\mathbb{E}(Y \mid A, W)$, the mean of $Y$ within subgroups
-$(A, W)$, or the regression of the outcome on the exposure and confounders.
+
+Assume we have an i.i.d. sample of confounders, a binary intervention of
+interest, and an outcome, or are observed data is  $O = (W, A, Y)$. The
+distribution of the observed data may be factorized as follows: $P(O) =
+P(W, A, Y) = P(W)P (A \mid W) P(Y \mid A, W)$. To estimate a parameter of
+interest, a researcher need not necessarily be able to specify these whole or
+conditional distributions. Rather, each estimator only requires that certain
+parts of the distribution be known; for example, some may require estimates of
+$\mathbb{E}(Y \mid A, W)$, the mean of $Y$ within subgroups $(A, W)$, or the
+regression of the outcome on the exposure and confounders.
 
 At this stage in the roadmap, the researcher must specify a choice of
 statistical model to be used in estimating $\mathbb{E}(Y \mid A, W)$ or other
@@ -165,33 +169,42 @@ estimators,
 2. the estimator can be constructed for finite-sample performance improvements,
    relative to other estimators in the same class.
 
-These priniciples guide our approach to estimation: Superlearning for prediction (more generally density estimation) and TMLE for estimation of our intervention parameters of interest. 
+These priniciples guide our approach to estimation: Superlearning for prediction
+(more generally density estimation) and TMLE for estimation of our intervention
+parameters of interest.
 
-### SuperLearning
-- There is no universally optimal machine learning algorithm (exceptions exist - HAL).
-- This is true empirically, when we have test different algorithms on actual data and looked at the performance (e.g., MSE of prediction)
+### Super Learning
+
+- There is no universally optimal machine learning algorithm (exceptions exist
+  -- HAL).
+- This is true empirically, when we have test different algorithms on actual
+  data and looked at the performance (e.g., MSE of prediction)
 - For some data, one needs learners that can model a complex function.
-- For others, typically caused by noise or insufficient sample size, a simple, parametric model might fit the best.
-- SuperLearner, an ensemble learner, solves this issue, by allowing a convex combination of learners from the simplest (intercept-only) to most complex (neural nets, random forests, SVM, etc.).
-- It works by using cross-validation in a manner which guarantees that the resulting fit will be as good as possible, given the learners provided (note, even a convex combination of poor learners can sometimes result in good fit, though better to have good candidates).
+- For others, typically caused by noise or insufficient sample size, a simple,
+  parametric model might fit the best.
+- Super Learner, an ensemble learner, solves this issue, by allowing a convex
+  combination of learners from the simplest (intercept-only) to most complex
+  (neural nets, random forests, SVM, etc.).
+- It works by using cross-validation in a manner which guarantees that the
+  resulting fit will be as good as possible, given the learners provided (note,
+  even a convex combination of poor learners can sometimes result in good fit,
+  though better to have good candidates).
 
-\includegraphics[width=5in]{vs.pdf}]
-
-
-
+\includegraphics[width=5in]{img/misc/vs.pdf}]
 
 ### TMLE
-<object data="NatureSlides.pdf" width="750px" height="750px">
-    <embed src="NatureSlides.pdf">
+
+<object data="img/misc/NatureSlides.pdf" width="750px" height="750px">
+    <embed src="img/misc/NatureSlides.pdf">
     </embed>
 </object>
 
 
 ### Inference
 
-The estimators we discuss are asymptotically linear, meaning that the difference
-in the estimate $\Psi(P_n)$ and the true parameter ($\Psi(P_0)$) can be
-represented in first order by a i.i.d. sum:
+The estimators we discuss are asymptotically linear, meaning that the
+difference in the estimate $\Psi(P_n)$ and the true parameter ($\Psi(P_0)$) can
+be represented in first order by a i.i.d. sum:
 \begin{equation}\label{eqn:IC}
   \Psi(P_n) - \Psi(P_0) = \frac{1}{n} IC(O_i; \nu) + op(1/\sqrt{n})
 \end{equation}
