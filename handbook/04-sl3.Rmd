@@ -1,7 +1,9 @@
-# Modern Machine Learning with `sl3`
+# Ensemble Machine Learning
 
-_Rachael Phillips_, based on the [`sl3` package](https://github.com/tlverse/sl3)
-by _Jeremy Coyle, Nima Hejazi, Ivana Malenica, and Oleg Sofrygin_
+_Rachael Phillips_
+
+Based on the [`sl3` `R` package](https://github.com/tlverse/sl3) by _Jeremy
+Coyle, Nima Hejazi, Ivana Malenica, and Oleg Sofrygin_.
 
 Updated: `r Sys.Date()`
 
@@ -77,6 +79,9 @@ Using the WASH data, we are interested in predicting weight-for-height z-score
 **0. Load the necessary libraries and data**
 
 ```{r setup, message=FALSE, warning=FALSE}
+# pretty table output
+options(knitr.table.format = "html")
+
 library(here)
 library(tidyverse)
 library(data.table)
@@ -90,7 +95,7 @@ set.seed(7194)
 # load data set and take a peek
 washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
 head(washb_data, 3) %>%
-  kable(format = "markdown", digits = 3)
+  kable(digits = 3)
 ```
 
 **1. Define the machine learning task**
@@ -198,8 +203,8 @@ values, and we can also obtain a summary of the results.
 ```{r sl-basic-summary}
 sl_preds <- sl_fit$predict()
 head(sl_preds)
-sl_fit$print() %>%
-  kable(format = "markdown", digits = 3)
+sl_fit %>%
+  kable(digits = 3)
 ```
 ## Extensions
 
@@ -256,7 +261,7 @@ use them as base learners in our super learner.
 ```{r screeners-stack}
 fancy_stack <- make_learner(Stack, cor_pipeline, new_stack)
 dt <- delayed_learner_train(fancy_stack, washb_task)
-plot(dt, color = FALSE, height = "300px")
+plot(dt, color = FALSE, height = "200px")
 ```
 
 Now we can Super Learn with this fancy base learner stack.
@@ -264,8 +269,8 @@ Now we can Super Learn with this fancy base learner stack.
 ```{r sl-fancy}
 sl_fancy <- Lrnr_sl$new(learners = fancy_stack, metalearner = metalearner)
 sl_fit_fancy<- sl_fancy$train(washb_task)
-sl_fit_fancy$print() %>%
-  kable(format = "markdown", digits = 3)
+sl_fit_fancy %>%
+  kable(digits = 3)
 ```
 
 ### Cross-validated Super Learner
@@ -278,16 +283,16 @@ external cross validation procedure may also incorporate 10 folds, which is the
 default in `sl3`. However, we will incorporate 2 outer folds of
 cross-validation, for computational efficiency.
 
-```{r CVsl, eval=FALSE}
+```{r CVsl}
 washb_task_new <- make_sl3_Task(
   data = washb_data,
   covariates = covars,
   outcome = outcome,
   folds = make_folds(washb_data, fold_fun = folds_vfold, V = 2)
 )
-CVsl <- CV_lrnr_sl(sl_fit_fancy, washb_task_new, loss_squared_error)
+CVsl <- CV_lrnr_sl(sl_fit, washb_task_new, loss_squared_error)
 CVsl %>%
-  kable(format = "markdown", digits = 3)
+  kable(digits = 3)
 ```
 
 ### Variable Importance Analysis with `sl3`
@@ -304,7 +309,7 @@ is in the prediction.
 ```{r varimp, eval=FALSE}
 washb_varimp <- varimp(sl_fit_fancy, loss_squared_error)
 washb_varimp %>%
-  kable(format = "markdown", digits = 3)
+  kable(digits = 3)
 ```
 
 ## Exercise
@@ -330,7 +335,7 @@ db_data <-
 chspred <- read_csv(file = db_data, col_names = TRUE)
 # take a quick peek
 head(chspred, 3) %>%
-  kable(format = "markdown", digits = 3)
+  kable(digits = 3)
 ```
 
 ## Concluding Remarks
@@ -352,3 +357,7 @@ head(chspred, 3) %>%
 
 * Targeted maximum likelihood estimation (TMLE) is a general strategy that
   succeeds in constructing asymptotically linear plug-in estimators.
+
+* In the chapters that follow, we focus on the targeted maximum likelihood
+  estimator and the targeted minimum loss-based estimator, both referred to as
+  TMLE.
