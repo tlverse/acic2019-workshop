@@ -79,9 +79,7 @@ Using the WASH data, we are interested in predicting weight-for-height z-score
 **0. Load the necessary libraries and data**
 
 ```{r setup, message=FALSE, warning=FALSE}
-# pretty table output
-options(knitr.table.format = "html")
-
+library(kableExtra)
 library(here)
 library(tidyverse)
 library(data.table)
