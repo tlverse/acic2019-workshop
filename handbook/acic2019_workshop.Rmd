@@ -1,3 +1,152 @@
+---
+title: "The `tlverse` Software Ecosystem for Causal Inference"
+subtitle: "2019 Atlantic Causal Inference Conference"
+author: "Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana
+  Malenica, Rachael Phillips"
+date: "updated: `r format(Sys.time(), '%B %d, %Y')`"
+documentclass: book
+output: bookdown::gitbook
+site: bookdown::bookdown_site
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+fontsize: '12pt, krantz2'
+monofont: "Source Code Pro"
+monofontoptions: "Scale=0.7"
+link-citations: yes
+links-as-notes: true
+colorlinks: yes
+lot: yes
+lof: yes
+always_allow_html: yes
+url: 'https\://tlverse.org/acic2019-workshop/'
+github-repo: tlverse/acic2019-workshop
+graphics: yes
+description: "An open-source and fully-reproducible electronic set of teaching
+  materials accompanying a full-day short-course on applying the Targeted
+  Learning methodology in practice using the [`tlverse` software
+  ecosystem](https://github.com/tlverse)."
+#cover-image: "img/tlverse_book_cover.png"
+#apple-touch-icon: "img/logos/favicons/apple-touch-icon.png"
+favicon: "img/logos/favicons/favicon.png"
+---
+
+# Preface {-}
+
+Placeholder
+
+
+## About this workshop {-}
+## Outline {-}
+## About the instructors {-}
+### Mark van der Laan {-}
+### Alan Hubbard {-}
+### Jeremy Coyle {-}
+### Nima Hejazi {-}
+### Ivana Malenica {-}
+### Rachael Phillips {-}
+## Important links
+## Setup instructions
+### R and RStudio
+#### Windows
+##### If you already have R and RStudio installed
+##### If you don't have R and RStudio installed
+#### macOS
+##### If you already have R and RStudio installed
+##### If you don't have R and RStudio installed
+#### Linux
+
+<!--chapter:end:index.Rmd-->
+
+
+# Motivation {-}
+
+Placeholder
+
+
+
+<!--chapter:end:01-preface.Rmd-->
+
+
+# The Targeted Learning Roadmap {#intro}
+
+Placeholder
+
+
+## The Statistical Model
+## The Causal Model
+## The Parameter of Interest
+## Identifiability
+## Estimator
+### Inference
+## The WASH Benefits Example Dataset
+### The variables
+
+<!--chapter:end:02-intro.Rmd-->
+
+
+# Welcome to the `tlverse` {#tlverse}
+
+Placeholder
+
+
+## Learning Objectives
+## What is the `tlverse`?
+## `tlverse` components
+## Installation
+
+<!--chapter:end:03-tlverse.Rmd-->
+
+
+# Modern Machine Learning with `sl3`
+
+Placeholder
+
+
+## Learning Objectives
+## Introduction
+#### Super Learner
+## Basic Implementation
+### WASH Benefits Study Example
+## Extensions
+### Customize Learner Hyperparameters
+### Screening Covariates
+### Cross-validated Super Learner
+### Variable Importance Analysis with `sl3`
+## Exercise
+### Predicting Myocardial Infarction with `sl3`
+## Concluding Remarks
+
+<!--chapter:end:04-sl3.Rmd-->
+
+
+# `tmle3` -- The Targeted Learning Framework
+
+Placeholder
+
+
+## Learning Objectives
+## Example: `tmle3` for ATE
+### Load the Data
+### Define the variable roles
+### Handling Missingness
+### Create a "Spec" Object
+### Define the learners
+### Fit the TMLE
+### Evaluate the Estimates
+## `tmle3` Components
+### `tmle3_task`
+### Initial Likelihood
+### Targeted Likelihood (updater)
+### Parameter Mapping
+### Putting it all together
+## Fitting `tmle3` with multiple parameters
+### Delta Method
+### Fit
+## Exercise
+## Summary
+
+<!--chapter:end:05-tmle3.Rmd-->
+
 # Optimal Individualized Treatment Regimes
 
 _Ivana Malenica_, based on the [`tmle3mopttx`
@@ -34,13 +183,13 @@ This aim motivates a different type of intervention, as opposed to the static
 exposures we might be used to. In this chapter, we learn about dynamic 
 (individualized) interventions that tailor the treatment decision based on the 
 collected covariates. In the statistics community, such a treatment strategy is
-termed **individualized treatment regimes** (ITR), and the (counterfactual) population 
-mean outcome under an ITR is the **value of the ITR**. Even more, suppose one wishes 
+termed _individualized treatment regime_ (ITR), and the (counterfactual) population 
+mean outcome under an ITR is the _value of the ITR_. Even more, suppose one wishes 
 to maximize the population mean of an outcome, where for each individual we have 
 access to some set of measured covariates. An ITR with the maximal value is referred 
-to as an **optimal ITR** or the **optimal individualized treatment**. 
-Consequently, the value of an optimal ITR is termed the **optimal value**, or the 
-**mean under the optimal individualized treatment**.
+to as an _optimal ITR_ or the _optimal individualized treatment_. 
+Consequently, the value of an optimal ITR is termed the _optimal value_, or the 
+_mean under the optimal individualized treatment_.
 
 One opts to administer the intervention to individuals who will profit from it, instead of 
 assigning treatment on a population level. But how do we know which intervention works for which 
@@ -328,20 +477,20 @@ interval covers our true mean under the true optimal individualized treatment.
 * In this section, we consider how to evaluate the mean outcome under the optimal
 individualized treatment when $A$ has more than two categories!
 
-* We define **pseudo-blips** as vector valued entities where the output for a given 
+* We define _pseudo-blips_ as vector valued entities where the output for a given 
 $V$ is a vector of length equal to the number of treatment categories, $n_A$. 
 As such, we define it as:
 $$\bar{Q}_0^{pblip}(V) = \{\bar{Q}_{0,a}^{pblip}(V): a \in \mathcal{A} \}$$
 
 * We implement three different pseudo-blips in `tmle3mopttx`.
 
-1. **Blip1** corresponds to choosing a reference category of treatment, and 
+1. _Blip1_ corresponds to choosing a reference category of treatment, and 
 defining the blip for all other categories relative to the specified reference:
 $$\bar{Q}_{0,a}^{pblip-ref}(V) \equiv E_0(Y_a-Y_0|V)$$
-2. **Blip2** approach corresponds to defining the blip relative to the average of 
+2. _Blip2_ approach corresponds to defining the blip relative to the average of 
 all categories:
 $$\bar{Q}_{0,a}^{pblip-avg}(V) \equiv E_0(Y_a- \frac{1}{n_A} \sum_{a \in \mathcal{A}} Y_a|V)$$
-3. **Blip3** reflects an extension of Blip2, where the average is now a weighted average:
+3. _Blip3_ reflects an extension of Blip2, where the average is now a weighted average:
 $$\bar{Q}_{0,a}^{pblip-wavg}(V) \equiv E_0(Y_a- \frac{1}{n_A} \sum_{a \in \mathcal{A}} Y_{a} P(A=a|V)
 |V)$$
 
@@ -774,3 +923,50 @@ fit
 
 table(tmle_spec$return_rule)
 ```
+
+<!--chapter:end:06-tmle3mopttx.Rmd-->
+
+
+# Stochastic Treatment Regimes
+
+Placeholder
+
+
+## Learning Objectives
+## Introduction
+## Stochastic Interventions
+### Identifying the Causal Effect of a Stochastic Intervention
+### Interpreting the Causal Effect of a Stochastic Intervention
+## Estimating the Causal Effect of a Stochastic Intervention with `tmle3shift`
+### Simulate Data
+### Targeted Estimation of Stochastic Interventions Effects
+## Stochastic Interventions over a Grid of Counterfactual Shifts
+### Initializing `vimshift` through its `tmle3_Spec`
+### Targeted Estimation of Stochastic Intervention Effects
+### Inference with Marginal Structural Models
+### Directly Targeting the MSM Parameter $\beta$
+### Example with the WASH Benefits Data
+## Exercises
+### Review of Key Concepts
+### The Ideas in Action
+### Advanced Topics
+
+<!--chapter:end:07-tmle3shift.Rmd-->
+
+
+# A Primer on the `R6` Class System {#r6}
+
+Placeholder
+
+
+## Classes, Fields, and Methods
+## Object Oriented Programming: `Python` and `R`
+
+<!--chapter:end:98-r6_primer.Rmd-->
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:99-references.Rmd-->
+
