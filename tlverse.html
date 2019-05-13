@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html >
+
 <head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Chapter 2 Welcome to the tlverse | The tlverse Software Ecosystem for Causal Inference</title>
-  <meta name="description" content="An open-source and fully-reproducible electronic set of teaching materials accompanying a full-day short-course on applying the Targeted Learning methodology in practice using the tlverse software ecosystem." />
-  <meta name="generator" content="bookdown  and GitBook 2.6.7" />
+  <meta name="description" content="An open-source and fully-reproducible electronic set of teaching materials accompanying a full-day short-course on applying the Targeted Learning methodology in practice using the tlverse software ecosystem.">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
   <meta property="og:title" content="Chapter 2 Welcome to the tlverse | The tlverse Software Ecosystem for Causal Inference" />
   <meta property="og:type" content="book" />
@@ -21,17 +22,17 @@
   <meta name="twitter:description" content="An open-source and fully-reproducible electronic set of teaching materials accompanying a full-day short-course on applying the Targeted Learning methodology in practice using the tlverse software ecosystem." />
   
 
-<meta name="author" content="Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana Malenica, Rachael Phillips" />
+<meta name="author" content="Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana Malenica, Rachael Phillips">
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
-  <link rel="shortcut icon" href="img/logos/favicons/favicon.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="img/logos/favicons/favicon.png" type="image/x-icon">
 <link rel="prev" href="intro.html">
-<link rel="next" href="modern-super-machine-learning-with-sl3.html">
+<link rel="next" href="ensemble-machine-learning.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,69 +54,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -135,6 +108,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#important-links"><i class="fa fa-check"></i><b>0.1</b> Important links</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-this-workshop"><i class="fa fa-check"></i>About this workshop</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#outline"><i class="fa fa-check"></i>Outline</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-instructors"><i class="fa fa-check"></i>About the instructors</a><ul>
@@ -145,10 +119,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#ivana-malenica"><i class="fa fa-check"></i>Ivana Malenica</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#rachael-phillips"><i class="fa fa-check"></i>Rachael Phillips</a></li>
 </ul></li>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#important-links"><i class="fa fa-check"></i><b>0.1</b> Important links</a></li>
-<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#setup-instructions"><i class="fa fa-check"></i><b>0.2</b> Setup instructions</a><ul>
-<li class="chapter" data-level="0.2.1" data-path="index.html"><a href="index.html#r-and-rstudio"><i class="fa fa-check"></i><b>0.2.1</b> R and RStudio</a></li>
-</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i>Motivation</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> The Targeted Learning Roadmap</a><ul>
@@ -156,7 +126,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#the-causal-model"><i class="fa fa-check"></i><b>1.2</b> The Causal Model</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#the-parameter-of-interest"><i class="fa fa-check"></i><b>1.3</b> The Parameter of Interest</a></li>
 <li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#identifiability"><i class="fa fa-check"></i><b>1.4</b> Identifiability</a></li>
-<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#estimator"><i class="fa fa-check"></i><b>1.5</b> Estimator</a><ul>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#estimators-superlearning-and-targeted-maximum-likelihood"><i class="fa fa-check"></i><b>1.5</b> Estimators: SuperLearning and Targeted Maximum Likelihood</a><ul>
 <li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#inference"><i class="fa fa-check"></i><b>1.5.1</b> Inference</a></li>
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#the-wash-benefits-example-dataset"><i class="fa fa-check"></i><b>1.6</b> The WASH Benefits Example Dataset</a><ul>
@@ -169,62 +139,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3" data-path="tlverse.html"><a href="tlverse.html#tlverse-components"><i class="fa fa-check"></i><b>2.3</b> <code>tlverse</code> components</a></li>
 <li class="chapter" data-level="2.4" data-path="tlverse.html"><a href="tlverse.html#installation"><i class="fa fa-check"></i><b>2.4</b> Installation</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html"><i class="fa fa-check"></i><b>3</b> Modern Super (Machine) Learning with <code>sl3</code></a><ul>
-<li class="chapter" data-level="3.1" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="3.2" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#introduction"><i class="fa fa-check"></i><b>3.2</b> Introduction</a></li>
-<li class="chapter" data-level="3.3" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#basic-implementation"><i class="fa fa-check"></i><b>3.3</b> Basic Implementation</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#wash-benefits-study-example"><i class="fa fa-check"></i><b>3.3.1</b> WASH Benefits Study Example</a></li>
+<li class="chapter" data-level="3" data-path="ensemble-machine-learning.html"><a href="ensemble-machine-learning.html"><i class="fa fa-check"></i><b>3</b> Ensemble Machine Learning</a><ul>
+<li class="chapter" data-level="3.1" data-path="ensemble-machine-learning.html"><a href="ensemble-machine-learning.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="ensemble-machine-learning.html"><a href="ensemble-machine-learning.html#introduction"><i class="fa fa-check"></i><b>3.2</b> Introduction</a></li>
+<li class="chapter" data-level="3.3" data-path="ensemble-machine-learning.html"><a href="ensemble-machine-learning.html#basic-implementation"><i class="fa fa-check"></i><b>3.3</b> Basic Implementation</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="ensemble-machine-learning.html"><a href="ensemble-machine-learning.html#wash-benefits-study-example"><i class="fa fa-check"></i><b>3.3.1</b> WASH Benefits Study Example</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#extensions"><i class="fa fa-check"></i><b>3.4</b> Extensions</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#customize-learner-hyperparameters"><i class="fa fa-check"></i><b>3.4.1</b> Customize Learner Hyperparameters</a></li>
-<li class="chapter" data-level="3.4.2" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#screening-covariates"><i class="fa fa-check"></i><b>3.4.2</b> Screening covariates</a></li>
-<li class="chapter" data-level="3.4.3" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#cross-validated-super-learner"><i class="fa fa-check"></i><b>3.4.3</b> Cross-validated super learner</a></li>
-<li class="chapter" data-level="3.4.4" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#variable-importance"><i class="fa fa-check"></i><b>3.4.4</b> Variable importance</a></li>
+<li class="chapter" data-level="3.4" data-path="ensemble-machine-learning.html"><a href="ensemble-machine-learning.html#extensions"><i class="fa fa-check"></i><b>3.4</b> Extensions</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="ensemble-machine-learning.html"><a href="ensemble-machine-learning.html#customize-learner-hyperparameters"><i class="fa fa-check"></i><b>3.4.1</b> Customize Learner Hyperparameters</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ensemble-machine-learning.html"><a href="ensemble-machine-learning.html#screening-covariates"><i class="fa fa-check"></i><b>3.4.2</b> Screening Covariates</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ensemble-machine-learning.html"><a href="ensemble-machine-learning.html#cross-validated-super-learner"><i class="fa fa-check"></i><b>3.4.3</b> Cross-validated Super Learner</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ensemble-machine-learning.html"><a href="ensemble-machine-learning.html#variable-importance-analysis-with-sl3"><i class="fa fa-check"></i><b>3.4.4</b> Variable Importance Analysis with <code>sl3</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#exercise"><i class="fa fa-check"></i><b>3.5</b> Exercise</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#predicting-myocardial-infarction-with-sl3"><i class="fa fa-check"></i><b>3.5.1</b> Predicting myocardial infarction with <code>sl3</code></a></li>
+<li class="chapter" data-level="3.5" data-path="ensemble-machine-learning.html"><a href="ensemble-machine-learning.html#exercise"><i class="fa fa-check"></i><b>3.5</b> Exercise</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="ensemble-machine-learning.html"><a href="ensemble-machine-learning.html#predicting-myocardial-infarction-with-sl3"><i class="fa fa-check"></i><b>3.5.1</b> Predicting Myocardial Infarction with <code>sl3</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="modern-super-machine-learning-with-sl3.html"><a href="modern-super-machine-learning-with-sl3.html#concluding-remarks"><i class="fa fa-check"></i><b>3.6</b> Concluding Remarks</a></li>
+<li class="chapter" data-level="3.6" data-path="ensemble-machine-learning.html"><a href="ensemble-machine-learning.html#concluding-remarks"><i class="fa fa-check"></i><b>3.6</b> Concluding Remarks</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html"><i class="fa fa-check"></i><b>4</b> <code>tmle3</code> – The Targeted Learning Framework</a><ul>
-<li class="chapter" data-level="4.1" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#learning-objectives-2"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="4.2" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#example-tmle3-for-ate"><i class="fa fa-check"></i><b>4.2</b> Example: <code>tmle3</code> for ATE</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#load-the-data"><i class="fa fa-check"></i><b>4.2.1</b> Load the Data</a></li>
-<li class="chapter" data-level="4.2.2" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#define-the-variable-roles"><i class="fa fa-check"></i><b>4.2.2</b> Define the variable roles</a></li>
-<li class="chapter" data-level="4.2.3" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#handling-missingness"><i class="fa fa-check"></i><b>4.2.3</b> Handling Missingness</a></li>
-<li class="chapter" data-level="4.2.4" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#create-a-spec-object"><i class="fa fa-check"></i><b>4.2.4</b> Create a “Spec” Object</a></li>
-<li class="chapter" data-level="4.2.5" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#define-the-learners"><i class="fa fa-check"></i><b>4.2.5</b> Define the learners</a></li>
-<li class="chapter" data-level="4.2.6" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#fit-the-tmle"><i class="fa fa-check"></i><b>4.2.6</b> Fit the TMLE</a></li>
-<li class="chapter" data-level="4.2.7" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#evaluate-the-estimates"><i class="fa fa-check"></i><b>4.2.7</b> Evaluate the Estimates</a></li>
+<li class="chapter" data-level="4" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html"><i class="fa fa-check"></i><b>4</b> The TMLE Framework</a><ul>
+<li class="chapter" data-level="4.1" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#learning-objectives-2"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#example-tmle3-for-ate"><i class="fa fa-check"></i><b>4.2</b> Example: <code>tmle3</code> for ATE</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#load-the-data"><i class="fa fa-check"></i><b>4.2.1</b> Load the Data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#define-the-variable-roles"><i class="fa fa-check"></i><b>4.2.2</b> Define the variable roles</a></li>
+<li class="chapter" data-level="4.2.3" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#handling-missingness"><i class="fa fa-check"></i><b>4.2.3</b> Handling Missingness</a></li>
+<li class="chapter" data-level="4.2.4" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#create-a-spec-object"><i class="fa fa-check"></i><b>4.2.4</b> Create a “Spec” Object</a></li>
+<li class="chapter" data-level="4.2.5" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#define-the-learners"><i class="fa fa-check"></i><b>4.2.5</b> Define the learners</a></li>
+<li class="chapter" data-level="4.2.6" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#fit-the-tmle"><i class="fa fa-check"></i><b>4.2.6</b> Fit the TMLE</a></li>
+<li class="chapter" data-level="4.2.7" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#evaluate-the-estimates"><i class="fa fa-check"></i><b>4.2.7</b> Evaluate the Estimates</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#tmle3-components"><i class="fa fa-check"></i><b>4.3</b> <code>tmle3</code> Components</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#tmle3_task"><i class="fa fa-check"></i><b>4.3.1</b> <code>tmle3_task</code></a></li>
-<li class="chapter" data-level="4.3.2" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#initial-likelihood"><i class="fa fa-check"></i><b>4.3.2</b> Initial Likelihood</a></li>
-<li class="chapter" data-level="4.3.3" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#targeted-likelihood-updater"><i class="fa fa-check"></i><b>4.3.3</b> Targeted Likelihood (updater)</a></li>
-<li class="chapter" data-level="4.3.4" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#parameter-mapping"><i class="fa fa-check"></i><b>4.3.4</b> Parameter Mapping</a></li>
-<li class="chapter" data-level="4.3.5" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#putting-it-all-together"><i class="fa fa-check"></i><b>4.3.5</b> Putting it all together</a></li>
+<li class="chapter" data-level="4.3" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#tmle3-components"><i class="fa fa-check"></i><b>4.3</b> <code>tmle3</code> Components</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#tmle3_task"><i class="fa fa-check"></i><b>4.3.1</b> <code>tmle3_task</code></a></li>
+<li class="chapter" data-level="4.3.2" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#initial-likelihood"><i class="fa fa-check"></i><b>4.3.2</b> Initial Likelihood</a></li>
+<li class="chapter" data-level="4.3.3" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#targeted-likelihood-updater"><i class="fa fa-check"></i><b>4.3.3</b> Targeted Likelihood (updater)</a></li>
+<li class="chapter" data-level="4.3.4" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#parameter-mapping"><i class="fa fa-check"></i><b>4.3.4</b> Parameter Mapping</a></li>
+<li class="chapter" data-level="4.3.5" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#putting-it-all-together"><i class="fa fa-check"></i><b>4.3.5</b> Putting it all together</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#fitting-tmle3-with-multiple-parameters"><i class="fa fa-check"></i><b>4.4</b> Fitting <code>tmle3</code> with multiple parameters</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#delta-method"><i class="fa fa-check"></i><b>4.4.1</b> Delta Method</a></li>
-<li class="chapter" data-level="4.4.2" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#fit"><i class="fa fa-check"></i><b>4.4.2</b> Fit</a></li>
+<li class="chapter" data-level="4.4" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#fitting-tmle3-with-multiple-parameters"><i class="fa fa-check"></i><b>4.4</b> Fitting <code>tmle3</code> with multiple parameters</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#delta-method"><i class="fa fa-check"></i><b>4.4.1</b> Delta Method</a></li>
+<li class="chapter" data-level="4.4.2" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#fit"><i class="fa fa-check"></i><b>4.4.2</b> Fit</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#exercise-1"><i class="fa fa-check"></i><b>4.5</b> Exercise</a></li>
-<li class="chapter" data-level="4.6" data-path="tmle3-the-targeted-learning-framework.html"><a href="tmle3-the-targeted-learning-framework.html#summary"><i class="fa fa-check"></i><b>4.6</b> Summary</a></li>
+<li class="chapter" data-level="4.5" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#exercise-1"><i class="fa fa-check"></i><b>4.5</b> Exercise</a></li>
+<li class="chapter" data-level="4.6" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#summary"><i class="fa fa-check"></i><b>4.6</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html"><i class="fa fa-check"></i><b>5</b> Optimal Individualized Treatment Regimes</a><ul>
 <li class="chapter" data-level="5.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#learning-objectives-3"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="5.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#introduction-to-optimal-individualized-interventions"><i class="fa fa-check"></i><b>5.2</b> Introduction to Optimal Individualized Interventions</a></li>
 <li class="chapter" data-level="5.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#data-structure-and-notation"><i class="fa fa-check"></i><b>5.3</b> Data Structure and Notation</a></li>
 <li class="chapter" data-level="5.4" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#defining-the-causal-effect-of-an-optimal-individualized-intervention"><i class="fa fa-check"></i><b>5.4</b> Defining the Causal Effect of an Optimal Individualized Intervention</a></li>
-<li class="chapter" data-level="5.5" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#binary-treatment"><i class="fa fa-check"></i><b>5.5</b> Binary treatment</a></li>
-<li class="chapter" data-level="5.6" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#extensions-to-causal-effect-of-an-optimal-individualized-intervention"><i class="fa fa-check"></i><b>5.6</b> Extensions to Causal Effect of an Optimal Individualized Intervention</a><ul>
-<li class="chapter" data-level="5.6.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#simpler-rules"><i class="fa fa-check"></i><b>5.6.1</b> Simpler Rules</a></li>
-<li class="chapter" data-level="5.6.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#realistic-optimal-individual-regimes"><i class="fa fa-check"></i><b>5.6.2</b> Realistic Optimal Individual Regimes</a></li>
-<li class="chapter" data-level="5.6.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#variable-importance-analysis"><i class="fa fa-check"></i><b>5.6.3</b> Variable Importance Analysis</a></li>
+<li class="chapter" data-level="5.5" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#binary-treatment"><i class="fa fa-check"></i><b>5.5</b> Binary Treatment</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#why-cv-tmle"><i class="fa fa-check"></i><b>5.5.1</b> Why CV-TMLE?</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#categorical-treatment"><i class="fa fa-check"></i><b>5.7</b> Categorical treatment</a></li>
-<li class="chapter" data-level="5.8" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#exercise-optimal-individualized-intervention-with-categorical-treatment"><i class="fa fa-check"></i><b>5.8</b> Exercise: Optimal Individualized Intervention with Categorical Treatment</a></li>
-<li class="chapter" data-level="5.9" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#exercise-wash-benefits-data"><i class="fa fa-check"></i><b>5.9</b> Exercise: WASH Benefits Data</a></li>
+<li class="chapter" data-level="5.6" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#evaluating-the-causal-effect-of-an-optimal-itr-with-binary-treatment"><i class="fa fa-check"></i><b>5.6</b> Evaluating the Causal Effect of an optimal ITR with Binary Treatment</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#simulate-data"><i class="fa fa-check"></i><b>5.6.1</b> Simulate Data</a></li>
+<li class="chapter" data-level="5.6.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#constructing-optimal-stacked-regressions-with-sl3"><i class="fa fa-check"></i><b>5.6.2</b> Constructing Optimal Stacked Regressions with <code>sl3</code></a></li>
+<li class="chapter" data-level="5.6.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#targeted-estimation-of-the-mean-under-the-optimal-individualized-interventions-effects"><i class="fa fa-check"></i><b>5.6.3</b> Targeted Estimation of the Mean under the Optimal Individualized Interventions Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#categorical-treatment"><i class="fa fa-check"></i><b>5.7</b> Categorical Treatment</a></li>
+<li class="chapter" data-level="5.8" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#evaluating-the-causal-effect-of-an-optimal-itr-with-categorical-treatment"><i class="fa fa-check"></i><b>5.8</b> Evaluating the Causal Effect of an optimal ITR with Categorical Treatment</a><ul>
+<li class="chapter" data-level="5.8.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#simulated-data"><i class="fa fa-check"></i><b>5.8.1</b> Simulated Data</a></li>
+<li class="chapter" data-level="5.8.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#constructing-optimal-stacked-regressions-with-sl3-1"><i class="fa fa-check"></i><b>5.8.2</b> Constructing Optimal Stacked Regressions with <code>sl3</code></a></li>
+<li class="chapter" data-level="5.8.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#targeted-estimation-of-the-mean-under-the-optimal-individualized-interventions-effects-1"><i class="fa fa-check"></i><b>5.8.3</b> Targeted Estimation of the Mean under the Optimal Individualized Interventions Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#extensions-to-causal-effect-of-an-oit"><i class="fa fa-check"></i><b>5.9</b> Extensions to Causal Effect of an OIT</a><ul>
+<li class="chapter" data-level="5.9.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#simpler-rules"><i class="fa fa-check"></i><b>5.9.1</b> Simpler Rules</a></li>
+<li class="chapter" data-level="5.9.2" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#realistic-optimal-individual-regimes"><i class="fa fa-check"></i><b>5.9.2</b> Realistic Optimal Individual Regimes</a></li>
+<li class="chapter" data-level="5.9.3" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#variable-importance-analysis"><i class="fa fa-check"></i><b>5.9.3</b> Variable Importance Analysis</a></li>
+<li class="chapter" data-level="5.9.4" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#variable-importance-using-targeted-estimation-of-the-value-of-the-itr"><i class="fa fa-check"></i><b>5.9.4</b> Variable Importance using Targeted Estimation of the value of the ITR</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#exercise-2"><i class="fa fa-check"></i><b>5.10</b> Exercise</a><ul>
+<li class="chapter" data-level="5.10.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#real-world-data-and-tmle3mopttx"><i class="fa fa-check"></i><b>5.10.1</b> Real World Data and <code>tmle3mopttx</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#summary-1"><i class="fa fa-check"></i><b>5.11</b> Summary</a><ul>
+<li class="chapter" data-level="5.11.1" data-path="optimal-individualized-treatment-regimes.html"><a href="optimal-individualized-treatment-regimes.html#solutions"><i class="fa fa-check"></i><b>5.11.1</b> Solutions</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html"><i class="fa fa-check"></i><b>6</b> Stochastic Treatment Regimes</a><ul>
 <li class="chapter" data-level="6.1" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#learning-objectives-4"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
@@ -249,6 +236,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.6.2" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#the-ideas-in-action"><i class="fa fa-check"></i><b>6.6.2</b> The Ideas in Action</a></li>
 <li class="chapter" data-level="6.6.3" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#advanced-topics"><i class="fa fa-check"></i><b>6.6.3</b> Advanced Topics</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r6.html"><a href="r6.html"><i class="fa fa-check"></i><b>7</b> A Primer on the <code>R6</code> Class System</a><ul>
+<li class="chapter" data-level="7.1" data-path="r6.html"><a href="r6.html#classes-fields-and-methods"><i class="fa fa-check"></i><b>7.1</b> Classes, Fields, and Methods</a></li>
+<li class="chapter" data-level="7.2" data-path="r6.html"><a href="r6.html#object-oriented-programming-python-and-r"><i class="fa fa-check"></i><b>7.2</b> Object Oriented Programming: <code>Python</code> and <code>R</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -285,13 +276,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="what-is-the-tlverse" class="section level2">
 <h2><span class="header-section-number">2.2</span> What is the <code>tlverse</code>?</h2>
-<p>The <code>tlverse</code> is a new framework for doing Targeted Learning in R, inspired by
-the <a href="https://tidyverse.org"><code>tidyverse</code> ecosystem</a> of R packages.</p>
+<p>The <code>tlverse</code> is a new framework for doing Targeted Learning in R, inspired by the <a href="https://tidyverse.org"><code>tidyverse</code> ecosystem</a> of R packages.</p>
 <p>By analogy to the <a href="https://tidyverse.org/"><code>tidyverse</code></a>:</p>
 <blockquote>
-<p>The <code>tidyverse</code> is an opinionated collection of R packages designed for data
-science. All packages share an underlying design philosophy, grammar, and data
-structures.</p>
+<p>The <code>tidyverse</code> is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.</p>
 </blockquote>
 <p>So, the <a href="https://tlverse.org"><code>tlverse</code></a> is</p>
 <ul>
@@ -303,75 +291,38 @@ structures.</p>
 <h2><span class="header-section-number">2.3</span> <code>tlverse</code> components</h2>
 <p>These are the main packages that represent the <strong>core</strong> of the <code>tlverse</code>:</p>
 <ul>
-<li><a href="https://github.com/tlverse/sl3"><code>sl3</code></a>: Modern Super Learning with Pipelines
-<ul>
-<li><em>What?</em> A modern object-oriented re-implementation of the Super Learner
-algorithm, employing recently developed paradigms for <code>R</code> programming.</li>
-<li><em>Why?</em> A design that leverages modern tools for fast computation, is
-forward-looking, and can form one of the cornerstones of the <code>tlverse</code>.</li>
-</ul></li>
-<li><a href="https://github.com/tlverse/tmle3"><code>tmle3</code></a>: An Engine for Targeted Learning
-<ul>
-<li><em>What?</em> A generalized framework that simplifies Targeted Learning by
-identifying and implementing a series of common statistical estimation
-procedures.</li>
-<li><em>Why?</em> A common interface and engine that accommodates current algorithmic
-approaches to Targeted Learning and is still flexible enough to remain the
-engine even as new techniques are developed.</li>
-</ul></li>
+<li><a href="https://github.com/tlverse/sl3"><code>sl3</code></a>: Modern Super Learning with Pipelines</li>
+<li><em>What?</em> A modern object-oriented re-implementation of the Super Learner algorithm, employing recently developed paradigms for <code>R</code> programming.</li>
+<li><p><em>Why?</em> A design that leverages modern tools for fast computation, is forward-looking, and can form one of the cornerstones of the <code>tlverse</code>.</p></li>
+<li><a href="https://github.com/tlverse/tmle3"><code>tmle3</code></a>: An Engine for Targeted Learning</li>
+<li><em>What?</em> A generalized framework that simplifies Targeted Learning by identifying and implementing a series of common statistical estimation procedures.</li>
+<li><p><em>Why?</em> A common interface and engine that accommodates current algorithmic approaches to Targeted Learning and is still flexible enough to remain the engine even as new techniques are developed.</p></li>
 </ul>
-<p>In addition to the engines that drive development in the <code>tlverse</code>, there are
-some supporting packages – in particular, we have two…</p>
+<p>In addition to the engines that drive development in the <code>tlverse</code>, there are some supporting packages – in particular, we have two…</p>
 <ul>
-<li><a href="https://github.com/tlverse/origami"><code>origami</code></a>: A Generalized Framework for
-Cross-Validation
-<ul>
+<li><a href="https://github.com/tlverse/origami"><code>origami</code></a>: A Generalized Framework for Cross-Validation</li>
 <li><em>What?</em> A generalized framework for flexible cross-validation</li>
-<li><em>Why?</em> Cross-validation is a key part of ensuring error estimates are honest
-and preventing overfitting. It is an essential part of the both the Super
-Learner algorithm and Targeted Learning.</li>
-</ul></li>
-<li><a href="https://github.com/tlverse/delayed"><code>delayed</code></a>: Parallelization Framework for
-Dependent Tasks
-<ul>
-<li><em>What?</em> A framework for delayed computations (futures) based on task
-dependencies.</li>
-<li><em>Why?</em> Efficient allocation of compute resources is essential when deploying
-large-scale, computationally intensive algorithms.</li>
-</ul></li>
+<li><p><em>Why?</em> Cross-validation is a key part of ensuring error estimates are honest and preventing overfitting. It is an essential part of the both the Super Learner algorithm and Targeted Learning.</p></li>
+<li><a href="https://github.com/tlverse/delayed"><code>delayed</code></a>: Parallelization Framework for Dependent Tasks</li>
+<li><em>What?</em> A framework for delayed computations (futures) based on task dependencies.</li>
+<li><p><em>Why?</em> Efficient allocation of compute resources is essential when deploying large-scale, computationally intensive algorithms.</p></li>
 </ul>
-<p>A key principle of the <code>tlverse</code> is extensibility. That is, we want to support
-new Targeted Learning estimators as they are developed. The model for this is
-new estimators are implemented in additional packages using the core packages
-above. There are currently two featured examples of this:</p>
+<p>A key principle of the <code>tlverse</code> is extensibility. That is, we want to support new Targeted Learning estimators as they are developed. The model for this is new estimators are implemented in additional packages using the core packages above. There are currently two featured examples of this:</p>
 <ul>
-<li><a href="https://github.com/tlverse/tmle3mopttx"><code>tmle3mopttx</code></a>: Optimal Treatments
-in <code>tlverse</code>
-<ul>
+<li><a href="https://github.com/tlverse/tmle3mopttx"><code>tmle3mopttx</code></a>: Optimal Treatments in <code>tlverse</code></li>
 <li><em>What?</em> Learn an optimal rule and estimate the mean outcome under the rule</li>
-<li><em>Why?</em> Optimal Treatment is a powerful tool in precision healthcare and
-other settings where a one-size-fits-all treatment approach is not
-appropriate.</li>
-</ul></li>
-<li><a href="https://github.com/tlverse/tmle3shift"><code>tmle3shift</code></a>: Shift Interventions in
-<code>tlverse</code>
-<ul>
+<li><p><em>Why?</em> Optimal Treatment is a powerful tool in precision healthcare and other settings where a one-size-fits-all treatment approach is not appropriate.</p></li>
+<li><a href="https://github.com/tlverse/tmle3shift"><code>tmle3shift</code></a>: Shift Interventions in <code>tlverse</code></li>
 <li><em>What?</em> Shift interventions for continuous treatments</li>
-<li><em>Why?</em> Not all treatment variables are discrete. Being able to estimate the
-effects of continuous treatment represents a powerful extension of the
-Targeted Learning approach.</li>
-</ul></li>
+<li><p><em>Why?</em> Not all treatment variables are discrete. Being able to estimate the effects of continuous treatment represents a powerful extension of the Targeted Learning approach.</p></li>
 </ul>
 </div>
 <div id="installation" class="section level2">
 <h2><span class="header-section-number">2.4</span> Installation</h2>
-<p>The <code>tlverse</code> ecosystem of packages are currently hosted at
-<a href="https://github.com/tlverse" class="uri">https://github.com/tlverse</a>, not yet on <a href="http://cran.r-project.org/">CRAN</a>. You
-can use the <code>devtools</code> package to install them:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
-devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;tlverse/tlverse&quot;</span>)</code></pre>
-<p>The <code>tlverse</code> depends on a large number of other packages that are also hosted
-on GitHub. Because of this, you may see the following error:</p>
+<p>The <code>tlverse</code> ecosystem of packages are currently hosted at <a href="https://github.com/tlverse" class="uri">https://github.com/tlverse</a>, not yet on <a href="http://cran.r-project.org/">CRAN</a>. You can use the <code>devtools</code> package to install them:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
+devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;tlverse/tlverse&quot;</span>)</code></pre></div>
+<p>The <code>tlverse</code> depends on a large number of other packages that are also hosted on GitHub. Because of this, you may see the following error:</p>
 <pre><code>Error: HTTP error 403.
   API rate limit exceeded for 71.204.135.82. (But here&#39;s the good news:
   Authenticated requests get a higher rate limit. Check out the documentation
@@ -383,9 +334,7 @@ on GitHub. Because of this, you may see the following error:</p>
   To increase your GitHub API rate limit
   - Use `usethis::browse_github_pat()` to create a Personal Access Token.
   - Use `usethis::edit_r_environ()` and add the token as `GITHUB_PAT`.</code></pre>
-<p>This just means that R tried to install too many packages from GitHub in too
-short of a window. To fix this, you need to tell R how to use GitHub as your
-user (you’ll need a GitHub user account). Follow these two steps:</p>
+<p>This just means that R tried to install too many packages from GitHub in too short of a window. To fix this, you need to tell R how to use GitHub as your user (you’ll need a GitHub user account). Follow these two steps:</p>
 <ol style="list-style-type: decimal">
 <li>Use <code>usethis::browse_github_pat()</code> to create a Personal Access Token.</li>
 <li>Use <code>usethis::edit_r_environ()</code> and add the token as <code>GITHUB_PAT</code>.</li>
@@ -399,7 +348,7 @@ user (you’ll need a GitHub user account). Follow these two steps:</p>
         </div>
       </div>
 <a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="modern-super-machine-learning-with-sl3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ensemble-machine-learning.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -449,7 +398,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
