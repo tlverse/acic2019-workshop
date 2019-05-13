@@ -753,6 +753,8 @@ tmle_spec <- tmle3_mopttx_blip_revere(
 
 fit <- tmle3(tmle_spec, data=washb_data, node_list, learner_list)
 fit
+
+table(tmle_spec$return_rule)
 ```
 
 * Consider realistic rules:
@@ -769,6 +771,8 @@ tmle_spec <- tmle3_mopttx_blip_revere(
 
 fit <- tmle3(tmle_spec, data=washb_data, node_list, learner_list)
 fit
+
+table(tmle_spec$return_rule)
 ```
 
 
