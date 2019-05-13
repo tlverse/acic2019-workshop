@@ -323,7 +323,7 @@ interval covers our true mean under the true optimal individualized treatment.
 
 ## Categorical Treatment
 
-* \bf{QUESTION:} What if the treatment is categorical? Can we still use the blip function?
+* \textbf{QUESTION:} What if the treatment is categorical? Can we still use the blip function?
 
 * In this section, we consider how to evaluate the mean outcome under the optimal
 individualized treatment when $A$ has more than two categories!
@@ -383,7 +383,7 @@ node_list <- list(
 
 ### Constructing Optimal Stacked Regressions with `sl3`
 
-* \bf{QUESTION:} With categorical treatment, what is the dimension of the blip now? 
+* \textbf{QUESTION:} With categorical treatment, what is the dimension of the blip now? 
 How would we go about estimating it?
 
 ```{r sl3_lrnrs-mopttx}
@@ -497,7 +497,7 @@ fit
 for rule estimation, a simpler rule based on only $W_2$ and $W_1$ is sufficient to
 maximize the mean under the optimal individualized treatment!
 
-* \bf{QUESTION:} Why do you think the estimate 
+* \textbf{QUESTION:} Why do you think the estimate 
    if higher under the less complex rule? How does the set of covariates picked by `tmle3mopttx`
    compare to the baseline covariates the true rule depends on?
 
@@ -533,7 +533,7 @@ fit
 table(tmle_spec$return_rule)
 ```
 
-* \bf{QUESTION:} Referring back to the data-generating distribution, why do you 
+* \textbf{QUESTION:} Referring back to the data-generating distribution, why do you 
 think the distribution of allocated treatment changed?
    
 ### Variable Importance Analysis
