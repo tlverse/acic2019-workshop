@@ -48,7 +48,7 @@ edges <- data.frame(from=c("W","W","A"),to=c("A","Y","Y"))
 network <- visNetwork(nodes,edges, height="300px",width="200px") %>% 
   visEdges(arrows=list(to=TRUE))  %>% 
   visLayout(randomSeed=25)
-print(network)
+network
 ```
 
 While
@@ -167,7 +167,7 @@ estimators,
 
 These priniciples guide our approach to estimation: Superlearning for prediction (more generally density estimation) and TMLE for estimation of our intervention parameters of interest. 
 
-\includegraphics[page=1,width=5in]{NatureSlides.pdf}]
+\includegraphics[page=1,width=5in]{img/misc/NatureSlides.pdf}]
 
 ### SuperLearning
 - There is no universally optimal machine learning algorithm (exceptions exist - HAL).
