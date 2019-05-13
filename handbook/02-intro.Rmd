@@ -40,14 +40,15 @@ that are relevant to the question under study [@pearl2009causality].
 
 Ignoring error terms, we will assume the following ordering of the variables in $O$.
 
-```{r, echo=F}
-library(DiagrammeR)
-DiagrammeR("
-  graph LR
-    W-->A
-    W-->Y
-    A-->Y
-")
+```{r, echo=F, eval=T}
+library(visNetwork)
+nodes <- data.frame(id=c("W","A","Y"))
+nodes$label <- nodes$id
+edges <- data.frame(from=c("W","W","A"),to=c("A","Y","Y")) 
+network <- visNetwork(nodes,edges, height="300px",width="200px") %>% 
+  visEdges(arrows=list(to=TRUE))  %>% 
+  visLayout(randomSeed=25)
+print(network)
 ```
 
 While
