@@ -79,6 +79,11 @@ Montréal, Québec, Canada on 22 May 2019.
 
 ## Important links
 
+**Software installation**
+Please see these [installation
+instructions](https://github.com/tlverse/tlverse#installation).
+
+
 **Workshop surveys**
 These pre- and post-workshop surveys help us ensure the effectiveness of our
 teaching methodology.
@@ -98,6 +103,8 @@ of code.
 repository for the short course. See
 https://github.com/tlverse/acic2019-workshop/tree/master/handbook/R
 
+**RStudio Cloud**
+Coming soon.
 
 ## About this workshop {-}
 
