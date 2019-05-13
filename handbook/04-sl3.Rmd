@@ -94,7 +94,7 @@ set.seed(7194)
 washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
 head(washb_data, 3) %>%
   kable(digits = 3) %>%
-  kable_styling(fixed_thead = T, font_size = 10) %>%
+  kable_styling(fixed_thead = T) %>%
   scroll_box(width = "100%", height = "300px")
 ```
 
@@ -207,7 +207,7 @@ sl_preds <- sl_fit$predict()
 head(sl_preds)
 sl_fit$print() %>%
   kable(digits = 3) %>%
-  kable_styling(fixed_thead = T, font_size = 10) %>%
+  kable_styling(fixed_thead = T) %>%
   scroll_box(width = "100%", height = "300px")
 ```
 ## Extensions
@@ -274,7 +274,7 @@ sl_fancy <- Lrnr_sl$new(learners = fancy_stack, metalearner = metalearner)
 sl_fit_fancy<- sl_fancy$train(washb_task)
 sl_fit_fancy$print() %>%
   kable(digits = 3) %>%
-  kable_styling(fixed_thead = T, font_size = 10) %>%
+  kable_styling(fixed_thead = T) %>%
   scroll_box(width = "100%", height = "300px")
 ```
 
@@ -298,7 +298,7 @@ washb_task_new <- make_sl3_Task(
 CVsl <- CV_lrnr_sl(sl_fit, washb_task_new, loss_squared_error)
 CVsl %>%
   kable(digits = 3) %>%
-  kable_styling(fixed_thead = T, font_size = 10) %>%
+  kable_styling(fixed_thead = T) %>%
   scroll_box(width = "100%", height = "300px")
 ```
 
@@ -313,11 +313,11 @@ true covariate, across all covariates.
 In this manner, the larger the risk difference, the more important the variable
 is in the prediction.
 
-```{r varimp, eval=FALSE}
+```{r varimp}
 washb_varimp <- varimp(sl_fit_fancy, loss_squared_error)
 washb_varimp %>%
   kable(digits = 3) %>%
-  kable_styling(fixed_thead = T, font_size = 10) %>%
+  kable_styling(fixed_thead = T) %>%
   scroll_box(width = "100%", height = "300px")
 ```
 
@@ -345,7 +345,7 @@ chspred <- read_csv(file = db_data, col_names = TRUE)
 # take a quick peek
 head(chspred, 3) %>%
   kable(digits = 3) %>%
-  kable_styling(fixed_thead = T, font_size = 10) %>%
+  kable_styling(fixed_thead = T) %>%
   scroll_box(width = "100%", height = "300px")
 ```
 
