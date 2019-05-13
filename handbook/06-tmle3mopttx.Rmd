@@ -112,13 +112,13 @@ respect to the modified intervention distribution.
 
 * Recall causal assumptions:
 
-1. _Consistency_: $Y^{d(v_i)}_i = Y_i$ in the event $A_i = d(v_i)$,
+1. **Consistency**: $Y^{d(v_i)}_i = Y_i$ in the event $A_i = d(v_i)$,
    for $i = 1, \ldots, n$.
-2. _Stable unit value treatment assumption (SUTVA)_: $Y^{d(v_i)}_i$ does
+2. **Stable unit value treatment assumption (SUTVA)**: $Y^{d(v_i)}_i$ does
    not depend on $d(v_j)$ for $i = 1, \ldots, n$ and $j \neq i$, or lack
    of interference.
-3. _Strong ignorability_: $A \perp \!\!\! \perp Y^{d(v)} \mid W$, for all $a \in \mathcal{A}$.
-4. _Positivity (or overlap)_: $P_0(\min_{a \in \mathcal{A}} g_0(a|W) > 0)=1$
+3. **Strong ignorability**: $A \perp \!\!\! \perp Y^{d(v)} \mid W$, for all $a \in \mathcal{A}$.
+4. **Positivity (or overlap)**: $P_0(\min_{a \in \mathcal{A}} g_0(a|W) > 0)=1$
 
 * Here, we also assume non-exceptional law is in effect.
 
@@ -142,10 +142,10 @@ Estimator (CV-TMLE).
 ## Binary Treatment
 
 * How do we estimate the optimal individualized treatment regime? In the case of a 
-binary treatment, a key quantity for optimal ITR is the _blip_ function.
+binary treatment, a key quantity for optimal ITR is the **blip** function.
 
 * Optimal ITR ideally assigns treatment to individuals falling in strata in which the 
-stratum specific average treatment effect, the _blip_ function, is positive and does not 
+stratum specific average treatment effect, the **blip** function, is positive and does not 
 assign treatment to individuals for which this quantity is negative.
 
 * We define the blip function as: 
@@ -462,11 +462,11 @@ estimating the value of the ITR.
 
 * The first one considers a setting where the user 
 might be interested in a grid of possible suboptimal rules, corresponding to 
-potentially limited knowledge of potential effect modifiers (_Simpler Rules_).
+potentially limited knowledge of potential effect modifiers (**Simpler Rules**).
 
 * The second extension concerns implementation of realistic optimal individual 
 interventions where certain regimes might be preferred, but due to practical or 
-global positivity restraints are not realistic to implement (_Realistic Interventions_).
+global positivity restraints are not realistic to implement (**Realistic Interventions**).
 
 ### Simpler Rules
 
