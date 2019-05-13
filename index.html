@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>The tlverse Software Ecosystem for Causal Inference</title>
-  <meta name="description" content="An open-source and fully-reproducible electronic set of teaching materials accompanying a full-day short-course on applying the Targeted Learning methodology in practice using the tlverse software ecosystem.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="An open-source and fully-reproducible electronic set of teaching materials accompanying a full-day short-course on applying the Targeted Learning methodology in practice using the tlverse software ecosystem." />
+  <meta name="generator" content="bookdown 0.10.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="The tlverse Software Ecosystem for Causal Inference" />
   <meta property="og:type" content="book" />
@@ -22,15 +21,15 @@
   <meta name="twitter:description" content="An open-source and fully-reproducible electronic set of teaching materials accompanying a full-day short-course on applying the Targeted Learning methodology in practice using the tlverse software ecosystem." />
   
 
-<meta name="author" content="Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana Malenica, Rachael Phillips">
+<meta name="author" content="Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana Malenica, Rachael Phillips" />
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  <link rel="shortcut icon" href="img/logos/favicons/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="img/logos/favicons/favicon.png" type="image/x-icon" />
 
 <link rel="next" href="motivation.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -55,41 +54,69 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -234,11 +261,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.5.4" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#directly-targeting-the-msm-parameter-beta"><i class="fa fa-check"></i><b>6.5.4</b> Directly Targeting the MSM Parameter <span class="math inline">\(\beta\)</span></a></li>
 <li class="chapter" data-level="6.5.5" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#example-with-the-wash-benefits-data"><i class="fa fa-check"></i><b>6.5.5</b> Example with the WASH Benefits Data</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#exercises"><i class="fa fa-check"></i><b>6.6</b> Exercises</a><ul>
-<li class="chapter" data-level="6.6.1" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#review-of-key-concepts"><i class="fa fa-check"></i><b>6.6.1</b> Review of Key Concepts</a></li>
-<li class="chapter" data-level="6.6.2" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#the-ideas-in-action"><i class="fa fa-check"></i><b>6.6.2</b> The Ideas in Action</a></li>
-<li class="chapter" data-level="6.6.3" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#advanced-topics"><i class="fa fa-check"></i><b>6.6.3</b> Advanced Topics</a></li>
-</ul></li>
+<li class="chapter" data-level="6.6" data-path="stochastic-treatment-regimes.html"><a href="stochastic-treatment-regimes.html#exercises"><i class="fa fa-check"></i><b>6.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="r6.html"><a href="r6.html"><i class="fa fa-check"></i><b>7</b> A Primer on the <code>R6</code> Class System</a><ul>
 <li class="chapter" data-level="7.1" data-path="r6.html"><a href="r6.html#classes-fields-and-methods"><i class="fa fa-check"></i><b>7.1</b> Classes, Fields, and Methods</a></li>
@@ -274,75 +297,173 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="preface" class="section level1 unnumbered">
 <h1>Preface</h1>
 <img style="float: left; margin-right: 1%; margin-bottom: 0.01em"
-     src="img/logos/tlverse-logo.svg" width="30%" height="30%"> <img style="float: center; margin-right: 1%; margin-bottom: 0.01em"
-     src="img/logos/Rlogo.svg" width="30%" height="30%"> <img style="float: right; margin-right: 1%; margin-bottom: 0.01em"
+     src="img/logos/tlverse-logo.svg" width="30%" height="30%">
+<img style="float: center; margin-right: 1%; margin-bottom: 0.01em"
+     src="img/logos/Rlogo.svg" width="30%" height="30%">
+<img style="float: right; margin-right: 1%; margin-bottom: 0.01em"
      src="img/logos/vdl-logo-transparent.svg" width="30%" height="30%">
 <p style="clear: both;">
 <p><br></p>
-<p>This is an open source and fully-reproducible electronic handbook accompanying a full-day short-course on applying the targeted learning methodology in practice using the <a href="https://github.com/tlverse"><code>tlverse</code> software ecosystem</a>, given at the <a href="https://mcgill.ca/epi-biostat-occh/news-events/atlantic-causal-inference-conference-2019">2019 Atlantic Causal Inference Conference</a> in Montréal, Québec, Canada on 22 May 2019.</p>
+<p>This is an open source and fully-reproducible electronic handbook accompanying a
+full-day short-course on applying the targeted learning methodology in practice
+using the <a href="https://github.com/tlverse"><code>tlverse</code> software ecosystem</a>, given at
+the <a href="https://mcgill.ca/epi-biostat-occh/news-events/atlantic-causal-inference-conference-2019">2019 Atlantic Causal Inference
+Conference</a> in
+Montréal, Québec, Canada on 22 May 2019.</p>
 <p><img style="float: center; margin-right: 1%; margin-bottom: 0.05em"
-     src="img/misc/ad_workshop.png" width="100%" height="100%"> <br></p>
+     src="img/misc/ad_workshop.png" width="100%" height="100%">
+<br></p>
 <div id="important-links" class="section level2">
 <h2><span class="header-section-number">0.1</span> Important links</h2>
-<p><strong>Software installation</strong> Please see these <a href="https://github.com/tlverse/tlverse#installation">installation instructions</a>.</p>
-<p><strong>Workshop surveys</strong> These pre- and post-workshop surveys help us ensure the effectiveness of our teaching methodology.</p>
+<p><strong>Software installation</strong>
+Please see these <a href="https://github.com/tlverse/tlverse#installation">installation
+instructions</a>.</p>
+<p><strong>Workshop surveys</strong>
+These pre- and post-workshop surveys help us ensure the effectiveness of our
+teaching methodology.</p>
 <ul>
 <li><a href="https://forms.gle/u6iZHYjd81RBwQVv7">pre-workshop survey</a></li>
 <li><a href="https://forms.gle/P8SbwJBeaQjZHRRF9">post-workshop survey</a></li>
 </ul>
-<p><strong>Etherpad</strong> We will use this Etherpad for chatting, taking notes, and sharing URLs and bits of code.</p>
+<p><strong>Etherpad</strong>
+We will use this Etherpad for chatting, taking notes, and sharing URLs and bits
+of code.</p>
 <ul>
 <li><a href="https://etherpad.net/p/acic2019-tlverse" class="uri">https://etherpad.net/p/acic2019-tlverse</a></li>
 </ul>
-<p><strong>Code</strong> <code>R</code> script files for each section of the workshop are available via the GitHub repository for the short course. See <a href="https://github.com/tlverse/acic2019-workshop/tree/master/handbook/R" class="uri">https://github.com/tlverse/acic2019-workshop/tree/master/handbook/R</a></p>
-<p><strong>RStudio Cloud</strong> Coming soon.</p>
+<p><strong>Code</strong>
+<code>R</code> script files for each section of the workshop are available via the GitHub
+repository for the short course. See
+<a href="https://github.com/tlverse/acic2019-workshop/tree/master/handbook/R" class="uri">https://github.com/tlverse/acic2019-workshop/tree/master/handbook/R</a></p>
+<p><strong>RStudio Cloud</strong>
+Coming soon.</p>
 </div>
 <div id="about-this-workshop" class="section level2 unnumbered">
 <h2>About this workshop</h2>
-<p>This full-day workshop will provide a comprehensive introduction to the field of targeted learning for causal inference and the corresponding <a href="https://github.com/tlverse"><code>tlverse</code> software ecosystem</a>. In particular, we will focus on targeted minimum loss-based estimators of causal effects, including those of static, dynamic, optimal dynamic, and stochastic interventions. These multiply robust, efficient plug-in estimators use state-of-the-art, ensemble machine learning tools to flexibly adjust for confounding while yielding valid statistical inference. We will discuss the utility of this robust estimation strategy in comparison to conventional techniques, which often rely on restrictive statistical models and may therefore lead to severely biased inference. In addition to discussion, this workshop will incorporate both interactive activities and hands-on, guided <code>R</code> programming exercises, to allow participants the opportunity to familiarize themselves with methodology and tools that will translate to real-world causal inference analyses. It is highly recommended for participants to have an understanding of basic statistical concepts such as confounding, probability distributions, confidence intervals, hypothesis tests, and regression. Advanced knowledge of mathematical statistics may be useful but is not necessary. Familiarity with the <code>R</code> programming language will be essential.</p>
+<p>This full-day workshop will provide a comprehensive introduction to the field of
+targeted learning for causal inference and the corresponding <a href="https://github.com/tlverse"><code>tlverse</code>
+software ecosystem</a>. In particular, we will focus on
+targeted minimum loss-based estimators of causal effects, including those of
+static, dynamic, optimal dynamic, and stochastic interventions. These multiply
+robust, efficient plug-in estimators use state-of-the-art, ensemble machine
+learning tools to flexibly adjust for confounding while yielding valid
+statistical inference. We will discuss the utility of this robust estimation
+strategy in comparison to conventional techniques, which often rely on
+restrictive statistical models and may therefore lead to severely biased
+inference. In addition to discussion, this workshop will incorporate both
+interactive activities and hands-on, guided <code>R</code> programming exercises, to allow
+participants the opportunity to familiarize themselves with methodology and
+tools that will translate to real-world causal inference analyses. It is highly
+recommended for participants to have an understanding of basic statistical
+concepts such as confounding, probability distributions, confidence intervals,
+hypothesis tests, and regression. Advanced knowledge of mathematical statistics
+may be useful but is not necessary. Familiarity with the <code>R</code> programming language
+will be essential.</p>
 </div>
 <div id="outline" class="section level2 unnumbered">
 <h2>Outline</h2>
-<p>This is a full-day (6-hour) workshop, featuring modules that introduce distinct causal questions, each motivated by a case study, alongside statistical methodology and software for assessing the causal claim of interest. A sample schedule may take the form:</p>
+<p>This is a full-day (6-hour) workshop, featuring modules that introduce distinct
+causal questions, each motivated by a case study, alongside statistical
+methodology and software for assessing the causal claim of interest. A sample
+schedule may take the form:</p>
 <ul>
-<li>09:00AM–09:15AM: <a href="https://senseaboutscienceusa.org/super-learning-and-the-revolution-in-knowledge/">Why we need a statistical revolution</a></li>
-<li>09:15AM–09:45AM: The Roadmap, and the <a href="http://www.washbenefits.net/">WASH Benefits</a> data</li>
-<li>09:45AM–10:00AM: Introduction to the <a href="https://tlverse.org"><code>tlverse</code> software ecosystem</a></li>
+<li>09:00AM–09:15AM: <a href="https://senseaboutscienceusa.org/super-learning-and-the-revolution-in-knowledge/">Why we need a statistical
+revolution</a></li>
+<li>09:15AM–09:45AM: The Roadmap, and the <a href="http://www.washbenefits.net/">WASH
+Benefits</a> data</li>
+<li>09:45AM–10:00AM: Introduction to the <a href="https://tlverse.org"><code>tlverse</code> software
+ecosystem</a></li>
 <li>10:00AM–10:30AM: Morning coffee break</li>
-<li>10:30AM–11:15AM: Super (machine) learning with the <a href="https://github.com/tlverse/sl3"><code>sl3</code></a> package</li>
-<li>11:15AM–12:00PM: Targeted learning for causal inference with the <a href="https://github.com/tlverse/tmle3"><code>tmle3</code></a> package</li>
+<li>10:30AM–11:15AM: Super (machine) learning with the
+<a href="https://github.com/tlverse/sl3"><code>sl3</code></a> package</li>
+<li>11:15AM–12:00PM: Targeted learning for causal inference with the
+<a href="https://github.com/tlverse/tmle3"><code>tmle3</code></a> package</li>
 <li>12:00PM–1:00PM: Lunch break</li>
-<li>01:00PM–02:00PM: Optimal treatment regimes and the <a href="https://github.com/tlverse/tmle3mopttx"><code>tmle3mopttx</code></a> package</li>
+<li>01:00PM–02:00PM: Optimal treatment regimes and the
+<a href="https://github.com/tlverse/tmle3mopttx"><code>tmle3mopttx</code></a> package</li>
 <li>02:00PM–02:30PM: Afternoon coffee break</li>
-<li>2:30PM–3:30PM: Stochastic treatment regimes and the <a href="https://github.com/tlverse/tmle3shift"><code>tmle3shift</code></a> package</li>
-<li>03:30PM–4:00PM: <em>Coda</em>: <a href="https://senseaboutscienceusa.org/super-learning-and-the-revolution-in-knowledge/">Why we need a statistical revolution</a></li>
+<li>2:30PM–3:30PM: Stochastic treatment regimes and the
+<a href="https://github.com/tlverse/tmle3shift"><code>tmle3shift</code></a> package</li>
+<li>03:30PM–4:00PM: <em>Coda</em>: <a href="https://senseaboutscienceusa.org/super-learning-and-the-revolution-in-knowledge/">Why we need a statistical
+revolution</a></li>
 </ul>
 </div>
 <div id="about-the-instructors" class="section level2 unnumbered">
 <h2>About the instructors</h2>
 <div id="mark-van-der-laan" class="section level3 unnumbered">
 <h3>Mark van der Laan</h3>
-<p>Mark van der Laan, Ph.D., is Professor of Biostatistics and Statistics at UC Berkeley. His research interests include statistical methods in computational biology, survival analysis, censored data, adaptive designs, targeted maximum likelihood estimation, causal inference, data-adaptive loss-based learning, and multiple testing. His research group developed loss-based super learning in semiparametric models, based on cross-validation, as a generic optimal tool for the estimation of infinite-dimensional parameters, such as nonparametric density estimation and prediction with both censored and uncensored data. Building on this work, his research group developed targeted maximum likelihood estimation for a target parameter of the data-generating distribution in arbitrary semiparametric and nonparametric models, as a generic optimal methodology for statistical and causal inference. Most recently, Mark’s group has focused in part on the development of a centralized, principled set of software tools for targeted learning, the <code>tlverse</code>. For more information, see <a href="https://vanderlaan-lab.org" class="uri">https://vanderlaan-lab.org</a>.</p>
+<p>Mark van der Laan, Ph.D., is Professor of Biostatistics and Statistics at UC
+Berkeley. His research interests include statistical methods in computational
+biology, survival analysis, censored data, adaptive designs, targeted maximum
+likelihood estimation, causal inference, data-adaptive loss-based learning, and
+multiple testing. His research group developed loss-based super learning in
+semiparametric models, based on cross-validation, as a generic optimal tool for
+the estimation of infinite-dimensional parameters, such as nonparametric density
+estimation and prediction with both censored and uncensored data. Building on
+this work, his research group developed targeted maximum likelihood estimation
+for a target parameter of the data-generating distribution in arbitrary
+semiparametric and nonparametric models, as a generic optimal methodology for
+statistical and causal inference. Most recently, Mark’s group has focused in
+part on the development of a centralized, principled set of software tools for
+targeted learning, the <code>tlverse</code>. For more information, see
+<a href="https://vanderlaan-lab.org" class="uri">https://vanderlaan-lab.org</a>.</p>
 </div>
 <div id="alan-hubbard" class="section level3 unnumbered">
 <h3>Alan Hubbard</h3>
-<p>Alan Hubbard, Ph.D., is Professor of Biostatistics, former head of the Division of Biostatistics at UC Berkeley, and head of data analytics core at UC Berkeley’s SuperFund research program. His current research interests include causal inference, variable importance analysis, statistical machine learning, estimation of and inference for data-adaptive statistical target parameters, and targeted minimum loss-based estimation. Research in his group is generally motivated by applications to problems in computational biology, epidemiology, and precision medicine.</p>
+<p>Alan Hubbard, Ph.D., is Professor of Biostatistics, former head of the Division
+of Biostatistics at UC Berkeley, and head of data analytics core at UC
+Berkeley’s SuperFund research program. His current research interests include
+causal inference, variable importance analysis, statistical machine learning,
+estimation of and inference for data-adaptive statistical target parameters, and
+targeted minimum loss-based estimation. Research in his group is generally
+motivated by applications to problems in computational biology, epidemiology,
+and precision medicine.</p>
 </div>
 <div id="jeremy-coyle" class="section level3 unnumbered">
 <h3>Jeremy Coyle</h3>
-<p>Jeremy Coyle, Ph.D., is a consulting data scientist and statistical programmer, currently leading the software development effort that has produced the <code>tlverse</code> ecosystem of R packages and related software tools. Jeremy earned his Ph.D. in Biostatistics from UC Berkeley in 2016, primarily under the supervision of Alan Hubbard.</p>
+<p>Jeremy Coyle, Ph.D., is a consulting data scientist and statistical programmer,
+currently leading the software development effort that has produced the
+<code>tlverse</code> ecosystem of R packages and related software tools. Jeremy earned his
+Ph.D. in Biostatistics from UC Berkeley in 2016, primarily under the supervision
+of Alan Hubbard.</p>
 </div>
 <div id="nima-hejazi" class="section level3 unnumbered">
 <h3>Nima Hejazi</h3>
-<p>Nima is a Ph.D. candidate in biostatistics with a designated emphasis in computational and genomic biology, working jointly with Mark van der Laan and Alan Hubbard. Nima is affiliated with UC Berkeley’s Center for Computational Biology and NIH Biomedical Big Data training program. His research interests span causal inference, nonparametric inference and machine learning, targeted loss-based estimation, survival analysis, statistical computing, reproducible research, and high-dimensional biology. He is also passionate about software development for applied statistics, including software design, automated testing, and reproducible coding practices. For more information, see <a href="https://nimahejazi.org" class="uri">https://nimahejazi.org</a>.</p>
+<p>Nima is a Ph.D. candidate in biostatistics with a designated emphasis in
+computational and genomic biology, working jointly with Mark van der Laan and
+Alan Hubbard. Nima is affiliated with UC Berkeley’s Center for Computational
+Biology and NIH Biomedical Big Data training program. His research interests
+span causal inference, nonparametric inference and machine learning, targeted
+loss-based estimation, survival analysis, statistical computing, reproducible
+research, and high-dimensional biology. He is also passionate about software
+development for applied statistics, including software design, automated
+testing, and reproducible coding practices. For more information, see
+<a href="https://nimahejazi.org" class="uri">https://nimahejazi.org</a>.</p>
 </div>
 <div id="ivana-malenica" class="section level3 unnumbered">
 <h3>Ivana Malenica</h3>
-<p>Ivana is a Ph.D. student in biostatistics advised by Mark van der Laan. Ivana is currently a fellow at the Berkeley Institute for Data Science, after serving as a NIH Biomedical Big Data and Freeport-McMoRan Genomic Engine fellow. She earned her Master’s in Biostatistics and Bachelor’s in Mathematics, and spent some time at the Translational Genomics Research Institute. Very broadly, her research interests span non/semi-parametric theory, probability theory, machine learning, causal inference and high-dimensional statistics. Most of her current work involves complex dependent settings (dependence through time and network) and adaptive sequential designs.</p>
+<p>Ivana is a Ph.D. student in biostatistics advised by Mark van der Laan. Ivana is
+currently a fellow at the Berkeley Institute for Data Science, after serving as
+a NIH Biomedical Big Data and Freeport-McMoRan Genomic Engine fellow. She earned
+her Master’s in Biostatistics and Bachelor’s in Mathematics, and spent some time
+at the Translational Genomics Research Institute. Very broadly, her research
+interests span non/semi-parametric theory, probability theory, machine learning,
+causal inference and high-dimensional statistics. Most of her current work
+involves complex dependent settings (dependence through time and network) and
+adaptive sequential designs.</p>
 </div>
 <div id="rachael-phillips" class="section level3 unnumbered">
 <h3>Rachael Phillips</h3>
-<p>Rachael is a Ph.D. student in biostatistics, advised by Alan Hubbard and Mark van der Laan. She has an M.A. in Biostatistics, B.S. in Biology with a Chemistry minor and a B.A. in Mathematics with a Spanish minor. Her research is applied, and specific to human health. Motivated by issues arising in healthcare, Rachael leverages strategies rooted in causal inference and nonparametric estimation to build clinician-tailored, machine-driven solutions. Her accompanying statistical interests include high-dimensional statistics and experimental design. She is also passionate about free, online-mediated education. She is affiliated with the UC Berkeley Center for Computational Biology, NIH Biomedical Big Data Training Program, and Superfund Research Program.</p>
+<p>Rachael is a Ph.D. student in biostatistics, advised by Alan Hubbard and Mark
+van der Laan. She has an M.A. in Biostatistics, B.S. in Biology with a Chemistry
+minor and a B.A. in Mathematics with a Spanish minor. Her research is applied,
+and specific to human health. Motivated by issues arising in healthcare, Rachael
+leverages strategies rooted in causal inference and nonparametric estimation to
+build clinician-tailored, machine-driven solutions. Her accompanying statistical
+interests include high-dimensional statistics and experimental design. She is
+also passionate about free, online-mediated education. She is affiliated with
+the UC Berkeley Center for Computational Biology, NIH Biomedical Big Data
+Training Program, and Superfund Research Program.</p>
 
 </div>
 </div>
@@ -403,7 +524,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
