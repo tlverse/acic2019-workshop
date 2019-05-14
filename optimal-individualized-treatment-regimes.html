@@ -159,9 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#tmle"><i class="fa fa-check"></i><b>1.5.2</b> TMLE</a></li>
 <li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#inference"><i class="fa fa-check"></i><b>1.5.3</b> Inference</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#the-wash-benefits-example-dataset"><i class="fa fa-check"></i><b>1.6</b> The WASH Benefits Example Dataset</a><ul>
-<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#the-variables"><i class="fa fa-check"></i><b>1.6.1</b> The variables</a></li>
-</ul></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#the-wash-benefits-example-dataset"><i class="fa fa-check"></i><b>1.6</b> The WASH Benefits Example Dataset</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="tlverse.html"><a href="tlverse.html"><i class="fa fa-check"></i><b>2</b> Welcome to the <code>tlverse</code></a><ul>
 <li class="chapter" data-level="2.1" data-path="tlverse.html"><a href="tlverse.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
@@ -715,15 +713,15 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est  tmle_est         se     lower    upper
-1:  TSM E[Y_{A=NULL}] 0.5312502 0.5737959 0.06645993 0.4435368 0.704055
+   type         param  init_est  tmle_est        se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.5287431 0.4973104 0.0759547 0.3484419 0.6461789
    psi_transformed lower_transformed upper_transformed
-1:       0.5737959         0.4435368          0.704055</code></pre>
+1:       0.4973104         0.3484419         0.6461789</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How many individuals got assigned each treatment?</span>
 <span class="kw">table</span>(tmle_spec<span class="op">$</span>return_rule)</code></pre>
 <pre><code>
   1   2   3 
-440 333 227 </code></pre>
+514 280 206 </code></pre>
 <ul>
 <li>We can see that the estimate of <span class="math inline">\(psi_0\)</span> is <span class="math inline">\(0.56\)</span>, and that the confidence interval covers
 our true mean under the true optimal individualized treatment.</li>
@@ -763,10 +761,10 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type             param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=W3,W2,W1}] 0.5381361 0.6205396 0.07185096 0.4797144 0.7613649
+   type          param  init_est  tmle_est         se     lower    upper
+1:  TSM E[Y_{A=W2,W1}] 0.5465338 0.6289133 0.06652761 0.4985216 0.759305
    psi_transformed lower_transformed upper_transformed
-1:       0.6205396         0.4797144         0.7613649</code></pre>
+1:       0.6289133         0.4985216          0.759305</code></pre>
 <ul>
 <li>Even though the user specified all baseline covariates as the basis
 for rule estimation, a simpler rule based on only <span class="math inline">\(W_2\)</span> and <span class="math inline">\(W_1\)</span> is sufficient to
@@ -800,14 +798,14 @@ fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data,
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
    type         param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.5511892 0.6530785 0.02150952 0.6109206 0.6952364
+1:  TSM E[Y_{A=NULL}] 0.5428165 0.6569757 0.02153734 0.6147633 0.6991881
    psi_transformed lower_transformed upper_transformed
-1:       0.6530785         0.6109206         0.6952364</code></pre>
+1:       0.6569757         0.6147633         0.6991881</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How many individuals got assigned each treatment?</span>
 <span class="kw">table</span>(tmle_spec<span class="op">$</span>return_rule)</code></pre>
 <pre><code>
   2   3 
-509 491 </code></pre>
+506 494 </code></pre>
 <p><strong>QUESTION:</strong> Referring back to the data-generating distribution, why do you
 think the distribution of allocated treatment changed?</p>
 </div>
@@ -861,15 +859,15 @@ vim_results &lt;-<span class="st"> </span><span class="kw">tmle3_vim</span>(tmle
 )
 
 <span class="kw">print</span>(vim_results)</code></pre>
-<pre><code>   type                  param     init_est    tmle_est         se        lower
-1:   RR RR(E[Y_{A=NULL}]/E[Y])  0.001894358  0.06788351 0.03380562  0.001625721
-2:   RR RR(E[Y_{A=NULL}]/E[Y]) -0.026207531 -0.03848340 0.04806042 -0.132680094
+<pre><code>   type                  param     init_est    tmle_est         se       lower
+1:   RR RR(E[Y_{A=NULL}]/E[Y])  0.002618677  0.08681345 0.03322755  0.02168864
+2:   RR RR(E[Y_{A=NULL}]/E[Y]) -0.032070929 -0.07660653 0.05007544 -0.17475259
         upper psi_transformed lower_transformed upper_transformed  A
-1: 0.13414130       1.0702406         1.0016270          1.143554  A
-2: 0.05571329       0.9622477         0.8757452          1.057295 W1
-             W     Z_stat       p_nz p_nz_corrected
-1: W3,W4,W2,W1  2.0080542 0.02231876     0.04463753
-2:  W3,W4,W2,A -0.8007296 0.21164410     0.21164410</code></pre>
+1: 0.15193827       1.0906932         1.0219256          1.164088  A
+2: 0.02153953       0.9262542         0.8396647          1.021773 W1
+             W    Z_stat        p_nz p_nz_corrected
+1: W3,W4,W2,W1  2.612695 0.004491576    0.008983153
+2:  W3,W4,W2,A -1.529822 0.063030356    0.063030356</code></pre>
 <ul>
 <li>The final result of <code>tmle3_vim</code> with the <code>tmle3mopttx</code> spec is an ordered list
 of mean outcomes under the optimal individualized treatment for all categorical
