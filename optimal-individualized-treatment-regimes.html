@@ -336,17 +336,6 @@ visits, and peer health workers.</p></li>
 <li><p>Ideally, we want to improve effectiveness by assigning
 each patient the intervention they are most likely to benefit from, as well as improve
 efficiency by not allocating resources to individuals that do not need them, or would</p></li>
-<li><p>One opts to administer the intervention to individuals who will profit from it, instead of
-assigning treatment on a population level. But how do we know which intervention works for which
-patient?</p></li>
-<li><p>For example, one might seek to improve retention in
-HIV care. In a randomized clinical trial, several interventions show efficacy- including
-appointment reminders through text messages, small cash incentives for on time clinic
-visits, and peer health workers.</p></li>
-<li><p>Ideally, we want to improve effectiveness by assigning
-each patient the intervention they are most likely to benefit from, as well as improve
-efficiency by not allocating resources to individuals that do not need them, or would
-not benefit from it.</p></li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
 <img src="img/image/DynamicA_Illustration.png" alt="Illustration of a Dynamic Treatment Regime in a Clinical Setting" width="60%" />
@@ -713,15 +702,15 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est  tmle_est         se     lower    upper
-1:  TSM E[Y_{A=NULL}] 0.5329076 0.6287667 0.07499392 0.4817813 0.775752
+   type         param  init_est  tmle_est         se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.5323122 0.7035149 0.06907599 0.5681285 0.8389014
    psi_transformed lower_transformed upper_transformed
-1:       0.6287667         0.4817813          0.775752</code></pre>
+1:       0.7035149         0.5681285         0.8389014</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How many individuals got assigned each treatment?</span>
 <span class="kw">table</span>(tmle_spec<span class="op">$</span>return_rule)</code></pre>
 <pre><code>
   1   2   3 
-445 327 228 </code></pre>
+440 324 236 </code></pre>
 <ul>
 <li>We can see that the estimate of <span class="math inline">\(psi_0\)</span> is <span class="math inline">\(0.56\)</span>, and that the confidence interval covers
 our true mean under the true optimal individualized treatment.</li>
@@ -762,9 +751,9 @@ fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data,
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
    type             param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=W3,W2,W1}] 0.5314932 0.5902936 0.06805878 0.4569008 0.7236863
+1:  TSM E[Y_{A=W3,W2,W1}] 0.5394921 0.5985673 0.06359614 0.4739212 0.7232135
    psi_transformed lower_transformed upper_transformed
-1:       0.5902936         0.4569008         0.7236863</code></pre>
+1:       0.5985673         0.4739212         0.7232135</code></pre>
 <ul>
 <li>Even though the user specified all baseline covariates as the basis
 for rule estimation, a simpler rule based on only <span class="math inline">\(W_2\)</span> and <span class="math inline">\(W_1\)</span> is sufficient to
@@ -797,15 +786,15 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param init_est  tmle_est         se     lower    upper
-1:  TSM E[Y_{A=NULL}] 0.539845 0.6530767 0.02134495 0.6112413 0.694912
+   type         param  init_est  tmle_est         se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.5454919 0.6508468 0.02167415 0.6083663 0.6933274
    psi_transformed lower_transformed upper_transformed
-1:       0.6530767         0.6112413          0.694912</code></pre>
+1:       0.6508468         0.6083663         0.6933274</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How many individuals got assigned each treatment?</span>
 <span class="kw">table</span>(tmle_spec<span class="op">$</span>return_rule)</code></pre>
 <pre><code>
   2   3 
-510 490 </code></pre>
+509 491 </code></pre>
 <p><strong>QUESTION:</strong> Referring back to the data-generating distribution, why do you
 think the distribution of allocated treatment changed?</p>
 </div>
@@ -859,15 +848,15 @@ vim_results &lt;-<span class="st"> </span><span class="kw">tmle3_vim</span>(tmle
 )
 
 <span class="kw">print</span>(vim_results)</code></pre>
-<pre><code>   type                  param      init_est    tmle_est         se       lower
-1:   RR RR(E[Y_{A=NULL}]/E[Y]) -0.0262075308 -0.03848340 0.04806042 -0.13268009
-2:   RR RR(E[Y_{A=NULL}]/E[Y]) -0.0003004663  0.01482623 0.03549136 -0.05473555
+<pre><code>   type                  param     init_est    tmle_est         se        lower
+1:   RR RR(E[Y_{A=NULL}]/E[Y])  0.002200612  0.07029040 0.03349546  0.004640501
+2:   RR RR(E[Y_{A=NULL}]/E[Y]) -0.029043591 -0.03953307 0.04928466 -0.136129229
         upper psi_transformed lower_transformed upper_transformed  A
-1: 0.05571329       0.9622477         0.8757452          1.057295 W1
-2: 0.08438802       1.0149367         0.9467355          1.088051  A
-             W     Z_stat      p_nz p_nz_corrected
-1:  W3,W4,W2,A -0.8007296 0.2116441      0.3380678
-2: W3,W4,W2,W1  0.4177421 0.3380678      0.3380678</code></pre>
+1: 0.13594030       1.0728197         1.0046513          1.145614  A
+2: 0.05706309       0.9612382         0.8727298          1.058723 W1
+             W     Z_stat       p_nz p_nz_corrected
+1: W3,W4,W2,W1  2.0985052 0.01793027     0.03586054
+2:  W3,W4,W2,A -0.8021374 0.21123675     0.21123675</code></pre>
 <ul>
 <li>The final result of <code>tmle3_vim</code> with the <code>tmle3mopttx</code> spec is an ordered list
 of mean outcomes under the optimal individualized treatment for all categorical
