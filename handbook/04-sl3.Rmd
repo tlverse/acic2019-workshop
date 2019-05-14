@@ -57,7 +57,8 @@ creating a robust estimator.
   [@polley2010super; @van2007super].
 
  * This background material is described in greater detail in the accompanying
- [`sl3` chapter](https://tlverse.org/tlverse-handbook/modern-machine-learning-with-sl3.html#introduction-1) of the `tlverse` handbook.
+ [`sl3` chapter](https://tlverse.org/tlverse-handbook/ensemble-machine-learning.html)
+ of the `tlverse` handbook.
 
 ## Basic Implementation
 
@@ -92,7 +93,7 @@ set.seed(7194)
 
 # load data set and take a peek
 washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
-head(washb_data, 3) %>%
+head(washb_data) %>%
   kable(digits = 3) %>%
   kable_styling(fixed_thead = T) %>%
   scroll_box(width = "100%", height = "300px")
@@ -125,7 +126,16 @@ washb_task
 **2. Make a super learner**
 
 Now that we have defined our machine learning problem with the task, we are
-ready to **"make"** the machine learning algorithms.
+ready to **"make"** the super learner. This requires specification of
+
+* A library of base learning algorithms that we think might be consistent with
+  the true data-generating distribution.
+* A metalearner, to ensemble the base learners.
+
+We might also incorporate
+
+* Feature selection, to pass only a subset of the predictors to the algorithm.
+* Hyperparameter specification, to tune base learners.
 
 Learners have properties that indicate what features they support. We may use
 `sl3_list_properties()` to get a list of all properties supported by at least
@@ -148,9 +158,21 @@ Now that we have an idea of some learners, we can construct them using the
 # choose base learners
 lrnr_glm <- make_learner(Lrnr_glm)
 lrnr_mean <- make_learner(Lrnr_mean)
-lrnr_ranger <- make_learner(Lrnr_ranger)
 lrnr_glmnet <- make_learner(Lrnr_glmnet)
 ```
+We can customize learner hyperparameters to incorporate a diversity of different
+settings. Documentation for the learners and their hyperparameters can be found
+in the [`sl3 Learners
+Reference`](https://tlverse.org/sl3/reference/index.html#section-sl-learners).
+We can also include learners from the `SuperLearner` `R` package.
+
+```{r extra-lrnr}
+lrnr_ranger100 <- make_learner(Lrnr_ranger, num.trees = 100)
+lrnr_hal_simple <- make_learner(Lrnr_hal9001, degrees = 1, n_folds = 2)
+lrnr_gam <- Lrnr_pkg_SuperLearner$new("SL.gam")
+lrnr_bayesglm <- Lrnr_pkg_SuperLearner$new("SL.bayesglm")
+```
+
 In order to assemble the library of learners, we need to **"stack"** them
 together. A `Stack` is a special learner and it has the same interface as all
 other learners. What makes a stack special is that it combines multiple learners
@@ -160,10 +182,10 @@ combined or compared.
 ```{r stack}
 stack <- make_learner(
   Stack,
-  lrnr_glm, lrnr_mean, lrnr_ranger, lrnr_glmnet
+  lrnr_glm, lrnr_mean, lrnr_ranger100, lrnr_glmnet,
+  lrnr_gam, lrnr_bayesglm
 )
 ```
-We're almost ready to super learn! Just a couple more necessary specifications.
 
 We will fit a non-negative least squares metalearner using `Lrnr_nnls`. Note
 that any learner can be used as a metalearner.
@@ -171,27 +193,54 @@ that any learner can be used as a metalearner.
 ```{r metalearner}
 metalearner <- make_learner(Lrnr_nnls)
 ```
+We can optionally select a subset of available covariates and pass only
+those variables to the modeling algorithm. Let's consider screening covariates
+based on their correlation with our outcome of interest (`cor.test` p-value
+$\leq 0.1$).
+
+```{r screener}
+screen_cor <- Lrnr_pkg_SuperLearner_screener$new("screen.corP")
+screen_cor$train(washb_task)
+```
+To **"pipe"** only the selected covariates to the modeling algorithm, we need to
+make a `Pipeline`, which is a just set of learners to be fit sequentially, where
+the fit from one learner is used to define the task for the next learner.
+
+```{r screener-pipe}
+cor_pipeline <- make_learner(Pipeline, screen_cor, stack)
+```
+Now, our learners will be preceded by a screening step. We also consider the
+original `stack`, just to compare how the feature selection methods perform in
+comparison to the methods without feature selection.
+
+Analogous to what we have seen before, we have to stack the pipeline and
+original `stack` together, so we may use them as base learners in our super
+learner.
+
+```{r screeners-stack}
+fancy_stack <- make_learner(Stack, cor_pipeline, stack)
+# we can visualize the stack
+dt_stack <- delayed_learner_train(fancy_stack, washb_task)
+plot(dt_stack, color = FALSE, height = "400px", width = "100%")
+```
+
 Now that we have made a library/stack of base learners and a metalearner, we
-are ready to make the super learner.
+are ready to make the super learner. The super learner algorithm fits a
+metalearner on the validation-set predictions.
 
 ```{r make-sl}
 sl <- make_learner(Lrnr_sl,
-  learners = stack,
+  learners = fancy_stack,
   metalearner = metalearner
 )
-dt <- delayed_learner_train(sl, washb_task)
-plot(dt, color = FALSE, height = "400px", width = "100%")
+# we can visualize the super learner
+dt_sl <- delayed_learner_train(sl, washb_task)
+plot(dt_sl, color = FALSE, height = "400px", width = "100%")
 ```
 
 **3. Train the super learner on the machine learning task**
 
-The super learner algorithm fits a metalearner on the validation-set
-predictions. This procedure is referred to as the *continuous* super learner.
-The cross-validation selector, or *discrete* super learner, is the base learner
-with the lowest cross-validated risk.
-
-Now we are ready to **"train"** our super learner on our `sl3_task` object,
-`washb_task`.
+Now we are ready to **"train"** our super learner on our `sl3_task` object, `washb_task`.
 
 ```{r sl-basic}
 sl_fit <- sl$train(washb_task)
@@ -212,72 +261,6 @@ sl_fit$print() %>%
 ```
 ## Extensions
 
-### Customize Learner Hyperparameters
-
-We can customize learner hyperparameters to incorporate a diversity of different
-settings. We can also include learners from the `SuperLearner` `R` package.
-Documentation for the learners and their hyperparameters can be found in the
-[`sl3 Learners
-Reference`](https://tlverse.org/sl3/reference/index.html#section-sl-learners).
-
-```{r extra-lrnr}
-lrnr_ranger100 <- make_learner(Lrnr_ranger, num.trees = 100)
-lrnr_gam <- Lrnr_pkg_SuperLearner$new("SL.gam")
-lrnr_bayesglm <- Lrnr_pkg_SuperLearner$new("SL.bayesglm")
-```
-Let's create a new stack with these new learners, so we may incorporate them in
-a new super learner.
-
-```{r new-stack}
-new_stack <- make_learner(
-  Stack,
-  lrnr_glm, lrnr_mean, lrnr_glmnet, lrnr_ranger100,
-  lrnr_gam, lrnr_bayesglm
-)
-```
-
-### Screening Covariates
-
-We can also select a subset of available covariates and pass only
-those variables to the modeling algorithm.
-
-Consider screening covariates based on their correlation with the outcome of
-interest (`cor.test` p-value $\leq 0.1$).
-
-```{r screeners}
-screen_cor <- Lrnr_pkg_SuperLearner_screener$new("screen.corP")
-```
-Now we need to **"pipe"**  only those selected covariates to the modeling
-algorithm. To accomplish this, we need to make a `Pipeline`, which is a just
-set of learners to be fit sequentially, where the fit from one learner is used
-to define the task for the next learner.
-
-```{r screeners-pipe}
-cor_pipeline <- make_learner(Pipeline, screen_cor, new_stack)
-```
-Now, our learners will be preceded by a screening step. Let's also consider the
-`new_stack`, just to compare how the feature selection methods perform in
-comparison to the methods without feature selection. Analogous to what we have
-seen before, we have to stack the pipeline and `new_stack` together, so we may
-use them as base learners in our super learner.
-
-```{r screeners-stack}
-fancy_stack <- make_learner(Stack, cor_pipeline, new_stack)
-dt_new <- delayed_learner_train(fancy_stack, washb_task)
-plot(dt_new, color = FALSE, height = "400px", width = "100%")
-```
-
-Now we can Super Learn with this fancy base learner stack.
-
-```{r sl-fancy}
-sl_fancy <- Lrnr_sl$new(learners = fancy_stack, metalearner = metalearner)
-sl_fit_fancy<- sl_fancy$train(washb_task)
-sl_fit_fancy$print() %>%
-  kable(digits = 3) %>%
-  kable_styling(fixed_thead = T) %>%
-  scroll_box(width = "100%", height = "300px")
-```
-
 ### Cross-validated Super Learner
 
 We can cross-validate the super learner to see how well the super learner
@@ -286,7 +269,7 @@ also called nested cross-validation, which involves setting aside a separate
 holdout sample that we don’t use to fit the super learner. This
 external cross validation procedure may also incorporate 10 folds, which is the
 default in `sl3`. However, we will incorporate 2 outer folds of
-cross-validation, for computational efficiency.
+cross-validation for computational efficiency.
 
 ```{r CVsl}
 washb_task_new <- make_sl3_Task(
@@ -314,7 +297,7 @@ In this manner, the larger the risk difference, the more important the variable
 is in the prediction.
 
 ```{r varimp}
-washb_varimp <- varimp(sl_fit_fancy, loss_squared_error)
+washb_varimp <- varimp(sl_fit, loss_squared_error)
 washb_varimp %>%
   kable(digits = 3) %>%
   kable_styling(fixed_thead = T) %>%
@@ -325,29 +308,45 @@ washb_varimp %>%
 
 ### Predicting Myocardial Infarction with `sl3`
 
-Using the `chspred` data, loaded below, use `sl3` to predict myocardial
-infarction (`mi`) using the available covariate data.
+Follow the steps below to predict myocardial infarction (`mi`) using the
+available covariate data. Special thanks to David Benkeser at Emory for making
+the `chspred` data accessible.
 
-Work with a buddy. You have 20 minutes.
+Work with a buddy/team. You have 20 minutes.
 
 In the etherpad, submit your group's answers to the following questions.
 
 1. Which learner was the discrete super learner? What was the cross validated
-risk of the discrete super learner?
+mean risk of the discrete super learner?
 2. What was the cross validated risk of the continuous super learner?
 3. Did your group face any challenges?
 
-```{r, ex-setup}
+```{r ex-setup}
 # load the data set
 db_data <-
-  url("https://raw.githubusercontent.com/benkeser/sllecture/master/chspred.csv")
+ url("https://raw.githubusercontent.com/benkeser/sllecture/master/chspred.csv")
 chspred <- read_csv(file = db_data, col_names = TRUE)
 # take a quick peek
-head(chspred, 3) %>%
+head(chspred) %>%
   kable(digits = 3) %>%
-  kable_styling(fixed_thead = T) %>%
+  kableExtra:::kable_styling(fixed_thead = T) %>%
   scroll_box(width = "100%", height = "300px")
 ```
+
+1. Create an `sl3` task, setting myocardial infarction `mi` as the outcome and
+   using all available covariate data.
+2. Make a library of seven relatively fast base learning algorithms (i.e., do
+   not consider BART or HAL). Customize hyperparameters for one of your
+   learners. Feel free to use learners from `sl3` or `SuperLearner`. You may
+   use the same base learning library that is presented above.
+3. Incorporate feature selection with the `SuperLearner` screener `screen.corP`.
+4. Fit the metalearning step with non-negative least squares, `Lrnr_nnls`.
+5. With the metalearner and base learners, make the super learner and train it
+   on the task.
+6. Print your super learner fit by calling `print()` with `$`.
+7. Cross-validate your super learner fit to see how well it performs on unseen
+   data. Specify `loss_squared_error` as the loss function to evaluate the
+   super learner.
 
 ## Concluding Remarks
 

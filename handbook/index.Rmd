@@ -58,30 +58,34 @@ knitr::write_bib(c(
 # Preface {-}
 
 <img style="float: left; margin-right: 1%; margin-bottom: 0.01em"
-     src="img/logos/tlverse-logo.svg" width="30%" height="30%">
+     src="img/logos/tlverse-logo.svg" width="15%" height="15%">
 <img style="float: center; margin-right: 1%; margin-bottom: 0.01em"
-     src="img/logos/Rlogo.svg" width="30%" height="30%">
+     src="img/logos/Rlogo.svg" width="15%" height="15%">
 <img style="float: right; margin-right: 1%; margin-bottom: 0.01em"
-     src="img/logos/vdl-logo-transparent.svg" width="30%" height="30%">
+     src="img/logos/vdl-logo-transparent.svg" width="15%" height="15%">
 <p style="clear: both;">
 <br>
 
-This is an open source and fully-reproducible electronic handbook accompanying a
+This is an open source and fully-reproducible electronic vignette for a
 full-day short-course on applying the targeted learning methodology in practice
 using the [`tlverse` software ecosystem](https://github.com/tlverse), given at
 the [2019 Atlantic Causal Inference
 Conference](https://mcgill.ca/epi-biostat-occh/news-events/atlantic-causal-inference-conference-2019) in
-Montréal, Québec, Canada on 22 May 2019.
+Montréal, Québec, Canada on 22 May 2019. [*The Hitchhiker's Guide to the
+`tlverse`, or a Targeted Learning Practitioner's
+Handbook*](https://tlverse.org/tlverse-handbook/) accompanies this vignette and
+covers the same topics presented in this vignette, but presents them in more
+detail.
 
 <img style="float: center; margin-right: 1%; margin-bottom: 0.05em"
-     src="img/misc/ad_workshop.png" width="100%" height="100%">
+     src="img/misc/ad_workshop.png" width="50%" height="50%">
 <br>
 
 ## Important links {-}
 
 **Software installation**
 Please see these [installation
-instructions](https://github.com/tlverse/tlverse#installation).
+instructions](https://github.com/tlverse/acic2019-workshop/blob/master/install.R).
 
 
 **Workshop surveys**
@@ -92,8 +96,8 @@ teaching methodology.
 * [post-workshop survey](https://forms.gle/P8SbwJBeaQjZHRRF9)
 
 
-**Etherpad**
-We will use this Etherpad for chatting, taking notes, and sharing URLs and bits
+**Piazza**
+We will use Piazza for discussion, Q&A, and sharing URLs and bits
 of code.
 
 * [https://etherpad.net/p/acic2019-tlverse](https://etherpad.net/p/acic2019-tlverse)
