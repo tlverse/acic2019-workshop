@@ -455,7 +455,7 @@ our outcome, where we define:</p></li>
 </ol>
 <p><span class="math display">\[D_{\bar{Q}_Y,g,a}(O) \equiv \frac{I(A=a)}{g(A|W)} (Y-\bar{Q}_Y(A,W)) + \bar{Q}_Y(A=a,W)\]</span></p>
 <p>Note that under the randomization and positivity assumptions we have that
-<span class="math inline">\(E[D_{\bar{Q}_Y,g,a}(O) | V] = E[Y_a |V]\)</span>. We emphasize the double robust nature
+<span class="math inline">\(E[D_{\bar{Q}_Y,g,a}(O) | V] = E[Y_a |V].\)</span> We emphasize the double robust nature
 of the A-IPW transform: consistency of <span class="math inline">\(E[Y_a |V]\)</span> will depend on correct estimation
 of either <span class="math inline">\(\bar{Q}_{Y,0}(A,W)\)</span> or <span class="math inline">\(g_0(A|W)\)</span>. As such, in a randomized trial, we are
 guaranteed a consistent estimate of <span class="math inline">\(E[Y_a |V]\)</span> even if we get <span class="math inline">\(\bar{Q}_{Y,0}(A,W)\)</span> wrong!</p>
@@ -536,10 +536,8 @@ b_learner &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span cl
                   lrn_xgboost_<span class="dv">500</span>,lrn_mean, lrn_glm),
   <span class="dt">metalearner =</span> Lrnr_nnls<span class="op">$</span><span class="kw">new</span>()
 )</code></pre>
-<ul>
-<li>We make the above explicit with respect to standard
-notation by bundling the ensemble learners into a list object below:</li>
-</ul>
+<p>We make the above explicit with respect to standard
+notation by bundling the ensemble learners into a list object below:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># specify outcome and treatment regressions and create learner list</span>
 learner_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">Y =</span> Q_learner, <span class="dt">A =</span> g_learner, <span class="dt">B =</span> b_learner)</code></pre>
 </div>
@@ -577,8 +575,8 @@ fit</code></pre>
 1:  TSM E[Y_{A=NULL}] 0.4289592 0.5701264 0.02749039 0.5162462 0.6240065
    psi_transformed lower_transformed upper_transformed
 1:       0.5701264         0.5162462         0.6240065</code></pre>
-<p>We can see that the estimate of <span class="math inline">\(psi_0\)</span> is <span class="math inline">\(0.56\)</span>, and that the confidence
-interval covers our true mean under the true optimal individualized treatment.</p>
+<p>We can see that the confidence interval covers our true mean under the true optimal
+individualized treatment!</p>
 </div>
 </div>
 </div>
@@ -595,23 +593,21 @@ As such, we define it as:
 <li><p>We implement three different pseudo-blips in <code>tmle3mopttx</code>.</p></li>
 </ul>
 <ol style="list-style-type: decimal">
-<li><strong>Blip1</strong> corresponds to choosing a reference category of treatment, and
+<li><p><strong>Blip1</strong> corresponds to choosing a reference category of treatment, and
 defining the blip for all other categories relative to the specified reference:
-<span class="math display">\[\bar{Q}_{0,a}^{pblip-ref}(V) \equiv E_0(Y_a-Y_0|V)\]</span></li>
-<li><strong>Blip2</strong> approach corresponds to defining the blip relative to the average of
+<span class="math display">\[\bar{Q}_{0,a}^{pblip-ref}(V) \equiv E_0(Y_a-Y_0|V)\]</span></p></li>
+<li><p><strong>Blip2</strong> approach corresponds to defining the blip relative to the average of
 all categories:
-<span class="math display">\[\bar{Q}_{0,a}^{pblip-avg}(V) \equiv E_0(Y_a- \frac{1}{n_A} \sum_{a \in \mathcal{A}} Y_a|V)\]</span></li>
-<li><strong>Blip3</strong> reflects an extension of Blip2, where the average is now a weighted average:
+<span class="math display">\[\bar{Q}_{0,a}^{pblip-avg}(V) \equiv E_0(Y_a- \frac{1}{n_A} \sum_{a \in \mathcal{A}} Y_a|V)\]</span></p></li>
+<li><p><strong>Blip3</strong> reflects an extension of Blip2, where the average is now a weighted average:
 <span class="math display">\[\bar{Q}_{0,a}^{pblip-wavg}(V) \equiv E_0(Y_a- \frac{1}{n_A} \sum_{a \in \mathcal{A}} Y_{a} P(A=a|V)
-|V)\]</span></li>
+|V)\]</span></p></li>
 </ol>
 <div id="evaluating-the-causal-effect-of-an-optimal-itr-with-categorical-treatment" class="section level3">
 <h3><span class="header-section-number">5.6.1</span> Evaluating the Causal Effect of an optimal ITR with Categorical Treatment</h3>
-<ul>
-<li>While the procedure is analogous to the previously described binary treatment,
+<p>While the procedure is analogous to the previously described binary treatment,
 we now need to pay attention to the type of blip we define in the estimation stage,
-as well as how we construct our learners.</li>
-</ul>
+as well as how we construct our learners.</p>
 <div id="simulated-data" class="section level4">
 <h4><span class="header-section-number">5.6.1.1</span> Simulated Data</h4>
 <ul>
@@ -700,19 +696,18 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est tmle_est         se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.5223947 0.610719 0.07580626 0.4621415 0.7592966
+   type         param  init_est  tmle_est         se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.5276873 0.5520451 0.07047171 0.4139231 0.6901671
    psi_transformed lower_transformed upper_transformed
-1:        0.610719         0.4621415         0.7592966</code></pre>
+1:       0.5520451         0.4139231         0.6901671</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How many individuals got assigned each treatment?</span>
 <span class="kw">table</span>(tmle_spec<span class="op">$</span>return_rule)</code></pre>
 <pre><code>
   1   2   3 
-457 345 198 </code></pre>
-<ul>
-<li>We can see that the estimate of <span class="math inline">\(psi_0\)</span> is <span class="math inline">\(0.56\)</span>, and that the confidence interval covers
-our true mean under the true optimal individualized treatment.</li>
-</ul>
+450 342 208 </code></pre>
+<p>We can see that the confidence interval covers
+our true mean under the true optimal individualized treatment.</p>
+<p><strong>NOTICE the distribution of the assigned treatment! We will need this shortly.</strong></p>
 </div>
 </div>
 </div>
@@ -748,15 +743,13 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type             param  init_est tmle_est         se    lower     upper
-1:  TSM E[Y_{A=W3,W2,W1}] 0.5235428 0.575326 0.06055215 0.456646 0.6940061
+   type      param  init_est tmle_est         se     lower     upper
+1:  TSM E[Y_{A=1}] 0.5008775 0.597352 0.09863108 0.4040386 0.7906653
    psi_transformed lower_transformed upper_transformed
-1:        0.575326          0.456646         0.6940061</code></pre>
-<ul>
-<li>Even though the user specified all baseline covariates as the basis
-for rule estimation, a simpler rule based on only <span class="math inline">\(W_2\)</span> and <span class="math inline">\(W_1\)</span> is sufficient to
-maximize the mean under the optimal individualized treatment!</li>
-</ul>
+1:        0.597352         0.4040386         0.7906653</code></pre>
+<p>Even though the user specified all baseline covariates as the basis
+for rule estimation, a simpler rule is sufficient to
+maximize the mean under the optimal individualized treatment!</p>
 <p><strong>QUESTION:</strong> Why do you think the estimate
 if higher under the less complex rule? How does the set of covariates picked by <code>tmle3mopttx</code>
 compare to the baseline covariates the true rule depends on?</p>
@@ -784,17 +777,18 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est  tmle_est         se     lower    upper
-1:  TSM E[Y_{A=NULL}] 0.5417214 0.6560999 0.02141424 0.6141287 0.698071
+   type         param init_est  tmle_est         se     lower    upper
+1:  TSM E[Y_{A=NULL}] 0.539845 0.6530767 0.02134495 0.6112413 0.694912
    psi_transformed lower_transformed upper_transformed
-1:       0.6560999         0.6141287          0.698071</code></pre>
+1:       0.6530767         0.6112413          0.694912</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How many individuals got assigned each treatment?</span>
 <span class="kw">table</span>(tmle_spec<span class="op">$</span>return_rule)</code></pre>
 <pre><code>
   2   3 
-514 486 </code></pre>
+510 490 </code></pre>
 <p><strong>QUESTION:</strong> Referring back to the data-generating distribution, why do you
-think the distribution of allocated treatment changed?</p>
+think the distribution of allocated treatment changed from the distribution
+we had under the “non-realistic”&quot; rule?</p>
 </div>
 <div id="variable-importance-analysis" class="section level3">
 <h3><span class="header-section-number">5.7.3</span> Variable Importance Analysis</h3>
@@ -846,20 +840,18 @@ vim_results &lt;-<span class="st"> </span><span class="kw">tmle3_vim</span>(tmle
 )
 
 <span class="kw">print</span>(vim_results)</code></pre>
-<pre><code>   type                  param     init_est    tmle_est         se        lower
-1:   RR RR(E[Y_{A=NULL}]/E[Y])  0.002220767  0.06140694 0.03410074 -0.005429278
-2:   RR RR(E[Y_{A=NULL}]/E[Y]) -0.029043591 -0.03953307 0.04928466 -0.136129229
+<pre><code>   type                  param      init_est    tmle_est         se       lower
+1:   RR RR(E[Y_{A=NULL}]/E[Y])  0.0005688776  0.04978485 0.03425352 -0.01735081
+2:   RR RR(E[Y_{A=NULL}]/E[Y]) -0.0262075308 -0.03848340 0.04806042 -0.13268009
         upper psi_transformed lower_transformed upper_transformed  A
-1: 0.12824316       1.0633315         0.9945854          1.136829  A
-2: 0.05706309       0.9612382         0.8727298          1.058723 W1
+1: 0.11692051       1.0510449         0.9827988          1.124030  A
+2: 0.05571329       0.9622477         0.8757452          1.057295 W1
              W     Z_stat       p_nz p_nz_corrected
-1: W3,W4,W2,W1  1.8007511 0.03587106     0.07174213
-2:  W3,W4,W2,A -0.8021374 0.21123675     0.21123675</code></pre>
-<ul>
-<li>The final result of <code>tmle3_vim</code> with the <code>tmle3mopttx</code> spec is an ordered list
+1: W3,W4,W2,W1  1.4534229 0.07305318      0.1461064
+2:  W3,W4,W2,A -0.8007296 0.21164410      0.2116441</code></pre>
+<p>The final result of <code>tmle3_vim</code> with the <code>tmle3mopttx</code> spec is an ordered list
 of mean outcomes under the optimal individualized treatment for all categorical
-covariates in our dataset.</li>
-</ul>
+covariates in our dataset.</p>
 </div>
 </div>
 </div>
@@ -931,10 +923,16 @@ washb_data &lt;-<span class="st"> </span>washb_data[<span class="op">!</span><sp
 <p>We pick few potential effect modifiers, including mother’s education, current
 living conditions (floor), and possession of material items including the refrigerator.
 We concentrate of these covariates as they might be indicative of the socio-economic status
-of individuals involved in the trial.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(washb_data<span class="op">$</span>momedu)
+of individuals involved in the trial. We can explore the distribution of our <span class="math inline">\(V\)</span>, <span class="math inline">\(A\)</span> and <span class="math inline">\(Y\)</span>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#V1, V2 and V3:</span>
+<span class="kw">table</span>(washb_data<span class="op">$</span>momedu)
 <span class="kw">table</span>(washb_data<span class="op">$</span>floor)
 <span class="kw">table</span>(washb_data<span class="op">$</span>asset_refrig)
+
+<span class="co">#A:</span>
+<span class="kw">table</span>(washb_data<span class="op">$</span>tr)
+
+<span class="co">#Y:</span>
 <span class="kw">summary</span>(washb_data<span class="op">$</span>whz)</code></pre>
 <p>We specify a simply library for the outcome regression, propensity score
 and the blip function. Since our treatment is categorical, we need to define a
@@ -970,18 +968,18 @@ b_learner &lt;-<span class="st"> </span><span class="kw">create_mv_learners</spa
 learner_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">Y =</span> Q_learner, <span class="dt">A =</span> g_learner, <span class="dt">B =</span> b_learner)</code></pre>
 <p>As seen before, we initialize the <code>tmle3_mopttx_blip_revere</code> Specn in order to
 answer Question 1. We want to maximize our outcome, with higher the weight-for-height Z-score
-the better. We will also use <code>blip1</code> as the blip type, since “Control” is a good
-reference category.</p>
+the better. We will also use <code>blip2</code> as the blip type, but note that we could have used <code>blip1</code>
+as well since “Control” is a good reference category.</p>
 <pre class="sourceCode r"><code class="sourceCode r">## Question 2:
 
-<span class="co"># initialize a tmle specification</span>
+<span class="co">#Initialize a tmle specification</span>
 tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_revere</span>(
-  <span class="dt">V =</span> <span class="kw">c</span>(<span class="st">&quot;momedu&quot;</span>, <span class="st">&quot;floor&quot;</span>, <span class="st">&quot;asset_refrig&quot;</span>), <span class="dt">type =</span> <span class="st">&quot;blip1&quot;</span>,
+  <span class="dt">V =</span> <span class="kw">c</span>(<span class="st">&quot;momedu&quot;</span>, <span class="st">&quot;floor&quot;</span>, <span class="st">&quot;asset_refrig&quot;</span>), <span class="dt">type =</span> <span class="st">&quot;blip2&quot;</span>,
   <span class="dt">learners =</span> learner_list, <span class="dt">maximize =</span> <span class="ot">TRUE</span>, <span class="dt">complex =</span> <span class="ot">TRUE</span>,
   <span class="dt">realistic =</span> <span class="ot">FALSE</span>
 )
 
-<span class="co">#Fit the TML estimator. From here, we can see</span>
+<span class="co">#Fit the TML estimator.</span>
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, <span class="dt">data=</span>washb_data, node_list, learner_list)
 fit
 
@@ -991,13 +989,14 @@ fit
 and the corresponding value of the realistic ITR:</p>
 <pre class="sourceCode r"><code class="sourceCode r">## Question 3:
 
-<span class="co"># initialize a tmle specification</span>
+<span class="co">#Initialize a tmle specification with &quot;realistic=TRUE&quot;:</span>
 tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_revere</span>(
   <span class="dt">V =</span> <span class="kw">c</span>(<span class="st">&quot;momedu&quot;</span>, <span class="st">&quot;floor&quot;</span>, <span class="st">&quot;asset_refrig&quot;</span>), <span class="dt">type =</span> <span class="st">&quot;blip2&quot;</span>,
   <span class="dt">learners =</span> learner_list, <span class="dt">maximize =</span> <span class="ot">TRUE</span>, <span class="dt">complex =</span> <span class="ot">TRUE</span>,
   <span class="dt">realistic =</span> <span class="ot">TRUE</span>
 )
 
+<span class="co">#Fit the TML estimator.</span>
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, <span class="dt">data=</span>washb_data, node_list, learner_list)
 fit
 
