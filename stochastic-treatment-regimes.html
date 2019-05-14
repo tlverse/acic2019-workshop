@@ -333,25 +333,25 @@ ordinal, categorical, binary – allowing for a rich set of causal effects to
 be defined through this formalism.</li>
 <li><p>Arguably the most general of the classes of interventions through which causal
 effects may be defined, and are conceptually simple.</p></li>
-<li><p>We may consider stochastic interventions in two ways:</p></li>
-</ul>
+<li><p>We may consider stochastic interventions in two ways:</p>
 <ol style="list-style-type: decimal">
 <li><p>The equation <span class="math inline">\(f_A\)</span>, which produces <span class="math inline">\(A\)</span>, is replaced by a probabilistic
 mechanism <span class="math inline">\(g_{\delta}(A \mid W)\)</span> that differs from the original <span class="math inline">\(g(A \mid W)\)</span>. The <em>stochastically modified</em> value of the treatment <span class="math inline">\(A_{\delta}\)</span> is
 drawn from a user-specified distribution <span class="math inline">\(g_\delta(A \mid W)\)</span>, which may
 depend on the original distribution <span class="math inline">\(g(A \mid W)\)</span> and is indexed by a
-user-specified parameter <span class="math inline">\(\delta\)</span>. In this case, the stochastically modified
-value of the treatment <span class="math inline">\(A_{\delta} \sim g_{\delta}(\cdot \mid W)\)</span>.</p></li>
-<li><p>The observed value <span class="math inline">\(A\)</span> is replaced by a new value <span class="math inline">\(A_{d(A,W)}\)</span> based
-on applying a user-defined function <span class="math inline">\(d(A,W)\)</span> to <span class="math inline">\(A\)</span>. In this case, the
-stochastic treatment regime may be viewed as an intervention in which <span class="math inline">\(A\)</span> is
-set equal to a value based on a hypothetical regime <span class="math inline">\(d(A, W)\)</span>, where regime
-<span class="math inline">\(d\)</span> depends on the treatment level <span class="math inline">\(A\)</span> that would be assigned in the absence
-of the regime as well as the covariates <span class="math inline">\(W\)</span>. Stochastic interventions of
-this variety may be referred to as depending on the <em>natural value of
-treatment</em> or as <em>modified treatment policies</em> <span class="citation">(Haneuse and Rotnitzky <a href="#ref-haneuse2013estimation">2013</a>,
-<span class="citation">@young2014identification</span>)</span>.</p></li>
-</ol>
+user-specified parameter <span class="math inline">\(\delta\)</span>. In this case, the stochastically
+modified value of the treatment <span class="math inline">\(A_{\delta} \sim g_{\delta}(\cdot \mid W)\)</span>.</p></li>
+<li><p>The observed value <span class="math inline">\(A\)</span> is replaced by a new value <span class="math inline">\(A_{d(A,W)}\)</span> based on
+applying a user-defined function <span class="math inline">\(d(A,W)\)</span> to <span class="math inline">\(A\)</span>. In this case, the
+stochastic treatment regime may be viewed as an intervention in which <span class="math inline">\(A\)</span>
+is set equal to a value based on a hypothetical regime <span class="math inline">\(d(A, W)\)</span>, where
+regime <span class="math inline">\(d\)</span> depends on the treatment level <span class="math inline">\(A\)</span> that would be assigned in the
+absence of the regime as well as the covariates <span class="math inline">\(W\)</span>. Stochastic
+interventions of this variety may be referred to as depending on the
+<em>natural value of treatment</em> or as <em>modified treatment policies</em>
+<span class="citation">(Haneuse and Rotnitzky <a href="#ref-haneuse2013estimation">2013</a>; Young, Hernán, and Robins <a href="#ref-young2014identification">2014</a>)</span>.</p></li>
+</ol></li>
+</ul>
 <div id="identifying-the-causal-effect-of-a-stochastic-intervention" class="section level3">
 <h3><span class="header-section-number">6.3.1</span> Identifying the Causal Effect of a Stochastic Intervention</h3>
 <ul>
@@ -475,7 +475,7 @@ extracted from <code>sl3</code> by using <code>sl3_list_learners()</code>:</li>
 [4] &quot;Lrnr_solnp_density&quot;</code></pre>
 <p>To proceed, we’ll select two of the above learners, <code>Lrnr_haldensify</code> for using
 the highly adaptive lasso for conditional density estimation, based on an
-algorithm given by <span class="citation">Díaz and van der Laan (<a href="#ref-diaz2011super">2011</a>)</span> and implemented in <span class="citation">Hejazi (<a href="#ref-hejazi2019haldensify">2019</a>)</span>, and
+algorithm given by <span class="citation">Díaz and van der Laan (<a href="#ref-diaz2011super">2011</a>)</span> and implemented in <span class="citation">Hejazi and Benkeser (<a href="#ref-hejazi2019haldensify">2019</a>)</span>, and
 <code>Lrnr_rfcde</code>, an approach for using random forests for conditional density
 estimation <span class="citation">(Pospisil and Lee <a href="#ref-pospisil2018rfcde">2018</a>)</span>. A Super Learner may be constructed by pooling
 estimates from each of these modified conditional density regression techniques.</p>
@@ -557,15 +557,15 @@ hold. We discuss this in greater detail in the sequel.</p>
 <h3><span class="header-section-number">6.4.2</span> Targeted Estimation of Stochastic Interventions Effects</h3>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)</code></pre>
 <pre><code>
-Iter: 1 fn: 1375.2374    Pars:  0.80299 0.19701
-Iter: 2 fn: 1375.2374    Pars:  0.80299 0.19701
+Iter: 1 fn: 1374.0744    Pars:  0.80315 0.19685
+Iter: 2 fn: 1374.0744    Pars:  0.80316 0.19684
 solnp--&gt; Completed in 2 iterations</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
    type         param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.7953288 0.7975772 0.01229224 0.7734849 0.8216696
+1:  TSM E[Y_{A=NULL}] 0.7967092 0.7976473 0.01280811 0.7725439 0.8227508
    psi_transformed lower_transformed upper_transformed
-1:       0.7975772         0.7734849         0.8216696</code></pre>
+1:       0.7976473         0.7725439         0.8227508</code></pre>
 <p>The <code>print</code> method of the resultant <code>tmle_fit</code> object conveniently displays the
 results from computing our TML estimator.</p>
 </div>
@@ -631,23 +631,23 @@ simply invoke the <code>tmle3</code> wrapper function to fit the series of TML e
 For convenience, we choose the latter:</p>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)</code></pre>
 <pre><code>
-Iter: 1 fn: 1371.3660    Pars:  0.80273 0.19727
-Iter: 2 fn: 1371.3660    Pars:  0.80273 0.19727
+Iter: 1 fn: 1376.7433    Pars:  0.79938 0.20062
+Iter: 2 fn: 1376.7433    Pars:  0.79938 0.20062
 solnp--&gt; Completed in 2 iterations</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
          type          param  init_est  tmle_est          se      lower
-1:        TSM  E[Y_{A=NULL}] 0.6298075 0.6292557 0.014163600 0.60149557
-2:        TSM  E[Y_{A=NULL}] 0.7388738 0.7395493 0.013984247 0.71214067
-3:        TSM  E[Y_{A=NULL}] 0.8432939 0.8459182 0.010185154 0.82595564
-4: MSM_linear MSM(intercept) 0.7372070 0.7381366 0.012098344 0.71442427
-5: MSM_linear     MSM(slope) 0.1065283 0.1081563 0.004467811 0.09939954
+1:        TSM  E[Y_{A=NULL}] 0.6295561 0.6288845 0.014223896 0.60100619
+2:        TSM  E[Y_{A=NULL}] 0.7386408 0.7391238 0.014098728 0.71149084
+3:        TSM  E[Y_{A=NULL}] 0.8431094 0.8455707 0.010212656 0.82555428
+4: MSM_linear MSM(intercept) 0.7369792 0.7377554 0.012155229 0.71393154
+5: MSM_linear     MSM(slope) 0.1065641 0.1081744 0.004478568 0.09939656
        upper psi_transformed lower_transformed upper_transformed
-1: 0.6570159       0.6292557        0.60149557         0.6570159
-2: 0.7669579       0.7395493        0.71214067         0.7669579
-3: 0.8658807       0.8459182        0.82595564         0.8658807
-4: 0.7618489       0.7381366        0.71442427         0.7618489
-5: 0.1169130       0.1081563        0.09939954         0.1169130</code></pre>
+1: 0.6567628       0.6288845        0.60100619         0.6567628
+2: 0.7667568       0.7391238        0.71149084         0.7667568
+3: 0.8655872       0.8455707        0.82555428         0.8655872
+4: 0.7615792       0.7377554        0.71393154         0.7615792
+5: 0.1169522       0.1081744        0.09939656         0.1169522</code></pre>
 <p><em>Remark</em>: The <code>print</code> method of the resultant <code>tmle_fit</code> object conveniently
 displays the results from computing our TML estimator.</p>
 </div>
@@ -673,11 +673,11 @@ for <span class="math inline">\(m_{\beta}(\delta)\)</span> may be expressed <spa
 <span class="math inline">\(\text{EIF}_{\beta}(O)\)</span>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit<span class="op">$</span>summary[<span class="dv">4</span><span class="op">:</span><span class="dv">5</span>, ]</code></pre>
 <pre><code>         type          param  init_est  tmle_est          se      lower
-1: MSM_linear MSM(intercept) 0.7372070 0.7381366 0.012098344 0.71442427
-2: MSM_linear     MSM(slope) 0.1065283 0.1081563 0.004467811 0.09939954
+1: MSM_linear MSM(intercept) 0.7369792 0.7377554 0.012155229 0.71393154
+2: MSM_linear     MSM(slope) 0.1065641 0.1081744 0.004478568 0.09939656
        upper psi_transformed lower_transformed upper_transformed
-1: 0.7618489       0.7381366        0.71442427         0.7618489
-2: 0.1169130       0.1081563        0.09939954         0.1169130</code></pre>
+1: 0.7615792       0.7377554        0.71393154         0.7615792
+2: 0.1169522       0.1081744        0.09939656         0.1169522</code></pre>
 </div>
 <div id="directly-targeting-the-msm-parameter-beta" class="section level3">
 <h3><span class="header-section-number">6.5.4</span> Directly Targeting the MSM Parameter <span class="math inline">\(\beta\)</span></h3>
@@ -708,17 +708,17 @@ tmle_msm_spec &lt;-<span class="st"> </span><span class="kw">tmle_vimshift_msm</
 <span class="co"># fit the TML estimator and examine the results</span>
 tmle_msm_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_msm_spec, data, node_list, learner_list)</code></pre>
 <pre><code>
-Iter: 1 fn: 1373.1006    Pars:  0.80806 0.19194
-Iter: 2 fn: 1373.1006    Pars:  0.80806 0.19194
+Iter: 1 fn: 1376.3544    Pars:  0.79525 0.20475
+Iter: 2 fn: 1376.3544    Pars:  0.79525 0.20475
 solnp--&gt; Completed in 2 iterations</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_msm_fit</code></pre>
 <pre><code>A tmle3_Fit that took 100 step(s)
-         type          param  init_est  tmle_est          se     lower
-1: MSM_linear MSM(intercept) 0.7363001 0.7365105 0.013690991 0.7096767
-2: MSM_linear     MSM(slope) 0.1066945 0.1064353 0.006653819 0.0933941
+         type          param  init_est  tmle_est          se      lower
+1: MSM_linear MSM(intercept) 0.7370559 0.7369204 0.013833074 0.70980811
+2: MSM_linear     MSM(slope) 0.1070857 0.1071330 0.006924523 0.09356121
        upper psi_transformed lower_transformed upper_transformed
-1: 0.7633444       0.7365105         0.7096767         0.7633444
-2: 0.1194766       0.1064353         0.0933941         0.1194766</code></pre>
+1: 0.7640328       0.7369204        0.70980811         0.7640328
+2: 0.1207048       0.1071330        0.09356121         0.1207048</code></pre>
 </div>
 <div id="example-with-the-wash-benefits-data" class="section level3">
 <h3><span class="header-section-number">6.5.5</span> Example with the WASH Benefits Data</h3>
@@ -774,7 +774,7 @@ washb_vim_spec &lt;-<span class="st"> </span><span class="kw">tmle_vimshift_delt
 created such that the density estimation procedure we rely on will be only the
 random forest conditional density estimation procedure of <span class="citation">Pospisil and Lee (<a href="#ref-pospisil2018rfcde">2018</a>)</span>, as
 the nonparametric conditional density approach based on the highly adaptive
-lasso <span class="citation">(Díaz and van der Laan <a href="#ref-diaz2011super">2011</a>; Benkeser and van der Laan <a href="#ref-benkeser2016hal">2016</a>; Coyle and Hejazi <a href="#ref-coyle2018hal9001">2018</a>; Hejazi <a href="#ref-hejazi2019haldensify">2019</a>)</span> is currently unable to accommodate large datasets.</p>
+lasso <span class="citation">(Díaz and van der Laan <a href="#ref-diaz2011super">2011</a>; Benkeser and van der Laan <a href="#ref-benkeser2016hal">2016</a>; Coyle and Hejazi <a href="#ref-coyle2018hal9001">2018</a>; Hejazi and Benkeser <a href="#ref-hejazi2019haldensify">2019</a>)</span> is currently unable to accommodate large datasets.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># learners used for conditional density regression (i.e., propensity score)</span>
 lrn_rfcde &lt;-<span class="st"> </span>Lrnr_rfcde<span class="op">$</span><span class="kw">new</span>(
   <span class="dt">n_trees =</span> <span class="dv">500</span>, <span class="dt">node_size =</span> <span class="dv">3</span>,
@@ -833,7 +833,7 @@ interpret our findings?</p></li>
 <p>Haneuse, Sebastian, and Andrea Rotnitzky. 2013. “Estimation of the Effect of Interventions That Modify the Received Treatment.” <em>Statistics in Medicine</em> 32 (30). Wiley Online Library: 5260–77.</p>
 </div>
 <div id="ref-hejazi2019haldensify">
-<p>Hejazi, Nima S. 2019. <em>Haldensify: Nonparametric Conditional Density Estimation with the Highly Adaptive Lasso in R</em>. <a href="https://github.com/nhejazi/haldensify" class="uri">https://github.com/nhejazi/haldensify</a>.</p>
+<p>Hejazi, Nima S, and David C Benkeser. 2019. <em>haldensify: Nonparametric Conditional Density Estimation with the Highly Adaptive Lasso in R</em>. <a href="https://github.com/nhejazi/haldensify" class="uri">https://github.com/nhejazi/haldensify</a>.</p>
 </div>
 <div id="ref-pospisil2018rfcde">
 <p>Pospisil, Taylor, and Ann B Lee. 2018. “RFCDE: Random Forests for Conditional Density Estimation.” <em>arXiv Preprint arXiv:1804.05753</em>.</p>
@@ -843,6 +843,9 @@ interpret our findings?</p></li>
 </div>
 <div id="ref-rubin1980randomization">
 <p>Rubin, Donald B. 1980. “Randomization Analysis of Experimental Data: The Fisher Randomization Test Comment.” <em>Journal of the American Statistical Association</em> 75 (371). JSTOR: 591–93.</p>
+</div>
+<div id="ref-young2014identification">
+<p>Young, Jessica G, Miguel A Hernán, and James M Robins. 2014. “Identification, Estimation and Approximation of Risk Under Interventions That Depend on the Natural Value of Treatment Using Observational Data.” <em>Epidemiologic Methods</em> 3 (1). De Gruyter: 1–19.</p>
 </div>
 </div>
             </section>
