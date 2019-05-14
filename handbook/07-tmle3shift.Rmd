@@ -30,7 +30,7 @@ Updated: `r Sys.Date()`
 
 ## Introduction
 
-In this chapter, we examine a simple example of stochastic treatment regimes in
+In this section, we examine a simple example of stochastic treatment regimes in
 the context of a continuous treatment variable of interest, defining an
 intuitive causal effect through which to examine stochastic interventions more
 generally. As a first step to using stochastic
@@ -451,7 +451,7 @@ head(washb_data, 3)
 
 Next, we specify our NPSEM via the `node_list` object. For our example analysis,
 we'll consider the outcome to be the weight-for-height Z-score (as in previous
-chapters), the intervention of interest to be the mother's age at time of
+sections), the intervention of interest to be the mother's age at time of
 child's birth, and take all other covariates to be potential confounders.
 
 ```{r washb-data-npsem-shift, message=FALSE, warning=FALSE, cache=FALSE}
