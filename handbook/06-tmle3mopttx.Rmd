@@ -31,8 +31,8 @@ Identifying which intervention will be effective for which patient
 based on lifestyle, genetic and environmental factors is a common goal in
 precision medicine. One opts to administer the intervention to individuals
 who will profit from it, instead of assigning treatment on a population level.
-<<<<<<< HEAD
-This aim motivates a different type of intervention, as opposed to the static 
+
+* This aim motivates a different type of intervention, as opposed to the static 
 exposures we might be used to. 
 
 * In this chapter, we learn about dynamic 
@@ -62,35 +62,26 @@ visits, and peer health workers.
 * Ideally, we want to improve effectiveness by assigning 
 each patient the intervention they are most likely to benefit from, as well as improve 
 efficiency by not allocating resources to individuals that do not need them, or would 
-=======
-This aim motivates a different type of intervention, as opposed to the static
-exposures we might be used to. In this chapter, we learn about dynamic
-(individualized) interventions that tailor the treatment decision based on the
-collected covariates. In the statistics community, such a treatment strategy is
-termed **individualized treatment regimes** (ITR), and the (counterfactual) population 
-mean outcome under an ITR is the **value of the ITR**. Even more, suppose one wishes
-to maximize the population mean of an outcome, where for each individual we have
-access to some set of measured covariates. An ITR with the maximal value is referred
-to as an **optimal ITR** or the **optimal individualized treatment**.
-Consequently, the value of an optimal ITR is termed the **optimal value**, or the
-**mean under the optimal individualized treatment**.
 
-One opts to administer the intervention to individuals who will profit from it, instead of
+* One opts to administer the intervention to individuals who will profit from it, instead of
 assigning treatment on a population level. But how do we know which intervention works for which
-patient? For example, one might seek to improve retention in
+patient? 
+
+* For example, one might seek to improve retention in
 HIV care. In a randomized clinical trial, several interventions show efficacy- including
 appointment reminders through text messages, small cash incentives for on time clinic
-visits, and peer health workers. Ideally, we want to improve effectiveness by assigning
+visits, and peer health workers. 
+
+* Ideally, we want to improve effectiveness by assigning
 each patient the intervention they are most likely to benefit from, as well as improve
 efficiency by not allocating resources to individuals that do not need them, or would
->>>>>>> 4da6f01c5c1ddff16bf445a05b9011fdebdf59a5
 not benefit from it.
 
 ```{r, fig.cap="Illustration of a Dynamic Treatment Regime in a Clinical Setting", echo=FALSE, eval=TRUE, out.width='60%'}
 knitr::include_graphics(path = "img/image/DynamicA_Illustration.png")
 ```
 
-<<<<<<< HEAD
+
 This aim motivates a different type of intervention, as opposed to the static exposures we 
 might be used to. 
 
@@ -109,20 +100,6 @@ categorical treatment.
 * In particular, we will use `tmle3mopttx` to estimate 
 optimal ITR and the corresponding population value, 
 construct realistic optimal ITRs, and perform variable importance in terms of the 
-=======
-This aim motivates a different type of intervention, as opposed to the static exposures we
-might be used to. In this chapter, we examine multiple examples of optimal individualized
-treatment regimes
-and estimate the mean outcome under the ITR
-where the candidate rules are restricted to depend only on user-supplied subset of the
-baseline covariates. In order to accomplish this, we present the [`tmle3mopttx` R
-package](https://github.com/tlverse/tmle3mopttx), which features an
-implementation of a recently developed algorithm for computing targeted minimum
-loss-based estimates of a causal effect based on optimal ITR for
-categorical treatment. In particular, we will use `tmle3mopttx` to estimate
-optimal ITR and the corresponding population value,
-construct realistic optimal ITRs, and perform variable importance in terms of the
->>>>>>> 4da6f01c5c1ddff16bf445a05b9011fdebdf59a5
 mean under the optimal individualized treatment.
 
 ## Data Structure and Notation
@@ -228,23 +205,16 @@ as $\bar{Q}_{Y,n}(A,W)$ and $g_n(A|W)$.
 our outcome, where we define:
 
 $$D_{\bar{Q}_Y,g,a}(O) \equiv \frac{I(A=a)}{g(A|W)} (Y-\bar{Q}_Y(A,W)) + \bar{Q}_Y(A=a,W)$$
-<<<<<<< HEAD
 
 Note that under the randomization and positivity assumptions we have that 
 $E[D_{\bar{Q}_Y,g,a}(O) | V] = E[Y_a |V]$. We emphasize the double robust nature 
 of the A-IPW transform: consistency of $E[Y_a |V]$ will depend on correct estimation 
 of either $\bar{Q}_{Y,0}(A,W)$ or $g_0(A|W)$. As such, in a randomized trial, we are 
 guaranteed a consistent estimate of $E[Y_a |V]$ even if we get $\bar{Q}_{Y,0}(A,W)$ wrong! 
-=======
-note that under the randomization and positivity assumptions we have that
-$E[D_{\bar{Q}_Y,g,a}(O) | V] = E[Y_a |V]$. We emphasize the double robust nature
-of the A-IPW transform- consistency of $E[Y_a |V]$ will depend on correct estimation
-of either $\bar{Q}_{Y,0}(A,W)$ or $g_0(A|W)$. As such, in a randomized trial, we are
-guaranteed a consistent estimate of $E[Y_a |V]$ even if we get $\bar{Q}_{Y,0}(A,W)$ wrong!
 
->>>>>>> 4da6f01c5c1ddff16bf445a05b9011fdebdf59a5
 Using this transform, we can define the following contrast:
-$D_{\bar{Q}_Y,g}(O) = D_{\bar{Q}_Y,g,a=1}(O) - D_{\bar{Q}_Y,g,a=0}(O)$
+
+$$D_{\bar{Q}_Y,g}(O) = D_{\bar{Q}_Y,g,a=1}(O) - D_{\bar{Q}_Y,g,a=0}(O)$$
 
 We estimate the blip function, $\bar{Q}_{0,a}(V)$, by regressing $D_{\bar{Q}_Y,g}(O)$ on $V$ using
 the specified `sl3` library of learners and an appropriate loss function.
@@ -253,19 +223,7 @@ the specified `sl3` library of learners and an appropriate loss function.
 
 4. We obtain inference for the mean outcome under the estimated optimal rule using CV-TMLE.
 
-<<<<<<< HEAD
 ### Evaluating the Causal Effect of an optimal ITR with Binary Treatment
-=======
-### Why CV-TMLE?
-
-* CV-TMLE is necessary as the non-cross-validated TMLE
-is biased upward for the mean outcome under the rule, and therefore overly optimistic.
-
-* More generally however, using CV-TMLE allows us more freedom in estimation and therefore greater
-data adaptivity, without sacrificing inference!
-
-## Evaluating the Causal Effect of an optimal ITR with Binary Treatment
->>>>>>> 4da6f01c5c1ddff16bf445a05b9011fdebdf59a5
 
 To start, let us load the packages we will use and set a seed for simulation:
 
@@ -436,7 +394,8 @@ $$W \sim \mathcal{N}(\bf{0},I_{4 \times 4})$$
 $$P(A|W) = \frac{1}{1+\exp^{(-(0.05*I(A=1)*W_1+0.8*I(A=2)*W_1+0.8*I(A=3)*W_1))}}$$
 
 
-$$P(Y|A,W) = 0.5\text{logit}^{-1}[15I(A=1)(W_1-0.5) - 3I(A=2)(2W_1+0.5) + 3I(A=3)(3W_1-0.5)] +\text{logit}^{-1}(W_2W_1)$$
+$$P(Y|A,W) = 0.5\text{logit}^{-1}[15I(A=1)(W_1-0.5) - 3I(A=2)(2W_1+0.5) \\
++ 3I(A=3)(3W_1-0.5)] +\text{logit}^{-1}(W_2W_1)$$
 
 * We can just load the data available as part of the package as follows:
 
@@ -682,40 +641,42 @@ covariates in our dataset.
 * Finally, we cement everything we learned so far with a real data application.
 
 * As in the previous sections, we will be using the WASH Benefits data,
-corresponding to the Effect of water quality, sanitation, hand washing, and
-nutritional interventions on child development in rural Bangladesh trial.
+  corresponding to the Effect of water quality, sanitation, hand washing, and
+  nutritional interventions on child development in rural Bangladesh trial.
 
 * The main aim of the cluster-randomized controlled trial was to assess the
-impact of six intervention groups, including:
+  impact of six intervention groups, including:
 
-1. chlorinated drinking water
+1. Control
 
-2. improved sanitation
+2. Handwashing with soap
 
-3. handwashing with soap
+3. Improved nutrition through counselling and provision of lipid-based nutrient supplements
 
-4. combined water, sanitation, and handwashing
+4. Combined water, sanitation, handwashing, and nutrition.
 
-5. improved nutrition through counselling and provision of lipid-based nutrient supplements
+5. Improved sanitation
 
-6. combined water, sanitation, handwashing, and nutrition.
+6. Combined water, sanitation, and handwashing
+
+7. Chlorinated drinking water
 
 * We aim to estimate the optimal ITR and the corresponding value under the optimal ITR
-for the main intervention in WASH Benefits data!
+  for the main intervention in WASH Benefits data!
 
-* Our outcome of interest is the weight-for-height Z-score which we seek to maximize,
-whereas our treatment is
-the six intervention groups aimed at improving living conditions.
+* Our outcome of interest is the weight-for-height Z-score, whereas our treatment is
+  the six intervention groups aimed at improving living conditions.
 
 * Work with a buddy. You have 20 minutes.
 
 In the etherpad, submit your group's answers to the following questions.
 
 0. Think about potentially good effect modifers for the WASH Benefits data. What should
-   $V$ be and why? Construct an approprite `sl3` library for $A$, $Y$ and $B$.
+   $V$ be and why? Do we want to minimize or maximize the outcome? Construct an approprite 
+   `sl3` library for $A$, $Y$ and $B$.
    Based on the picked $V$, estimate the mean under the ITR for
    the main randomized intervention used in the WASH Benefits trial
-   with weight-for-height Z-score as the outcome we want to maximize.
+   with weight-for-height Z-score as the outcome.
 
 1. Using the WASH benefits data, extract the optimal ITR for each individual.
    Which intervention is the most dominant? Why do you think that is?
@@ -774,13 +735,18 @@ summary(washb_data$whz)
 
 ```{r sl3_lrnrs-WASH-mopttx, eval=FALSE}
 # Initialize few of the learners:
-lrn_xgboost_50 <- Lrnr_xgboost$new(nrounds = 50)
-lrn_xgboost_100 <- Lrnr_xgboost$new(nrounds = 100)
+grid_params = list(nrounds = c(100, 500),
+                     eta = c(0.01, 0.1))
+grid = expand.grid(grid_params, KEEP.OUT.ATTRS = FALSE)
+xgb_learners = apply(grid, MARGIN = 1, function(params_tune) {
+    do.call(Lrnr_xgboost$new, c(as.list(params_tune)))
+  })
 lrn_mean <- Lrnr_mean$new()
 
 ## Define the Q learner, which is just a regular learner:
 Q_learner <- Lrnr_sl$new(
-  learners = list(lrn_xgboost_50, lrn_xgboost_100, lrn_mean),
+  learners = list(xgb_learners[[1]], xgb_learners[[2]], xgb_learners[[3]],
+                  xgb_learners[[4]], lrn_mean),
   metalearner = Lrnr_nnls$new()
 )
 
@@ -788,10 +754,11 @@ Q_learner <- Lrnr_sl$new(
 #specify the appropriate loss of the multinomial learner:
 mn_metalearner <- make_learner(Lrnr_solnp, loss_function = loss_loglik_multinomial,
                                learner_function = metalearner_linear_multinomial)
-g_learner <- make_learner(Lrnr_sl, list(lrn_xgboost_100,lrn_mean), mn_metalearner)
+g_learner <- make_learner(Lrnr_sl, list(xgb_learners[[4]], lrn_mean), mn_metalearner)
 
 # Define the Blip learner, which is a multivariate learner:
-learners <- list(lrn_xgboost_50, lrn_xgboost_100,lrn_mean)
+learners <- list(xgb_learners[[1]], xgb_learners[[2]], xgb_learners[[3]],
+                  xgb_learners[[4]], lrn_mean)
 b_learner <- create_mv_learners(learners = learners)
 
 learner_list <- list(Y = Q_learner, A = g_learner, B = b_learner)
