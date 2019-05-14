@@ -310,7 +310,7 @@ package.</li>
 </div>
 <div id="introduction-1" class="section level2">
 <h2><span class="header-section-number">6.2</span> Introduction</h2>
-<p>In this chapter, we examine a simple example of stochastic treatment regimes in
+<p>In this section, we examine a simple example of stochastic treatment regimes in
 the context of a continuous treatment variable of interest, defining an
 intuitive causal effect through which to examine stochastic interventions more
 generally. As a first step to using stochastic
@@ -557,15 +557,15 @@ hold. We discuss this in greater detail in the sequel.</p>
 <h3><span class="header-section-number">6.4.2</span> Targeted Estimation of Stochastic Interventions Effects</h3>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)</code></pre>
 <pre><code>
-Iter: 1 fn: 1374.8048    Pars:  0.80884 0.19116
-Iter: 2 fn: 1374.8048    Pars:  0.80884 0.19116
+Iter: 1 fn: 1375.2374    Pars:  0.80299 0.19701
+Iter: 2 fn: 1375.2374    Pars:  0.80299 0.19701
 solnp--&gt; Completed in 2 iterations</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est  tmle_est         se    lower     upper
-1:  TSM E[Y_{A=NULL}] 0.7948592 0.7978766 0.01212453 0.774113 0.8216403
+   type         param  init_est  tmle_est         se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.7953288 0.7975772 0.01229224 0.7734849 0.8216696
    psi_transformed lower_transformed upper_transformed
-1:       0.7978766          0.774113         0.8216403</code></pre>
+1:       0.7975772         0.7734849         0.8216696</code></pre>
 <p>The <code>print</code> method of the resultant <code>tmle_fit</code> object conveniently displays the
 results from computing our TML estimator.</p>
 </div>
@@ -631,23 +631,23 @@ simply invoke the <code>tmle3</code> wrapper function to fit the series of TML e
 For convenience, we choose the latter:</p>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)</code></pre>
 <pre><code>
-Iter: 1 fn: 1379.7267    Pars:  0.77878 0.22122
-Iter: 2 fn: 1379.7267    Pars:  0.77879 0.22121
+Iter: 1 fn: 1371.3660    Pars:  0.80273 0.19727
+Iter: 2 fn: 1371.3660    Pars:  0.80273 0.19727
 solnp--&gt; Completed in 2 iterations</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-         type          param  init_est  tmle_est          se     lower
-1:        TSM  E[Y_{A=NULL}] 0.6274970 0.6267828 0.014350840 0.5986557
-2:        TSM  E[Y_{A=NULL}] 0.7383016 0.7386041 0.014153267 0.7108642
-3:        TSM  E[Y_{A=NULL}] 0.8441947 0.8459446 0.010426135 0.8255098
-4: MSM_linear MSM(intercept) 0.7365489 0.7369954 0.012271253 0.7129442
-5: MSM_linear     MSM(slope) 0.1081212 0.1093857 0.004593494 0.1003826
+         type          param  init_est  tmle_est          se      lower
+1:        TSM  E[Y_{A=NULL}] 0.6298075 0.6292557 0.014163600 0.60149557
+2:        TSM  E[Y_{A=NULL}] 0.7388738 0.7395493 0.013984247 0.71214067
+3:        TSM  E[Y_{A=NULL}] 0.8432939 0.8459182 0.010185154 0.82595564
+4: MSM_linear MSM(intercept) 0.7372070 0.7381366 0.012098344 0.71442427
+5: MSM_linear     MSM(slope) 0.1065283 0.1081563 0.004467811 0.09939954
        upper psi_transformed lower_transformed upper_transformed
-1: 0.6549099       0.6267828         0.5986557         0.6549099
-2: 0.7663440       0.7386041         0.7108642         0.7663440
-3: 0.8663795       0.8459446         0.8255098         0.8663795
-4: 0.7610466       0.7369954         0.7129442         0.7610466
-5: 0.1183888       0.1093857         0.1003826         0.1183888</code></pre>
+1: 0.6570159       0.6292557        0.60149557         0.6570159
+2: 0.7669579       0.7395493        0.71214067         0.7669579
+3: 0.8658807       0.8459182        0.82595564         0.8658807
+4: 0.7618489       0.7381366        0.71442427         0.7618489
+5: 0.1169130       0.1081563        0.09939954         0.1169130</code></pre>
 <p><em>Remark</em>: The <code>print</code> method of the resultant <code>tmle_fit</code> object conveniently
 displays the results from computing our TML estimator.</p>
 </div>
@@ -672,12 +672,12 @@ for <span class="math inline">\(m_{\beta}(\delta)\)</span> may be expressed <spa
 \Sigma),\]</span> where <span class="math inline">\(\Sigma\)</span> is the empirical covariance matrix of
 <span class="math inline">\(\text{EIF}_{\beta}(O)\)</span>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit<span class="op">$</span>summary[<span class="dv">4</span><span class="op">:</span><span class="dv">5</span>, ]</code></pre>
-<pre><code>         type          param  init_est  tmle_est          se     lower
-1: MSM_linear MSM(intercept) 0.7365489 0.7369954 0.012271253 0.7129442
-2: MSM_linear     MSM(slope) 0.1081212 0.1093857 0.004593494 0.1003826
+<pre><code>         type          param  init_est  tmle_est          se      lower
+1: MSM_linear MSM(intercept) 0.7372070 0.7381366 0.012098344 0.71442427
+2: MSM_linear     MSM(slope) 0.1065283 0.1081563 0.004467811 0.09939954
        upper psi_transformed lower_transformed upper_transformed
-1: 0.7610466       0.7369954         0.7129442         0.7610466
-2: 0.1183888       0.1093857         0.1003826         0.1183888</code></pre>
+1: 0.7618489       0.7381366        0.71442427         0.7618489
+2: 0.1169130       0.1081563        0.09939954         0.1169130</code></pre>
 </div>
 <div id="directly-targeting-the-msm-parameter-beta" class="section level3">
 <h3><span class="header-section-number">6.5.4</span> Directly Targeting the MSM Parameter <span class="math inline">\(\beta\)</span></h3>
@@ -708,17 +708,17 @@ tmle_msm_spec &lt;-<span class="st"> </span><span class="kw">tmle_vimshift_msm</
 <span class="co"># fit the TML estimator and examine the results</span>
 tmle_msm_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_msm_spec, data, node_list, learner_list)</code></pre>
 <pre><code>
-Iter: 1 fn: 1378.5865    Pars:  0.78517 0.21483
-Iter: 2 fn: 1378.5865    Pars:  0.78517 0.21483
+Iter: 1 fn: 1373.1006    Pars:  0.80806 0.19194
+Iter: 2 fn: 1373.1006    Pars:  0.80806 0.19194
 solnp--&gt; Completed in 2 iterations</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_msm_fit</code></pre>
 <pre><code>A tmle3_Fit that took 100 step(s)
-         type          param  init_est  tmle_est          se      lower
-1: MSM_linear MSM(intercept) 0.7369461 0.7369196 0.013845469 0.70978293
-2: MSM_linear     MSM(slope) 0.1076250 0.1075925 0.006942081 0.09398625
+         type          param  init_est  tmle_est          se     lower
+1: MSM_linear MSM(intercept) 0.7363001 0.7365105 0.013690991 0.7096767
+2: MSM_linear     MSM(slope) 0.1066945 0.1064353 0.006653819 0.0933941
        upper psi_transformed lower_transformed upper_transformed
-1: 0.7640562       0.7369196        0.70978293         0.7640562
-2: 0.1211987       0.1075925        0.09398625         0.1211987</code></pre>
+1: 0.7633444       0.7365105         0.7096767         0.7633444
+2: 0.1194766       0.1064353         0.0933941         0.1194766</code></pre>
 </div>
 <div id="example-with-the-wash-benefits-data" class="section level3">
 <h3><span class="header-section-number">6.5.5</span> Example with the WASH Benefits Data</h3>
@@ -746,7 +746,7 @@ washb_data &lt;-<span class="st"> </span>washb_data[<span class="op">!</span><sp
 3:             0            1</code></pre>
 <p>Next, we specify our NPSEM via the <code>node_list</code> object. For our example analysis,
 we’ll consider the outcome to be the weight-for-height Z-score (as in previous
-chapters), the intervention of interest to be the mother’s age at time of
+sections), the intervention of interest to be the mother’s age at time of
 child’s birth, and take all other covariates to be potential confounders.</p>
 <pre class="sourceCode r"><code class="sourceCode r">node_list &lt;-<span class="st"> </span><span class="kw">list</span>(
   <span class="dt">W =</span> <span class="kw">names</span>(washb_data)[<span class="op">!</span>(<span class="kw">names</span>(washb_data) <span class="op">%in%</span>
