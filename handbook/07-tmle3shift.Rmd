@@ -30,7 +30,7 @@ Updated: `r Sys.Date()`
 
 ## Introduction
 
-In this chapter, we examine a simple example of stochastic treatment regimes in
+In this section, we examine a simple example of stochastic treatment regimes in
 the context of a continuous treatment variable of interest, defining an
 intuitive causal effect through which to examine stochastic interventions more
 generally. As a first step to using stochastic
@@ -55,23 +55,23 @@ individual level, and define novel shift intervention functions.
 
 * We may consider stochastic interventions in two ways:
 
-1. The equation $f_A$, which produces $A$, is replaced by a probabilistic
-   mechanism $g_{\delta}(A \mid W)$ that differs from the original $g(A \mid
-   W)$. The _stochastically modified_ value of the treatment $A_{\delta}$ is
-   drawn from a user-specified distribution $g_\delta(A \mid W)$, which may
-   depend on the original distribution $g(A \mid W)$ and is indexed by a
-   user-specified parameter $\delta$. In this case, the stochastically modified
-   value of the treatment $A_{\delta} \sim g_{\delta}(\cdot \mid W)$.
+  1. The equation $f_A$, which produces $A$, is replaced by a probabilistic
+     mechanism $g_{\delta}(A \mid W)$ that differs from the original $g(A \mid
+     W)$. The _stochastically modified_ value of the treatment $A_{\delta}$ is
+     drawn from a user-specified distribution $g_\delta(A \mid W)$, which may
+     depend on the original distribution $g(A \mid W)$ and is indexed by a
+     user-specified parameter $\delta$. In this case, the stochastically
+     modified value of the treatment $A_{\delta} \sim g_{\delta}(\cdot \mid W)$.
 
-2. The observed value $A$ is replaced by a new value $A_{d(A,W)}$ based
-   on applying a user-defined function $d(A,W)$ to $A$. In this case, the
-   stochastic treatment regime may be viewed as an intervention in which $A$ is
-   set equal to a value based on a hypothetical regime $d(A, W)$, where regime
-   $d$ depends on the treatment level $A$ that would be assigned in the absence
-   of the regime as well as the covariates $W$. Stochastic interventions of
-   this variety may be referred to as depending on the _natural value of
-   treatment_ or as _modified treatment policies_ [@haneuse2013estimation,
-   @young2014identification].
+  2. The observed value $A$ is replaced by a new value $A_{d(A,W)}$ based on
+     applying a user-defined function $d(A,W)$ to $A$. In this case, the
+     stochastic treatment regime may be viewed as an intervention in which $A$
+     is set equal to a value based on a hypothetical regime $d(A, W)$, where
+     regime $d$ depends on the treatment level $A$ that would be assigned in the
+     absence of the regime as well as the covariates $W$. Stochastic
+     interventions of this variety may be referred to as depending on the
+     _natural value of treatment_ or as _modified treatment policies_
+     [@haneuse2013estimation; @young2014identification].
 
 ### Identifying the Causal Effect of a Stochastic Intervention
 
@@ -451,7 +451,7 @@ head(washb_data, 3)
 
 Next, we specify our NPSEM via the `node_list` object. For our example analysis,
 we'll consider the outcome to be the weight-for-height Z-score (as in previous
-chapters), the intervention of interest to be the mother's age at time of
+sections), the intervention of interest to be the mother's age at time of
 child's birth, and take all other covariates to be potential confounders.
 
 ```{r washb-data-npsem-shift, message=FALSE, warning=FALSE, cache=FALSE}
