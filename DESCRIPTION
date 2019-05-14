@@ -12,6 +12,7 @@ Imports:
   knitr,
   stringr,
   tidyverse,
+  kableExtra,
   devtools,
   data.table,
   here,
@@ -25,6 +26,8 @@ Imports:
   xgboost,
   ranger,
   glmnet,
+  arm,
+  gam,
   speedglm,
   randomForest,
   RFCDE,
@@ -36,8 +39,7 @@ Imports:
   tmle3,
   tmle3mopttx,
   tmle3shift,
-  haldensify,
-  kableExtra
+  haldensify
 Remotes:
   github::rstudio/bookdown,
   github::Rdatatable/data.table,
