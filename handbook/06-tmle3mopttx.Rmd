@@ -63,20 +63,6 @@ visits, and peer health workers.
 each patient the intervention they are most likely to benefit from, as well as improve 
 efficiency by not allocating resources to individuals that do not need them, or would 
 
-* One opts to administer the intervention to individuals who will profit from it, instead of
-assigning treatment on a population level. But how do we know which intervention works for which
-patient? 
-
-* For example, one might seek to improve retention in
-HIV care. In a randomized clinical trial, several interventions show efficacy- including
-appointment reminders through text messages, small cash incentives for on time clinic
-visits, and peer health workers. 
-
-* Ideally, we want to improve effectiveness by assigning
-each patient the intervention they are most likely to benefit from, as well as improve
-efficiency by not allocating resources to individuals that do not need them, or would
-not benefit from it.
-
 ```{r, fig.cap="Illustration of a Dynamic Treatment Regime in a Clinical Setting", echo=FALSE, eval=TRUE, out.width='60%'}
 knitr::include_graphics(path = "img/image/DynamicA_Illustration.png")
 ```
