@@ -1,12 +1,16 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 # The Targeted Learning Roadmap {#intro}
 
 A central goal of the Targeted Learning statistical paradigm is to estimate
 scientifically relevant parameters in realistic (usually nonparametric) models.
 
 ## The Statistical Model
-
-For a given data set $O = (W, A, Y)$, the distribution of the observed data may
-be written as follows: $P(O) = P(W, A, Y) = P(W)P (A \mid W) P(Y \mid A, W)$. To
+Assume we have an i.i.d. sample of confounders, a binary intervention of interest, and an outcome, or are observed data is  $O = (W, A, Y)$. The distribution of the observed data may
+be factorized as follows: $P(O) = P(W, A, Y) = P(W)P (A \mid W) P(Y \mid A, W)$. To
 estimate a parameter of interest, a researcher need not necessarily be able to
 specify these whole or conditional distributions. Rather, each estimator only
 requires that certain parts of the distribution be known; for example, some may
@@ -32,9 +36,24 @@ the analysis.
 The next step in the roadmap is to use a causal framework to formalize the
 experiment and thereby define the parameter of interest. Causal graphs are one
 useful tool to express what we know about the causal relations among variables
-that are relevant to the question under study [@pearl2009causality]. While
-directed acyclic graphs (DAGs) provide a convenient means by which to visualize
-causal relations between variables, the same causal relations among variables
+that are relevant to the question under study [@pearl2009causality]. 
+
+Ignoring error terms, we will assume the following ordering of the variables in $O$.
+
+```{r, echo=F, eval=T}
+library(visNetwork)
+nodes <- data.frame(id=c("W","A","Y"))
+nodes$label <- nodes$id
+edges <- data.frame(from=c("W","W","A"),to=c("A","Y","Y")) 
+network <- visNetwork(nodes,edges, height="300px",width="200px") %>% 
+  visEdges(arrows=list(to=TRUE))  %>% 
+  visLayout(randomSeed=25)
+network
+```
+
+While
+directed acyclic graphs (DAGs - like above) provide a convenient means by which to visualize
+causal relations between variables, the  causal relations among variables
 can be represented via a set of structural equations:
 \begin{align*}
   W &= f_W(U_W) \\
@@ -44,8 +63,7 @@ can be represented via a set of structural equations:
 where $U_W$, $U_A$, and $U_Y$ represent the unmeasured exogenous background
 characteristics that influence the value of each variable. In the NPSEM, $f_W$,
 $f_A$ and $f_Y$ denote that each variable (for $W$, $A$ and $Y$, respectively)
-is a function of its parents and unmeasured background characteristics, but note
-that there is no imposition of any particular functional constraints. For this
+is a function of its parents and unmeasured background characteristics, but one typically has little information about  particular functional constraints (e.g., linear, logit-linear, only one interaction, etc.). For this
 reason, they are called non-parametric structural equation models (NPSEMs). The
 DAG and set of nonparametric structural equations represent exactly the same
 information and so may be used interchangeably.
@@ -135,7 +153,8 @@ assumptions and the resulting estimands can be functions of different components
 of $P_0$. We discuss several more complex estimands in later sections of this
 workshop.
 
-## Estimator
+## Estimators: SuperLearning and Targeted Maximum Likelihood
+
 
 Although we will discuss more in later sections, the goals of the estimators we
 desire should be that, among sensible (asymptotically consistent, regular)
@@ -145,6 +164,56 @@ estimators,
    interest, and
 2. the estimator can be constructed for finite-sample performance improvements,
    relative to other estimators in the same class.
+
+These priniciples guide our approach to estimation: Superlearning for prediction (more generally density estimation) and TMLE for estimation of our intervention parameters of interest. 
+
+\includegraphics[page=1,width=5in]{img/misc/NatureSlides.pdf}]
+
+### SuperLearning
+- There is no universally optimal machine learning algorithm (exceptions exist - HAL).
+- This is true empirically, when we have test different algorithms on actual data and looked at the performance (e.g., MSE of prediction)
+- For some data, one needs learners that can model a complex function.
+- For others, typically caused by noise or insufficient sample size, a simple, parametric model might fit the best.
+- SuperLearner, an ensemble learner, solves this issue, by allowing a convex combination of learners from the simplest (intercept-only) to most complex (neural nets, random forests, SVM, etc.).
+- It works by using cross-validation in a manner which guarantees that the resulting fit will be as good as possible, given the learners provided (note, even a convex combination of poor learners can sometimes result in good fit, though better to have good candidates).
+
+\includegraphics[width=5in]{vs.pdf}]
+
+The figure above shows an example of 10-fold cross-validation. 
+
+Below, we show both an example of how even non-optimal learners can fit complex functions within SL as well as  results of an empirial study of SL versus other learners across many data sets.
+
+\includegraphics[page=2,width=5in]{NatureSlides.pdf}]
+
+\newpage
+
+### TMLE
+- Augmentation of substitution estimators
+  + Defines a mapping from the true distribution to a  parameter(s), $\Psi(P_0)$
+  + A substitution estimator uses the same mapping, but plug-in estimates of the relevant parts of distirbution $\Psi(P_n)$.
+  + TMLE does a targed augmentation of the estimate of the relevant parts of the distribution, but uses same mapping $\Psi(P^*_n)$.
+- Produces a well-defined, unbiased, efficient substitution estimator of target parameters of a data-generating distribution. 
+- Updates an initial (super learner) estimate  of the relevant part of the data generating distribution possibly using an estimate of a nuisance parameter (like the model of intervention given covariates).
+- Removes asymptotic residual bias of initial estimator for the target parameter, if it uses a consistent estimator of $g_0$. 
+- If initial estimator was consistent for the target parameter, the additional fitting of the data in the targeting step may remove finite sample bias, and  preserves consistency property of the initial estimator.  
+- If the initial estimator and the estimator of $g_0$ are both consistent, then it is also asymptotically  efficient according to semi-parametric statistical model efficiency theory.  
+- Thus, every effort is made to achieve minimal bias and the asymptotic semi-parametric efficiency bound for the variance. 
+
+\newpage
+
+\includegraphics[page=3,width=5in]{NatureSlides.pdf}]
+
+\newpage
+
+\newpage
+
+\includegraphics[page=4,width=5in]{NatureSlides.pdf}]
+
+
+\newpage
+
+\includegraphics[page=5,width=5in]{NatureSlides.pdf}]
+
 
 ### Inference
 
