@@ -24,37 +24,48 @@ saveGIF({
     a_mean <- mean(df_input$a_shifted)
     p_a_shifted <- df_input %>%
       ggplot(aes(x = a_shifted)) +
-        geom_histogram(colour = "white", fill = pal[[4]], alpha = 0.6,
-                       binwidth = 0.2) +
-        geom_vline(xintercept = a_mean, linetype = "dashed", colour = "black") +
-        xlim(-5.5, 5.5) +
-        xlab("") +
-        ylab("") +
-        ggtitle("Shifted natural treatment distribution") +
-        theme_bw() +
-        theme(text = element_text(size = 22),
-              axis.text.x = element_text(colour = 'black', size = 22),
-              axis.text.y = element_text(colour = 'black', size = 22))
+      geom_histogram(
+        colour = "white", fill = pal[[4]], alpha = 0.6,
+        binwidth = 0.2
+      ) +
+      geom_vline(xintercept = a_mean, linetype = "dashed", colour = "black") +
+      xlim(-5.5, 5.5) +
+      xlab("") +
+      ylab("") +
+      ggtitle("Shifted natural treatment distribution") +
+      theme_bw() +
+      theme(
+        text = element_text(size = 22),
+        axis.text.x = element_text(colour = "black", size = 22),
+        axis.text.y = element_text(colour = "black", size = 22)
+      )
 
     qbar_mean <- mean(df_input$qbar_aplusdelta)
     p_qbar_shifted <- df_input %>%
       ggplot(aes(x = qbar_aplusdelta)) +
-        geom_histogram(colour = "white", fill = "gray", alpha = 0.6,
-                       binwidth = 0.03) +
-        geom_vline(xintercept = qbar_mean, size = 2, linetype = "dashed",
-                   colour = "black") +
-        xlim(0, 1) +
-        xlab("") +
-        ylab("") +
-        ggtitle("Counterfactual outcome under shift") +
-        theme_bw() +
-        theme(text = element_text(size = 22),
-              axis.text.x = element_text(colour = 'black', size = 22),
-              axis.text.y = element_text(colour = 'black', size = 22))
+      geom_histogram(
+        colour = "white", fill = "gray", alpha = 0.6,
+        binwidth = 0.03
+      ) +
+      geom_vline(
+        xintercept = qbar_mean, size = 2, linetype = "dashed",
+        colour = "black"
+      ) +
+      xlim(0, 1) +
+      xlab("") +
+      ylab("") +
+      ggtitle("Counterfactual outcome under shift") +
+      theme_bw() +
+      theme(
+        text = element_text(size = 22),
+        axis.text.x = element_text(colour = "black", size = 22),
+        axis.text.y = element_text(colour = "black", size = 22)
+      )
 
     p_out <- p_a_shifted + p_qbar_shifted
     print(p_out)
   }
-}, movie.name = here("img", "gif", "shift_animation.gif"), interval = 1,
-   ani.width = 1400, ani.height = 1000
+},
+movie.name = here("img", "gif", "shift_animation.gif"), interval = 1,
+ani.width = 1400, ani.height = 1000
 )

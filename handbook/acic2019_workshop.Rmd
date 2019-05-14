@@ -1,3 +1,152 @@
+---
+title: "The `tlverse` Software Ecosystem for Causal Inference"
+subtitle: "2019 Atlantic Causal Inference Conference"
+author: "Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana
+  Malenica, Rachael Phillips"
+date: "updated: `r format(Sys.time(), '%B %d, %Y')`"
+documentclass: book
+output: bookdown::gitbook
+site: bookdown::bookdown_site
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+fontsize: '12pt, krantz2'
+monofont: "Source Code Pro"
+monofontoptions: "Scale=0.7"
+link-citations: yes
+links-as-notes: true
+colorlinks: yes
+lot: yes
+lof: yes
+always_allow_html: yes
+url: 'https\://tlverse.org/acic2019-workshop/'
+github-repo: tlverse/acic2019-workshop
+graphics: yes
+description: "An open-source and fully-reproducible electronic set of teaching
+  materials accompanying a full-day short-course on applying the Targeted
+  Learning methodology in practice using the [`tlverse` software
+  ecosystem](https://github.com/tlverse)."
+#cover-image: "img/tlverse_book_cover.png"
+#apple-touch-icon: "img/logos/favicons/apple-touch-icon.png"
+favicon: "img/logos/favicons/favicon.png"
+---
+
+# Preface {-}
+
+Placeholder
+
+
+## About this workshop {-}
+## Outline {-}
+## About the instructors {-}
+### Mark van der Laan {-}
+### Alan Hubbard {-}
+### Jeremy Coyle {-}
+### Nima Hejazi {-}
+### Ivana Malenica {-}
+### Rachael Phillips {-}
+## Important links
+## Setup instructions
+### R and RStudio
+#### Windows
+##### If you already have R and RStudio installed
+##### If you don't have R and RStudio installed
+#### macOS
+##### If you already have R and RStudio installed
+##### If you don't have R and RStudio installed
+#### Linux
+
+<!--chapter:end:index.Rmd-->
+
+
+# Motivation {-}
+
+Placeholder
+
+
+
+<!--chapter:end:01-preface.Rmd-->
+
+
+# The Targeted Learning Roadmap {#intro}
+
+Placeholder
+
+
+## The Statistical Model
+## The Causal Model
+## The Parameter of Interest
+## Identifiability
+## Estimator
+### Inference
+## The WASH Benefits Example Dataset
+### The variables
+
+<!--chapter:end:02-intro.Rmd-->
+
+
+# Welcome to the `tlverse` {#tlverse}
+
+Placeholder
+
+
+## Learning Objectives
+## What is the `tlverse`?
+## `tlverse` components
+## Installation
+
+<!--chapter:end:03-tlverse.Rmd-->
+
+
+# Modern Machine Learning with `sl3`
+
+Placeholder
+
+
+## Learning Objectives
+## Introduction
+#### Super Learner
+## Basic Implementation
+### WASH Benefits Study Example
+## Extensions
+### Customize Learner Hyperparameters
+### Screening Covariates
+### Cross-validated Super Learner
+### Variable Importance Analysis with `sl3`
+## Exercise
+### Predicting Myocardial Infarction with `sl3`
+## Concluding Remarks
+
+<!--chapter:end:04-sl3.Rmd-->
+
+
+# `tmle3` -- The Targeted Learning Framework
+
+Placeholder
+
+
+## Learning Objectives
+## Example: `tmle3` for ATE
+### Load the Data
+### Define the variable roles
+### Handling Missingness
+### Create a "Spec" Object
+### Define the learners
+### Fit the TMLE
+### Evaluate the Estimates
+## `tmle3` Components
+### `tmle3_task`
+### Initial Likelihood
+### Targeted Likelihood (updater)
+### Parameter Mapping
+### Putting it all together
+## Fitting `tmle3` with multiple parameters
+### Delta Method
+### Fit
+## Exercise
+## Summary
+
+<!--chapter:end:05-tmle3.Rmd-->
+
 # Optimal Individualized Treatment Regimes
 
 _Ivana Malenica_, based on the [`tmle3mopttx`
@@ -685,7 +834,7 @@ goal of optimizing the final outcome.
 * To start, let's load the data, convert all columns to be of class `numeric`, 
 and take a quick look at it:
 
-```{r load-washb-data, message=FALSE, warning=FALSE, cache=FALSE, eval=FALSE}
+```{r load-washb-data, message=FALSE, warning=FALSE, cache=FALSE, eval=TRUE}
 washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
 washb_data <- washb_data[!is.na(momage), lapply(.SD, as.numeric)]
 head(washb_data, 3)
@@ -693,7 +842,7 @@ head(washb_data, 3)
 
 * As before, we specify the NPSEM via the `node_list` object.
 
-```{r washb-data-npsem-mopttx, message=FALSE, warning=FALSE, cache=FALSE, eval=FALSE}
+```{r washb-data-npsem-mopttx, message=FALSE, warning=FALSE, cache=FALSE, eval=TRUE}
 node_list <- list(W = names(washb_data)[!(names(washb_data) %in% c("whz", "tr"))],
                   A = "tr", Y = "whz")
 ```
@@ -703,7 +852,7 @@ living conditions (floor), and possession of material items including the refrig
 We concentrate of these covariates as they might be indicative of the socio-economic status
 of individuals involved in the trial.
 
-```{r summary_WASH, eval=FALSE}
+```{r summary_WASH, eval=TRUE}
 table(washb_data$momedu)
 table(washb_data$floor)
 table(washb_data$asset_refrig)
@@ -712,7 +861,7 @@ summary(washb_data$whz)
 
 * Specify a simplified library:
 
-```{r sl3_lrnrs-WASH-mopttx, eval=FALSE}
+```{r sl3_lrnrs-WASH-mopttx, eval=TRUE}
 # Initialize few of the learners:
 lrn_xgboost_50 <- Lrnr_xgboost$new(nrounds = 50)
 lrn_xgboost_100 <- Lrnr_xgboost$new(nrounds = 100)
@@ -739,7 +888,7 @@ learner_list <- list(Y = Q_learner, A = g_learner, B = b_learner)
 
 * Initialize the Spec:
 
-```{r spec_init_WASH, eval=FALSE}
+```{r spec_init_WASH, eval=TRUE}
 ## Question 0:
 # initialize a tmle specification
 tmle_spec <- tmle3_mopttx_blip_revere(
@@ -758,7 +907,7 @@ table(tmle_spec$return_rule)
 
 * Consider simpler rules:
 
-```{r spec_init_WASH_simple_q2, eval=FALSE}
+```{r spec_init_WASH_simple_q2, eval=TRUE}
 ## Question 2:
 
 # initialize a tmle specification
@@ -776,7 +925,7 @@ table(tmle_spec$return_rule)
 
 * Consider realistic rules:
 
-```{r spec_init_WASH_simple_q3, eval=FALSE}
+```{r spec_init_WASH_simple_q3, eval=TRUE}
 ## Question 3:
 
 # initialize a tmle specification
@@ -791,3 +940,50 @@ fit
 
 table(tmle_spec$return_rule)
 ```
+
+<!--chapter:end:06-tmle3mopttx.Rmd-->
+
+
+# Stochastic Treatment Regimes
+
+Placeholder
+
+
+## Learning Objectives
+## Introduction
+## Stochastic Interventions
+### Identifying the Causal Effect of a Stochastic Intervention
+### Interpreting the Causal Effect of a Stochastic Intervention
+## Estimating the Causal Effect of a Stochastic Intervention with `tmle3shift`
+### Simulate Data
+### Targeted Estimation of Stochastic Interventions Effects
+## Stochastic Interventions over a Grid of Counterfactual Shifts
+### Initializing `vimshift` through its `tmle3_Spec`
+### Targeted Estimation of Stochastic Intervention Effects
+### Inference with Marginal Structural Models
+### Directly Targeting the MSM Parameter $\beta$
+### Example with the WASH Benefits Data
+## Exercises
+### Review of Key Concepts
+### The Ideas in Action
+### Advanced Topics
+
+<!--chapter:end:07-tmle3shift.Rmd-->
+
+
+# A Primer on the `R6` Class System {#r6}
+
+Placeholder
+
+
+## Classes, Fields, and Methods
+## Object Oriented Programming: `Python` and `R`
+
+<!--chapter:end:98-r6_primer.Rmd-->
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:99-references.Rmd-->
+

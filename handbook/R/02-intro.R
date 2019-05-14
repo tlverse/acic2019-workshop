@@ -10,4 +10,3 @@ dat
 ## ----skim_washb_data, message=FALSE, warning=FALSE-----------------------
 library(skimr)
 skim(dat)
-

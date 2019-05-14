@@ -147,4 +147,3 @@ cpp <- cpp[!is.na(cpp[, "haz"]), ]
 cpp$parity01 <- as.numeric(cpp$parity > 0)
 cpp[is.na(cpp)] <- 0
 cpp$haz01 <- as.numeric(cpp$haz > 0)
-

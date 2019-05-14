@@ -138,4 +138,3 @@ chspred <- read_csv(file = db_data, col_names = TRUE)
 # take a quick peek
 head(chspred, 3) %>%
   kable(format = "markdown", digits = 3)
-

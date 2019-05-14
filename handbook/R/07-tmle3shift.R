@@ -151,4 +151,3 @@ learner_list <- list(Y = sl_lrn, A = lrn_rfcde)
 ## ----fit_tmle_wrapper_washb, message=FALSE, warning=FALSE, eval=FALSE----
 ## washb_tmle_fit <- tmle3(washb_vim_spec, washb_data, node_list, learner_list)
 ## washb_tmle_fit
-
