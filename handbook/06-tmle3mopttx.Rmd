@@ -624,14 +624,14 @@ covariates in our dataset.
 
 ### Real World Data and `tmle3mopttx`
 
-* Finally, we cement everything we learned so far with a real data application.
+Finally, we cement everything we learned so far with a real data application. 
 
-* As in the previous sections, we will be using the WASH Benefits data,
-  corresponding to the Effect of water quality, sanitation, hand washing, and
-  nutritional interventions on child development in rural Bangladesh trial.
+As in the previous sections, we will be using the WASH Benefits data,
+corresponding to the Effect of water quality, sanitation, hand washing, and
+nutritional interventions on child development in rural Bangladesh trial.
 
-* The main aim of the cluster-randomized controlled trial was to assess the
-  impact of six intervention groups, including:
+The main aim of the cluster-randomized controlled trial was to assess the
+impact of six intervention groups, including:
 
 1. Control
 
@@ -647,31 +647,31 @@ covariates in our dataset.
 
 7. Chlorinated drinking water
 
-* We aim to estimate the optimal ITR and the corresponding value under the optimal ITR
-  for the main intervention in WASH Benefits data!
+We aim to estimate the optimal ITR and the corresponding value under the optimal ITR
+for the main intervention in WASH Benefits data!
 
-* Our outcome of interest is the weight-for-height Z-score, whereas our treatment is
-  the six intervention groups aimed at improving living conditions.
+Our outcome of interest is the weight-for-height Z-score, whereas our treatment is
+the six intervention groups aimed at improving living conditions.
 
-* Work with a buddy. You have 20 minutes.
+**Work with a buddy. You have 20 minutes.**
 
 In the etherpad, submit your group's answers to the following questions.
 
-0. Think about potentially good effect modifers for the WASH Benefits data. What should
-   $V$ be and why? Do we want to minimize or maximize the outcome? Construct an approprite 
-   `sl3` library for $A$, $Y$ and $B$.
-   Based on the picked $V$, estimate the mean under the ITR for
+1. Define $V$ as mother's education (`momedu`), current living conditions (`floor`), 
+   and possession of material items including the refrigerator (`asset_refrig`). 
+   Why do you think we use these covariates as $V$?
+   Do we want to minimize or maximize the outcome? Which blip type should we use?
+   Construct an approprite `sl3` library for $A$, $Y$ and $B$.
+   
+2. Based on the $V$ defined in the previous question, estimate the mean under the ITR for
    the main randomized intervention used in the WASH Benefits trial
-   with weight-for-height Z-score as the outcome.
-
-1. Using the WASH benefits data, extract the optimal ITR for each individual.
-   Which intervention is the most dominant? Why do you think that is?
-
-2. Consider simpler rules for the WASH benefits data example. What set of rules
-   are picked?
-
-3. Using the WASH benefits data, estimate the realistic optimal ITR and the
-   corresponding value of the realistic ITR. Did the results change?
+   with weight-for-height Z-score as the outcome. What's the TMLE value of the optimal ITR?
+   How does it change from the initial estimate? Which intervention is the most dominant? 
+   Why do you think that is?
+   
+3. Using the same formulation as in questions 1 and 2, estimate the realistic optimal ITR 
+   and the corresponding value of the realistic ITR. Did the results change? Which intervention 
+   is the most dominant under realistic rules? Why do you think that is?   
 
 ## Summary
 
@@ -689,7 +689,7 @@ goal of optimizing the final outcome.
 
 ### Solutions
 
-* To start, let's load the data, convert all columns to be of class `numeric`,
+To start, let's load the data, convert all columns to be of class `numeric`,
 and take a quick look at it:
 
 ```{r load-washb-data, message=FALSE, warning=FALSE, cache=FALSE, eval=FALSE}
@@ -698,14 +698,14 @@ washb_data <- washb_data[!is.na(momage), lapply(.SD, as.numeric)]
 head(washb_data, 3)
 ```
 
-* As before, we specify the NPSEM via the `node_list` object.
+As before, we specify the NPSEM via the `node_list` object.
 
 ```{r washb-data-npsem-mopttx, message=FALSE, warning=FALSE, cache=FALSE, eval=FALSE}
 node_list <- list(W = names(washb_data)[!(names(washb_data) %in% c("whz", "tr"))],
                   A = "tr", Y = "whz")
 ```
 
-* We pick few potential effect modifiers, including mother's education, current
+We pick few potential effect modifiers, including mother's education, current
 living conditions (floor), and possession of material items including the refrigerator.
 We concentrate of these covariates as they might be indicative of the socio-economic status
 of individuals involved in the trial.
@@ -717,7 +717,10 @@ table(washb_data$asset_refrig)
 summary(washb_data$whz)
 ```
 
-* Specify a simplified library:
+We specify a simply library for the outcome regression, propensity score
+and the blip function. Since our treatment is categorical, we need to define a
+multinomial learner for $A$ and multivariate learner for $B$. We 
+will define the `xgboost` over a grid of parameters, and initialize a mean learner.
 
 ```{r sl3_lrnrs-WASH-mopttx, eval=FALSE}
 # Initialize few of the learners:
@@ -750,44 +753,31 @@ b_learner <- create_mv_learners(learners = learners)
 learner_list <- list(Y = Q_learner, A = g_learner, B = b_learner)
 ```
 
-* Initialize the Spec:
+As seen before, we initialize the `tmle3_mopttx_blip_revere` Specn in order to 
+answer Question 1. We want to maximize our outcome, with higher the weight-for-height Z-score
+the better. We will also use `blip1` as the blip type, since "Control" is a good
+reference category. 
 
 ```{r spec_init_WASH, eval=FALSE}
-## Question 0:
-# initialize a tmle specification
-tmle_spec <- tmle3_mopttx_blip_revere(
-  V = c("momedu", "floor", "asset_refrig"), type = "blip2",
-  learners = learner_list, maximize = TRUE, complex = TRUE,
-  realistic = FALSE
-)
-
-# fit the TML estimator
-fit <- tmle3(tmle_spec, data=washb_data, node_list, learner_list)
-fit
-
-# Question 1:
-table(tmle_spec$return_rule)
-```
-
-* Consider simpler rules:
-
-```{r spec_init_WASH_simple_q2, eval=FALSE}
 ## Question 2:
 
 # initialize a tmle specification
 tmle_spec <- tmle3_mopttx_blip_revere(
-  V = c("momedu", "floor", "asset_refrig"), type = "blip2",
-  learners = learner_list, maximize = TRUE, complex = FALSE,
+  V = c("momedu", "floor", "asset_refrig"), type = "blip1",
+  learners = learner_list, maximize = TRUE, complex = TRUE,
   realistic = FALSE
 )
 
+#Fit the TML estimator. From here, we can see
 fit <- tmle3(tmle_spec, data=washb_data, node_list, learner_list)
 fit
 
+#Which intervention is the most dominant? 
 table(tmle_spec$return_rule)
 ```
 
-* Consider realistic rules:
+Using the same formulation as before, we estimate the realistic optimal ITR 
+and the corresponding value of the realistic ITR:
 
 ```{r spec_init_WASH_simple_q3, eval=FALSE}
 ## Question 3:
