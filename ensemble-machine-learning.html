@@ -136,7 +136,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#important-links"><i class="fa fa-check"></i><b>0.1</b> Important links</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#important-links"><i class="fa fa-check"></i>Important links</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-this-workshop"><i class="fa fa-check"></i>About this workshop</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#outline"><i class="fa fa-check"></i>Outline</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-instructors"><i class="fa fa-check"></i>About the instructors</a><ul>
@@ -321,8 +321,8 @@ estimate of the data-generating distribution, or the relevant part of this
 distribution that is needed to evaluate the target parameter. For this initial
 estimation, we use the super learner <span class="citation">(Van der Laan, Polley, and Hubbard <a href="#ref-van2007super">2007</a>)</span>, an important step in
 creating a robust estimator.</p>
-<div id="super-learner" class="section level4">
-<h4><span class="header-section-number">3.2.0.1</span> Super Learner</h4>
+<div id="super-learner" class="section level4 unnumbered">
+<h4>Super Learner</h4>
 <ul>
 <li><p>Loss-function-based tool that uses V-fold cross-validation to obtain the best
 prediction of the relevant part of the likelihood that’s needed to evaluate
@@ -830,8 +830,8 @@ are ready to make the super learner.</p>
 )
 dt &lt;-<span class="st"> </span><span class="kw">delayed_learner_train</span>(sl, washb_task)
 <span class="kw">plot</span>(dt, <span class="dt">color =</span> <span class="ot">FALSE</span>, <span class="dt">height =</span> <span class="st">&quot;400px&quot;</span>, <span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</code></pre>
-<div id="htmlwidget-60c8f10ccffdb5897cd1" style="width:100%;height:400px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-60c8f10ccffdb5897cd1">{"x":{"nodes":{"id":["8adf9524-75d5-11e9-952d-42010a140131","8adf7c7e-75d5-11e9-952d-42010a140131","8adf2896-75d5-11e9-952d-42010a140131","8adf1068-75d5-11e9-952d-42010a140131","8ac1c9f4-75d5-11e9-952d-42010a140131","8ac1adb6-75d5-11e9-952d-42010a140131","8ac10a0a-75d5-11e9-952d-42010a140131","8ac14ad8-75d5-11e9-952d-42010a140131","8ac1675c-75d5-11e9-952d-42010a140131","8ac18228-75d5-11e9-952d-42010a140131","8adef498-75d5-11e9-952d-42010a140131","8ad8b93e-75d5-11e9-952d-42010a140131","8ad8a0ca-75d5-11e9-952d-42010a140131","8ad83d2e-75d5-11e9-952d-42010a140131","8ad858ae-75d5-11e9-952d-42010a140131","8ad8708c-75d5-11e9-952d-42010a140131","8ad8896e-75d5-11e9-952d-42010a140131","8ad9656e-75d5-11e9-952d-42010a140131","8ad94a02-75d5-11e9-952d-42010a140131","8ad8ea9e-75d5-11e9-952d-42010a140131","8ad90272-75d5-11e9-952d-42010a140131","8ad91b4a-75d5-11e9-952d-42010a140131","8ad932ce-75d5-11e9-952d-42010a140131","8ada0f82-75d5-11e9-952d-42010a140131","8ad9f574-75d5-11e9-952d-42010a140131","8ad994da-75d5-11e9-952d-42010a140131","8ad9ad08-75d5-11e9-952d-42010a140131","8ad9c504-75d5-11e9-952d-42010a140131","8ad9dd50-75d5-11e9-952d-42010a140131","8adab95a-75d5-11e9-952d-42010a140131","8ada9fec-75d5-11e9-952d-42010a140131","8ada3f5c-75d5-11e9-952d-42010a140131","8ada5852-75d5-11e9-952d-42010a140131","8ada701c-75d5-11e9-952d-42010a140131","8ada87d2-75d5-11e9-952d-42010a140131","8adb7246-75d5-11e9-952d-42010a140131","8adb5932-75d5-11e9-952d-42010a140131","8adaf870-75d5-11e9-952d-42010a140131","8adb109e-75d5-11e9-952d-42010a140131","8adb287c-75d5-11e9-952d-42010a140131","8adb41d6-75d5-11e9-952d-42010a140131","8adc1a2a-75d5-11e9-952d-42010a140131","8adc021a-75d5-11e9-952d-42010a140131","8adba0fe-75d5-11e9-952d-42010a140131","8adbb95e-75d5-11e9-952d-42010a140131","8adbd268-75d5-11e9-952d-42010a140131","8adbea46-75d5-11e9-952d-42010a140131","8adcc2ea-75d5-11e9-952d-42010a140131","8adca9c2-75d5-11e9-952d-42010a140131","8adc4946-75d5-11e9-952d-42010a140131","8adc6138-75d5-11e9-952d-42010a140131","8adc7aba-75d5-11e9-952d-42010a140131","8adc91e4-75d5-11e9-952d-42010a140131","8add71b8-75d5-11e9-952d-42010a140131","8add585e-75d5-11e9-952d-42010a140131","8adcf2ba-75d5-11e9-952d-42010a140131","8add0b9c-75d5-11e9-952d-42010a140131","8add2410-75d5-11e9-952d-42010a140131","8add3dec-75d5-11e9-952d-42010a140131","8ade2464-75d5-11e9-952d-42010a140131","8ade0a60-75d5-11e9-952d-42010a140131","8adda6f6-75d5-11e9-952d-42010a140131","8addc014-75d5-11e9-952d-42010a140131","8addd98c-75d5-11e9-952d-42010a140131","8addf296-75d5-11e9-952d-42010a140131","8adeda30-75d5-11e9-952d-42010a140131","8adebf46-75d5-11e9-952d-42010a140131","8ade5650-75d5-11e9-952d-42010a140131","8ade70fe-75d5-11e9-952d-42010a140131","8ade8dfa-75d5-11e9-952d-42010a140131","8adea722-75d5-11e9-952d-42010a140131","8adf4862-75d5-11e9-952d-42010a140131","8adf61ee-75d5-11e9-952d-42010a140131"],"label":["CV_","bundle","CV_Stack","bundle","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","bundle","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","chain","Lrnr_nnls"],"level":[1,2,5,6,7,8,9,9,9,9,7,8,9,10,10,10,10,8,9,10,10,10,10,8,9,10,10,10,10,8,9,10,10,10,10,8,9,10,10,10,10,8,9,10,10,10,10,8,9,10,10,10,10,8,9,10,10,10,10,8,9,10,10,10,10,8,9,10,10,10,10,4,3],"sequential":[true,true,true,true,true,true,false,false,false,false,true,true,true,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,false],"state":["waiting","waiting","waiting","waiting","waiting","waiting","ready","ready","ready","ready","waiting","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting"],"group":["none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none"]},"edges":{"from":["8ac10a0a-75d5-11e9-952d-42010a140131","8ac14ad8-75d5-11e9-952d-42010a140131","8ac1675c-75d5-11e9-952d-42010a140131","8ac18228-75d5-11e9-952d-42010a140131","8ac1adb6-75d5-11e9-952d-42010a140131","8ac1c9f4-75d5-11e9-952d-42010a140131","8ad83d2e-75d5-11e9-952d-42010a140131","8ad858ae-75d5-11e9-952d-42010a140131","8ad8708c-75d5-11e9-952d-42010a140131","8ad8896e-75d5-11e9-952d-42010a140131","8ad8a0ca-75d5-11e9-952d-42010a140131","8ad8b93e-75d5-11e9-952d-42010a140131","8ad8ea9e-75d5-11e9-952d-42010a140131","8ad90272-75d5-11e9-952d-42010a140131","8ad91b4a-75d5-11e9-952d-42010a140131","8ad932ce-75d5-11e9-952d-42010a140131","8ad94a02-75d5-11e9-952d-42010a140131","8ad9656e-75d5-11e9-952d-42010a140131","8ad994da-75d5-11e9-952d-42010a140131","8ad9ad08-75d5-11e9-952d-42010a140131","8ad9c504-75d5-11e9-952d-42010a140131","8ad9dd50-75d5-11e9-952d-42010a140131","8ad9f574-75d5-11e9-952d-42010a140131","8ada0f82-75d5-11e9-952d-42010a140131","8ada3f5c-75d5-11e9-952d-42010a140131","8ada5852-75d5-11e9-952d-42010a140131","8ada701c-75d5-11e9-952d-42010a140131","8ada87d2-75d5-11e9-952d-42010a140131","8ada9fec-75d5-11e9-952d-42010a140131","8adab95a-75d5-11e9-952d-42010a140131","8adaf870-75d5-11e9-952d-42010a140131","8adb109e-75d5-11e9-952d-42010a140131","8adb287c-75d5-11e9-952d-42010a140131","8adb41d6-75d5-11e9-952d-42010a140131","8adb5932-75d5-11e9-952d-42010a140131","8adb7246-75d5-11e9-952d-42010a140131","8adba0fe-75d5-11e9-952d-42010a140131","8adbb95e-75d5-11e9-952d-42010a140131","8adbd268-75d5-11e9-952d-42010a140131","8adbea46-75d5-11e9-952d-42010a140131","8adc021a-75d5-11e9-952d-42010a140131","8adc1a2a-75d5-11e9-952d-42010a140131","8adc4946-75d5-11e9-952d-42010a140131","8adc6138-75d5-11e9-952d-42010a140131","8adc7aba-75d5-11e9-952d-42010a140131","8adc91e4-75d5-11e9-952d-42010a140131","8adca9c2-75d5-11e9-952d-42010a140131","8adcc2ea-75d5-11e9-952d-42010a140131","8adcf2ba-75d5-11e9-952d-42010a140131","8add0b9c-75d5-11e9-952d-42010a140131","8add2410-75d5-11e9-952d-42010a140131","8add3dec-75d5-11e9-952d-42010a140131","8add585e-75d5-11e9-952d-42010a140131","8add71b8-75d5-11e9-952d-42010a140131","8adda6f6-75d5-11e9-952d-42010a140131","8addc014-75d5-11e9-952d-42010a140131","8addd98c-75d5-11e9-952d-42010a140131","8addf296-75d5-11e9-952d-42010a140131","8ade0a60-75d5-11e9-952d-42010a140131","8ade2464-75d5-11e9-952d-42010a140131","8ade5650-75d5-11e9-952d-42010a140131","8ade70fe-75d5-11e9-952d-42010a140131","8ade8dfa-75d5-11e9-952d-42010a140131","8adea722-75d5-11e9-952d-42010a140131","8adebf46-75d5-11e9-952d-42010a140131","8adeda30-75d5-11e9-952d-42010a140131","8adef498-75d5-11e9-952d-42010a140131","8adf1068-75d5-11e9-952d-42010a140131","8adf2896-75d5-11e9-952d-42010a140131","8adf2896-75d5-11e9-952d-42010a140131","8adf4862-75d5-11e9-952d-42010a140131","8adf4862-75d5-11e9-952d-42010a140131","8adf61ee-75d5-11e9-952d-42010a140131","8adf7c7e-75d5-11e9-952d-42010a140131"],"to":["8ac1adb6-75d5-11e9-952d-42010a140131","8ac1adb6-75d5-11e9-952d-42010a140131","8ac1adb6-75d5-11e9-952d-42010a140131","8ac1adb6-75d5-11e9-952d-42010a140131","8ac1c9f4-75d5-11e9-952d-42010a140131","8adf1068-75d5-11e9-952d-42010a140131","8ad8a0ca-75d5-11e9-952d-42010a140131","8ad8a0ca-75d5-11e9-952d-42010a140131","8ad8a0ca-75d5-11e9-952d-42010a140131","8ad8a0ca-75d5-11e9-952d-42010a140131","8ad8b93e-75d5-11e9-952d-42010a140131","8adef498-75d5-11e9-952d-42010a140131","8ad94a02-75d5-11e9-952d-42010a140131","8ad94a02-75d5-11e9-952d-42010a140131","8ad94a02-75d5-11e9-952d-42010a140131","8ad94a02-75d5-11e9-952d-42010a140131","8ad9656e-75d5-11e9-952d-42010a140131","8adef498-75d5-11e9-952d-42010a140131","8ad9f574-75d5-11e9-952d-42010a140131","8ad9f574-75d5-11e9-952d-42010a140131","8ad9f574-75d5-11e9-952d-42010a140131","8ad9f574-75d5-11e9-952d-42010a140131","8ada0f82-75d5-11e9-952d-42010a140131","8adef498-75d5-11e9-952d-42010a140131","8ada9fec-75d5-11e9-952d-42010a140131","8ada9fec-75d5-11e9-952d-42010a140131","8ada9fec-75d5-11e9-952d-42010a140131","8ada9fec-75d5-11e9-952d-42010a140131","8adab95a-75d5-11e9-952d-42010a140131","8adef498-75d5-11e9-952d-42010a140131","8adb5932-75d5-11e9-952d-42010a140131","8adb5932-75d5-11e9-952d-42010a140131","8adb5932-75d5-11e9-952d-42010a140131","8adb5932-75d5-11e9-952d-42010a140131","8adb7246-75d5-11e9-952d-42010a140131","8adef498-75d5-11e9-952d-42010a140131","8adc021a-75d5-11e9-952d-42010a140131","8adc021a-75d5-11e9-952d-42010a140131","8adc021a-75d5-11e9-952d-42010a140131","8adc021a-75d5-11e9-952d-42010a140131","8adc1a2a-75d5-11e9-952d-42010a140131","8adef498-75d5-11e9-952d-42010a140131","8adca9c2-75d5-11e9-952d-42010a140131","8adca9c2-75d5-11e9-952d-42010a140131","8adca9c2-75d5-11e9-952d-42010a140131","8adca9c2-75d5-11e9-952d-42010a140131","8adcc2ea-75d5-11e9-952d-42010a140131","8adef498-75d5-11e9-952d-42010a140131","8add585e-75d5-11e9-952d-42010a140131","8add585e-75d5-11e9-952d-42010a140131","8add585e-75d5-11e9-952d-42010a140131","8add585e-75d5-11e9-952d-42010a140131","8add71b8-75d5-11e9-952d-42010a140131","8adef498-75d5-11e9-952d-42010a140131","8ade0a60-75d5-11e9-952d-42010a140131","8ade0a60-75d5-11e9-952d-42010a140131","8ade0a60-75d5-11e9-952d-42010a140131","8ade0a60-75d5-11e9-952d-42010a140131","8ade2464-75d5-11e9-952d-42010a140131","8adef498-75d5-11e9-952d-42010a140131","8adebf46-75d5-11e9-952d-42010a140131","8adebf46-75d5-11e9-952d-42010a140131","8adebf46-75d5-11e9-952d-42010a140131","8adebf46-75d5-11e9-952d-42010a140131","8adeda30-75d5-11e9-952d-42010a140131","8adef498-75d5-11e9-952d-42010a140131","8adf1068-75d5-11e9-952d-42010a140131","8adf2896-75d5-11e9-952d-42010a140131","8adf7c7e-75d5-11e9-952d-42010a140131","8adf4862-75d5-11e9-952d-42010a140131","8adf7c7e-75d5-11e9-952d-42010a140131","8adf61ee-75d5-11e9-952d-42010a140131","8adf7c7e-75d5-11e9-952d-42010a140131","8adf9524-75d5-11e9-952d-42010a140131"],"label":["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":"to"},"layout":{"hierarchical":{"enabled":true,"levelSeparation":500,"nodeSpacing":200,"direction":"RL"}},"groups":{"useDefaultGroups":true,"none":{"color":{"border":"black","background":"white"}}}},"groups":["none"],"width":"100%","height":"400px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d170f19bd8ec8599419b" style="width:100%;height:400px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d170f19bd8ec8599419b">{"x":{"nodes":{"id":["19d55644-75d9-11e9-bd57-42010a1400bc","19d53c86-75d9-11e9-bd57-42010a1400bc","19d4e236-75d9-11e9-bd57-42010a1400bc","19d4c86e-75d9-11e9-bd57-42010a1400bc","19b61e14-75d9-11e9-bd57-42010a1400bc","19b5f150-75d9-11e9-bd57-42010a1400bc","19b572e8-75d9-11e9-bd57-42010a1400bc","19b5941c-75d9-11e9-bd57-42010a1400bc","19b5b032-75d9-11e9-bd57-42010a1400bc","19b5cc20-75d9-11e9-bd57-42010a1400bc","19d4ac9e-75d9-11e9-bd57-42010a1400bc","19ce239c-75d9-11e9-bd57-42010a1400bc","19ce075e-75d9-11e9-bd57-42010a1400bc","19cda0de-75d9-11e9-bd57-42010a1400bc","19cdbcf4-75d9-11e9-bd57-42010a1400bc","19cdd720-75d9-11e9-bd57-42010a1400bc","19cdef58-75d9-11e9-bd57-42010a1400bc","19ced3aa-75d9-11e9-bd57-42010a1400bc","19ceb82a-75d9-11e9-bd57-42010a1400bc","19ce55e2-75d9-11e9-bd57-42010a1400bc","19ce6f5a-75d9-11e9-bd57-42010a1400bc","19ce87f6-75d9-11e9-bd57-42010a1400bc","19cea092-75d9-11e9-bd57-42010a1400bc","19cf8976-75d9-11e9-bd57-42010a1400bc","19cf6d60-75d9-11e9-bd57-42010a1400bc","19cf07c6-75d9-11e9-bd57-42010a1400bc","19cf2026-75d9-11e9-bd57-42010a1400bc","19cf393a-75d9-11e9-bd57-42010a1400bc","19cf51ae-75d9-11e9-bd57-42010a1400bc","19d0406e-75d9-11e9-bd57-42010a1400bc","19d02408-75d9-11e9-bd57-42010a1400bc","19cfbef0-75d9-11e9-bd57-42010a1400bc","19cfd994-75d9-11e9-bd57-42010a1400bc","19cff258-75d9-11e9-bd57-42010a1400bc","19d00a7c-75d9-11e9-bd57-42010a1400bc","19d0f356-75d9-11e9-bd57-42010a1400bc","19d0da56-75d9-11e9-bd57-42010a1400bc","19d073ae-75d9-11e9-bd57-42010a1400bc","19d08c90-75d9-11e9-bd57-42010a1400bc","19d0a4c8-75d9-11e9-bd57-42010a1400bc","19d0c16a-75d9-11e9-bd57-42010a1400bc","19d1b3c2-75d9-11e9-bd57-42010a1400bc","19d18bb8-75d9-11e9-bd57-42010a1400bc","19d1268c-75d9-11e9-bd57-42010a1400bc","19d13f00-75d9-11e9-bd57-42010a1400bc","19d15742-75d9-11e9-bd57-42010a1400bc","19d17092-75d9-11e9-bd57-42010a1400bc","19d265ec-75d9-11e9-bd57-42010a1400bc","19d24c74-75d9-11e9-bd57-42010a1400bc","19d1e766-75d9-11e9-bd57-42010a1400bc","19d20052-75d9-11e9-bd57-42010a1400bc","19d21be6-75d9-11e9-bd57-42010a1400bc","19d2348c-75d9-11e9-bd57-42010a1400bc","19d3194c-75d9-11e9-bd57-42010a1400bc","19d30010-75d9-11e9-bd57-42010a1400bc","19d29972-75d9-11e9-bd57-42010a1400bc","19d2b3c6-75d9-11e9-bd57-42010a1400bc","19d2cc6c-75d9-11e9-bd57-42010a1400bc","19d2e77e-75d9-11e9-bd57-42010a1400bc","19d3d454-75d9-11e9-bd57-42010a1400bc","19d3b974-75d9-11e9-bd57-42010a1400bc","19d35538-75d9-11e9-bd57-42010a1400bc","19d36e92-75d9-11e9-bd57-42010a1400bc","19d387ce-75d9-11e9-bd57-42010a1400bc","19d3a146-75d9-11e9-bd57-42010a1400bc","19d49204-75d9-11e9-bd57-42010a1400bc","19d47580-75d9-11e9-bd57-42010a1400bc","19d40da2-75d9-11e9-bd57-42010a1400bc","19d42896-75d9-11e9-bd57-42010a1400bc","19d4443e-75d9-11e9-bd57-42010a1400bc","19d45d48-75d9-11e9-bd57-42010a1400bc","19d504fa-75d9-11e9-bd57-42010a1400bc","19d520a2-75d9-11e9-bd57-42010a1400bc"],"label":["CV_","bundle","CV_Stack","bundle","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","bundle","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_ranger_500_TRUE","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","chain","Lrnr_nnls"],"level":[1,2,5,6,7,8,9,9,9,9,7,8,9,10,10,10,10,8,9,10,10,10,10,8,9,10,10,10,10,8,9,10,10,10,10,8,9,10,10,10,10,8,9,10,10,10,10,8,9,10,10,10,10,8,9,10,10,10,10,8,9,10,10,10,10,8,9,10,10,10,10,4,3],"sequential":[true,true,true,true,true,true,false,false,false,false,true,true,true,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,true,false,false,false,false,true,false],"state":["waiting","waiting","waiting","waiting","waiting","waiting","ready","ready","ready","ready","waiting","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting","ready","ready","ready","ready","waiting","waiting"],"group":["none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none"]},"edges":{"from":["19b572e8-75d9-11e9-bd57-42010a1400bc","19b5941c-75d9-11e9-bd57-42010a1400bc","19b5b032-75d9-11e9-bd57-42010a1400bc","19b5cc20-75d9-11e9-bd57-42010a1400bc","19b5f150-75d9-11e9-bd57-42010a1400bc","19b61e14-75d9-11e9-bd57-42010a1400bc","19cda0de-75d9-11e9-bd57-42010a1400bc","19cdbcf4-75d9-11e9-bd57-42010a1400bc","19cdd720-75d9-11e9-bd57-42010a1400bc","19cdef58-75d9-11e9-bd57-42010a1400bc","19ce075e-75d9-11e9-bd57-42010a1400bc","19ce239c-75d9-11e9-bd57-42010a1400bc","19ce55e2-75d9-11e9-bd57-42010a1400bc","19ce6f5a-75d9-11e9-bd57-42010a1400bc","19ce87f6-75d9-11e9-bd57-42010a1400bc","19cea092-75d9-11e9-bd57-42010a1400bc","19ceb82a-75d9-11e9-bd57-42010a1400bc","19ced3aa-75d9-11e9-bd57-42010a1400bc","19cf07c6-75d9-11e9-bd57-42010a1400bc","19cf2026-75d9-11e9-bd57-42010a1400bc","19cf393a-75d9-11e9-bd57-42010a1400bc","19cf51ae-75d9-11e9-bd57-42010a1400bc","19cf6d60-75d9-11e9-bd57-42010a1400bc","19cf8976-75d9-11e9-bd57-42010a1400bc","19cfbef0-75d9-11e9-bd57-42010a1400bc","19cfd994-75d9-11e9-bd57-42010a1400bc","19cff258-75d9-11e9-bd57-42010a1400bc","19d00a7c-75d9-11e9-bd57-42010a1400bc","19d02408-75d9-11e9-bd57-42010a1400bc","19d0406e-75d9-11e9-bd57-42010a1400bc","19d073ae-75d9-11e9-bd57-42010a1400bc","19d08c90-75d9-11e9-bd57-42010a1400bc","19d0a4c8-75d9-11e9-bd57-42010a1400bc","19d0c16a-75d9-11e9-bd57-42010a1400bc","19d0da56-75d9-11e9-bd57-42010a1400bc","19d0f356-75d9-11e9-bd57-42010a1400bc","19d1268c-75d9-11e9-bd57-42010a1400bc","19d13f00-75d9-11e9-bd57-42010a1400bc","19d15742-75d9-11e9-bd57-42010a1400bc","19d17092-75d9-11e9-bd57-42010a1400bc","19d18bb8-75d9-11e9-bd57-42010a1400bc","19d1b3c2-75d9-11e9-bd57-42010a1400bc","19d1e766-75d9-11e9-bd57-42010a1400bc","19d20052-75d9-11e9-bd57-42010a1400bc","19d21be6-75d9-11e9-bd57-42010a1400bc","19d2348c-75d9-11e9-bd57-42010a1400bc","19d24c74-75d9-11e9-bd57-42010a1400bc","19d265ec-75d9-11e9-bd57-42010a1400bc","19d29972-75d9-11e9-bd57-42010a1400bc","19d2b3c6-75d9-11e9-bd57-42010a1400bc","19d2cc6c-75d9-11e9-bd57-42010a1400bc","19d2e77e-75d9-11e9-bd57-42010a1400bc","19d30010-75d9-11e9-bd57-42010a1400bc","19d3194c-75d9-11e9-bd57-42010a1400bc","19d35538-75d9-11e9-bd57-42010a1400bc","19d36e92-75d9-11e9-bd57-42010a1400bc","19d387ce-75d9-11e9-bd57-42010a1400bc","19d3a146-75d9-11e9-bd57-42010a1400bc","19d3b974-75d9-11e9-bd57-42010a1400bc","19d3d454-75d9-11e9-bd57-42010a1400bc","19d40da2-75d9-11e9-bd57-42010a1400bc","19d42896-75d9-11e9-bd57-42010a1400bc","19d4443e-75d9-11e9-bd57-42010a1400bc","19d45d48-75d9-11e9-bd57-42010a1400bc","19d47580-75d9-11e9-bd57-42010a1400bc","19d49204-75d9-11e9-bd57-42010a1400bc","19d4ac9e-75d9-11e9-bd57-42010a1400bc","19d4c86e-75d9-11e9-bd57-42010a1400bc","19d4e236-75d9-11e9-bd57-42010a1400bc","19d4e236-75d9-11e9-bd57-42010a1400bc","19d504fa-75d9-11e9-bd57-42010a1400bc","19d504fa-75d9-11e9-bd57-42010a1400bc","19d520a2-75d9-11e9-bd57-42010a1400bc","19d53c86-75d9-11e9-bd57-42010a1400bc"],"to":["19b5f150-75d9-11e9-bd57-42010a1400bc","19b5f150-75d9-11e9-bd57-42010a1400bc","19b5f150-75d9-11e9-bd57-42010a1400bc","19b5f150-75d9-11e9-bd57-42010a1400bc","19b61e14-75d9-11e9-bd57-42010a1400bc","19d4c86e-75d9-11e9-bd57-42010a1400bc","19ce075e-75d9-11e9-bd57-42010a1400bc","19ce075e-75d9-11e9-bd57-42010a1400bc","19ce075e-75d9-11e9-bd57-42010a1400bc","19ce075e-75d9-11e9-bd57-42010a1400bc","19ce239c-75d9-11e9-bd57-42010a1400bc","19d4ac9e-75d9-11e9-bd57-42010a1400bc","19ceb82a-75d9-11e9-bd57-42010a1400bc","19ceb82a-75d9-11e9-bd57-42010a1400bc","19ceb82a-75d9-11e9-bd57-42010a1400bc","19ceb82a-75d9-11e9-bd57-42010a1400bc","19ced3aa-75d9-11e9-bd57-42010a1400bc","19d4ac9e-75d9-11e9-bd57-42010a1400bc","19cf6d60-75d9-11e9-bd57-42010a1400bc","19cf6d60-75d9-11e9-bd57-42010a1400bc","19cf6d60-75d9-11e9-bd57-42010a1400bc","19cf6d60-75d9-11e9-bd57-42010a1400bc","19cf8976-75d9-11e9-bd57-42010a1400bc","19d4ac9e-75d9-11e9-bd57-42010a1400bc","19d02408-75d9-11e9-bd57-42010a1400bc","19d02408-75d9-11e9-bd57-42010a1400bc","19d02408-75d9-11e9-bd57-42010a1400bc","19d02408-75d9-11e9-bd57-42010a1400bc","19d0406e-75d9-11e9-bd57-42010a1400bc","19d4ac9e-75d9-11e9-bd57-42010a1400bc","19d0da56-75d9-11e9-bd57-42010a1400bc","19d0da56-75d9-11e9-bd57-42010a1400bc","19d0da56-75d9-11e9-bd57-42010a1400bc","19d0da56-75d9-11e9-bd57-42010a1400bc","19d0f356-75d9-11e9-bd57-42010a1400bc","19d4ac9e-75d9-11e9-bd57-42010a1400bc","19d18bb8-75d9-11e9-bd57-42010a1400bc","19d18bb8-75d9-11e9-bd57-42010a1400bc","19d18bb8-75d9-11e9-bd57-42010a1400bc","19d18bb8-75d9-11e9-bd57-42010a1400bc","19d1b3c2-75d9-11e9-bd57-42010a1400bc","19d4ac9e-75d9-11e9-bd57-42010a1400bc","19d24c74-75d9-11e9-bd57-42010a1400bc","19d24c74-75d9-11e9-bd57-42010a1400bc","19d24c74-75d9-11e9-bd57-42010a1400bc","19d24c74-75d9-11e9-bd57-42010a1400bc","19d265ec-75d9-11e9-bd57-42010a1400bc","19d4ac9e-75d9-11e9-bd57-42010a1400bc","19d30010-75d9-11e9-bd57-42010a1400bc","19d30010-75d9-11e9-bd57-42010a1400bc","19d30010-75d9-11e9-bd57-42010a1400bc","19d30010-75d9-11e9-bd57-42010a1400bc","19d3194c-75d9-11e9-bd57-42010a1400bc","19d4ac9e-75d9-11e9-bd57-42010a1400bc","19d3b974-75d9-11e9-bd57-42010a1400bc","19d3b974-75d9-11e9-bd57-42010a1400bc","19d3b974-75d9-11e9-bd57-42010a1400bc","19d3b974-75d9-11e9-bd57-42010a1400bc","19d3d454-75d9-11e9-bd57-42010a1400bc","19d4ac9e-75d9-11e9-bd57-42010a1400bc","19d47580-75d9-11e9-bd57-42010a1400bc","19d47580-75d9-11e9-bd57-42010a1400bc","19d47580-75d9-11e9-bd57-42010a1400bc","19d47580-75d9-11e9-bd57-42010a1400bc","19d49204-75d9-11e9-bd57-42010a1400bc","19d4ac9e-75d9-11e9-bd57-42010a1400bc","19d4c86e-75d9-11e9-bd57-42010a1400bc","19d4e236-75d9-11e9-bd57-42010a1400bc","19d53c86-75d9-11e9-bd57-42010a1400bc","19d504fa-75d9-11e9-bd57-42010a1400bc","19d53c86-75d9-11e9-bd57-42010a1400bc","19d520a2-75d9-11e9-bd57-42010a1400bc","19d53c86-75d9-11e9-bd57-42010a1400bc","19d55644-75d9-11e9-bd57-42010a1400bc"],"label":["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":"to"},"layout":{"hierarchical":{"enabled":true,"levelSeparation":500,"nodeSpacing":200,"direction":"RL"}},"groups":{"useDefaultGroups":true,"none":{"color":{"border":"black","background":"white"}}}},"groups":["none"],"width":"100%","height":"400px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
 <p><strong>3. Train the super learner on the machine learning task</strong></p>
 <p>The super learner algorithm fits a metalearner on the validation-set
 predictions. This procedure is referred to as the <em>continuous</em> super learner.
@@ -845,7 +845,7 @@ with the lowest cross-validated risk.</p>
 values, and we can also obtain a summary of the results.</p>
 <pre class="sourceCode r"><code class="sourceCode r">sl_preds &lt;-<span class="st"> </span>sl_fit<span class="op">$</span><span class="kw">predict</span>()
 <span class="kw">head</span>(sl_preds)</code></pre>
-<pre><code>[1] -0.5146088 -0.9053462 -0.7725594 -0.8024186 -0.6328192 -0.7027786</code></pre>
+<pre><code>[1] -0.4746435 -0.9089062 -0.7586733 -0.8120933 -0.6437274 -0.7167518</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">sl_fit<span class="op">$</span><span class="kw">print</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">fixed_thead =</span> T) <span class="op">%&gt;%</span>
@@ -858,23 +858,23 @@ List of 4
  $ : chr &quot;Lrnr_glmnet_NULL_deviance_10_1_100_TRUE&quot;
 [1] &quot;Lrnr_nnls&quot;
                                      lrnrs   weights
-1:                           Lrnr_glm_TRUE 0.1448358
+1:                           Lrnr_glm_TRUE 0.1500231
 2:                               Lrnr_mean 0.0000000
-3:                    Lrnr_ranger_500_TRUE 0.5108300
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.3518777
+3:                    Lrnr_ranger_500_TRUE 0.5233740
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE 0.3340478
 [1] &quot;Cross-validated risk (MSE, squared error loss):&quot;
                                    learner coefficients mean_risk    SE_risk
 1:                           Lrnr_glm_TRUE           NA  1.018612 0.02380402
 2:                               Lrnr_mean           NA  1.065282 0.02502664
-3:                    Lrnr_ranger_500_TRUE           NA  1.011585 0.02343514
-4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.012536 0.02359981
-5:                            SuperLearner           NA  1.006306 0.02340780
+3:                    Lrnr_ranger_500_TRUE           NA  1.011193 0.02342072
+4: Lrnr_glmnet_NULL_deviance_10_1_100_TRUE           NA  1.012743 0.02360276
+5:                            SuperLearner           NA  1.006135 0.02339829
       fold_SD fold_min_risk fold_max_risk
 1: 0.07799191     0.8956048      1.134940
 2: 0.09191791     0.9264292      1.196647
-3: 0.08429979     0.8742316      1.147253
-4: 0.07937345     0.8826677      1.130114
-5: 0.08162705     0.8728312      1.133795</code></pre>
+3: 0.08512468     0.8708621      1.150575
+4: 0.07999999     0.8826979      1.130114
+5: 0.08204317     0.8708051      1.135578</code></pre>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -957,19 +957,19 @@ Lrnr_ranger_500_TRUE
 NA
 </td>
 <td style="text-align:right;">
-1.012
+1.011
 </td>
 <td style="text-align:right;">
 0.023
 </td>
 <td style="text-align:right;">
-0.084
+0.085
 </td>
 <td style="text-align:right;">
-0.874
+0.871
 </td>
 <td style="text-align:right;">
-1.147
+1.151
 </td>
 </tr>
 <tr>
@@ -986,7 +986,7 @@ NA
 0.024
 </td>
 <td style="text-align:right;">
-0.079
+0.080
 </td>
 <td style="text-align:right;">
 0.883
@@ -1012,10 +1012,10 @@ NA
 0.082
 </td>
 <td style="text-align:right;">
-0.873
+0.871
 </td>
 <td style="text-align:right;">
-1.134
+1.136
 </td>
 </tr>
 </tbody>
@@ -1062,8 +1062,8 @@ use them as base learners in our super learner.</p>
 <pre class="sourceCode r"><code class="sourceCode r">fancy_stack &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Stack, cor_pipeline, new_stack)
 dt_new &lt;-<span class="st"> </span><span class="kw">delayed_learner_train</span>(fancy_stack, washb_task)
 <span class="kw">plot</span>(dt_new, <span class="dt">color =</span> <span class="ot">FALSE</span>, <span class="dt">height =</span> <span class="st">&quot;400px&quot;</span>, <span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</code></pre>
-<div id="htmlwidget-673970525e0fc3722d1e" style="width:100%;height:400px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-673970525e0fc3722d1e">{"x":{"nodes":{"id":["a8890d8a-75d5-11e9-952d-42010a140131","a888f3ae-75d5-11e9-952d-42010a140131","a88803d6-75d5-11e9-952d-42010a140131","a887ec0c-75d5-11e9-952d-42010a140131","a886287c-75d5-11e9-952d-42010a140131","a887b494-75d5-11e9-952d-42010a140131","a8865d10-75d5-11e9-952d-42010a140131","a88796ee-75d5-11e9-952d-42010a140131","a88692a8-75d5-11e9-952d-42010a140131","a886cab6-75d5-11e9-952d-42010a140131","a886f81a-75d5-11e9-952d-42010a140131","a8872cc2-75d5-11e9-952d-42010a140131","a8875dbe-75d5-11e9-952d-42010a140131","a8877c36-75d5-11e9-952d-42010a140131","a888d996-75d5-11e9-952d-42010a140131","a888bcb8-75d5-11e9-952d-42010a140131","a88822d0-75d5-11e9-952d-42010a140131","a8883e6e-75d5-11e9-952d-42010a140131","a8885750-75d5-11e9-952d-42010a140131","a888712c-75d5-11e9-952d-42010a140131","a8888ba8-75d5-11e9-952d-42010a140131","a888a37c-75d5-11e9-952d-42010a140131"],"label":["Stack","bundle","Pipeline(Lrnr_pkg_SuperLearner_screener_screen.corP->Stack)","bundle","Lrnr_pkg_SuperLearner_screener_screen.corP","Stack","chain","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Lrnr_ranger_100_TRUE","Lrnr_pkg_SuperLearner_SL.gam","Lrnr_pkg_SuperLearner_SL.bayesglm","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Lrnr_ranger_100_TRUE","Lrnr_pkg_SuperLearner_SL.gam","Lrnr_pkg_SuperLearner_SL.bayesglm"],"level":[1,2,3,4,9,5,8,6,7,7,7,7,7,7,3,4,5,5,5,5,5,5],"sequential":[true,true,true,true,false,true,true,true,false,false,false,false,false,false,true,true,false,false,false,false,false,false],"state":["waiting","waiting","waiting","waiting","ready","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","ready","ready","ready","ready","ready","ready"],"group":["none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none"]},"edges":{"from":["a886287c-75d5-11e9-952d-42010a140131","a886287c-75d5-11e9-952d-42010a140131","a8865d10-75d5-11e9-952d-42010a140131","a8865d10-75d5-11e9-952d-42010a140131","a88692a8-75d5-11e9-952d-42010a140131","a8865d10-75d5-11e9-952d-42010a140131","a886cab6-75d5-11e9-952d-42010a140131","a8865d10-75d5-11e9-952d-42010a140131","a886f81a-75d5-11e9-952d-42010a140131","a8865d10-75d5-11e9-952d-42010a140131","a8872cc2-75d5-11e9-952d-42010a140131","a8865d10-75d5-11e9-952d-42010a140131","a8875dbe-75d5-11e9-952d-42010a140131","a8865d10-75d5-11e9-952d-42010a140131","a8877c36-75d5-11e9-952d-42010a140131","a88796ee-75d5-11e9-952d-42010a140131","a887b494-75d5-11e9-952d-42010a140131","a887ec0c-75d5-11e9-952d-42010a140131","a88803d6-75d5-11e9-952d-42010a140131","a88822d0-75d5-11e9-952d-42010a140131","a8883e6e-75d5-11e9-952d-42010a140131","a8885750-75d5-11e9-952d-42010a140131","a888712c-75d5-11e9-952d-42010a140131","a8888ba8-75d5-11e9-952d-42010a140131","a888a37c-75d5-11e9-952d-42010a140131","a888bcb8-75d5-11e9-952d-42010a140131","a888d996-75d5-11e9-952d-42010a140131","a888f3ae-75d5-11e9-952d-42010a140131"],"to":["a887ec0c-75d5-11e9-952d-42010a140131","a8865d10-75d5-11e9-952d-42010a140131","a887b494-75d5-11e9-952d-42010a140131","a88692a8-75d5-11e9-952d-42010a140131","a88796ee-75d5-11e9-952d-42010a140131","a886cab6-75d5-11e9-952d-42010a140131","a88796ee-75d5-11e9-952d-42010a140131","a886f81a-75d5-11e9-952d-42010a140131","a88796ee-75d5-11e9-952d-42010a140131","a8872cc2-75d5-11e9-952d-42010a140131","a88796ee-75d5-11e9-952d-42010a140131","a8875dbe-75d5-11e9-952d-42010a140131","a88796ee-75d5-11e9-952d-42010a140131","a8877c36-75d5-11e9-952d-42010a140131","a88796ee-75d5-11e9-952d-42010a140131","a887b494-75d5-11e9-952d-42010a140131","a887ec0c-75d5-11e9-952d-42010a140131","a88803d6-75d5-11e9-952d-42010a140131","a888f3ae-75d5-11e9-952d-42010a140131","a888bcb8-75d5-11e9-952d-42010a140131","a888bcb8-75d5-11e9-952d-42010a140131","a888bcb8-75d5-11e9-952d-42010a140131","a888bcb8-75d5-11e9-952d-42010a140131","a888bcb8-75d5-11e9-952d-42010a140131","a888bcb8-75d5-11e9-952d-42010a140131","a888d996-75d5-11e9-952d-42010a140131","a888f3ae-75d5-11e9-952d-42010a140131","a8890d8a-75d5-11e9-952d-42010a140131"],"label":["","","","","","","","","","","","","","","","","","","","","","","","","","","",""]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":"to"},"layout":{"hierarchical":{"enabled":true,"levelSeparation":500,"nodeSpacing":200,"direction":"RL"}},"groups":{"useDefaultGroups":true,"none":{"color":{"border":"black","background":"white"}}}},"groups":["none"],"width":"100%","height":"400px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b7edd51d27d5e00a7116" style="width:100%;height:400px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b7edd51d27d5e00a7116">{"x":{"nodes":{"id":["37e83c0a-75d9-11e9-bd57-42010a1400bc","37e823d2-75d9-11e9-bd57-42010a1400bc","37e6f6ec-75d9-11e9-bd57-42010a1400bc","37e6dc2a-75d9-11e9-bd57-42010a1400bc","37e4f3e2-75d9-11e9-bd57-42010a1400bc","37e68f04-75d9-11e9-bd57-42010a1400bc","37e5238a-75d9-11e9-bd57-42010a1400bc","37e66204-75d9-11e9-bd57-42010a1400bc","37e556ca-75d9-11e9-bd57-42010a1400bc","37e58474-75d9-11e9-bd57-42010a1400bc","37e5b1c4-75d9-11e9-bd57-42010a1400bc","37e5dd5c-75d9-11e9-bd57-42010a1400bc","37e60994-75d9-11e9-bd57-42010a1400bc","37e63658-75d9-11e9-bd57-42010a1400bc","37e80870-75d9-11e9-bd57-42010a1400bc","37e7eed0-75d9-11e9-bd57-42010a1400bc","37e71a50-75d9-11e9-bd57-42010a1400bc","37e7403e-75d9-11e9-bd57-42010a1400bc","37e765a0-75d9-11e9-bd57-42010a1400bc","37e78bde-75d9-11e9-bd57-42010a1400bc","37e7b104-75d9-11e9-bd57-42010a1400bc","37e7d580-75d9-11e9-bd57-42010a1400bc"],"label":["Stack","bundle","Pipeline(Lrnr_pkg_SuperLearner_screener_screen.corP->Stack)","bundle","Lrnr_pkg_SuperLearner_screener_screen.corP","Stack","chain","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Lrnr_ranger_100_TRUE","Lrnr_pkg_SuperLearner_SL.gam","Lrnr_pkg_SuperLearner_SL.bayesglm","Stack","bundle","Lrnr_glm_TRUE","Lrnr_mean","Lrnr_glmnet_NULL_deviance_10_1_100_TRUE","Lrnr_ranger_100_TRUE","Lrnr_pkg_SuperLearner_SL.gam","Lrnr_pkg_SuperLearner_SL.bayesglm"],"level":[1,2,3,4,9,5,8,6,7,7,7,7,7,7,3,4,5,5,5,5,5,5],"sequential":[true,true,true,true,false,true,true,true,false,false,false,false,false,false,true,true,false,false,false,false,false,false],"state":["waiting","waiting","waiting","waiting","ready","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","waiting","ready","ready","ready","ready","ready","ready"],"group":["none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none"]},"edges":{"from":["37e4f3e2-75d9-11e9-bd57-42010a1400bc","37e4f3e2-75d9-11e9-bd57-42010a1400bc","37e5238a-75d9-11e9-bd57-42010a1400bc","37e5238a-75d9-11e9-bd57-42010a1400bc","37e556ca-75d9-11e9-bd57-42010a1400bc","37e5238a-75d9-11e9-bd57-42010a1400bc","37e58474-75d9-11e9-bd57-42010a1400bc","37e5238a-75d9-11e9-bd57-42010a1400bc","37e5b1c4-75d9-11e9-bd57-42010a1400bc","37e5238a-75d9-11e9-bd57-42010a1400bc","37e5dd5c-75d9-11e9-bd57-42010a1400bc","37e5238a-75d9-11e9-bd57-42010a1400bc","37e60994-75d9-11e9-bd57-42010a1400bc","37e5238a-75d9-11e9-bd57-42010a1400bc","37e63658-75d9-11e9-bd57-42010a1400bc","37e66204-75d9-11e9-bd57-42010a1400bc","37e68f04-75d9-11e9-bd57-42010a1400bc","37e6dc2a-75d9-11e9-bd57-42010a1400bc","37e6f6ec-75d9-11e9-bd57-42010a1400bc","37e71a50-75d9-11e9-bd57-42010a1400bc","37e7403e-75d9-11e9-bd57-42010a1400bc","37e765a0-75d9-11e9-bd57-42010a1400bc","37e78bde-75d9-11e9-bd57-42010a1400bc","37e7b104-75d9-11e9-bd57-42010a1400bc","37e7d580-75d9-11e9-bd57-42010a1400bc","37e7eed0-75d9-11e9-bd57-42010a1400bc","37e80870-75d9-11e9-bd57-42010a1400bc","37e823d2-75d9-11e9-bd57-42010a1400bc"],"to":["37e6dc2a-75d9-11e9-bd57-42010a1400bc","37e5238a-75d9-11e9-bd57-42010a1400bc","37e68f04-75d9-11e9-bd57-42010a1400bc","37e556ca-75d9-11e9-bd57-42010a1400bc","37e66204-75d9-11e9-bd57-42010a1400bc","37e58474-75d9-11e9-bd57-42010a1400bc","37e66204-75d9-11e9-bd57-42010a1400bc","37e5b1c4-75d9-11e9-bd57-42010a1400bc","37e66204-75d9-11e9-bd57-42010a1400bc","37e5dd5c-75d9-11e9-bd57-42010a1400bc","37e66204-75d9-11e9-bd57-42010a1400bc","37e60994-75d9-11e9-bd57-42010a1400bc","37e66204-75d9-11e9-bd57-42010a1400bc","37e63658-75d9-11e9-bd57-42010a1400bc","37e66204-75d9-11e9-bd57-42010a1400bc","37e68f04-75d9-11e9-bd57-42010a1400bc","37e6dc2a-75d9-11e9-bd57-42010a1400bc","37e6f6ec-75d9-11e9-bd57-42010a1400bc","37e823d2-75d9-11e9-bd57-42010a1400bc","37e7eed0-75d9-11e9-bd57-42010a1400bc","37e7eed0-75d9-11e9-bd57-42010a1400bc","37e7eed0-75d9-11e9-bd57-42010a1400bc","37e7eed0-75d9-11e9-bd57-42010a1400bc","37e7eed0-75d9-11e9-bd57-42010a1400bc","37e7eed0-75d9-11e9-bd57-42010a1400bc","37e80870-75d9-11e9-bd57-42010a1400bc","37e823d2-75d9-11e9-bd57-42010a1400bc","37e83c0a-75d9-11e9-bd57-42010a1400bc"],"label":["","","","","","","","","","","","","","","","","","","","","","","","","","","",""]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":"to"},"layout":{"hierarchical":{"enabled":true,"levelSeparation":500,"nodeSpacing":200,"direction":"RL"}},"groups":{"useDefaultGroups":true,"none":{"color":{"border":"black","background":"white"}}}},"groups":["none"],"width":"100%","height":"400px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
 <p>Now we can Super Learn with this fancy base learner stack.</p>
 <pre class="sourceCode r"><code class="sourceCode r">sl_fancy &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="kw">new</span>(<span class="dt">learners =</span> fancy_stack, <span class="dt">metalearner =</span> metalearner)
 sl_fit_fancy&lt;-<span class="st"> </span>sl_fancy<span class="op">$</span><span class="kw">train</span>(washb_task)</code></pre>
@@ -1218,14 +1218,14 @@ List of 2
 7:                                                       Stack_Lrnr_glmnet_NULL_deviance_10_1_100_TRUE
 8:                                                                          Stack_Lrnr_ranger_100_TRUE
       weights
-1: 0.19695440
+1: 0.18979360
 2: 0.00000000
 3: 0.00000000
-4: 0.19261461
-5: 0.04731396
+4: 0.19509551
+5: 0.03288693
 6: 0.00000000
-7: 0.39977637
-8: 0.16847907
+7: 0.26937797
+8: 0.31775960
 [1] &quot;Cross-validated risk (MSE, squared error loss):&quot;
                                                                                                learner
 1:                           Pipeline(Lrnr_pkg_SuperLearner_screener_screen.corP-&gt;Stack)_Lrnr_glm_TRUE
@@ -1240,13 +1240,13 @@ List of 2
    coefficients mean_risk    SE_risk    fold_SD fold_min_risk fold_max_risk
 1:           NA  1.015128 0.02363317 0.07629401     0.8927540      1.131594
 2:           NA  1.065282 0.02502664 0.09191791     0.9264292      1.196647
-3:           NA  1.012328 0.02358890 0.07890271     0.8823818      1.130815
-4:           NA  1.023953 0.02364356 0.08390490     0.8861578      1.178446
+3:           NA  1.013034 0.02360444 0.07918912     0.8822292      1.130815
+4:           NA  1.019335 0.02351397 0.07901108     0.8732479      1.149217
 5:           NA  1.018612 0.02380402 0.07799191     0.8956048      1.134940
 6:           NA  1.065282 0.02502664 0.09191791     0.9264292      1.196647
-7:           NA  1.012482 0.02360862 0.07910908     0.8831420      1.130114
-8:           NA  1.023694 0.02378396 0.08847059     0.8824593      1.183603
-9:           NA  1.008390 0.02349268 0.08075839     0.8759538      1.140295</code></pre>
+7:           NA  1.012616 0.02359970 0.07977791     0.8826677      1.132860
+8:           NA  1.015160 0.02347836 0.08949932     0.8663970      1.152726
+9:           NA  1.005366 0.02336126 0.08175685     0.8672323      1.131977</code></pre>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -1329,7 +1329,7 @@ Pipeline(Lrnr_pkg_SuperLearner_screener_screen.corP-&gt;Stack)_Lrnr_glmnet_NULL_
 NA
 </td>
 <td style="text-align:right;">
-1.012
+1.013
 </td>
 <td style="text-align:right;">
 0.024
@@ -1352,19 +1352,19 @@ Pipeline(Lrnr_pkg_SuperLearner_screener_screen.corP-&gt;Stack)_Lrnr_ranger_100_T
 NA
 </td>
 <td style="text-align:right;">
-1.024
+1.019
 </td>
 <td style="text-align:right;">
 0.024
 </td>
 <td style="text-align:right;">
-0.084
+0.079
 </td>
 <td style="text-align:right;">
-0.886
+0.873
 </td>
 <td style="text-align:right;">
-1.178
+1.149
 </td>
 </tr>
 <tr>
@@ -1421,19 +1421,19 @@ Stack_Lrnr_glmnet_NULL_deviance_10_1_100_TRUE
 NA
 </td>
 <td style="text-align:right;">
-1.012
+1.013
 </td>
 <td style="text-align:right;">
 0.024
 </td>
 <td style="text-align:right;">
-0.079
+0.080
 </td>
 <td style="text-align:right;">
 0.883
 </td>
 <td style="text-align:right;">
-1.130
+1.133
 </td>
 </tr>
 <tr>
@@ -1444,19 +1444,19 @@ Stack_Lrnr_ranger_100_TRUE
 NA
 </td>
 <td style="text-align:right;">
-1.024
+1.015
 </td>
 <td style="text-align:right;">
-0.024
+0.023
 </td>
 <td style="text-align:right;">
-0.088
+0.089
 </td>
 <td style="text-align:right;">
-0.882
+0.866
 </td>
 <td style="text-align:right;">
-1.184
+1.153
 </td>
 </tr>
 <tr>
@@ -1467,19 +1467,19 @@ SuperLearner
 NA
 </td>
 <td style="text-align:right;">
-1.008
+1.005
 </td>
 <td style="text-align:right;">
 0.023
 </td>
 <td style="text-align:right;">
-0.081
+0.082
 </td>
 <td style="text-align:right;">
-0.876
+0.867
 </td>
 <td style="text-align:right;">
-1.140
+1.132
 </td>
 </tr>
 </tbody>
@@ -1544,19 +1544,19 @@ Lrnr_glm_TRUE
 NA
 </td>
 <td style="text-align:right;">
-1.029
+1.047
 </td>
 <td style="text-align:right;">
-0.024
+0.030
 </td>
 <td style="text-align:right;">
-0.006
+0.019
 </td>
 <td style="text-align:right;">
-1.025
+1.034
 </td>
 <td style="text-align:right;">
-1.033
+1.060
 </td>
 </tr>
 <tr>
@@ -1573,13 +1573,13 @@ NA
 0.025
 </td>
 <td style="text-align:right;">
-0.013
+0.033
 </td>
 <td style="text-align:right;">
-1.056
+1.041
 </td>
 <td style="text-align:right;">
-1.075
+1.089
 </td>
 </tr>
 <tr>
@@ -1590,47 +1590,24 @@ Lrnr_ranger_500_TRUE
 NA
 </td>
 <td style="text-align:right;">
-1.019
+1.017
 </td>
 <td style="text-align:right;">
 0.024
 </td>
 <td style="text-align:right;">
-0.001
+0.036
 </td>
 <td style="text-align:right;">
-1.018
+0.991
 </td>
 <td style="text-align:right;">
-1.020
+1.042
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 Lrnr_glmnet_NULL_deviance_10_1_100_TRUE
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-1.015
-</td>
-<td style="text-align:right;">
-0.024
-</td>
-<td style="text-align:right;">
-0.007
-</td>
-<td style="text-align:right;">
-1.010
-</td>
-<td style="text-align:right;">
-1.020
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SuperLearner
 </td>
 <td style="text-align:right;">
 NA
@@ -1642,13 +1619,36 @@ NA
 0.024
 </td>
 <td style="text-align:right;">
-0.003
+0.032
 </td>
 <td style="text-align:right;">
-1.012
+0.992
 </td>
 <td style="text-align:right;">
-1.016
+1.037
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SuperLearner
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.011
+</td>
+<td style="text-align:right;">
+0.024
+</td>
+<td style="text-align:right;">
+0.036
+</td>
+<td style="text-align:right;">
+0.986
+</td>
+<td style="text-align:right;">
+1.037
 </td>
 </tr>
 </tbody>
@@ -1687,7 +1687,7 @@ risk_diff
 aged
 </td>
 <td style="text-align:right;">
-0.039
+0.033
 </td>
 </tr>
 <tr>
@@ -1695,7 +1695,7 @@ aged
 momedu
 </td>
 <td style="text-align:right;">
-0.009
+0.011
 </td>
 </tr>
 <tr>
@@ -1716,7 +1716,7 @@ tr
 </tr>
 <tr>
 <td style="text-align:left;">
-momheight
+month
 </td>
 <td style="text-align:right;">
 0.004
@@ -1724,7 +1724,15 @@ momheight
 </tr>
 <tr>
 <td style="text-align:left;">
-asset_chair
+Nlt18
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+floor
 </td>
 <td style="text-align:right;">
 0.003
@@ -1732,7 +1740,23 @@ asset_chair
 </tr>
 <tr>
 <td style="text-align:left;">
-month
+momheight
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+asset_chouki
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+asset_wardrobe
 </td>
 <td style="text-align:right;">
 0.002
@@ -1748,10 +1772,26 @@ elec
 </tr>
 <tr>
 <td style="text-align:left;">
-asset_chouki
+asset_table
 </td>
 <td style="text-align:right;">
 0.002
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+asset_chair
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+momage
+</td>
+<td style="text-align:right;">
+0.001
 </td>
 </tr>
 <tr>
@@ -1759,28 +1799,12 @@ asset_chouki
 walls
 </td>
 <td style="text-align:right;">
-0.002
+0.001
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 hfiacat
-</td>
-<td style="text-align:right;">
-0.001
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-floor
-</td>
-<td style="text-align:right;">
-0.001
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Nlt18
 </td>
 <td style="text-align:right;">
 0.001
@@ -1804,39 +1828,7 @@ asset_tv
 </tr>
 <tr>
 <td style="text-align:left;">
-asset_wardrobe
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 sex
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-delta_momage
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-roof
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-asset_bike
 </td>
 <td style="text-align:right;">
 0.000
@@ -1852,7 +1844,7 @@ watmin
 </tr>
 <tr>
 <td style="text-align:left;">
-delta_momheight
+asset_khat
 </td>
 <td style="text-align:right;">
 0.000
@@ -1860,7 +1852,39 @@ delta_momheight
 </tr>
 <tr>
 <td style="text-align:left;">
-momage
+delta_momage
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+asset_bike
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+roof
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+fracode
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+delta_momheight
 </td>
 <td style="text-align:right;">
 0.000
@@ -1871,36 +1895,12 @@ momage
 asset_sewmach
 </td>
 <td style="text-align:right;">
--0.001
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-fracode
-</td>
-<td style="text-align:right;">
--0.001
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-asset_khat
-</td>
-<td style="text-align:right;">
--0.001
+0.000
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 asset_mobile
-</td>
-<td style="text-align:right;">
--0.001
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-asset_table
 </td>
 <td style="text-align:right;">
 -0.001
