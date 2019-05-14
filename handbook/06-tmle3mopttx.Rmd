@@ -692,7 +692,7 @@ goal of optimizing the final outcome.
 * To start, let's load the data, convert all columns to be of class `numeric`,
 and take a quick look at it:
 
-```{r load-washb-data, message=FALSE, warning=FALSE, cache=FALSE, eval=TRUE}
+```{r load-washb-data, message=FALSE, warning=FALSE, cache=FALSE, eval=FALSE}
 washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
 washb_data <- washb_data[!is.na(momage), lapply(.SD, as.numeric)]
 head(washb_data, 3)
@@ -700,7 +700,7 @@ head(washb_data, 3)
 
 * As before, we specify the NPSEM via the `node_list` object.
 
-```{r washb-data-npsem-mopttx, message=FALSE, warning=FALSE, cache=FALSE, eval=TRUE}
+```{r washb-data-npsem-mopttx, message=FALSE, warning=FALSE, cache=FALSE, eval=FALSE}
 node_list <- list(W = names(washb_data)[!(names(washb_data) %in% c("whz", "tr"))],
                   A = "tr", Y = "whz")
 ```
@@ -710,7 +710,7 @@ living conditions (floor), and possession of material items including the refrig
 We concentrate of these covariates as they might be indicative of the socio-economic status
 of individuals involved in the trial.
 
-```{r summary_WASH, eval=TRUE}
+```{r summary_WASH, eval=FALSE}
 table(washb_data$momedu)
 table(washb_data$floor)
 table(washb_data$asset_refrig)
@@ -719,7 +719,7 @@ summary(washb_data$whz)
 
 * Specify a simplified library:
 
-```{r sl3_lrnrs-WASH-mopttx, eval=TRUE}
+```{r sl3_lrnrs-WASH-mopttx, eval=FALSE}
 # Initialize few of the learners:
 grid_params = list(nrounds = c(100, 500),
                      eta = c(0.01, 0.1))
@@ -752,7 +752,7 @@ learner_list <- list(Y = Q_learner, A = g_learner, B = b_learner)
 
 * Initialize the Spec:
 
-```{r spec_init_WASH, eval=TRUE}
+```{r spec_init_WASH, eval=FALSE}
 ## Question 0:
 # initialize a tmle specification
 tmle_spec <- tmle3_mopttx_blip_revere(
@@ -771,7 +771,7 @@ table(tmle_spec$return_rule)
 
 * Consider simpler rules:
 
-```{r spec_init_WASH_simple_q2, eval=TRUE}
+```{r spec_init_WASH_simple_q2, eval=FALSE}
 ## Question 2:
 
 # initialize a tmle specification
@@ -789,7 +789,7 @@ table(tmle_spec$return_rule)
 
 * Consider realistic rules:
 
-```{r spec_init_WASH_simple_q3, eval=TRUE}
+```{r spec_init_WASH_simple_q3, eval=FALSE}
 ## Question 3:
 
 # initialize a tmle specification
