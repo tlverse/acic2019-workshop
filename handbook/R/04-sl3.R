@@ -1,4 +1,5 @@
 ## ----setup, message=FALSE, warning=FALSE---------------------------------
+library(kableExtra)
 library(here)
 library(tidyverse)
 library(data.table)
@@ -12,7 +13,9 @@ set.seed(7194)
 # load data set and take a peek
 washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
 head(washb_data, 3) %>%
-  kable(format = "markdown", digits = 3)
+  kable(digits = 3) %>%
+  kable_styling(fixed_thead = T) %>%
+  scroll_box(width = "100%", height = "300px")
 
 
 ## ----task----------------------------------------------------------------
@@ -63,6 +66,8 @@ sl <- make_learner(Lrnr_sl,
   learners = stack,
   metalearner = metalearner
 )
+dt <- delayed_learner_train(sl, washb_task)
+plot(dt, color = FALSE, height = "400px", width = "100%")
 
 
 ## ----sl-basic------------------------------------------------------------
@@ -73,12 +78,13 @@ sl_fit <- sl$train(washb_task)
 sl_preds <- sl_fit$predict()
 head(sl_preds)
 sl_fit$print() %>%
-  kable(format = "markdown", digits = 3)
+  kable(digits = 3) %>%
+  kable_styling(fixed_thead = T) %>%
+  scroll_box(width = "100%", height = "300px")
 
 
 ## ----extra-lrnr----------------------------------------------------------
 lrnr_ranger100 <- make_learner(Lrnr_ranger, num.trees = 100)
-lrnr_ranger1k <- make_learner(Lrnr_ranger, num.trees = 1000)
 lrnr_gam <- Lrnr_pkg_SuperLearner$new("SL.gam")
 lrnr_bayesglm <- Lrnr_pkg_SuperLearner$new("SL.bayesglm")
 
@@ -86,7 +92,7 @@ lrnr_bayesglm <- Lrnr_pkg_SuperLearner$new("SL.bayesglm")
 ## ----new-stack-----------------------------------------------------------
 new_stack <- make_learner(
   Stack,
-  lrnr_glm, lrnr_mean, lrnr_ranger, lrnr_glmnet, lrnr_ranger1k, lrnr_ranger100,
+  lrnr_glm, lrnr_mean, lrnr_glmnet, lrnr_ranger100,
   lrnr_gam, lrnr_bayesglm
 )
 
@@ -101,15 +107,17 @@ cor_pipeline <- make_learner(Pipeline, screen_cor, new_stack)
 
 ## ----screeners-stack-----------------------------------------------------
 fancy_stack <- make_learner(Stack, cor_pipeline, new_stack)
-dt <- delayed_learner_train(fancy_stack, washb_task)
-plot(dt, color = FALSE, height = "300px")
+dt_new <- delayed_learner_train(fancy_stack, washb_task)
+plot(dt_new, color = FALSE, height = "400px", width = "100%")
 
 
-## ----sl-fancy, eval = FALSE----------------------------------------------
-## sl_fancy <- Lrnr_sl$new(learners = fancy_stack, metalearner = metalearner)
-## sl_fit_fancy<- sl_fancy$train(washb_task)
-## sl_fit_fancy$print() %>%
-##   kable(format = "markdown", digits = 3)
+## ----sl-fancy------------------------------------------------------------
+sl_fancy <- Lrnr_sl$new(learners = fancy_stack, metalearner = metalearner)
+sl_fit_fancy<- sl_fancy$train(washb_task)
+sl_fit_fancy$print() %>%
+  kable(digits = 3) %>%
+  kable_styling(fixed_thead = T) %>%
+  scroll_box(width = "100%", height = "300px")
 
 
 ## ----CVsl----------------------------------------------------------------
@@ -119,15 +127,19 @@ washb_task_new <- make_sl3_Task(
   outcome = outcome,
   folds = make_folds(washb_data, fold_fun = folds_vfold, V = 2)
 )
-CVsl <- CV_lrnr_sl(sl_fit_fancy, washb_task_new, loss_squared_error)
+CVsl <- CV_lrnr_sl(sl_fit, washb_task_new, loss_squared_error)
 CVsl %>%
-  kable(format = "markdown", digits = 3)
+  kable(digits = 3) %>%
+  kable_styling(fixed_thead = T) %>%
+  scroll_box(width = "100%", height = "300px")
 
 
 ## ----varimp--------------------------------------------------------------
 washb_varimp <- varimp(sl_fit_fancy, loss_squared_error)
 washb_varimp %>%
-  kable(format = "markdown", digits = 3)
+  kable(digits = 3) %>%
+  kable_styling(fixed_thead = T) %>%
+  scroll_box(width = "100%", height = "300px")
 
 
 ## ---- ex-setup-----------------------------------------------------------
@@ -137,4 +149,7 @@ db_data <-
 chspred <- read_csv(file = db_data, col_names = TRUE)
 # take a quick peek
 head(chspred, 3) %>%
-  kable(format = "markdown", digits = 3)
+  kable(digits = 3) %>%
+  kable_styling(fixed_thead = T) %>%
+  scroll_box(width = "100%", height = "300px")
+
