@@ -703,14 +703,14 @@ fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data,
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
    type         param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.5411876 0.5669245 0.07820916 0.4136374 0.7202117
+1:  TSM E[Y_{A=NULL}] 0.5322402 0.6112268 0.06749802 0.4789331 0.7435205
    psi_transformed lower_transformed upper_transformed
-1:       0.5669245         0.4136374         0.7202117</code></pre>
+1:       0.6112268         0.4789331         0.7435205</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How many individuals got assigned each treatment?</span>
 <span class="kw">table</span>(tmle_spec<span class="op">$</span>return_rule)</code></pre>
 <pre><code>
   1   2   3 
-336 339 325 </code></pre>
+419 341 240 </code></pre>
 <ul>
 <li>We can see that the estimate of <span class="math inline">\(psi_0\)</span> is <span class="math inline">\(0.56\)</span>, and that the confidence interval covers
 our true mean under the true optimal individualized treatment.</li>
@@ -751,9 +751,9 @@ fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data,
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
    type             param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=W3,W2,W1}] 0.5314932 0.5902936 0.06805878 0.4569008 0.7236863
+1:  TSM E[Y_{A=W3,W2,W1}] 0.5381361 0.6205396 0.07185096 0.4797144 0.7613649
    psi_transformed lower_transformed upper_transformed
-1:       0.5902936         0.4569008         0.7236863</code></pre>
+1:       0.6205396         0.4797144         0.7613649</code></pre>
 <ul>
 <li>Even though the user specified all baseline covariates as the basis
 for rule estimation, a simpler rule based on only <span class="math inline">\(W_2\)</span> and <span class="math inline">\(W_1\)</span> is sufficient to
@@ -786,15 +786,15 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param init_est tmle_est         se     lower    upper
-1:  TSM E[Y_{A=NULL}] 0.539224  0.65452 0.02138252 0.6126111 0.696429
+   type         param  init_est  tmle_est         se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.5472468 0.6599074 0.02130839 0.6181437 0.7016711
    psi_transformed lower_transformed upper_transformed
-1:         0.65452         0.6126111          0.696429</code></pre>
+1:       0.6599074         0.6181437         0.7016711</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How many individuals got assigned each treatment?</span>
 <span class="kw">table</span>(tmle_spec<span class="op">$</span>return_rule)</code></pre>
 <pre><code>
   2   3 
-519 481 </code></pre>
+512 488 </code></pre>
 <p><strong>QUESTION:</strong> Referring back to the data-generating distribution, why do you
 think the distribution of allocated treatment changed?</p>
 </div>
@@ -848,15 +848,15 @@ vim_results &lt;-<span class="st"> </span><span class="kw">tmle3_vim</span>(tmle
 )
 
 <span class="kw">print</span>(vim_results)</code></pre>
-<pre><code>   type                  param     init_est    tmle_est         se       lower
-1:   RR RR(E[Y_{A=NULL}]/E[Y]) -0.032070929 -0.07660653 0.05007544 -0.17475259
-2:   RR RR(E[Y_{A=NULL}]/E[Y])  0.002280663  0.05621301 0.03404207 -0.01050823
-        upper psi_transformed lower_transformed upper_transformed  A
-1: 0.02153953       0.9262542         0.8396647          1.021773 W1
-2: 0.12293425       1.0578230         0.9895468          1.130810  A
-             W    Z_stat       p_nz p_nz_corrected
-1:  W3,W4,W2,A -1.529822 0.06303036     0.06303036
-2: W3,W4,W2,W1  1.651280 0.04934067     0.06303036</code></pre>
+<pre><code>   type                  param      init_est    tmle_est         se
+1:   RR RR(E[Y_{A=NULL}]/E[Y]) -0.0352219705 -0.09138285 0.04931100
+2:   RR RR(E[Y_{A=NULL}]/E[Y]) -0.0005182489  0.06045518 0.03403154
+          lower       upper psi_transformed lower_transformed upper_transformed
+1: -0.188030642 0.005264933       0.9126682         0.8285893          1.005279
+2: -0.006245409 0.127155762       1.0623200         0.9937741          1.135594
+    A           W    Z_stat       p_nz p_nz_corrected
+1: W1  W3,W4,W2,A -1.853194 0.03192728     0.03782974
+2:  A W3,W4,W2,W1  1.776446 0.03782974     0.03782974</code></pre>
 <ul>
 <li>The final result of <code>tmle3_vim</code> with the <code>tmle3mopttx</code> spec is an ordered list
 of mean outcomes under the optimal individualized treatment for all categorical
@@ -869,14 +869,12 @@ covariates in our dataset.</li>
 <h2><span class="header-section-number">5.8</span> Exercise</h2>
 <div id="real-world-data-and-tmle3mopttx" class="section level3">
 <h3><span class="header-section-number">5.8.1</span> Real World Data and <code>tmle3mopttx</code></h3>
-<ul>
-<li><p>Finally, we cement everything we learned so far with a real data application.</p></li>
-<li><p>As in the previous sections, we will be using the WASH Benefits data,
+<p>Finally, we cement everything we learned so far with a real data application.</p>
+<p>As in the previous sections, we will be using the WASH Benefits data,
 corresponding to the Effect of water quality, sanitation, hand washing, and
-nutritional interventions on child development in rural Bangladesh trial.</p></li>
-<li><p>The main aim of the cluster-randomized controlled trial was to assess the
-impact of six intervention groups, including:</p></li>
-</ul>
+nutritional interventions on child development in rural Bangladesh trial.</p>
+<p>The main aim of the cluster-randomized controlled trial was to assess the
+impact of six intervention groups, including:</p>
 <ol style="list-style-type: decimal">
 <li><p>Control</p></li>
 <li><p>Handwashing with soap</p></li>
@@ -886,27 +884,26 @@ impact of six intervention groups, including:</p></li>
 <li><p>Combined water, sanitation, and handwashing</p></li>
 <li><p>Chlorinated drinking water</p></li>
 </ol>
-<ul>
-<li><p>We aim to estimate the optimal ITR and the corresponding value under the optimal ITR
-for the main intervention in WASH Benefits data!</p></li>
-<li><p>Our outcome of interest is the weight-for-height Z-score, whereas our treatment is
-the six intervention groups aimed at improving living conditions.</p></li>
-<li><p>Work with a buddy. You have 20 minutes.</p></li>
-</ul>
+<p>We aim to estimate the optimal ITR and the corresponding value under the optimal ITR
+for the main intervention in WASH Benefits data!</p>
+<p>Our outcome of interest is the weight-for-height Z-score, whereas our treatment is
+the six intervention groups aimed at improving living conditions.</p>
+<p><strong>Work with a buddy. You have 20 minutes.</strong></p>
 <p>In the etherpad, submit your group’s answers to the following questions.</p>
-<ol start="0" style="list-style-type: decimal">
-<li><p>Think about potentially good effect modifers for the WASH Benefits data. What should
-<span class="math inline">\(V\)</span> be and why? Do we want to minimize or maximize the outcome? Construct an approprite
-<code>sl3</code> library for <span class="math inline">\(A\)</span>, <span class="math inline">\(Y\)</span> and <span class="math inline">\(B\)</span>.
-Based on the picked <span class="math inline">\(V\)</span>, estimate the mean under the ITR for
+<ol style="list-style-type: decimal">
+<li><p>Define <span class="math inline">\(V\)</span> as mother’s education (<code>momedu</code>), current living conditions (<code>floor</code>),
+and possession of material items including the refrigerator (<code>asset_refrig</code>).
+Why do you think we use these covariates as <span class="math inline">\(V\)</span>?
+Do we want to minimize or maximize the outcome? Which blip type should we use?
+Construct an approprite <code>sl3</code> library for <span class="math inline">\(A\)</span>, <span class="math inline">\(Y\)</span> and <span class="math inline">\(B\)</span>.</p></li>
+<li><p>Based on the <span class="math inline">\(V\)</span> defined in the previous question, estimate the mean under the ITR for
 the main randomized intervention used in the WASH Benefits trial
-with weight-for-height Z-score as the outcome.</p></li>
-<li><p>Using the WASH benefits data, extract the optimal ITR for each individual.
-Which intervention is the most dominant? Why do you think that is?</p></li>
-<li><p>Consider simpler rules for the WASH benefits data example. What set of rules
-are picked?</p></li>
-<li><p>Using the WASH benefits data, estimate the realistic optimal ITR and the
-corresponding value of the realistic ITR. Did the results change?</p></li>
+with weight-for-height Z-score as the outcome. What’s the TMLE value of the optimal ITR?
+How does it change from the initial estimate? Which intervention is the most dominant?
+Why do you think that is?</p></li>
+<li><p>Using the same formulation as in questions 1 and 2, estimate the realistic optimal ITR
+and the corresponding value of the realistic ITR. Did the results change? Which intervention
+is the most dominant under realistic rules? Why do you think that is?</p></li>
 </ol>
 </div>
 </div>
@@ -925,31 +922,26 @@ goal of optimizing the final outcome.</p></li>
 </ul>
 <div id="solutions" class="section level3">
 <h3><span class="header-section-number">5.9.1</span> Solutions</h3>
-<ul>
-<li>To start, let’s load the data, convert all columns to be of class <code>numeric</code>,
-and take a quick look at it:</li>
-</ul>
+<p>To start, let’s load the data, convert all columns to be of class <code>numeric</code>,
+and take a quick look at it:</p>
 <pre class="sourceCode r"><code class="sourceCode r">washb_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;washb_data.csv&quot;</span>), <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>)
 washb_data &lt;-<span class="st"> </span>washb_data[<span class="op">!</span><span class="kw">is.na</span>(momage), <span class="kw">lapply</span>(.SD, as.numeric)]
 <span class="kw">head</span>(washb_data, <span class="dv">3</span>)</code></pre>
-<ul>
-<li>As before, we specify the NPSEM via the <code>node_list</code> object.</li>
-</ul>
+<p>As before, we specify the NPSEM via the <code>node_list</code> object.</p>
 <pre class="sourceCode r"><code class="sourceCode r">node_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">W =</span> <span class="kw">names</span>(washb_data)[<span class="op">!</span>(<span class="kw">names</span>(washb_data) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;whz&quot;</span>, <span class="st">&quot;tr&quot;</span>))],
                   <span class="dt">A =</span> <span class="st">&quot;tr&quot;</span>, <span class="dt">Y =</span> <span class="st">&quot;whz&quot;</span>)</code></pre>
-<ul>
-<li>We pick few potential effect modifiers, including mother’s education, current
+<p>We pick few potential effect modifiers, including mother’s education, current
 living conditions (floor), and possession of material items including the refrigerator.
 We concentrate of these covariates as they might be indicative of the socio-economic status
-of individuals involved in the trial.</li>
-</ul>
+of individuals involved in the trial.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(washb_data<span class="op">$</span>momedu)
 <span class="kw">table</span>(washb_data<span class="op">$</span>floor)
 <span class="kw">table</span>(washb_data<span class="op">$</span>asset_refrig)
 <span class="kw">summary</span>(washb_data<span class="op">$</span>whz)</code></pre>
-<ul>
-<li>Specify a simplified library:</li>
-</ul>
+<p>We specify a simply library for the outcome regression, propensity score
+and the blip function. Since our treatment is categorical, we need to define a
+multinomial learner for <span class="math inline">\(A\)</span> and multivariate learner for <span class="math inline">\(B\)</span>. We
+will define the <code>xgboost</code> over a grid of parameters, and initialize a mean learner.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Initialize few of the learners:</span>
 grid_params =<span class="st"> </span><span class="kw">list</span>(<span class="dt">nrounds =</span> <span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">500</span>),
                      <span class="dt">eta =</span> <span class="kw">c</span>(<span class="fl">0.01</span>, <span class="fl">0.1</span>))
@@ -978,42 +970,27 @@ learners &lt;-<span class="st"> </span><span class="kw">list</span>(xgb_learners
 b_learner &lt;-<span class="st"> </span><span class="kw">create_mv_learners</span>(<span class="dt">learners =</span> learners)
 
 learner_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">Y =</span> Q_learner, <span class="dt">A =</span> g_learner, <span class="dt">B =</span> b_learner)</code></pre>
-<ul>
-<li>Initialize the Spec:</li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r">## Question 0:
-<span class="co"># initialize a tmle specification</span>
-tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_revere</span>(
-  <span class="dt">V =</span> <span class="kw">c</span>(<span class="st">&quot;momedu&quot;</span>, <span class="st">&quot;floor&quot;</span>, <span class="st">&quot;asset_refrig&quot;</span>), <span class="dt">type =</span> <span class="st">&quot;blip2&quot;</span>,
-  <span class="dt">learners =</span> learner_list, <span class="dt">maximize =</span> <span class="ot">TRUE</span>, <span class="dt">complex =</span> <span class="ot">TRUE</span>,
-  <span class="dt">realistic =</span> <span class="ot">FALSE</span>
-)
-
-<span class="co"># fit the TML estimator</span>
-fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, <span class="dt">data=</span>washb_data, node_list, learner_list)
-fit
-
-<span class="co"># Question 1:</span>
-<span class="kw">table</span>(tmle_spec<span class="op">$</span>return_rule)</code></pre>
-<ul>
-<li>Consider simpler rules:</li>
-</ul>
+<p>As seen before, we initialize the <code>tmle3_mopttx_blip_revere</code> Specn in order to
+answer Question 1. We want to maximize our outcome, with higher the weight-for-height Z-score
+the better. We will also use <code>blip1</code> as the blip type, since “Control” is a good
+reference category.</p>
 <pre class="sourceCode r"><code class="sourceCode r">## Question 2:
 
 <span class="co"># initialize a tmle specification</span>
 tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_revere</span>(
-  <span class="dt">V =</span> <span class="kw">c</span>(<span class="st">&quot;momedu&quot;</span>, <span class="st">&quot;floor&quot;</span>, <span class="st">&quot;asset_refrig&quot;</span>), <span class="dt">type =</span> <span class="st">&quot;blip2&quot;</span>,
-  <span class="dt">learners =</span> learner_list, <span class="dt">maximize =</span> <span class="ot">TRUE</span>, <span class="dt">complex =</span> <span class="ot">FALSE</span>,
+  <span class="dt">V =</span> <span class="kw">c</span>(<span class="st">&quot;momedu&quot;</span>, <span class="st">&quot;floor&quot;</span>, <span class="st">&quot;asset_refrig&quot;</span>), <span class="dt">type =</span> <span class="st">&quot;blip1&quot;</span>,
+  <span class="dt">learners =</span> learner_list, <span class="dt">maximize =</span> <span class="ot">TRUE</span>, <span class="dt">complex =</span> <span class="ot">TRUE</span>,
   <span class="dt">realistic =</span> <span class="ot">FALSE</span>
 )
 
+<span class="co">#Fit the TML estimator. From here, we can see</span>
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, <span class="dt">data=</span>washb_data, node_list, learner_list)
 fit
 
+<span class="co">#Which intervention is the most dominant? </span>
 <span class="kw">table</span>(tmle_spec<span class="op">$</span>return_rule)</code></pre>
-<ul>
-<li>Consider realistic rules:</li>
-</ul>
+<p>Using the same formulation as before, we estimate the realistic optimal ITR
+and the corresponding value of the realistic ITR:</p>
 <pre class="sourceCode r"><code class="sourceCode r">## Question 3:
 
 <span class="co"># initialize a tmle specification</span>
