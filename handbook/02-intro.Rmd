@@ -295,7 +295,7 @@ intervention or health promoter visit). The six intervention groups were:
 6. combined water, sanitation, handwashing, and nutrition.
 
 In the workshop, we concentrate on child growth (size for age) as the outcome of
-interest. For referene, this trial was registered with ClinicalTrials.gov as
+interest. For reference, this trial was registered with ClinicalTrials.gov as
 NCT01590095.
 
 ```{r load_washb_data_intro, message=FALSE, warning=FALSE}
@@ -320,8 +320,6 @@ the treatment of interest, $A$, is the randomized treatment group (`tr` in
 `dat`); and the adjustment set, $W$, consists simply of *everything else*. This
 results in our observed data structure being $n$ i.i.d. copies of $O_i = (W_i,
 A_i, Y_i)$, for $i = 1, \ldots, n$.
-
-### The variables
 
 Using the [`skimr` package](https://CRAN.R-project.org/package=skimr), we can
 quickly summarize the variables measured in the WASH Benefits data set:
