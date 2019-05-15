@@ -81,13 +81,14 @@ Using the WASH data, we are interested in predicting weight-for-height z-score
 
 ```{r setup, message=FALSE, warning=FALSE}
 library(kableExtra)
+library(knitr)
+library(skimr)
 library(here)
 library(tidyverse)
 library(data.table)
 library(sl3)
 library(SuperLearner)
 library(origami)
-library(knitr)
 
 set.seed(7194)
 
