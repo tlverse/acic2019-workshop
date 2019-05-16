@@ -80,13 +80,14 @@ detail.
 ## Important links {-}
 
 **Software installation**
-Please install the relevant software before the workshop. For those who run into
-installation/software issues, we would like to address this before the workshop
-begins at 9am. Please arrive at 8:30am next Wednesday if you have software
-installation issues.
+Please install the relevant software before the workshop.
 
-* [installation script](https://github.com/tlverse/acic2019-workshop/blob/master/install.R).
+* [installation
+script](https://github.com/tlverse/acic2019-workshop/blob/master/install.R).
 
+You will probably exceed the GitHub API rate limit during this installation, and this
+will throw an error. This issue and the solution are addressed
+[here](#installtlverse).
 
 **Workshop surveys**
 These pre- and post-workshop surveys help us ensure the effectiveness of our
