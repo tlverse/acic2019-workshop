@@ -189,14 +189,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html"><i class="fa fa-check"></i><b>4</b> The TMLE Framework</a><ul>
 <li class="chapter" data-level="4.1" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#learning-objectives-2"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="4.2" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#example-tmle3-for-ate"><i class="fa fa-check"></i><b>4.2</b> Example: <code>tmle3</code> for ATE</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#load-the-data"><i class="fa fa-check"></i><b>4.2.1</b> Load the Data</a></li>
-<li class="chapter" data-level="4.2.2" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#define-the-variable-roles"><i class="fa fa-check"></i><b>4.2.2</b> Define the variable roles</a></li>
-<li class="chapter" data-level="4.2.3" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#handling-missingness"><i class="fa fa-check"></i><b>4.2.3</b> Handling Missingness</a></li>
-<li class="chapter" data-level="4.2.4" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#create-a-spec-object"><i class="fa fa-check"></i><b>4.2.4</b> Create a “Spec” Object</a></li>
-<li class="chapter" data-level="4.2.5" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#define-the-learners"><i class="fa fa-check"></i><b>4.2.5</b> Define the learners</a></li>
-<li class="chapter" data-level="4.2.6" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#fit-the-tmle"><i class="fa fa-check"></i><b>4.2.6</b> Fit the TMLE</a></li>
-<li class="chapter" data-level="4.2.7" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#evaluate-the-estimates"><i class="fa fa-check"></i><b>4.2.7</b> Evaluate the Estimates</a></li>
+<li class="chapter" data-level="4.2" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#easy-bake-example-tmle3-for-ate"><i class="fa fa-check"></i><b>4.2</b> Easy-Bake Example: <code>tmle3</code> for ATE</a><ul>
+<li class="chapter" data-level="" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#load-the-data"><i class="fa fa-check"></i>0. Load the Data</a></li>
+<li class="chapter" data-level="" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#define-the-variable-roles"><i class="fa fa-check"></i>1. Define the variable roles</a></li>
+<li class="chapter" data-level="" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#create-a-spec-object"><i class="fa fa-check"></i>2. Create a “Spec” Object</a></li>
+<li class="chapter" data-level="" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#define-the-relevant-super-learners"><i class="fa fa-check"></i>3. Define the Relevant Super Learners</a></li>
+<li class="chapter" data-level="" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#fit-the-tmle"><i class="fa fa-check"></i>4. Fit the TMLE</a></li>
+<li class="chapter" data-level="" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#evaluate-the-estimates"><i class="fa fa-check"></i>5. Evaluate the Estimates</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#tmle3-components"><i class="fa fa-check"></i><b>4.3</b> <code>tmle3</code> Components</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="the-tmle-framework.html"><a href="the-tmle-framework.html#tmle3_task"><i class="fa fa-check"></i><b>4.3.1</b> <code>tmle3_task</code></a></li>
@@ -296,14 +295,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Use the delta method to estimate transformations of parameters</li>
 </ol>
 </div>
-<div id="example-tmle3-for-ate" class="section level2">
-<h2><span class="header-section-number">4.2</span> Example: <code>tmle3</code> for ATE</h2>
+<div id="easy-bake-example-tmle3-for-ate" class="section level2">
+<h2><span class="header-section-number">4.2</span> Easy-Bake Example: <code>tmle3</code> for ATE</h2>
 <p>We’ll illustrate the most basic use of TMLE using the WASH Benefits data
 introduced earlier and estimating an Average Treatment Effect (ATE).</p>
 <p>As a reminder, the ATE is identified with the following statistical parameter
 (under assumptions): <span class="math inline">\(ATE = \mathbb{E}_0(Y(1)-Y(0)) = \mathbb{E}_0\left(\mathbb{E}_0[Y \mid A=1,W]-\mathbb{E}_0[Y \mid A=0,W] \right)\)</span></p>
-<div id="load-the-data" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> Load the Data</h3>
+<p>This Easy-Bake implementation consists of the following steps:</p>
+<ol start="0" style="list-style-type: decimal">
+<li>Load the necessary libraries and data</li>
+<li>Define the variable roles</li>
+<li>Create a “Spec” object</li>
+<li>Define the super learners</li>
+<li>Fit the TMLE</li>
+<li>Evaluate the TMLE estimates</li>
+</ol>
+<div id="load-the-data" class="section level3 unnumbered">
+<h3>0. Load the Data</h3>
 <p>We’ll use the same WASH Benefits data as the earlier chapters:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(here)
 <span class="kw">library</span>(data.table)
@@ -311,13 +319,13 @@ introduced earlier and estimating an Average Treatment Effect (ATE).</p>
 <span class="kw">library</span>(sl3)
 washb_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;washb_data.csv&quot;</span>), <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>)</code></pre>
 </div>
-<div id="define-the-variable-roles" class="section level3">
-<h3><span class="header-section-number">4.2.2</span> Define the variable roles</h3>
-<p>We’ll use the common W (covariates), A (treatment/intervention), Y (outcome)
-data structure. <code>tmle3</code> needs to know what variables in the dataset correspond
-to each of these roles. We use a list of character vectors to tell it. We call
-this a “Node List” as it corresponds to the nodes in a Directed Acyclic Graph
-(DAG), a way of displaying causal relationships between variables.</p>
+<div id="define-the-variable-roles" class="section level3 unnumbered">
+<h3>1. Define the variable roles</h3>
+<p>We’ll use the common <span class="math inline">\(W\)</span> (covariates), <span class="math inline">\(A\)</span> (treatment/intervention), <span class="math inline">\(Y\)</span>
+(outcome) data structure. <code>tmle3</code> needs to know what variables in the dataset
+correspond to each of these roles. We use a list of character vectors to tell
+it. We call this a <strong>“Node List”</strong> as it corresponds to the nodes in a Directed
+Acyclic Graph (DAG), a way of displaying causal relationships between variables.</p>
 <pre class="sourceCode r"><code class="sourceCode r">node_list &lt;-<span class="st"> </span><span class="kw">list</span>(
   <span class="dt">W =</span> <span class="kw">c</span>(
     <span class="st">&quot;month&quot;</span>, <span class="st">&quot;aged&quot;</span>, <span class="st">&quot;sex&quot;</span>, <span class="st">&quot;momage&quot;</span>, <span class="st">&quot;momedu&quot;</span>,
@@ -331,9 +339,8 @@ this a “Node List” as it corresponds to the nodes in a Directed Acyclic Grap
   <span class="dt">A =</span> <span class="st">&quot;tr&quot;</span>,
   <span class="dt">Y =</span> <span class="st">&quot;whz&quot;</span>
 )</code></pre>
-</div>
-<div id="handling-missingness" class="section level3">
-<h3><span class="header-section-number">4.2.3</span> Handling Missingness</h3>
+<div id="handling-missingness" class="section level4 unnumbered">
+<h4>Handling Missingness</h4>
 <p>Currently, missingness in <code>tmle3</code> is handled in a fairly simple way:</p>
 <ul>
 <li>Missing covariates are median (for continuous) or mode (for discrete)
@@ -347,12 +354,13 @@ treatment and outcome variables.</p>
 washb_data &lt;-<span class="st"> </span>processed<span class="op">$</span>data
 node_list &lt;-<span class="st"> </span>processed<span class="op">$</span>node_list</code></pre>
 </div>
-<div id="create-a-spec-object" class="section level3">
-<h3><span class="header-section-number">4.2.4</span> Create a “Spec” Object</h3>
+</div>
+<div id="create-a-spec-object" class="section level3 unnumbered">
+<h3>2. Create a “Spec” Object</h3>
 <p><code>tmle3</code> is general, and allows most components of the TMLE procedure to be
 specified in a modular way. However, most end-users will not be interested in
 manually specifying all of these components. Therefore, <code>tmle3</code> implements a
-<code>tmle3_Spec</code> object that bundles a set ofcomponents into a <em>specification</em>
+<code>tmle3_Spec</code> object that bundles a set of components into a <strong>specification</strong>
 that, with minimal additional detail, can be run by an end-user.</p>
 <p>We’ll start with using one of the specs, and then work our way down into the
 internals of <code>tmle3</code>.</p>
@@ -361,8 +369,8 @@ internals of <code>tmle3</code>.</p>
   <span class="dt">control_level =</span> <span class="st">&quot;Control&quot;</span>
 )</code></pre>
 </div>
-<div id="define-the-learners" class="section level3">
-<h3><span class="header-section-number">4.2.5</span> Define the learners</h3>
+<div id="define-the-relevant-super-learners" class="section level3 unnumbered">
+<h3>3. Define the Relevant Super Learners</h3>
 <p>Currently, the only other thing a user must define are the <code>sl3</code> learners used
 to estimate the relevant factors of the likelihood: Q and g.</p>
 <p>This takes the form of a list of <code>sl3</code> learners, one for each likelihood factor
@@ -387,16 +395,16 @@ sl_A &lt;-<span class="st"> </span>Lrnr_sl<span class="op">$</span><span class="
 )
 
 learner_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">A =</span> sl_A, <span class="dt">Y =</span> sl_Y)</code></pre>
-<p>Here, we use a Super Learner as defined in the previous chapter. In the future,
-we plan to include reasonable defaults learners.</p>
+<p>Here, we use a Super Learner as defined in the previous <code>sl3</code> section. In the
+future, we plan to include reasonable default learners.</p>
 </div>
-<div id="fit-the-tmle" class="section level3">
-<h3><span class="header-section-number">4.2.6</span> Fit the TMLE</h3>
+<div id="fit-the-tmle" class="section level3 unnumbered">
+<h3>4. Fit the TMLE</h3>
 <p>We now have everything we need to fit the tmle using <code>tmle3</code>:</p>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(ate_spec, washb_data, node_list, learner_list)</code></pre>
 </div>
-<div id="evaluate-the-estimates" class="section level3">
-<h3><span class="header-section-number">4.2.7</span> Evaluate the Estimates</h3>
+<div id="evaluate-the-estimates" class="section level3 unnumbered">
+<h3>5. Evaluate the Estimates</h3>
 <p>We can see the summary results by printing the fit object. Alternatively, we
 can extra results from the summary by indexing into it:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(tmle_fit)</code></pre>
@@ -609,21 +617,31 @@ tmle_fit_multiparam &lt;-<span class="st"> </span><span class="kw">fit_tmle3</sp
 </div>
 <div id="exercise-1" class="section level2">
 <h2><span class="header-section-number">4.5</span> Exercise</h2>
-<p>We’ll use data from the Collaborative Perinatal Project (CPP), available in the
-<code>sl3</code> package. To simplify this example, we define a binary intervention
-variable, <code>parity01</code> – an indicator of having one or more children before the
-current child and a binary outcome, <code>haz01</code> – an indicator of having an above
-average height for age.</p>
+<p>Follow the steps below to estimate an average treatment effect using data from
+the Collaborative Perinatal Project (CPP), available in the <code>sl3</code> package. To simplify this example, we define a binary intervention variable, <code>parity01</code>
+– an indicator of having one or more children before the current child and a
+binary outcome, <code>haz01</code> – an indicator of having an above average height for
+age.</p>
+<p>Work with a buddy/team. You have 20 minutes.</p>
+<p>In the <a href="https://etherpad.net/p/acic2019-tlverse">etherpad</a>, submit your group’s
+answers to the following:</p>
+<ol style="list-style-type: decimal">
+<li>Interpret the <code>tmle3</code> fit both causally and statistically.</li>
+<li>Did your group face any challenges?</li>
+<li>Any additional comments/questions about this <code>tmle3</code> section of the workshop?</li>
+</ol>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load the data set</span>
 <span class="kw">data</span>(cpp)
 cpp &lt;-<span class="st"> </span>cpp[<span class="op">!</span><span class="kw">is.na</span>(cpp[, <span class="st">&quot;haz&quot;</span>]), ]
 cpp<span class="op">$</span>parity01 &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(cpp<span class="op">$</span>parity <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)
 cpp[<span class="kw">is.na</span>(cpp)] &lt;-<span class="st"> </span><span class="dv">0</span>
 cpp<span class="op">$</span>haz01 &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(cpp<span class="op">$</span>haz <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</code></pre>
-<p>We’re interested in using this simplified data to estimate an Average Treatment
-Effect (ATE):</p>
-<p><span class="math display">\[\Psi(P_0) = E_0(E_0[Y|A=1,W]-E_0[Y|A=0,W])\]</span></p>
 <!--
+We're interested in using this simplified data to estimate an Average Treatment
+Effect (ATE):
+
+$$\Psi(P_0) = E_0(E_0[Y|A=1,W]-E_0[Y|A=0,W])$$
+
 The purely statistical (noncausal) parameter can be interpreted as the average
 of the difference in means across the strata for $W$, and only requires the
 positivity assumption, that the conditional treatment assignment probabilities
@@ -652,25 +670,20 @@ but also tailored to have robust finite sample performance.
 Include the following baseline covariates in <span class="math inline">\(W\)</span>: <code>apgar1</code>, <code>apgar5</code>,
 <code>gagebrth</code>, <code>mage</code>, <code>meducyrs</code>, <code>sexn</code>. Both <span class="math inline">\(A\)</span> and <span class="math inline">\(Y\)</span> are specified
 above.</li>
-<li>Implement a <code>tmle3_Spec</code> object that bundles a set of components into a
-<em>specification</em>. We are interested in specifying the ATE, for which we use
-<code>tmle_ATE()</code>.</li>
-<li>Define <code>sl3</code> base learners to estimate <span class="math inline">\(Q = E(Y|A,Y)\)</span> and <span class="math inline">\(g=P(A|W)\)</span>.</li>
-<li>Define metalearners appropriate for data types.</li>
-<li>Define a Super Learner for estimating <span class="math inline">\(Q\)</span> and another for estimating <span class="math inline">\(g\)</span>.</li>
-<li>Create a list of the two Super Learners defined in Step 5 and call this
-object. The list names should be <code>A</code> (defining the Super Learner for
-estimating <span class="math inline">\(g\)</span>) and <code>Y</code> (defining the Super Learner for estimating <span class="math inline">\(Q\)</span>).</li>
-<li>Fit the tmle with the <code>tmle3</code> function. At a minimum, this function will
-requires specification of (1) the <code>tmle3_Spec</code>, which we defined in Step 2;
-<ol start="2" style="list-style-type: decimal">
-<li>the data; (3) the list of nodes, which defined the variable roles in Step
-1; and (4) the list of Super Learners for estimating <span class="math inline">\(g\)</span> and <span class="math inline">\(Q\)</span>, which we
-defined in Step 6. Note: Like before, you will need to make a data copy to
-deal with <code>data.table</code> weirdness (<code>cpp2 &lt;- data.table::copy(cpp)</code>) and use
-<code>cpp2</code> to fit the TMLE.</li>
-</ol></li>
-<li>Interpret the <code>tmle3</code> fit both causally and statistically.</li>
+<li>Define a <code>tmle3_Spec</code> object for the ATE, <code>tmle_ATE()</code>.</li>
+<li>Using the same base learning libraries defined above, specify <code>sl3</code> base
+learners for estimation of <span class="math inline">\(Q = E(Y|A,Y)\)</span> and <span class="math inline">\(g=P(A|W)\)</span>.</li>
+<li>Specify <code>Lrnr_nnls</code> as the metalearner for both <span class="math inline">\(Q\)</span> and <span class="math inline">\(G\)</span>.</li>
+<li>Define one super learner for estimating <span class="math inline">\(Q\)</span> and another for estimating <span class="math inline">\(g\)</span>.</li>
+<li>Create a list of the two super learners defined in Step 5 and call this
+object <code>learner_list</code>. The list names should be <code>A</code> (defining the super
+learner for estimating <span class="math inline">\(g\)</span>) and <code>Y</code> (defining the super learner for
+estimating <span class="math inline">\(Q\)</span>).</li>
+<li>Fit the tmle with the <code>tmle3</code> function by specifying (1) the <code>tmle3_Spec</code>,
+which we defined in Step 2; (2) the data; (3) the list of nodes, which we
+specified in Step 1; and (4) the list of super learners for estimating <span class="math inline">\(g\)</span>
+and <span class="math inline">\(Q\)</span>, which we defined in Step 6. <em>Note</em>: Like before, you will need to
+make a data copy to deal with <code>data.table</code> weirdness (<code>cpp2 &lt;- data.table::copy(cpp)</code>) and use <code>cpp2</code> as the data.</li>
 </ol>
 </div>
 <div id="summary-1" class="section level2">
