@@ -57,11 +57,11 @@ knitr::write_bib(c(
 
 # Preface {-}
 
-<img style="float: left; margin-right: 1%; margin-bottom: 0.01em"
+<img style="float: center; margin-right: 1%; margin-bottom: 0.01em"
      src="img/logos/tlverse-logo.svg" width="15%" height="15%">
 <img style="float: center; margin-right: 1%; margin-bottom: 0.01em"
      src="img/logos/Rlogo.svg" width="15%" height="15%">
-<img style="float: right; margin-right: 1%; margin-bottom: 0.01em"
+<img style="float: center; margin-right: 1%; margin-bottom: 0.01em"
      src="img/logos/vdl-logo-transparent.svg" width="15%" height="15%">
 <p style="clear: both;">
 <br>
@@ -77,15 +77,15 @@ Handbook*](https://tlverse.org/tlverse-handbook/) accompanies this vignette and
 covers the same topics presented in this vignette, but presents them in more
 detail.
 
-<img style="float: center; margin-right: 1%; margin-bottom: 0.05em"
-     src="img/misc/ad_workshop.png" width="50%" height="50%">
-<br>
-
 ## Important links {-}
 
 **Software installation**
-Please see these [installation
-instructions](https://github.com/tlverse/acic2019-workshop/blob/master/install.R).
+Please install the relevant software before the workshop. For those who run into
+installation/software issues, we would like to address this before the workshop
+begins at 9am. Please arrive at 8:30am next Wednesday if you have software
+installation issues.
+
+* [installation script](https://github.com/tlverse/acic2019-workshop/blob/master/install.R).
 
 
 **Workshop surveys**
@@ -93,19 +93,20 @@ These pre- and post-workshop surveys help us ensure the effectiveness of our
 teaching methodology.
 
 * [pre-workshop survey](https://forms.gle/u6iZHYjd81RBwQVv7)
-* [post-workshop survey](https://forms.gle/P8SbwJBeaQjZHRRF9)
+* [post-workshop survey](https://forms.gle/ktcdUPP5faKVKCd98)
 
 
-**Piazza**
-We will use Piazza for discussion, Q&A, and sharing URLs and bits
+**Etherpad**
+We will use the Etherpad for discussion, Q&A, and sharing URLs and bits
 of code.
 
 * [https://etherpad.net/p/acic2019-tlverse](https://etherpad.net/p/acic2019-tlverse)
 
 **Code**
 `R` script files for each section of the workshop are available via the GitHub
-repository for the short course. See
-https://github.com/tlverse/acic2019-workshop/tree/master/handbook/R
+repository for the short course.  
+
+* [https://github.com/tlverse/acic2019-workshop/tree/master/handbook/R](https://github.com/tlverse/acic2019-workshop/tree/master/handbook/R)
 
 **RStudio Cloud**
 Coming soon.
@@ -139,23 +140,24 @@ causal questions, each motivated by a case study, alongside statistical
 methodology and software for assessing the causal claim of interest. A sample
 schedule may take the form:
 
-* 09:00AM--09:15AM: [Why we need a statistical
-    revolution](https://senseaboutscienceusa.org/super-learning-and-the-revolution-in-knowledge/)
-* 09:15AM--09:45AM: The Roadmap, and the [WASH
-    Benefits](http://www.washbenefits.net/) data
-* 09:45AM--10:00AM: Introduction to the [`tlverse` software
+* 08:30AM--09:00AM: Address software installation issues
+* 09:00AM--09:15AM: Introduction to the [`tlverse` software
     ecosystem](https://tlverse.org)
+* 09:15AM--09:45AM: The Roadmap of Targeted Learning, and the [WASH
+    Benefits](http://www.washbenefits.net/) data
+* 09:45AM--10:00AM: [Why we need a statistical
+    revolution](https://senseaboutscienceusa.org/super-learning-and-the-revolution-in-knowledge/)
 * 10:00AM--10:30AM: Morning coffee break
-* 10:30AM--11:15AM: Super (machine) learning with the
-    [`sl3`](https://github.com/tlverse/sl3) package
+* 10:30AM--11:15AM: Ensemble machine learning with the
+    [`sl3`](https://github.com/tlverse/sl3) `R` package
 * 11:15AM--12:00PM: Targeted learning for causal inference with the
-    [`tmle3`](https://github.com/tlverse/tmle3) package
+    [`tmle3`](https://github.com/tlverse/tmle3) `R` package
 * 12:00PM--1:00PM: Lunch break
 * 01:00PM--02:00PM: Optimal treatment regimes and the
-    [`tmle3mopttx`](https://github.com/tlverse/tmle3mopttx) package
+    [`tmle3mopttx`](https://github.com/tlverse/tmle3mopttx) `R` package
 * 02:00PM--02:30PM: Afternoon coffee break
 * 2:30PM--3:30PM: Stochastic treatment regimes and the
-    [`tmle3shift`](https://github.com/tlverse/tmle3shift) package
+    [`tmle3shift`](https://github.com/tlverse/tmle3shift) `R` package
 * 03:30PM--4:00PM: _Coda_: [Why we need a statistical
     revolution](https://senseaboutscienceusa.org/super-learning-and-the-revolution-in-knowledge/)
 

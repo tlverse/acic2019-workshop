@@ -25,13 +25,15 @@ By the end of this lesson you will be able to:
 
 ## Introduction
 
-Now that we have defined the statistical estimation problem, we are ready
-construct the TMLE; an asymptotically efficient substitution estimator of this
-target quantity. The first step in this estimation procedure is an initial
-estimate of the data-generating distribution, or the relevant part of this
-distribution that is needed to evaluate the target parameter. For this initial
-estimation, we use the super learner [@van2007super], an important step in
-creating a robust estimator.
+Now that we have defined the statistical estimation problem in [The Targeted
+Learning Roadmap](#intro), we are ready construct the TMLE; an asymptotically
+efficient substitution estimator of this target quantity.
+
+The first step in this estimation procedure is an initial estimate of the
+data-generating distribution, or the relevant part of this distribution that is
+needed to evaluate the target parameter. For this initial estimation, we use the
+super learner [@van2007super], an important step for creating a robust
+estimator.
 
 #### Super Learner {-}
 
@@ -57,14 +59,15 @@ creating a robust estimator.
   [@polley2010super; @van2007super].
 
  * This background material is described in greater detail in the accompanying
- [`sl3` chapter](https://tlverse.org/tlverse-handbook/ensemble-machine-learning.html)
- of the `tlverse` handbook.
+   `tlverse` handbook [`sl3`
+   chapter](https://tlverse.org/tlverse-handbook/ensemble-machine-learning.html).
 
-## Basic Implementation
+## Basic `sl3` Implementation
 
-We begin by illustrating the basic functionality of the super learner
-algorithm as implemented in `sl3`. The `sl3` implementation consists of the
-following steps:
+We begin by illustrating the core functionality of the super learner algorithm
+as implemented in `sl3`.
+
+The `sl3` implementation consists of the following steps:
 
 0. Load the necessary libraries and data
 1. Define the machine learning task
@@ -72,12 +75,12 @@ following steps:
 3. Train the super learner on the machine learning task
 4. Obtain predicted values
 
-### WASH Benefits Study Example
+### WASH Benefits Study Example {-}
 
 Using the WASH data, we are interested in predicting weight-for-height z-score
-`whz` using the available covariate data. Let's begin!
+`whz` using the available covariate data.
 
-**0. Load the necessary libraries and data**
+### 0. Load the necessary libraries and data {-}
 
 ```{r setup, message=FALSE, warning=FALSE}
 library(kableExtra)
@@ -94,18 +97,20 @@ set.seed(7194)
 
 # load data set and take a peek
 washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
+
 head(washb_data) %>%
   kable(digits = 4) %>%
-  kable_styling(fixed_thead = T) %>%
-  scroll_box(width = "100%", height = "300px")
-skim(washb_data)  
+  kable_styling(fixed_thead = T, font_size = 10) %>%
+  scroll_box(width = "100%", height = "250px")
 ```
 
-**1. Define the machine learning task**
+### 1. Define the machine learning task {-}
 
 To define the machine learning **"task"** (predict weight-for-height z-score
 `whz` using the available covariate data), we need to create an `sl3_Task`
-object. The `sl3_Task` keeps track of the roles the variables play in the
+object.
+
+The `sl3_Task` keeps track of the roles the variables play in the
 machine learning problem, the data, and any metadata (e.g., observational-level
 weights, id, offset).
 
@@ -121,18 +126,18 @@ washb_task <- make_sl3_Task(
   outcome = outcome
 )
 
-# examine it
+# examine the task
 washb_task
 ```
 
-**2. Make a super learner**
+### 2. Make a super learner {-}
 
 Now that we have defined our machine learning problem with the task, we are
 ready to **"make"** the super learner. This requires specification of
 
-* A library of base learning algorithms that we think might be consistent with
-  the true data-generating distribution.
-* A metalearner, to ensemble the base learners.
+* Base learning algorithms, to establish a library of learners that we think
+might be consistent with the true data-generating distribution.
+* Metalearner, to ensemble the base learners.
 
 We might also incorporate
 
@@ -163,7 +168,9 @@ lrnr_mean <- make_learner(Lrnr_mean)
 lrnr_glmnet <- make_learner(Lrnr_glmnet)
 ```
 We can customize learner hyperparameters to incorporate a diversity of different
-settings. Documentation for the learners and their hyperparameters can be found
+settings.
+
+Documentation for the learners and their hyperparameters can be found
 in the [`sl3 Learners
 Reference`](https://tlverse.org/sl3/reference/index.html#section-sl-learners).
 We can also include learners from the `SuperLearner` `R` package.
@@ -176,7 +183,9 @@ lrnr_bayesglm <- Lrnr_pkg_SuperLearner$new("SL.bayesglm")
 ```
 
 In order to assemble the library of learners, we need to **"stack"** them
-together. A `Stack` is a special learner and it has the same interface as all
+together.
+
+A `Stack` is a special learner and it has the same interface as all
 other learners. What makes a stack special is that it combines multiple learners
 by training them simultaneously, so that their predictions can be either
 combined or compared.
@@ -196,12 +205,14 @@ that any learner can be used as a metalearner.
 metalearner <- make_learner(Lrnr_nnls)
 ```
 We can optionally select a subset of available covariates and pass only
-those variables to the modeling algorithm. Let's consider screening covariates
-based on their correlation with our outcome of interest (`cor.test` p-value
-$\leq 0.1$).
+those variables to the modeling algorithm.
+
+Let's consider screening covariates based on their correlation with our outcome
+of interest (`cor.test` p-value $\leq 0.1$).
 
 ```{r screener}
 screen_cor <- Lrnr_pkg_SuperLearner_screener$new("screen.corP")
+# which covariates are selected on the full data?
 screen_cor$train(washb_task)
 ```
 To **"pipe"** only the selected covariates to the modeling algorithm, we need to
@@ -211,9 +222,10 @@ the fit from one learner is used to define the task for the next learner.
 ```{r screener-pipe}
 cor_pipeline <- make_learner(Pipeline, screen_cor, stack)
 ```
-Now, our learners will be preceded by a screening step. We also consider the
-original `stack`, just to compare how the feature selection methods perform in
-comparison to the methods without feature selection.
+Now our learners will be preceded by a screening step.
+
+We also consider the original `stack`, just to compare how the feature selection
+methods perform in comparison to the methods without feature selection.
 
 Analogous to what we have seen before, we have to stack the pipeline and
 original `stack` together, so we may use them as base learners in our super
@@ -226,7 +238,7 @@ dt_stack <- delayed_learner_train(fancy_stack, washb_task)
 plot(dt_stack, color = FALSE, height = "400px", width = "100%")
 ```
 
-Now that we have made a library/stack of base learners and a metalearner, we
+We have made a library/stack of base learners and a metalearner, so we
 are ready to make the super learner. The super learner algorithm fits a
 metalearner on the validation-set predictions.
 
@@ -240,7 +252,7 @@ dt_sl <- delayed_learner_train(sl, washb_task)
 plot(dt_sl, color = FALSE, height = "400px", width = "100%")
 ```
 
-**3. Train the super learner on the machine learning task**
+### 3. Train the super learner on the machine learning task {-}
 
 Now we are ready to **"train"** our super learner on our `sl3_task` object, `washb_task`.
 
@@ -248,7 +260,7 @@ Now we are ready to **"train"** our super learner on our `sl3_task` object, `was
 sl_fit <- sl$train(washb_task)
 ```
 
-**4. Obtain predicted values**
+### 4. Obtain predicted values {-}
 
 Now that we have fit the super learner, we are ready to obtain our predicted
 values, and we can also obtain a summary of the results.
@@ -256,10 +268,7 @@ values, and we can also obtain a summary of the results.
 ```{r sl-basic-summary}
 sl_preds <- sl_fit$predict()
 head(sl_preds)
-sl_fit$print() %>%
-  kable(digits = 4) %>%
-  kable_styling(fixed_thead = T) %>%
-  scroll_box(width = "100%", height = "300px")
+sl_fit$print()
 ```
 ## Extensions
 
@@ -283,17 +292,16 @@ washb_task_new <- make_sl3_Task(
 CVsl <- CV_lrnr_sl(sl_fit, washb_task_new, loss_squared_error)
 CVsl %>%
   kable(digits = 4) %>%
-  kable_styling(fixed_thead = T) %>%
-  scroll_box(width = "100%", height = "300px")
+  kable_styling(fixed_thead = T, size = 10) %>%
+  scroll_box(width = "100%", height = "250px")
 ```
 
-### Variable Importance Analysis with `sl3`
+### Variable Importance Measures with `sl3`
 
-Variable importance can be interesting and informative. The `sl3` `varimp`
-function returns a table with variables listed in decreasing order of
-importance, in which the measure of importance is based on a risk difference
-between the learner fit with a permuted covariate and the learner fit with the
-true covariate, across all covariates.
+The `sl3` `varimp` function returns a table with variables listed in decreasing
+order of importance, in which the measure of importance is based on a risk
+difference between the learner fit with a permuted covariate and the learner
+fit with the true covariate, across all covariates.
 
 In this manner, the larger the risk difference, the more important the variable
 is in the prediction.
@@ -302,8 +310,8 @@ is in the prediction.
 washb_varimp <- varimp(sl_fit, loss_squared_error)
 washb_varimp %>%
   kable(digits = 4) %>%
-  kable_styling(fixed_thead = T) %>%
-  scroll_box(width = "100%", height = "300px")
+  kable_styling(fixed_thead = T, size = 10) %>%
+  scroll_box(width = "100%", height = "250px")
 ```
 
 ## Exercise
@@ -331,9 +339,8 @@ chspred <- read_csv(file = db_data, col_names = TRUE)
 # take a quick peek
 head(chspred) %>%
   kable(digits = 4) %>%
-  kableExtra:::kable_styling(fixed_thead = T) %>%
-  scroll_box(width = "100%", height = "300px")
-skim(chspred)
+  kable_styling(fixed_thead = T, size = 10) %>%
+  scroll_box(width = "100%", height = "250px")
 ```
 
 1. Create an `sl3` task, setting myocardial infarction `mi` as the outcome and
@@ -351,7 +358,7 @@ skim(chspred)
    data. Specify `loss_squared_error` as the loss function to evaluate the
    super learner.
 
-## Concluding Remarks
+## Summary
 
 * The general ensemble learning approach of super learner can be applied to a
   diversity of estimation and prediction problems that can be defined by a loss
