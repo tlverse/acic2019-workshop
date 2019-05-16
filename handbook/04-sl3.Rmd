@@ -171,8 +171,9 @@ We can customize learner hyperparameters to incorporate a diversity of different
 settings.
 
 Documentation for the learners and their hyperparameters can be found
-in the [`sl3 Learners
-Reference`](https://tlverse.org/sl3/reference/index.html#section-sl-learners).
+in the [`sl3` Learners
+Reference](https://tlverse.org/sl3/reference/index.html#section-sl-learners).
+
 We can also include learners from the `SuperLearner` `R` package.
 
 ```{r extra-lrnr}
@@ -275,12 +276,19 @@ sl_fit$print()
 ### Cross-validated Super Learner
 
 We can cross-validate the super learner to see how well the super learner
-performs on unseen data. This requires an "external" layer of cross-validation,
+performs on unseen data, and obtain an estimate of the cross-validated risk of
+the super learner.
+
+This estimation procedure requires an "external" layer of cross-validation,
 also called nested cross-validation, which involves setting aside a separate
 holdout sample that we don’t use to fit the super learner. This
 external cross validation procedure may also incorporate 10 folds, which is the
-default in `sl3`. However, we will incorporate 2 outer folds of
+default in `sl3`. However, we will incorporate 2 outer/external folds of
 cross-validation for computational efficiency.
+
+We also need to specify a loss function to evaluate super learner.
+Documentation for the available loss functions can be found in the [`sl3` Loss
+Function Reference](https://tlverse.org/sl3/reference/loss_functions.html).
 
 ```{r CVsl}
 washb_task_new <- make_sl3_Task(
@@ -324,12 +332,14 @@ for making the this Cardiovascular Health Study (CHS) data accessible.
 
 Work with a buddy/team. You have 20 minutes.
 
-In the etherpad, submit your group's answers to the following questions.
+In the [etherpad](https://etherpad.net/p/acic2019-tlverse), submit your group's
+answers to the following questions.
 
 1. Which learner was the discrete super learner? What was the cross validated
 mean risk of the discrete super learner?
 2. What was the cross validated risk of the continuous super learner?
 3. Did your group face any challenges?
+4. Any additional comments/questions about this `sl3` section of the workshop?
 
 ```{r ex-setup}
 # load the data set
