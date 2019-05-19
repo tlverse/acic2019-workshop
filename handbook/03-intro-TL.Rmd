@@ -7,14 +7,18 @@ editor_options:
 # The Targeted Learning Roadmap {#intro}
 
 A central goal of the Targeted Learning statistical paradigm is to estimate
-scientifically relevant parameters in realistic (usually nonparametric) models.
+scientifically relevant parameters in realistic (usually nonparametric) models and to do so with finite-sample robustness and consistent inference.
 
 ## The Statistical Model
 
 Assume we have an i.i.d. sample of confounders, a binary intervention of
-interest, and an outcome, or are observed data is  $O = (W, A, Y)$. The
-distribution of the observed data may be factorized as follows: $P(O) = P(W, A,
-Y) = P(W)P (A \mid W) P(Y \mid A, W)$. To estimate a parameter of interest, a
+interest, and an outcome, or are observed data is  
+\[ O = (W, A, Y).\]
+The
+distribution of the observed data may be factorized as follows: 
+\[P(O) = P(W, A,
+Y) = P(W)P (A \mid W) P(Y \mid A, W).\]
+To estimate a parameter of interest, a
 researcher need not necessarily be able to specify these whole or conditional
 distributions. Rather, each estimator only requires that certain parts of the
 distribution be known; for example, some may require estimates of $\mathbb{E}(Y
@@ -112,6 +116,9 @@ under these two interventions defines a parameter that is often called the
 where $\mathbb{E}_X$ is the mean under the theoretical (unobserved) full data
 $X = (W, Y(1), Y(0))$.
 
+Note, we can define much more complicated interventions on 
+NPSEM's, such as interventions based upon rules (themselves based upon covariates), stochastic rules, etc. and each results in a different targeted parameter and entails different identifiability assumptions discussed below. 
+
 ## Identifiability
 
 Because we can never observe both $Y(0)$ (the counterfactual outcome when $A=0$)
@@ -181,12 +188,11 @@ knitr::include_graphics("img/misc/NatureSlides.pdf")
 
 ### SuperLearning
 
-- There is no universally optimal machine learning algorithm (exceptions exist
-  -- HAL).
+- There is no universally optimal machine learning algorithm for density estimation or prediction
 - This is true empirically, when we have test different algorithms on actual
   data and looked at the performance (e.g., MSE of prediction)
 - For some data, one needs learners that can model a complex function.
-- For others, typically caused by noise or insufficient sample size, a simple,
+- For others, typically the result of noise or insufficient sample size, a simple,
   parametric model might fit the best.
 - SuperLearner, an ensemble learner, solves this issue, by allowing a convex
   combination of learners from the simplest (intercept-only) to most complex
@@ -202,60 +208,90 @@ knitr::include_graphics("img/misc/vs.pdf")
 
 The figure above shows an example of 10-fold cross-validation.
 
-Below, we show both an example of how even non-optimal learners can fit complex
-functions within Super Learner as well as  results of an empirical study of
-Super Learner versus other learners across many data sets.
+The schematic below is a visualization of the following algorithm:
+- Break up the sample evenly into V-folds (say V=10).
+- For each of these 10 folds, remove that portion of the sample (kept out as validation sample) and the remaining will be used to fit learners (training sample).
+- Fit each learner on the training sample (note, some learners will have their own internal cross-validation procedure or other methods to select tuning parameters).
+- For each observation in the corresponding training sample, predict the outcome using each of the learners, so if there are $p$ learners, then where would be $p$ predictions on each of the observations in validation sample).
+- Take out another validation sample and repeat until each of the V-sets of data are removed.
+- Compare the cross-validated fit of the learners across all observations based on specified loss function (e.g., squared error, negative log-likelihood, ...) by calculating the corresponding average loss (risk).
+- Either
+  + choose the learner with smallest risk and apply that learner to entire data set (resulting SL fit)
+  + do a weighted average of the learners to minimize the cross-validated risk (construct an ensemble of learners), by
+    - re-fitting the learners on the original data set, and
+    - use the weights above to get the file SL fit.
+  
+Note, this entire procedure can be itself cross-validated to get a consistent estimate of the future performance of the SL fit.
+
+```{r cv_fig, fig.show="hold"}
+knitr::include_graphics("img/misc/SLKaiserNew.pdf")
+```
+
+For prediction, one can use the cross-validated risk to empirically determine the relative performance of SL and competing methods.  Below shows the results of such a study, comparing the fits of several different learners, including the SL algorithms.
+
+```{r cv_fig, fig.show="hold"}
+knitr::include_graphics("img/misc/ericSL.pdf")
+```
+
+### Substitution Estimators
+- Beyond a fit of the prediction function, one might also want to estimate more targeted parameters specific to certain scientific questions.  
+- The approach is to plug into the estimand of interest estimates of the relevant distributions.
+- Sometimes, we can use simple empirical distributions, but averaging some function over the observations (e.g., giving weight $1/n$ for all observations).
+- Other parts of the distribution, like conditional means or probabilities, the estimate will require some sort of smoothing due to the curse of dimensionality.
+
+We give one example using an example of the average treatment effect (see above): 
+
+- $\Psi(P_0) = \Psi(Q_0) \mathbb{E}_0
+    \left(\mathbb{E}_0[Y \mid A = 1, W] - \mathbb{E}_0[Y \mid A = 0, W]\right).$
+where $Q_0$ represents both the distribution of $Y \mid W,A$ and distribution of $W$.
+- Let $\bar{Q}_0(A,W) \equiv E_0(Y \mid A,W)$ and $Q_{0,W}(w) = P_0 (W=w)$, then
+\[
+\Psi(Q_0) = \sum_w \{ \bar{Q}_0(1,w)-\bar{Q}_0(0,w)\} Q_{0,W}(w)
+\]
+- The **Substitution Estimator** plugs in the empirical distribution (weight $1/n$ for each observation) for $Q_{0,W}(W_i)$, and some estimate of the regression of $Y$ on $(W,A)$  (say SL fit):
+ \[
+ \Psi(Q_n) = \frac{1}{n} \sum_{i=1}^n  \{ \bar{Q}_n(1,W_i)-\bar{Q}_n(0,W_i)\}
+ \]
+ - Thus, it becomes the average of the differences in predictions from the fit keeping the observed $W$, but first replacing $A=1$ and then the same but all $A=0$.
 
 ### TMLE
+- Though using SL over an arbitrary parametric regression is an improvement, it's not sufficient to have the properties of an estimator one needs for rigorous inference.
+- Because the variance-bias trade-off in the SL is focused on the prediction model, it can, for instance, underfit portions of the distributions that are critical for estimating the parameter of interest ($\Psi(P_0)$).
+- TMLE keeps the benefits of substitution estimators (it is one), but augments the original estimates to correct for this issue and also results in an asymptotically linear (and thus normally-distributed) estimator with consisent Wald-style confidence intervals. 
+- Produces a well-defined, unbiased, efficient substitution estimator of target parameters of a data-generating distribution.
+- Updates an initial (super learner) estimate  of the relevant part of the data-generating distribution possibly using an estimate of a nuisance parameter (like the model of intervention given covariates).
+- Removes asymptotic residual bias of initial estimator for the target parameter, if it uses a consistent estimator of $g_0$.
+- If initial estimator was consistent for the target parameter, the additional fitting of the data in the targeting step may remove finite sample bias, and preserves consistency property of the initial estimator.
+- If the initial estimator and the estimator of $g_0$ are both consistent, then it is also asymptotically  efficient according to semi-parametric statistical model efficiency theory.
+- Thus, every effort is made to achieve minimal bias and the asymptotic semi-parametric efficiency bound for the variance.
 
-- Augmentation of substitution estimators
-  + Defines a mapping from the true distribution to a  parameter(s), $\Psi(P_0)$
-  + A substitution estimator uses the same mapping, but plug-in estimates of the
-    relevant parts of distirbution $\Psi(P_n)$.
-  + TMLE does a targed augmentation of the estimate of the relevant parts of the
-    distribution, but uses same mapping $\Psi(P^*_n)$.
-- Produces a well-defined, unbiased, efficient substitution estimator of target
-  parameters of a data-generating distribution.
-- Updates an initial (super learner) estimate  of the relevant part of the
-  data-generating distribution possibly using an estimate of a nuisance
-  parameter (like the model of intervention given covariates).
-- Removes asymptotic residual bias of initial estimator for the target
-  parameter, if it uses a consistent estimator of $g_0$.
-- If initial estimator was consistent for the target parameter, the additional
-  fitting of the data in the targeting step may remove finite sample bias, and
-  preserves consistency property of the initial estimator.
-- If the initial estimator and the estimator of $g_0$ are both consistent, then
-  it is also asymptotically  efficient according to semi-parametric statistical
-  model efficiency theory.
-- Thus, every effort is made to achieve minimal bias and the asymptotic
-  semi-parametric efficiency bound for the variance.
 
-<!--
-```{r nature_slides_3, fig.show="hold"}
-knitr::include_graphics("img/misc/NatureSlides_3.pdf")
+
+```{r cv_fig, fig.show="hold"}
+knitr::include_graphics("img/misc/TMLEimage.pdf")
 ```
-```{r nature_slides_4, fig.show="hold"}
-knitr::include_graphics("img/misc/NatureSlides_4.pdf")
-```
-```{r nature_slides_5, fig.show="hold"}
-knitr::include_graphics("img/misc/NatureSlides_5.pdf")
-```
--->
-\includegraphics[page=3,width=5in]{NatureSlides.pdf}]
 
-\includegraphics[page=4,width=5in]{NatureSlides.pdf}]
+- There are different types of TMLE, sometimes for the same set of parameters, but below is an example of the algorithm for estimating the ATE.
+- In this case, one can present the estimator as:
 
-\includegraphics[page=5,width=5in]{NatureSlides.pdf}]
+\[
+ \Psi(Q^*_n) = \frac{1}{n} \sum_{i=1}^n  \{ \bar{Q}^*_n(1,W_i)-\bar{Q}^*_n(0,W_i)\}
+ \]
+where $\bar{Q}^*_n(A,W)$ is the TMLE augmented estimate.
+$f(\bar{Q}^*_n(A,W)) = f(\bar{Q}_n(A,W)) + \epsilon_n * h_n(A,W)$, where $f(\cdot)$ is the appropriate link function (e.g., logit), $\epsilon_n$ is an estimated coefficient and $h_n(A,W)$ is a "clever covariate".
+- In this case, $h_n(A,W) = A/g_n(W)-(1-A)/(1-g_n(W))$, with $g_n(W) = P_n(A=1 \mid W)$ being the estimated (also by SL) propensity score, so the estimator depends both on initial SL fit of the outcome regression ($\bar{Q}_0$) and an SL fit of the propensity score ($g_n$).
+
+- There are further robust agumentations that are used in tlverse, such as an added layer of cross-validation to avoid over-fitting bias (CV-TMLE), and so called methods that can more robustly estimated several parameters simultaneously (e.g., the points on a survival curve). 
 
 ### Inference
 
-The estimators we discuss are asymptotically linear, meaning that the difference
-in the estimate $\Psi(P_n)$ and the true parameter ($\Psi(P_0)$) can be
-represented in first order by a i.i.d. sum:
+- The estimators we discuss are **asymptotically linear**, meaning that the difference
+in the estimate $\Psi(P_n)$ and the true parameter ($\Psi(P_0)$) can be represented in first order by a i.i.d. sum:
 \begin{equation}\label{eqn:IC}
   \Psi(P_n) - \Psi(P_0) = \frac{1}{n} IC(O_i; \nu) + op(1/\sqrt{n})
 \end{equation}
-where $IC(O_i; \nu)$ is a function of the data and possibly other parameters
+
+where $IC(O_i; \nu)$ (the influence curve or function) is a function of the data and possibly other nuisance parameters
 $\nu$. Importantly, such estimators have mean-zero Gaussian limiting
 distributions; thus, in the univariate case, one has that
 \begin{equation}\label{eqn:limit_dist}
@@ -271,6 +307,7 @@ where $SE=\sqrt{\frac{\hat{\sigma}^2}{n}}$ and $\hat{\sigma}^2$ is the sample
 variance of the estimated IC's: $IC(O; \hat{\nu})$. One can use the functional
 delta method to derive the influence curve if a parameter of interest may be
 written as a function of other asymptotically linear estimators.
+- Thus, we can derive robust inference for parameters that are estimated by fitting complex, machine learning algorithms and these methods are computationally quick (do not rely on re-sampling based methods like the bootstrap).
 
 ## The WASH Benefits Example Dataset
 
