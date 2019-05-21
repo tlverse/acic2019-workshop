@@ -321,8 +321,8 @@ experiment and thereby define the parameter of interest. Causal graphs are one
 useful tool to express what we know about the causal relations among variables
 that are relevant to the question under study <span class="citation">(Pearl <a href="#ref-pearl2009causality">2009</a>)</span>.</p>
 <p>Ignoring error terms, we will assume the following ordering of the variables in <span class="math inline">\(O\)</span>.</p>
-<div id="htmlwidget-d17370f4cabc7976377c" style="width:200px;height:300px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d17370f4cabc7976377c">{"x":{"nodes":{"id":["W","A","Y"],"label":["W","A","Y"]},"edges":{"from":["W","W","A"],"to":["A","Y","Y"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":true}},"layout":{"randomSeed":25}},"groups":null,"width":"200px","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-0e9f5c8170c6ac20f8df" style="width:200px;height:300px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0e9f5c8170c6ac20f8df">{"x":{"nodes":{"id":["W","A","Y"],"label":["W","A","Y"]},"edges":{"from":["W","W","A"],"to":["A","Y","Y"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":true}},"layout":{"randomSeed":25}},"groups":null,"width":"200px","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
 <p>While
 directed acyclic graphs (DAGs - like above) provide a convenient means by which to visualize
 causal relations between variables, the causal relations among variables
@@ -463,18 +463,8 @@ though better to have good candidates).</li>
 <pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/misc/vs.pdf&quot;</span>)</code></pre>
 <embed src="img/misc/vs.pdf" width="    extwidth" style="display: block; margin: auto;" type="application/pdf" />
 <p>The figure above shows an example of 10-fold cross-validation.</p>
-<p>The schematic below is a visualization of the following algorithm:
-- Break up the sample evenly into V-folds (say V=10).
-- For each of these 10 folds, remove that portion of the sample (kept out as validation sample) and the remaining will be used to fit learners (training sample).
-- Fit each learner on the training sample (note, some learners will have their own internal cross-validation procedure or other methods to select tuning parameters).
-- For each observation in the corresponding training sample, predict the outcome using each of the learners, so if there are <span class="math inline">\(p\)</span> learners, then where would be <span class="math inline">\(p\)</span> predictions on each of the observations in validation sample).
-- Take out another validation sample and repeat until each of the V-sets of data are removed.
-- Compare the cross-validated fit of the learners across all observations based on specified loss function (e.g., squared error, negative log-likelihood, …) by calculating the corresponding average loss (risk).
-- Either
-+ choose the learner with smallest risk and apply that learner to entire data set (resulting SL fit)
-+ do a weighted average of the learners to minimize the cross-validated risk (construct an ensemble of learners), by
-- re-fitting the learners on the original data set, and
-- use the weights above to get the file SL fit.</p>
+The schematic below is a visualization of the following algorithm:
+
 <p>Note, this entire procedure can be itself cross-validated to get a consistent estimate of the future performance of the SL fit.</p>
 <pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/misc/SLKaiserNew.pdf&quot;</span>)</code></pre>
 <embed src="img/misc/SLKaiserNew.pdf" width="   extwidth" style="display: block; margin: auto;" type="application/pdf" />
