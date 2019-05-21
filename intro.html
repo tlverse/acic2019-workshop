@@ -162,8 +162,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#identifiability"><i class="fa fa-check"></i><b>2.4</b> Identifiability</a></li>
 <li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#estimators-superlearning-and-targeted-maximum-likelihood"><i class="fa fa-check"></i><b>2.5</b> Estimators: SuperLearning and Targeted Maximum Likelihood</a><ul>
 <li class="chapter" data-level="2.5.1" data-path="intro.html"><a href="intro.html#superlearning"><i class="fa fa-check"></i><b>2.5.1</b> SuperLearning</a></li>
-<li class="chapter" data-level="2.5.2" data-path="intro.html"><a href="intro.html#tmle"><i class="fa fa-check"></i><b>2.5.2</b> TMLE</a></li>
-<li class="chapter" data-level="2.5.3" data-path="intro.html"><a href="intro.html#inference"><i class="fa fa-check"></i><b>2.5.3</b> Inference</a></li>
+<li class="chapter" data-level="2.5.2" data-path="intro.html"><a href="intro.html#substitution-estimators"><i class="fa fa-check"></i><b>2.5.2</b> Substitution Estimators</a></li>
+<li class="chapter" data-level="2.5.3" data-path="intro.html"><a href="intro.html#tmle"><i class="fa fa-check"></i><b>2.5.3</b> TMLE</a></li>
+<li class="chapter" data-level="2.5.4" data-path="intro.html"><a href="intro.html#inference"><i class="fa fa-check"></i><b>2.5.4</b> Inference</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#the-wash-benefits-example-dataset"><i class="fa fa-check"></i><b>2.6</b> The WASH Benefits Example Dataset</a></li>
 </ul></li>
@@ -284,12 +285,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">Chapter 2</span> The Targeted Learning Roadmap</h1>
 <p>A central goal of the Targeted Learning statistical paradigm is to estimate
-scientifically relevant parameters in realistic (usually nonparametric) models.</p>
+scientifically relevant parameters in realistic (usually nonparametric) models and to do so with finite-sample robustness and consistent inference.</p>
 <div id="the-statistical-model" class="section level2">
 <h2><span class="header-section-number">2.1</span> The Statistical Model</h2>
 <p>Assume we have an i.i.d. sample of confounders, a binary intervention of
-interest, and an outcome, or are observed data is <span class="math inline">\(O = (W, A, Y)\)</span>. The
-distribution of the observed data may be factorized as follows: <span class="math inline">\(P(O) = P(W, A, Y) = P(W)P (A \mid W) P(Y \mid A, W)\)</span>. To estimate a parameter of interest, a
+interest, and an outcome, or are observed data is<br />
+<span class="math display">\[ O = (W, A, Y).\]</span>
+The
+distribution of the observed data may be factorized as follows:
+<span class="math display">\[P(O) = P(W, A,
+Y) = P(W)P (A \mid W) P(Y \mid A, W).\]</span>
+To estimate a parameter of interest, a
 researcher need not necessarily be able to specify these whole or conditional
 distributions. Rather, each estimator only requires that certain parts of the
 distribution be known; for example, some may require estimates of <span class="math inline">\(\mathbb{E}(Y \mid A, W)\)</span>, the mean of <span class="math inline">\(Y\)</span> within subgroups <span class="math inline">\((A, W)\)</span>, or the regression of the
@@ -315,8 +321,8 @@ experiment and thereby define the parameter of interest. Causal graphs are one
 useful tool to express what we know about the causal relations among variables
 that are relevant to the question under study <span class="citation">(Pearl <a href="#ref-pearl2009causality">2009</a>)</span>.</p>
 <p>Ignoring error terms, we will assume the following ordering of the variables in <span class="math inline">\(O\)</span>.</p>
-<div id="htmlwidget-f785a032f64c6208797f" style="width:200px;height:300px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f785a032f64c6208797f">{"x":{"nodes":{"id":["W","A","Y"],"label":["W","A","Y"]},"edges":{"from":["W","W","A"],"to":["A","Y","Y"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":true}},"layout":{"randomSeed":25}},"groups":null,"width":"200px","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d17370f4cabc7976377c" style="width:200px;height:300px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d17370f4cabc7976377c">{"x":{"nodes":{"id":["W","A","Y"],"label":["W","A","Y"]},"edges":{"from":["W","W","A"],"to":["A","Y","Y"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":true}},"layout":{"randomSeed":25}},"groups":null,"width":"200px","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
 <p>While
 directed acyclic graphs (DAGs - like above) provide a convenient means by which to visualize
 causal relations between variables, the causal relations among variables
@@ -372,6 +378,8 @@ under these two interventions defines a parameter that is often called the
 \end{equation}\]</span>
 where <span class="math inline">\(\mathbb{E}_X\)</span> is the mean under the theoretical (unobserved) full data
 <span class="math inline">\(X = (W, Y(1), Y(0))\)</span>.</p>
+<p>Note, we can define much more complicated interventions on
+NPSEM’s, such as interventions based upon rules (themselves based upon covariates), stochastic rules, etc. and each results in a different targeted parameter and entails different identifiability assumptions discussed below.</p>
 </div>
 <div id="identifiability" class="section level2">
 <h2><span class="header-section-number">2.4</span> Identifiability</h2>
@@ -438,12 +446,11 @@ intervention parameters of interest.</p>
 <div id="superlearning" class="section level3">
 <h3><span class="header-section-number">2.5.1</span> SuperLearning</h3>
 <ul>
-<li>There is no universally optimal machine learning algorithm (exceptions exist
-– HAL).</li>
+<li>There is no universally optimal machine learning algorithm for density estimation or prediction</li>
 <li>This is true empirically, when we have test different algorithms on actual
 data and looked at the performance (e.g., MSE of prediction)</li>
 <li>For some data, one needs learners that can model a complex function.</li>
-<li>For others, typically caused by noise or insufficient sample size, a simple,
+<li>For others, typically the result of noise or insufficient sample size, a simple,
 parametric model might fit the best.</li>
 <li>SuperLearner, an ensemble learner, solves this issue, by allowing a convex
 combination of learners from the simplest (intercept-only) to most complex
@@ -456,70 +463,88 @@ though better to have good candidates).</li>
 <pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/misc/vs.pdf&quot;</span>)</code></pre>
 <embed src="img/misc/vs.pdf" width="    extwidth" style="display: block; margin: auto;" type="application/pdf" />
 <p>The figure above shows an example of 10-fold cross-validation.</p>
-<p>Below, we show both an example of how even non-optimal learners can fit complex
-functions within Super Learner as well as results of an empirical study of
-Super Learner versus other learners across many data sets.</p>
+<p>The schematic below is a visualization of the following algorithm:
+- Break up the sample evenly into V-folds (say V=10).
+- For each of these 10 folds, remove that portion of the sample (kept out as validation sample) and the remaining will be used to fit learners (training sample).
+- Fit each learner on the training sample (note, some learners will have their own internal cross-validation procedure or other methods to select tuning parameters).
+- For each observation in the corresponding training sample, predict the outcome using each of the learners, so if there are <span class="math inline">\(p\)</span> learners, then where would be <span class="math inline">\(p\)</span> predictions on each of the observations in validation sample).
+- Take out another validation sample and repeat until each of the V-sets of data are removed.
+- Compare the cross-validated fit of the learners across all observations based on specified loss function (e.g., squared error, negative log-likelihood, …) by calculating the corresponding average loss (risk).
+- Either
++ choose the learner with smallest risk and apply that learner to entire data set (resulting SL fit)
++ do a weighted average of the learners to minimize the cross-validated risk (construct an ensemble of learners), by
+- re-fitting the learners on the original data set, and
+- use the weights above to get the file SL fit.</p>
+<p>Note, this entire procedure can be itself cross-validated to get a consistent estimate of the future performance of the SL fit.</p>
+<pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/misc/SLKaiserNew.pdf&quot;</span>)</code></pre>
+<embed src="img/misc/SLKaiserNew.pdf" width="   extwidth" style="display: block; margin: auto;" type="application/pdf" />
+<p>For prediction, one can use the cross-validated risk to empirically determine the relative performance of SL and competing methods. Below shows the results of such a study, comparing the fits of several different learners, including the SL algorithms.</p>
+<pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/misc/ericSL.pdf&quot;</span>)</code></pre>
+<embed src="img/misc/ericSL.pdf" width="    extwidth" style="display: block; margin: auto;" type="application/pdf" />
+</div>
+<div id="substitution-estimators" class="section level3">
+<h3><span class="header-section-number">2.5.2</span> Substitution Estimators</h3>
+<ul>
+<li>Beyond a fit of the prediction function, one might also want to estimate more targeted parameters specific to certain scientific questions.<br />
+</li>
+<li>The approach is to plug into the estimand of interest estimates of the relevant distributions.</li>
+<li>Sometimes, we can use simple empirical distributions, but averaging some function over the observations (e.g., giving weight <span class="math inline">\(1/n\)</span> for all observations).</li>
+<li>Other parts of the distribution, like conditional means or probabilities, the estimate will require some sort of smoothing due to the curse of dimensionality.</li>
+</ul>
+<p>We give one example using an example of the average treatment effect (see above):</p>
+<ul>
+<li><span class="math inline">\(\Psi(P_0) = \Psi(Q_0) \mathbb{E}_0  \left(\mathbb{E}_0[Y \mid A = 1, W] - \mathbb{E}_0[Y \mid A = 0, W]\right).\)</span>
+where <span class="math inline">\(Q_0\)</span> represents both the distribution of <span class="math inline">\(Y \mid W,A\)</span> and distribution of <span class="math inline">\(W\)</span>.</li>
+<li>Let <span class="math inline">\(\bar{Q}_0(A,W) \equiv E_0(Y \mid A,W)\)</span> and <span class="math inline">\(Q_{0,W}(w) = P_0 (W=w)\)</span>, then
+<span class="math display">\[
+\Psi(Q_0) = \sum_w \{ \bar{Q}_0(1,w)-\bar{Q}_0(0,w)\} Q_{0,W}(w)
+\]</span></li>
+<li>The <strong>Substitution Estimator</strong> plugs in the empirical distribution (weight <span class="math inline">\(1/n\)</span> for each observation) for <span class="math inline">\(Q_{0,W}(W_i)\)</span>, and some estimate of the regression of <span class="math inline">\(Y\)</span> on <span class="math inline">\((W,A)\)</span> (say SL fit):
+<span class="math display">\[
+ \Psi(Q_n) = \frac{1}{n} \sum_{i=1}^n  \{ \bar{Q}_n(1,W_i)-\bar{Q}_n(0,W_i)\}
+ \]</span></li>
+<li>Thus, it becomes the average of the differences in predictions from the fit keeping the observed <span class="math inline">\(W\)</span>, but first replacing <span class="math inline">\(A=1\)</span> and then the same but all <span class="math inline">\(A=0\)</span>.</li>
+</ul>
 </div>
 <div id="tmle" class="section level3">
-<h3><span class="header-section-number">2.5.2</span> TMLE</h3>
+<h3><span class="header-section-number">2.5.3</span> TMLE</h3>
 <ul>
-<li>Augmentation of substitution estimators
-<ul>
-<li>Defines a mapping from the true distribution to a parameter(s), <span class="math inline">\(\Psi(P_0)\)</span></li>
-<li>A substitution estimator uses the same mapping, but plug-in estimates of the
-relevant parts of distirbution <span class="math inline">\(\Psi(P_n)\)</span>.</li>
-<li>TMLE does a targed augmentation of the estimate of the relevant parts of the
-distribution, but uses same mapping <span class="math inline">\(\Psi(P^*_n)\)</span>.</li>
-</ul></li>
-<li>Produces a well-defined, unbiased, efficient substitution estimator of target
-parameters of a data-generating distribution.</li>
-<li>Updates an initial (super learner) estimate of the relevant part of the
-data-generating distribution possibly using an estimate of a nuisance
-parameter (like the model of intervention given covariates).</li>
-<li>Removes asymptotic residual bias of initial estimator for the target
-parameter, if it uses a consistent estimator of <span class="math inline">\(g_0\)</span>.</li>
-<li>If initial estimator was consistent for the target parameter, the additional
-fitting of the data in the targeting step may remove finite sample bias, and
-preserves consistency property of the initial estimator.</li>
-<li>If the initial estimator and the estimator of <span class="math inline">\(g_0\)</span> are both consistent, then
-it is also asymptotically efficient according to semi-parametric statistical
-model efficiency theory.</li>
-<li>Thus, every effort is made to achieve minimal bias and the asymptotic
-semi-parametric efficiency bound for the variance.</li>
+<li>Though using SL over an arbitrary parametric regression is an improvement, it’s not sufficient to have the properties of an estimator one needs for rigorous inference.</li>
+<li>Because the variance-bias trade-off in the SL is focused on the prediction model, it can, for instance, underfit portions of the distributions that are critical for estimating the parameter of interest (<span class="math inline">\(\Psi(P_0)\)</span>).</li>
+<li>TMLE keeps the benefits of substitution estimators (it is one), but augments the original estimates to correct for this issue and also results in an asymptotically linear (and thus normally-distributed) estimator with consisent Wald-style confidence intervals.</li>
+<li>Produces a well-defined, unbiased, efficient substitution estimator of target parameters of a data-generating distribution.</li>
+<li>Updates an initial (super learner) estimate of the relevant part of the data-generating distribution possibly using an estimate of a nuisance parameter (like the model of intervention given covariates).</li>
+<li>Removes asymptotic residual bias of initial estimator for the target parameter, if it uses a consistent estimator of <span class="math inline">\(g_0\)</span>.</li>
+<li>If initial estimator was consistent for the target parameter, the additional fitting of the data in the targeting step may remove finite sample bias, and preserves consistency property of the initial estimator.</li>
+<li>If the initial estimator and the estimator of <span class="math inline">\(g_0\)</span> are both consistent, then it is also asymptotically efficient according to semi-parametric statistical model efficiency theory.</li>
+<li>Thus, every effort is made to achieve minimal bias and the asymptotic semi-parametric efficiency bound for the variance.</li>
 </ul>
-<!--
-
-```r
-knitr::include_graphics("img/misc/NatureSlides_3.pdf")
-```
-
-<embed src="img/misc/NatureSlides_3.pdf" width="    extwidth" style="display: block; margin: auto;" type="application/pdf" />
-
-```r
-knitr::include_graphics("img/misc/NatureSlides_4.pdf")
-```
-
-<embed src="img/misc/NatureSlides_4.pdf" width="    extwidth" style="display: block; margin: auto;" type="application/pdf" />
-
-```r
-knitr::include_graphics("img/misc/NatureSlides_5.pdf")
-```
-
-<embed src="img/misc/NatureSlides_5.pdf" width="    extwidth" style="display: block; margin: auto;" type="application/pdf" />
--->
-<p>]</p>
-<p>]</p>
-<p>]</p>
+<pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/misc/TMLEimage.pdf&quot;</span>)</code></pre>
+<embed src="img/misc/TMLEimage.pdf" width=" extwidth" style="display: block; margin: auto;" type="application/pdf" />
+<ul>
+<li>There are different types of TMLE, sometimes for the same set of parameters, but below is an example of the algorithm for estimating the ATE.</li>
+<li>In this case, one can present the estimator as:</li>
+</ul>
+<p><span class="math display">\[
+ \Psi(Q^*_n) = \frac{1}{n} \sum_{i=1}^n  \{ \bar{Q}^*_n(1,W_i)-\bar{Q}^*_n(0,W_i)\}
+ \]</span>
+where <span class="math inline">\(\bar{Q}^*_n(A,W)\)</span> is the TMLE augmented estimate.
+<span class="math inline">\(f(\bar{Q}^*_n(A,W)) = f(\bar{Q}_n(A,W)) + \epsilon_n * h_n(A,W)\)</span>, where <span class="math inline">\(f(\cdot)\)</span> is the appropriate link function (e.g., logit), <span class="math inline">\(\epsilon_n\)</span> is an estimated coefficient and <span class="math inline">\(h_n(A,W)\)</span> is a “clever covariate”.
+- In this case, <span class="math inline">\(h_n(A,W) = A/g_n(W)-(1-A)/(1-g_n(W))\)</span>, with <span class="math inline">\(g_n(W) = P_n(A=1 \mid W)\)</span> being the estimated (also by SL) propensity score, so the estimator depends both on initial SL fit of the outcome regression (<span class="math inline">\(\bar{Q}_0\)</span>) and an SL fit of the propensity score (<span class="math inline">\(g_n\)</span>).</p>
+<ul>
+<li>There are further robust agumentations that are used in tlverse, such as an added layer of cross-validation to avoid over-fitting bias (CV-TMLE), and so called methods that can more robustly estimated several parameters simultaneously (e.g., the points on a survival curve).</li>
+</ul>
 </div>
 <div id="inference" class="section level3">
-<h3><span class="header-section-number">2.5.3</span> Inference</h3>
-<p>The estimators we discuss are asymptotically linear, meaning that the difference
-in the estimate <span class="math inline">\(\Psi(P_n)\)</span> and the true parameter (<span class="math inline">\(\Psi(P_0)\)</span>) can be
-represented in first order by a i.i.d. sum:
+<h3><span class="header-section-number">2.5.4</span> Inference</h3>
+<ul>
+<li>The estimators we discuss are <strong>asymptotically linear</strong>, meaning that the difference
+in the estimate <span class="math inline">\(\Psi(P_n)\)</span> and the true parameter (<span class="math inline">\(\Psi(P_0)\)</span>) can be represented in first order by a i.i.d. sum:
 <span class="math display">\[\begin{equation}\label{eqn:IC}
-  \Psi(P_n) - \Psi(P_0) = \frac{1}{n} IC(O_i; \nu) + op(1/\sqrt{n})
-\end{equation}\]</span>
-where <span class="math inline">\(IC(O_i; \nu)\)</span> is a function of the data and possibly other parameters
+\Psi(P_n) - \Psi(P_0) = \frac{1}{n} IC(O_i; \nu) + op(1/\sqrt{n})
+\end{equation}\]</span></li>
+</ul>
+<p>where <span class="math inline">\(IC(O_i; \nu)\)</span> (the influence curve or function) is a function of the data and possibly other nuisance parameters
 <span class="math inline">\(\nu\)</span>. Importantly, such estimators have mean-zero Gaussian limiting
 distributions; thus, in the univariate case, one has that
 <span class="math display">\[\begin{equation}\label{eqn:limit_dist}
@@ -534,7 +559,8 @@ derived as:
 where <span class="math inline">\(SE=\sqrt{\frac{\hat{\sigma}^2}{n}}\)</span> and <span class="math inline">\(\hat{\sigma}^2\)</span> is the sample
 variance of the estimated IC’s: <span class="math inline">\(IC(O; \hat{\nu})\)</span>. One can use the functional
 delta method to derive the influence curve if a parameter of interest may be
-written as a function of other asymptotically linear estimators.</p>
+written as a function of other asymptotically linear estimators.
+- Thus, we can derive robust inference for parameters that are estimated by fitting complex, machine learning algorithms and these methods are computationally quick (do not rely on re-sampling based methods like the bootstrap).</p>
 </div>
 </div>
 <div id="the-wash-benefits-example-dataset" class="section level2">

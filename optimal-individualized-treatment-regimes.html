@@ -162,8 +162,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#identifiability"><i class="fa fa-check"></i><b>2.4</b> Identifiability</a></li>
 <li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#estimators-superlearning-and-targeted-maximum-likelihood"><i class="fa fa-check"></i><b>2.5</b> Estimators: SuperLearning and Targeted Maximum Likelihood</a><ul>
 <li class="chapter" data-level="2.5.1" data-path="intro.html"><a href="intro.html#superlearning"><i class="fa fa-check"></i><b>2.5.1</b> SuperLearning</a></li>
-<li class="chapter" data-level="2.5.2" data-path="intro.html"><a href="intro.html#tmle"><i class="fa fa-check"></i><b>2.5.2</b> TMLE</a></li>
-<li class="chapter" data-level="2.5.3" data-path="intro.html"><a href="intro.html#inference"><i class="fa fa-check"></i><b>2.5.3</b> Inference</a></li>
+<li class="chapter" data-level="2.5.2" data-path="intro.html"><a href="intro.html#substitution-estimators"><i class="fa fa-check"></i><b>2.5.2</b> Substitution Estimators</a></li>
+<li class="chapter" data-level="2.5.3" data-path="intro.html"><a href="intro.html#tmle"><i class="fa fa-check"></i><b>2.5.3</b> TMLE</a></li>
+<li class="chapter" data-level="2.5.4" data-path="intro.html"><a href="intro.html#inference"><i class="fa fa-check"></i><b>2.5.4</b> Inference</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#the-wash-benefits-example-dataset"><i class="fa fa-check"></i><b>2.6</b> The WASH Benefits Example Dataset</a></li>
 </ul></li>
@@ -286,7 +287,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><em>Ivana Malenica</em></p>
 <p>Based on the <a href="https://github.com/tlverse/tmle3mopttx"><code>tmle3mopttx</code> <code>R</code> package</a>
 by <em>Ivana Malenica, Jeremy Coyle, and Mark van der Laan</em>.</p>
-<p>Updated: 2019-05-17</p>
+<p>Updated: 2019-05-21</p>
 <div id="learning-objectives-3" class="section level2">
 <h2><span class="header-section-number">5.1</span> Learning Objectives</h2>
 <p>By the end of this lesson you will be able to:</p>
@@ -700,15 +701,15 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.5411876 0.5669245 0.07820916 0.4136374 0.7202117
+   type         param  init_est  tmle_est         se     lower    upper
+1:  TSM E[Y_{A=NULL}] 0.5312502 0.5737959 0.06645993 0.4435368 0.704055
    psi_transformed lower_transformed upper_transformed
-1:       0.5669245         0.4136374         0.7202117</code></pre>
+1:       0.5737959         0.4435368          0.704055</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How many individuals got assigned each treatment?</span>
 <span class="kw">table</span>(tmle_spec<span class="op">$</span>return_rule)</code></pre>
 <pre><code>
   1   2   3 
-336 339 325 </code></pre>
+440 333 227 </code></pre>
 <p>We can see that the confidence interval covers
 our true mean under the true optimal individualized treatment.</p>
 <p><strong>NOTICE the distribution of the assigned treatment! We will need this shortly.</strong></p>
@@ -744,13 +745,15 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
   <span class="dt">maximize =</span> <span class="ot">TRUE</span>, <span class="dt">complex =</span> <span class="ot">FALSE</span>, <span class="dt">realistic =</span> <span class="ot">FALSE</span>
 )</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># fit the TML estimator</span>
-fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
-fit</code></pre>
+fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)</code></pre>
+<pre><code>Warning in if (self$check_convergence(tmle_task, update_fold)) {: the condition
+has length &gt; 1 and only the first element will be used</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type                param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=W4,W3,W2,W1}] 0.5358232 0.6532443 0.06113461 0.5334226 0.7730659
+   type             param  init_est  tmle_est         se     lower     upper
+1:  TSM E[Y_{A=W3,W2,W1}] 0.5314932 0.5902936 0.06805878 0.4569008 0.7236863
    psi_transformed lower_transformed upper_transformed
-1:       0.6532443         0.5334226         0.7730659</code></pre>
+1:       0.5902936         0.4569008         0.7236863</code></pre>
 <p>Even though the user specified all baseline covariates as the basis
 for rule estimation, a simpler rule is sufficient to
 maximize the mean under the optimal individualized treatment!</p>
@@ -781,15 +784,15 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param init_est  tmle_est         se     lower    upper
-1:  TSM E[Y_{A=NULL}] 0.539845 0.6530767 0.02134495 0.6112413 0.694912
+   type         param  init_est  tmle_est         se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.5465279 0.6618159 0.02133325 0.6200035 0.7036283
    psi_transformed lower_transformed upper_transformed
-1:       0.6530767         0.6112413          0.694912</code></pre>
+1:       0.6618159         0.6200035         0.7036283</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How many individuals got assigned each treatment?</span>
 <span class="kw">table</span>(tmle_spec<span class="op">$</span>return_rule)</code></pre>
 <pre><code>
   2   3 
-510 490 </code></pre>
+520 480 </code></pre>
 <p><strong>QUESTION:</strong> Referring back to the data-generating distribution, why do you
 think the distribution of allocated treatment changed from the distribution
 we had under the “non-realistic”&quot; rule?</p>
@@ -841,18 +844,22 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_vim</span>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># fit the TML estimator</span>
 vim_results &lt;-<span class="st"> </span><span class="kw">tmle3_vim</span>(tmle_spec, data, node_list, learner_list,
   <span class="dt">adjust_for_other_A =</span> <span class="ot">TRUE</span>
-)
+)</code></pre>
+<pre><code>Warning in if (self$check_convergence(tmle_task, update_fold)) {: the condition
+has length &gt; 1 and only the first element will be used
 
-<span class="kw">print</span>(vim_results)</code></pre>
+Warning in if (self$check_convergence(tmle_task, update_fold)) {: the condition
+has length &gt; 1 and only the first element will be used</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(vim_results)</code></pre>
 <pre><code>   type                  param      init_est    tmle_est         se       lower
 1:   RR RR(E[Y_{A=NULL}]/E[Y])  0.0005688776  0.04978485 0.03425352 -0.01735081
-2:   RR RR(E[Y_{A=NULL}]/E[Y]) -0.0262075308 -0.03848340 0.04806042 -0.13268009
+2:   RR RR(E[Y_{A=NULL}]/E[Y]) -0.0290435910 -0.03953307 0.04928466 -0.13612923
         upper psi_transformed lower_transformed upper_transformed  A
 1: 0.11692051       1.0510449         0.9827988          1.124030  A
-2: 0.05571329       0.9622477         0.8757452          1.057295 W1
+2: 0.05706309       0.9612382         0.8727298          1.058723 W1
              W     Z_stat       p_nz p_nz_corrected
 1: W3,W4,W2,W1  1.4534229 0.07305318      0.1461064
-2:  W3,W4,W2,A -0.8007296 0.21164410      0.2116441</code></pre>
+2:  W3,W4,W2,A -0.8021374 0.21123675      0.2112368</code></pre>
 <p>The final result of <code>tmle3_vim</code> with the <code>tmle3mopttx</code> spec is an ordered list
 of mean outcomes under the optimal individualized treatment for all categorical
 covariates in our dataset.</p>
