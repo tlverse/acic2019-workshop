@@ -582,10 +582,9 @@ above defined ATE parameter</p>
 tmle_fit_multiparam &lt;-<span class="st"> </span><span class="kw">fit_tmle3</span>(
   tmle_task, targeted_likelihood, all_params,
   targeted_likelihood<span class="op">$</span>updater
-)</code></pre>
-<pre><code>Warning in if (self$check_convergence(tmle_task, update_fold)) {: the condition
-has length &gt; 1 and only the first element will be used</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(tmle_fit_multiparam)</code></pre>
+)
+
+<span class="kw">print</span>(tmle_fit_multiparam)</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
    type                                       param     init_est     tmle_est
 1:  TSM                            E[Y_{A=Control}] -0.596137737 -0.621780081
