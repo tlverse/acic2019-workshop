@@ -209,18 +209,26 @@ knitr::include_graphics("img/misc/vs.pdf")
 The figure above shows an example of 10-fold cross-validation.
 
 The schematic below is a visualization of the following algorithm:
-- Break up the sample evenly into V-folds (say V=10).
-- For each of these 10 folds, remove that portion of the sample (kept out as validation sample) and the remaining will be used to fit learners (training sample).
-- Fit each learner on the training sample (note, some learners will have their own internal cross-validation procedure or other methods to select tuning parameters).
-- For each observation in the corresponding training sample, predict the outcome using each of the learners, so if there are $p$ learners, then where would be $p$ predictions on each of the observations in validation sample).
-- Take out another validation sample and repeat until each of the V-sets of data are removed.
-- Compare the cross-validated fit of the learners across all observations based on specified loss function (e.g., squared error, negative log-likelihood, ...) by calculating the corresponding average loss (risk).
-- Either
-  + choose the learner with smallest risk and apply that learner to entire data set (resulting SL fit)
-  + do a weighted average of the learners to minimize the cross-validated risk (construct an ensemble of learners), by
-    - re-fitting the learners on the original data set, and
-    - use the weights above to get the file SL fit.
-  
+\begin{itemize}
+
+\item Break up the sample evenly into V-folds (say V=10).
+\item For each of these 10 folds, remove that portion of the sample (kept out as validation sample) and the remaining will be used to fit learners (training sample).
+\item Fit each learner on the training sample (note, some learners will have their own internal cross-validation procedure or other methods to select tuning parameters).
+\item For each observation in the corresponding training sample, predict the outcome using each of the learners, so if there are $p$ learners, then where would be $p$ predictions on each of the observations in validation sample).
+\item Take out another validation sample and repeat until each of the V-sets of data are removed.
+\item Compare the cross-validated fit of the learners across all observations based on specified loss function (e.g., squared error, negative log-likelihood, ...) by calculating the corresponding average loss (risk).
+\item Either:
+\begin{itemize}
+\item[$\square$] choose the learner with smallest risk and apply that learner to entire data set (resulting SL fit)
+\item[$\square$] do a weighted average of the learners to minimize the 
+\item[$\square$] cross-validated risk (construct an ensemble of learners), by
+\begin{itemize}
+\item[$\bigstar$] re-fitting the learners on the original data set, and
+\item[$\bigstar$] use the weights above to get the file SL fit.
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
 Note, this entire procedure can be itself cross-validated to get a consistent estimate of the future performance of the SL fit.
 
 ```{r cv_fig2, fig.show="hold"}
