@@ -223,13 +223,13 @@ The schematic below is a visualization of the following algorithm:
   
 Note, this entire procedure can be itself cross-validated to get a consistent estimate of the future performance of the SL fit.
 
-```{r cv_fig, fig.show="hold"}
+```{r cv_fig2, fig.show="hold"}
 knitr::include_graphics("img/misc/SLKaiserNew.pdf")
 ```
 
 For prediction, one can use the cross-validated risk to empirically determine the relative performance of SL and competing methods.  Below shows the results of such a study, comparing the fits of several different learners, including the SL algorithms.
 
-```{r cv_fig, fig.show="hold"}
+```{r cv_fig3, fig.show="hold"}
 knitr::include_graphics("img/misc/ericSL.pdf")
 ```
 
@@ -267,7 +267,7 @@ where $Q_0$ represents both the distribution of $Y \mid W,A$ and distribution of
 
 
 
-```{r cv_fig, fig.show="hold"}
+```{r cv_fig4, fig.show="hold"}
 knitr::include_graphics("img/misc/TMLEimage.pdf")
 ```
 
