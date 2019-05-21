@@ -182,18 +182,14 @@ These priniciples guide our approach to estimation: Super Learning for
 prediction (more generally density estimation) and TMLE for estimation of our
 intervention parameters of interest.
 
-```{r nature_slides, fig.show="hold"}
-knitr::include_graphics("img/misc/NatureSlides.pdf")
-```
-
 ### SuperLearning
 
-- There is no universally optimal machine learning algorithm for density estimation or prediction
-- This is true empirically, when we have test different algorithms on actual
-  data and looked at the performance (e.g., MSE of prediction)
+- There is no universally optimal machine learning algorithm for density estimation or prediction.
+- When we have tested different algorithms on actual
+  data and looked at the performance (e.g., MSE of prediction), never does one algorithm always win (see below).
 - For some data, one needs learners that can model a complex function.
 - For others, typically the result of noise or insufficient sample size, a simple,
-  parametric model might fit the best.
+  parametric model might fit best.
 - SuperLearner, an ensemble learner, solves this issue, by allowing a convex
   combination of learners from the simplest (intercept-only) to most complex
   (neural nets, random forests, SVM, etc).
@@ -209,6 +205,7 @@ knitr::include_graphics("img/misc/vs.pdf")
 The figure above shows an example of 10-fold cross-validation.
 
 The schematic below is a visualization of the following algorithm:
+
 \begin{itemize}
 
 \item Break up the sample evenly into V-folds (say V=10).
