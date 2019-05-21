@@ -314,11 +314,10 @@ introduced earlier and estimating an Average Treatment Effect (ATE).</p>
 <div id="load-the-data" class="section level3 unnumbered">
 <h3>0. Load the Data</h3>
 <p>We’ll use the same WASH Benefits data as the earlier chapters:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(here)
-<span class="kw">library</span>(data.table)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
 <span class="kw">library</span>(tmle3)
 <span class="kw">library</span>(sl3)
-washb_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;washb_data.csv&quot;</span>), <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>)</code></pre>
+washb_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>)</code></pre>
 </div>
 <div id="define-the-variable-roles" class="section level3 unnumbered">
 <h3>1. Define the variable roles</h3>

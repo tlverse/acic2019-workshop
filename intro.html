@@ -321,8 +321,8 @@ experiment and thereby define the parameter of interest. Causal graphs are one
 useful tool to express what we know about the causal relations among variables
 that are relevant to the question under study <span class="citation">(Pearl <a href="#ref-pearl2009causality">2009</a>)</span>.</p>
 <p>Ignoring error terms, we will assume the following ordering of the variables in <span class="math inline">\(O\)</span>.</p>
-<div id="htmlwidget-0e9f5c8170c6ac20f8df" style="width:200px;height:300px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0e9f5c8170c6ac20f8df">{"x":{"nodes":{"id":["W","A","Y"],"label":["W","A","Y"]},"edges":{"from":["W","W","A"],"to":["A","Y","Y"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":true}},"layout":{"randomSeed":25}},"groups":null,"width":"200px","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7f7fb60334a7c500d161" style="width:200px;height:300px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7f7fb60334a7c500d161">{"x":{"nodes":{"id":["W","A","Y"],"label":["W","A","Y"]},"edges":{"from":["W","W","A"],"to":["A","Y","Y"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":true}},"layout":{"randomSeed":25}},"groups":null,"width":"200px","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
 <p>While
 directed acyclic graphs (DAGs - like above) provide a convenient means by which to visualize
 causal relations between variables, the causal relations among variables
@@ -578,11 +578,10 @@ supplements; and</li>
 <p>In the workshop, we concentrate on child growth (size for age) as the outcome of
 interest. For reference, this trial was registered with ClinicalTrials.gov as
 NCT01590095.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(here)
-<span class="kw">library</span>(tidyverse)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 
 <span class="co"># read in data</span>
-dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;washb_data.csv&quot;</span>))
+dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data.csv&quot;</span>)
 dat</code></pre>
 <pre><code># A tibble: 4,695 x 28
      whz tr    fracode month  aged sex   momage momedu momheight hfiacat Nlt18

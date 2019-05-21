@@ -701,15 +701,15 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param init_est tmle_est         se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.531628  0.60404 0.06978016 0.4672734 0.7408066
+   type         param  init_est  tmle_est        se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.5287431 0.4973104 0.0759547 0.3484419 0.6461789
    psi_transformed lower_transformed upper_transformed
-1:         0.60404         0.4672734         0.7408066</code></pre>
+1:       0.4973104         0.3484419         0.6461789</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How many individuals got assigned each treatment?</span>
 <span class="kw">table</span>(tmle_spec<span class="op">$</span>return_rule)</code></pre>
 <pre><code>
   1   2   3 
-445 320 235 </code></pre>
+514 280 206 </code></pre>
 <p>We can see that the confidence interval covers
 our true mean under the true optimal individualized treatment.</p>
 <p><strong>NOTICE the distribution of the assigned treatment! We will need this shortly.</strong></p>
@@ -750,10 +750,10 @@ fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data,
 has length &gt; 1 and only the first element will be used</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type             param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=W3,W2,W1}] 0.5314932 0.5902936 0.06805878 0.4569008 0.7236863
+   type      param  init_est  tmle_est        se    lower     upper
+1:  TSM E[Y_{A=1}] 0.4973803 0.6130665 0.1050705 0.407132 0.8190009
    psi_transformed lower_transformed upper_transformed
-1:       0.5902936         0.4569008         0.7236863</code></pre>
+1:       0.6130665          0.407132         0.8190009</code></pre>
 <p>Even though the user specified all baseline covariates as the basis
 for rule estimation, a simpler rule is sufficient to
 maximize the mean under the optimal individualized treatment!</p>
@@ -784,15 +784,15 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est  tmle_est         se     lower    upper
-1:  TSM E[Y_{A=NULL}] 0.5369909 0.6555989 0.02151779 0.6134248 0.697773
+   type         param  init_est  tmle_est         se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.5511892 0.6530785 0.02150952 0.6109206 0.6952364
    psi_transformed lower_transformed upper_transformed
-1:       0.6555989         0.6134248          0.697773</code></pre>
+1:       0.6530785         0.6109206         0.6952364</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How many individuals got assigned each treatment?</span>
 <span class="kw">table</span>(tmle_spec<span class="op">$</span>return_rule)</code></pre>
 <pre><code>
   2   3 
-519 481 </code></pre>
+509 491 </code></pre>
 <p><strong>QUESTION:</strong> Referring back to the data-generating distribution, why do you
 think the distribution of allocated treatment changed from the distribution
 we had under the “non-realistic”&quot; rule?</p>
@@ -852,14 +852,14 @@ Warning in if (self$check_convergence(tmle_task, update_fold)) {: the condition
 has length &gt; 1 and only the first element will be used</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(vim_results)</code></pre>
 <pre><code>   type                  param     init_est    tmle_est         se        lower
-1:   RR RR(E[Y_{A=NULL}]/E[Y])  0.001227138  0.07101278 0.03350613  0.005341969
-2:   RR RR(E[Y_{A=NULL}]/E[Y]) -0.029009276 -0.05878515 0.04872752 -0.154289331
+1:   RR RR(E[Y_{A=NULL}]/E[Y])  0.001894358  0.06788351 0.03380562  0.001625721
+2:   RR RR(E[Y_{A=NULL}]/E[Y]) -0.029043591 -0.03953307 0.04928466 -0.136129229
         upper psi_transformed lower_transformed upper_transformed  A
-1: 0.13668359       1.0735949          1.005356          1.146465  A
-2: 0.03671904       0.9429093          0.857024          1.037402 W1
-             W    Z_stat       p_nz p_nz_corrected
-1: W3,W4,W2,W1  2.119397 0.01702848     0.03405697
-2:  W3,W4,W2,A -1.206405 0.11383059     0.11383059</code></pre>
+1: 0.13414130       1.0702406         1.0016270          1.143554  A
+2: 0.05706309       0.9612382         0.8727298          1.058723 W1
+             W     Z_stat       p_nz p_nz_corrected
+1: W3,W4,W2,W1  2.0080542 0.02231876     0.04463753
+2:  W3,W4,W2,A -0.8021374 0.21123675     0.21123675</code></pre>
 <p>The final result of <code>tmle3_vim</code> with the <code>tmle3mopttx</code> spec is an ordered list
 of mean outcomes under the optimal individualized treatment for all categorical
 covariates in our dataset.</p>
@@ -925,7 +925,7 @@ goal of optimizing the final outcome.</p></li>
 <h3><span class="header-section-number">5.9.1</span> Solutions</h3>
 <p>To start, let’s load the data, convert all columns to be of class <code>numeric</code>,
 and take a quick look at it:</p>
-<pre class="sourceCode r"><code class="sourceCode r">washb_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;washb_data.csv&quot;</span>), <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>)
+<pre class="sourceCode r"><code class="sourceCode r">washb_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>)
 washb_data &lt;-<span class="st"> </span>washb_data[<span class="op">!</span><span class="kw">is.na</span>(momage), <span class="kw">lapply</span>(.SD, as.numeric)]
 <span class="kw">head</span>(washb_data, <span class="dv">3</span>)</code></pre>
 <p>As before, we specify the NPSEM via the <code>node_list</code> object.</p>
