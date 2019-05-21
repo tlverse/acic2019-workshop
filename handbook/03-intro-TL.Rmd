@@ -344,11 +344,10 @@ interest. For reference, this trial was registered with ClinicalTrials.gov as
 NCT01590095.
 
 ```{r load_washb_data_intro, message=FALSE, warning=FALSE}
-library(here)
 library(tidyverse)
 
 # read in data
-dat <- read_csv(here("data", "washb_data.csv"))
+dat <- read_csv("https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data.csv")
 dat
 ```
 

@@ -86,7 +86,6 @@ Using the WASH data, we are interested in predicting weight-for-height z-score
 library(kableExtra)
 library(knitr)
 library(skimr)
-library(here)
 library(tidyverse)
 library(data.table)
 library(sl3)
@@ -96,7 +95,7 @@ library(origami)
 set.seed(7194)
 
 # load data set and take a peek
-washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
+washb_data <- fread("https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data.csv", stringsAsFactors = TRUE)
 
 head(washb_data) %>%
   kable(digits = 4) %>%
