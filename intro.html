@@ -321,8 +321,8 @@ experiment and thereby define the parameter of interest. Causal graphs are one
 useful tool to express what we know about the causal relations among variables
 that are relevant to the question under study <span class="citation">(Pearl <a href="#ref-pearl2009causality">2009</a>)</span>.</p>
 <p>Ignoring error terms, we will assume the following ordering of the variables in <span class="math inline">\(O\)</span>.</p>
-<div id="htmlwidget-84c183e14a4359d1273f" style="width:200px;height:300px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-84c183e14a4359d1273f">{"x":{"nodes":{"id":["W","A","Y"],"label":["W","A","Y"]},"edges":{"from":["W","W","A"],"to":["A","Y","Y"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":true}},"layout":{"randomSeed":25}},"groups":null,"width":"200px","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4595e7c25ac6923194cf" style="width:200px;height:300px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4595e7c25ac6923194cf">{"x":{"nodes":{"id":["W","A","Y"],"label":["W","A","Y"]},"edges":{"from":["W","W","A"],"to":["A","Y","Y"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":true}},"layout":{"randomSeed":25}},"groups":null,"width":"200px","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
 <p>While
 directed acyclic graphs (DAGs - like above) provide a convenient means by which to visualize
 causal relations between variables, the causal relations among variables
@@ -441,17 +441,15 @@ relative to other estimators in the same class.</li>
 <p>These priniciples guide our approach to estimation: Super Learning for
 prediction (more generally density estimation) and TMLE for estimation of our
 intervention parameters of interest.</p>
-<pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/misc/NatureSlides.pdf&quot;</span>)</code></pre>
-<embed src="img/misc/NatureSlides.pdf" width="  extwidth" style="display: block; margin: auto;" type="application/pdf" />
 <div id="superlearning" class="section level3">
 <h3><span class="header-section-number">2.5.1</span> SuperLearning</h3>
 <ul>
-<li>There is no universally optimal machine learning algorithm for density estimation or prediction</li>
-<li>This is true empirically, when we have test different algorithms on actual
-data and looked at the performance (e.g., MSE of prediction)</li>
+<li>There is no universally optimal machine learning algorithm for density estimation or prediction.</li>
+<li>When we have tested different algorithms on actual
+data and looked at the performance (e.g., MSE of prediction), never does one algorithm always win (see below).</li>
 <li>For some data, one needs learners that can model a complex function.</li>
 <li>For others, typically the result of noise or insufficient sample size, a simple,
-parametric model might fit the best.</li>
+parametric model might fit best.</li>
 <li>SuperLearner, an ensemble learner, solves this issue, by allowing a convex
 combination of learners from the simplest (intercept-only) to most complex
 (neural nets, random forests, SVM, etc).</li>
@@ -463,8 +461,25 @@ though better to have good candidates).</li>
 <pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/misc/vs.pdf&quot;</span>)</code></pre>
 <embed src="img/misc/vs.pdf" width="    extwidth" style="display: block; margin: auto;" type="application/pdf" />
 <p>The figure above shows an example of 10-fold cross-validation.</p>
-The schematic below is a visualization of the following algorithm:
-
+<p>The schematic below is a visualization of the following algorithm:</p>
+<ul>
+<li><p>Break up the sample evenly into V-folds (say V=10).</p></li>
+<li><p>For each of these 10 folds, remove that portion of the sample (kept out as validation sample) and the remaining will be used to fit learners (training sample).</p></li>
+<li><p>Fit each learner on the training sample (note, some learners will have their own internal cross-validation procedure or other methods to select tuning parameters).</p></li>
+<li><p>For each observation in the corresponding training sample, predict the outcome using each of the learners, so if there are <span class="math inline">\(p\)</span> learners, then where would be <span class="math inline">\(p\)</span> predictions on each of the observations in validation sample).</p></li>
+<li><p>Take out another validation sample and repeat until each of the V-sets of data are removed.</p></li>
+<li><p>Compare the cross-validated fit of the learners across all observations based on specified loss function (e.g., squared error, negative log-likelihood, …) by calculating the corresponding average loss (risk).</p></li>
+<li><p>Either:</p>
+<ul>
+<li><p>choose the learner with smallest risk and apply that learner to entire data set (resulting SL fit),</p></li>
+<li><p>do a weighted average of the learners to minimize the</p></li>
+<li><p>cross-validated risk (construct an ensemble of learners), by</p>
+<ul>
+<li>re-fitting the learners on the original data set, and</li>
+<li>use the weights above to get the file SL fit.</li>
+</ul></li>
+</ul></li>
+</ul>
 <p>Note, this entire procedure can be itself cross-validated to get a consistent estimate of the future performance of the SL fit.</p>
 <pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/misc/SLKaiserNew.pdf&quot;</span>)</code></pre>
 <embed src="img/misc/SLKaiserNew.pdf" width="   extwidth" style="display: block; margin: auto;" type="application/pdf" />
