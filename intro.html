@@ -323,12 +323,11 @@ useful tool to express what we know about the causal relations among variables
 that are relevant to the question under study <span class="citation">(Pearl <a href="#ref-pearl2009causality">2009</a>)</span>.</p>
 <p>Ignoring error terms, we will assume the following ordering of the variables in
 <span class="math inline">\(O\)</span>.</p>
-<div id="htmlwidget-0c3308be4f2b1ef15885" style="width:200px;height:300px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0c3308be4f2b1ef15885">{"x":{"nodes":{"id":["W","A","Y"],"label":["W","A","Y"]},"edges":{"from":["W","W","A"],"to":["A","Y","Y"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":true}},"layout":{"randomSeed":25}},"groups":null,"width":"200px","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
-<p>While
-directed acyclic graphs (DAGs - like above) provide a convenient means by which
-to visualize causal relations between variables, the causal relations among
-variables can be represented via a set of structural equations:
+<div id="htmlwidget-ce83576f935d720af6f3" style="width:200px;height:300px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ce83576f935d720af6f3">{"x":{"nodes":{"id":["W","A","Y"],"label":["W","A","Y"]},"edges":{"from":["W","W","A"],"to":["A","Y","Y"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":true}},"layout":{"randomSeed":25}},"groups":null,"width":"200px","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+<p>While directed acyclic graphs (DAGs) like above provide a convenient means by
+which to visualize causal relations between variables, the causal relations
+among variables can be represented via a set of structural equations:
 <span class="math display">\[\begin{align*}
   W &amp;= f_W(U_W) \\
   A &amp;= f_A(W, U_A) \\
@@ -424,7 +423,7 @@ contrast of treatment conditions (<span class="math inline">\(A = 0\)</span> vs.
 averaged over all observations. Thus, a parameter of a theoretical “full” data
 distribution can be represented as an estimand of the observed data
 distribution. Significantly, there is nothing about the representation in
- that requires parameteric assumptions; thus, the regressions
+ that requires parametric assumptions; thus, the regressions
 on the right hand side may be estimated freely with machine learning. With
 different parameters, there will be potentially different identifiability
 assumptions and the resulting estimands can be functions of different components
@@ -522,16 +521,15 @@ dimensionality.</li>
 </ul>
 <p>We give one example using an example of the average treatment effect (see above):</p>
 <ul>
-<li><span class="math inline">\(\Psi(P_0) = \Psi(Q_0) \mathbb{E}_0  \left(\mathbb{E}_0[Y \mid A = 1, W] - \mathbb{E}_0[Y \mid A = 0, W]\right).\)</span>
-where <span class="math inline">\(Q_0\)</span> represents both the distribution of <span class="math inline">\(Y \mid W,A\)</span> and
-distribution of <span class="math inline">\(W\)</span>.</li>
+<li><span class="math inline">\(\Psi(P_0) = \Psi(Q_0) = \mathbb{E}_0 \big[\mathbb{E}_0[Y \mid A = 1, W] - \mathbb{E}_0[Y \mid A = 0, W]\right\big]\)</span>, where <span class="math inline">\(Q_0\)</span> represents both the
+distribution of <span class="math inline">\(Y \mid A,W\)</span> and distribution of <span class="math inline">\(W\)</span>.</li>
 <li>Let <span class="math inline">\(\bar{Q}_0(A,W) \equiv E_0(Y \mid A,W)\)</span> and <span class="math inline">\(Q_{0,W}(w) = P_0 (W=w)\)</span>, then
 <span class="math display">\[
 \Psi(Q_0) = \sum_w \{ \bar{Q}_0(1,w)-\bar{Q}_0(0,w)\} Q_{0,W}(w)
 \]</span></li>
 <li>The <strong>Substitution Estimator</strong> plugs in the empirical distribution (weight
 <span class="math inline">\(1/n\)</span> for each observation) for <span class="math inline">\(Q_{0,W}(W_i)\)</span>, and some estimate of the
-regression of <span class="math inline">\(Y\)</span> on <span class="math inline">\((W,A)\)</span> (say SL fit):
+regression of <span class="math inline">\(Y\)</span> on <span class="math inline">\((A,W)\)</span> (say SL fit):
 <span class="math display">\[
  \Psi(Q_n) = \frac{1}{n} \sum_{i=1}^n  \{ \bar{Q}_n(1,W_i)-\bar{Q}_n(0,W_i)\}
  \]</span></li>
@@ -547,12 +545,12 @@ keeping the observed <span class="math inline">\(W\)</span>, but first replacing
 it’s not sufficient to have the properties of an estimator one needs for
 rigorous inference.</li>
 <li>Because the variance-bias trade-off in the SL is focused on the prediction
-model, it can, for instance, underfit portions of the distributions that are
-critical for estimating the parameter of interest (<span class="math inline">\(\Psi(P_0)\)</span>).</li>
+model, it can, for instance, under-fit portions of the distributions that are
+critical for estimating the parameter of interest, <span class="math inline">\(\Psi(P_0)\)</span>.</li>
 <li>TMLE keeps the benefits of substitution estimators (it is one), but augments
 the original estimates to correct for this issue and also results in an
-asymptotically linear (and thus normally-distributed) estimator with consisent
-Wald-style confidence intervals.</li>
+asymptotically linear (and thus normally-distributed) estimator with
+consistent Wald-style confidence intervals.</li>
 <li>Produces a well-defined, unbiased, efficient substitution estimator of target
 parameters of a data-generating distribution.</li>
 <li>Updates an initial (super learner) estimate of the relevant part of the
@@ -584,10 +582,11 @@ where <span class="math inline">\(\bar{Q}^*_n(A,W)\)</span> is the TMLE augmente
 <span class="math inline">\(f(\cdot)\)</span> is the appropriate link function (e.g., logit), <span class="math inline">\(\epsilon_n\)</span> is an
 estimated coefficient and <span class="math inline">\(h_n(A,W)\)</span> is a “clever covariate”.</p>
 <ul>
-<li>In this case, <span class="math inline">\(h_n(A,W) = A/g_n(W)-(1-A)/(1-g_n(W))\)</span>, with <span class="math inline">\(g_n(W) = P_n(A=1 \mid W)\)</span> being the estimated (also by SL) propensity score, so the estimator
-depends both on initial SL fit of the outcome regression (<span class="math inline">\(\bar{Q}_0\)</span>) and an
-SL fit of the propensity score (<span class="math inline">\(g_n\)</span>).</li>
-<li>There are further robust agumentations that are used in tlverse, such as an
+<li>In this case, <span class="math inline">\(h_n(A,W) = \frac{A}{g_n(W)}-\frac{1-A}{1-g_n(W)}\)</span>, with
+<span class="math inline">\(g_n(W) = P_n(A=1 \mid W)\)</span> being the estimated (also by SL) propensity score,
+so the estimator depends both on initial SL fit of the outcome regression
+(<span class="math inline">\(\bar{Q}_0\)</span>) and an SL fit of the propensity score (<span class="math inline">\(g_n\)</span>).</li>
+<li>There are further robust augmentations that are used in <code>tlverse</code>, such as an
 added layer of cross-validation to avoid over-fitting bias (CV-TMLE), and so
 called methods that can more robustly estimated several parameters
 simultaneously (e.g., the points on a survival curve).</li>
@@ -600,7 +599,7 @@ simultaneously (e.g., the points on a survival curve).</li>
 difference in the estimate <span class="math inline">\(\Psi(P_n)\)</span> and the true parameter (<span class="math inline">\(\Psi(P_0)\)</span>)
 can be represented in first order by a i.i.d. sum:
 <span class="math display">\[\begin{equation}\label{eqn:IC}
-\Psi(P_n) - \Psi(P_0) = \frac{1}{n} IC(O_i; \nu) + op(1/\sqrt{n})
+\Psi(P_n) - \Psi(P_0) = \frac{1}{n} IC(O_i; \nu) + o_p(1/\sqrt{n})
 \end{equation}\]</span></li>
 </ul>
 <p>where <span class="math inline">\(IC(O_i; \nu)\)</span> (the influence curve or function) is a function of the data
@@ -644,7 +643,7 @@ intervention or health promoter visit). The six intervention groups were:</p>
 <ol style="list-style-type: decimal">
 <li>chlorinated drinking water;</li>
 <li>improved sanitation;</li>
-<li>handwashing with soap;</li>
+<li>hand-washing with soap;</li>
 <li>combined water, sanitation, and hand washing;</li>
 <li>improved nutrition through counseling and provision of lipid-based nutrient
 supplements; and</li>
