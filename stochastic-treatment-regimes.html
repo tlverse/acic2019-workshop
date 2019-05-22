@@ -560,15 +560,15 @@ hold. We discuss this in greater detail in the sequel.</p>
 <h3><span class="header-section-number">6.4.2</span> Targeted Estimation of Stochastic Interventions Effects</h3>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)</code></pre>
 <pre><code>
-Iter: 1 fn: 1374.1715    Pars:  0.80766 0.19234
-Iter: 2 fn: 1374.1715    Pars:  0.80766 0.19234
+Iter: 1 fn: 1373.8990    Pars:  0.80621 0.19379
+Iter: 2 fn: 1373.8990    Pars:  0.80621 0.19379
 solnp--&gt; Completed in 2 iterations</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
    type         param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.7955977 0.7968879 0.01245233 0.7724818 0.8212941
+1:  TSM E[Y_{A=NULL}] 0.7957592 0.7973868 0.01245425 0.7729769 0.8217967
    psi_transformed lower_transformed upper_transformed
-1:       0.7968879         0.7724818         0.8212941</code></pre>
+1:       0.7973868         0.7729769         0.8217967</code></pre>
 <p>The <code>print</code> method of the resultant <code>tmle_fit</code> object conveniently displays the
 results from computing our TML estimator.</p>
 </div>
@@ -616,7 +616,7 @@ interest (called a <code>tmle3_Spec</code> in the <code>tlverse</code> nomenclat
 when initializing the <code>tmle3_Spec</code> object to communicate that we’re interested
 in assessing the mean counterfactual outcome over a grid of shifts -1, 0, 1 on the scale of the treatment <span class="math inline">\(A\)</span>.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># what&#39;s the grid of shifts we wish to consider?</span>
-delta_grid &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)
+delta_grid &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">-1</span>, <span class="dt">to =</span> <span class="dv">1</span>, <span class="dt">by =</span> <span class="dv">1</span>)
 
 <span class="co"># initialize a tmle specification</span>
 tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle_vimshift_delta</span>(
@@ -634,23 +634,23 @@ simply invoke the <code>tmle3</code> wrapper function to fit the series of TML e
 For convenience, we choose the latter:</p>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)</code></pre>
 <pre><code>
-Iter: 1 fn: 1378.9136    Pars:  0.78876 0.21124
-Iter: 2 fn: 1378.9136    Pars:  0.78876 0.21124
+Iter: 1 fn: 1380.2064    Pars:  0.77605 0.22395
+Iter: 2 fn: 1380.2064    Pars:  0.77605 0.22395
 solnp--&gt; Completed in 2 iterations</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-         type          param  init_est  tmle_est          se      lower
-1:        TSM  E[Y_{A=NULL}] 0.6304759 0.6308882 0.014170225 0.60311506
-2:        TSM  E[Y_{A=NULL}] 0.7393424 0.7411359 0.014067987 0.71356313
-3:        TSM  E[Y_{A=NULL}] 0.8436103 0.8473671 0.010205584 0.82736448
-4: MSM_linear MSM(intercept) 0.7376843 0.7396861 0.012117434 0.71593636
-5: MSM_linear     MSM(slope) 0.1063553 0.1080624 0.004499706 0.09924318
+         type          param  init_est  tmle_est          se     lower
+1:        TSM  E[Y_{A=NULL}] 0.6267777 0.6275030 0.014415773 0.5992486
+2:        TSM  E[Y_{A=NULL}] 0.7383016 0.7395346 0.014194998 0.7117129
+3:        TSM  E[Y_{A=NULL}] 0.8439251 0.8464498 0.010403438 0.8260595
+4: MSM_linear MSM(intercept) 0.7361963 0.7376970 0.012301662 0.7135862
+5: MSM_linear     MSM(slope) 0.1082892 0.1092464 0.004583021 0.1002638
        upper psi_transformed lower_transformed upper_transformed
-1: 0.6586613       0.6308882        0.60311506         0.6586613
-2: 0.7687086       0.7411359        0.71356313         0.7687086
-3: 0.8673696       0.8473671        0.82736448         0.8673696
-4: 0.7634358       0.7396861        0.71593636         0.7634358
-5: 0.1168817       0.1080624        0.09924318         0.1168817</code></pre>
+1: 0.6557574       0.6275030         0.5992486         0.6557574
+2: 0.7673563       0.7395346         0.7117129         0.7673563
+3: 0.8668402       0.8464498         0.8260595         0.8668402
+4: 0.7618078       0.7376970         0.7135862         0.7618078
+5: 0.1182289       0.1092464         0.1002638         0.1182289</code></pre>
 <p><em>Remark</em>: The <code>print</code> method of the resultant <code>tmle_fit</code> object conveniently
 displays the results from computing our TML estimator.</p>
 </div>
@@ -675,12 +675,12 @@ for <span class="math inline">\(m_{\beta}(\delta)\)</span> may be expressed <spa
 \Sigma),\]</span> where <span class="math inline">\(\Sigma\)</span> is the empirical covariance matrix of
 <span class="math inline">\(\text{EIF}_{\beta}(O)\)</span>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit<span class="op">$</span>summary[<span class="dv">4</span><span class="op">:</span><span class="dv">5</span>, ]</code></pre>
-<pre><code>         type          param  init_est  tmle_est          se      lower
-1: MSM_linear MSM(intercept) 0.7376843 0.7396861 0.012117434 0.71593636
-2: MSM_linear     MSM(slope) 0.1063553 0.1080624 0.004499706 0.09924318
+<pre><code>         type          param  init_est  tmle_est          se     lower
+1: MSM_linear MSM(intercept) 0.7361963 0.7376970 0.012301662 0.7135862
+2: MSM_linear     MSM(slope) 0.1082892 0.1092464 0.004583021 0.1002638
        upper psi_transformed lower_transformed upper_transformed
-1: 0.7634358       0.7396861        0.71593636         0.7634358
-2: 0.1168817       0.1080624        0.09924318         0.1168817</code></pre>
+1: 0.7618078       0.7376970         0.7135862         0.7618078
+2: 0.1182289       0.1092464         0.1002638         0.1182289</code></pre>
 </div>
 <div id="directly-targeting-the-msm-parameter-beta" class="section level3">
 <h3><span class="header-section-number">6.5.4</span> Directly Targeting the MSM Parameter <span class="math inline">\(\beta\)</span></h3>
@@ -711,42 +711,42 @@ tmle_msm_spec &lt;-<span class="st"> </span><span class="kw">tmle_vimshift_msm</
 <span class="co"># fit the TML estimator and examine the results</span>
 tmle_msm_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_msm_spec, data, node_list, learner_list)</code></pre>
 <pre><code>
-Iter: 1 fn: 1376.2278    Pars:  0.79076 0.20924
-Iter: 2 fn: 1376.2278    Pars:  0.79076 0.20924
+Iter: 1 fn: 1378.7030    Pars:  0.78800 0.21200
+Iter: 2 fn: 1378.7030    Pars:  0.78800 0.21200
 solnp--&gt; Completed in 2 iterations</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_msm_fit</code></pre>
 <pre><code>A tmle3_Fit that took 100 step(s)
          type          param  init_est  tmle_est          se      lower
-1: MSM_linear MSM(intercept) 0.7367595 0.7369065 0.013687296 0.71007987
-2: MSM_linear     MSM(slope) 0.1074786 0.1074979 0.006659782 0.09444499
+1: MSM_linear MSM(intercept) 0.7371007 0.7370556 0.013473979 0.71064709
+2: MSM_linear     MSM(slope) 0.1076193 0.1074590 0.006274063 0.09516209
        upper psi_transformed lower_transformed upper_transformed
-1: 0.7637331       0.7369065        0.71007987         0.7637331
-2: 0.1205509       0.1074979        0.09444499         0.1205509</code></pre>
+1: 0.7634641       0.7370556        0.71064709         0.7634641
+2: 0.1197560       0.1074590        0.09516209         0.1197560</code></pre>
 </div>
 <div id="example-with-the-wash-benefits-data" class="section level3">
 <h3><span class="header-section-number">6.5.5</span> Example with the WASH Benefits Data</h3>
 <p>To complete our walk through, let’s turn to using stochastic interventions to
 investigate the data from the WASH Benefits trial. To start, let’s load the
 data, convert all columns to be of class <code>numeric</code>, and take a quick look at it</p>
-<pre class="sourceCode r"><code class="sourceCode r">washb_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>)
+<pre class="sourceCode r"><code class="sourceCode r">washb_data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data_subset.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>)
 washb_data &lt;-<span class="st"> </span>washb_data[<span class="op">!</span><span class="kw">is.na</span>(momage), <span class="kw">lapply</span>(.SD, as.numeric)]
 <span class="kw">head</span>(washb_data, <span class="dv">3</span>)</code></pre>
 <pre><code>     whz tr fracode month aged sex momage momedu momheight hfiacat Nlt18 Ncomp
-1:  0.00  1       4     9  268   2     30      2    146.40       1     3    11
-2: -1.16  1       4     9  286   2     25      2    148.75       3     2     4
-3: -1.05  1      20     9  264   2     25      2    152.15       1     1    10
+1: -0.94  2      14     7  237   2     21      2    146.00       1     1    25
+2: -1.13  1      14     8  310   1     26      1    148.90       1     1     7
+3: -1.61  1      16     3  162   2     25      2    153.75       1     0    15
    watmin elec floor walls roof asset_wardrobe asset_table asset_chair
-1:      0    1     0     1    1              0           1           1
-2:      0    1     0     1    1              0           1           0
-3:      0    0     0     1    1              0           0           1
+1:      2    1     0     1    1              0           1           0
+2:      4    1     0     0    1              0           1           1
+3:      2    0     0     1    1              0           1           0
    asset_khat asset_chouki asset_tv asset_refrig asset_bike asset_moto
-1:          1            0        1            0          0          0
-2:          1            1        0            0          0          0
-3:          0            1        0            0          0          0
+1:          0            1        0            0          0          0
+2:          0            1        0            0          0          0
+3:          1            1        0            0          0          0
    asset_sewmach asset_mobile
-1:             0            1
+1:             0            0
 2:             0            1
-3:             0            1</code></pre>
+3:             0            0</code></pre>
 <p>Next, we specify our NPSEM via the <code>node_list</code> object. For our example analysis,
 we’ll consider the outcome to be the weight-for-height Z-score (as in previous
 sections), the intervention of interest to be the mother’s age at time of
@@ -770,7 +770,7 @@ a shift in the mother’s age down by two years (<span class="math inline">\(\de
 initialize a <code>Spec</code> <code>tmle_vimshift_delta</code> just as we did in a previous example</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># initialize a tmle specification for the variable importance parameter</span>
 washb_vim_spec &lt;-<span class="st"> </span><span class="kw">tmle_vimshift_delta</span>(
-  <span class="dt">shift_grid =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>),
+  <span class="dt">shift_grid =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">-2</span>, <span class="dt">to =</span> <span class="dv">2</span>, <span class="dt">by =</span> <span class="dv">1</span>),
   <span class="dt">max_shifted_ratio =</span> <span class="dv">2</span>
 )</code></pre>
 <p>Prior to running our analysis, we’ll modify the <code>learner_list</code> object we had
@@ -783,8 +783,15 @@ lrn_rfcde &lt;-<span class="st"> </span>Lrnr_rfcde<span class="op">$</span><span
   <span class="dt">n_trees =</span> <span class="dv">500</span>, <span class="dt">node_size =</span> <span class="dv">3</span>,
   <span class="dt">n_basis =</span> <span class="dv">20</span>, <span class="dt">output_type =</span> <span class="st">&quot;observed&quot;</span>
 )
+
+<span class="co"># we need to turn on cross-validation for the RFCDE learner</span>
+lrn_cv_rfcde &lt;-<span class="st"> </span>Lrnr_cv<span class="op">$</span><span class="kw">new</span>(
+  <span class="dt">learner =</span> lrn_rfcde,
+  <span class="dt">full_fit =</span> <span class="ot">TRUE</span>
+)
+
 <span class="co"># modify learner list, using existing SL for Q fit</span>
-learner_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">Y =</span> sl_lrn, <span class="dt">A =</span> lrn_rfcde)</code></pre>
+learner_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">Y =</span> sl_lrn, <span class="dt">A =</span> lrn_cv_rfcde)</code></pre>
 <p>Having made the above preparations, we’re now ready to estimate the
 counterfactual mean of the weight-for-height Z-score under a small grid of
 shifts in the mother’s age at child’s birth. Just as before, we do this through
@@ -806,6 +813,10 @@ interventions may be interpreted.</p></li>
 <li><p>Using a grid of values of the shift parameter <span class="math inline">\(\delta\)</span> (e.g., <span class="math inline">\(\{-1, 0, +1\}\)</span>), repeat the analysis on the variable of interest (<code>momage</code>),
 summarizing the trend for this sequence of shifts using a marginal structural
 model.</p></li>
+<li><p>For either the grid of shifts in the example preceding the exercises or that
+estimated in (3) above, plot the resultant estimates against their respective
+counterfactual shifts. Graphically add to the scatterplot a line with slope
+and intercept equivalent to the MSM fit through the individual TML estimates.</p></li>
 <li><p>How does the marginal structural model we used to summarize the trend along
 the sequence of shifts previously help to contextualize the estimated effect
 for a single shift? That is, how does access to estimates across several
