@@ -366,7 +366,8 @@ head(chspred) %>%
 6. Print your super learner fit by calling `print()` with `$`.
 7. Cross-validate your super learner fit to see how well it performs on unseen
    data. Specify `loss_squared_error` as the loss function to evaluate the
-   super learner.
+   super learner. Like above, create a new task with 2 folds of external cross
+   validation for computational efficiency.
 
 ## Summary
 
