@@ -105,9 +105,9 @@ individual level, and define novel shift intervention functions.
   2. _Stable unit value treatment assumption (SUTVA)_: $Y^{d(a_i, w_i)}_i$ does
      not depend on $d(a_j, w_j)$ for $i = 1, \ldots, n$ and $j \neq i$, or lack
      of interference [@rubin1978bayesian; @rubin1980randomization].
-  3. _Strong ignorability_: $A_i \indep Y^{d(a_i, w_i)}_i \mid W_i$, for $i = 1,
-     \ldots, n$.
-  4. Positivity (or overlap)_: $a_i \in \mathcal{A} \implies d(a_i, w_i) \in
+  3. _Strong ignorability_: $A_i \perp \!\!\! \perp Y^{d(a_i, w_i)}_i \mid W_i$,
+     for $i = 1, \ldots, n$.
+  4. _Positivity (or overlap)_: $a_i \in \mathcal{A} \implies d(a_i, w_i) \in
      \mathcal{A}$ for all $w \in \mathcal{W}$, where $\mathcal{A}$ denotes the
      support of $A \mid W = w_i \quad \forall i = 1, \ldots n$.
 
