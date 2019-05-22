@@ -1,6 +1,6 @@
 ---
 output: html_document
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
@@ -15,7 +15,7 @@ Assume we have an i.i.d. sample of confounders, a binary intervention of
 interest, and an outcome, or are observed data is  
 \[ O = (W, A, Y).\]
 The
-distribution of the observed data may be factorized as follows: 
+distribution of the observed data may be factorized as follows:
 \[P(O) = P(W, A,
 Y) = P(W)P (A \mid W) P(Y \mid A, W).\]
 To estimate a parameter of interest, a
@@ -44,7 +44,7 @@ the analysis.
 The next step in the roadmap is to use a causal framework to formalize the
 experiment and thereby define the parameter of interest. Causal graphs are one
 useful tool to express what we know about the causal relations among variables
-that are relevant to the question under study [@pearl2009causality]. 
+that are relevant to the question under study [@pearl2009causality].
 
 Ignoring error terms, we will assume the following ordering of the variables in $O$.
 
@@ -116,8 +116,8 @@ under these two interventions defines a parameter that is often called the
 where $\mathbb{E}_X$ is the mean under the theoretical (unobserved) full data
 $X = (W, Y(1), Y(0))$.
 
-Note, we can define much more complicated interventions on 
-NPSEM's, such as interventions based upon rules (themselves based upon covariates), stochastic rules, etc. and each results in a different targeted parameter and entails different identifiability assumptions discussed below. 
+Note, we can define much more complicated interventions on
+NPSEM's, such as interventions based upon rules (themselves based upon covariates), stochastic rules, etc. and each results in a different targeted parameter and entails different identifiability assumptions discussed below.
 
 ## Identifiability
 
@@ -134,14 +134,14 @@ assumptions may be summarized as follows
    analogous assumption is _strong ignorability_ or _no unmeasured confounding_
    $Y(a) \perp A \mid W$ for all $a \in \mathcal{A}$;
 2. Although not represented in the causal graph, also required is the assumption
-   of no interference between units, that is, the outcome for unit $i$ $Y_i$ is
-   not affected by exposure for unit $j$ $A_j$ unless $i=j$;
+   of _no interference_ between units, that is, the outcome for unit $i$ $Y_i$
+   is not affected by exposure for unit $j$ $A_j$ unless $i=j$;
 3. _Consistency_ of the treatment mechanism is also required, i.e., the outcome
    for unit $i$ is $Y_i(a)$ whenever $A_i = a$, an assumption also known as "no
    other versions of treatment";
 4. It is also necessary that all observed units, across strata defined by $W$,
    have a bounded (non-deterministic) probability of receiving treatment --
-   that is, $0 < P_0(A = a \mid W) < 1$ for all $a$ and $W$). This assumption is
+   that is, $0 < P_0(A = a \mid W) < 1$ for all $a$ and $W$. This assumption is
    referred to as _positivity_.
 
 _Remark_: Together, (2) and (3), the assumptions of no interference and
@@ -223,9 +223,9 @@ The schematic below is a visualization of the following algorithm:
 - Either:
 
   + choose the learner with smallest risk and apply that learner to entire data set (resulting SL fit),
-  
-  + do a weighted average of the learners to minimize the 
-  
+
+  + do a weighted average of the learners to minimize the
+
   + cross-validated risk (construct an ensemble of learners), by
 
     + re-fitting the learners on the original data set, and
@@ -249,7 +249,7 @@ knitr::include_graphics("img/misc/ericSL.pdf")
 - Sometimes, we can use simple empirical distributions, but averaging some function over the observations (e.g., giving weight $1/n$ for all observations).
 - Other parts of the distribution, like conditional means or probabilities, the estimate will require some sort of smoothing due to the curse of dimensionality.
 
-We give one example using an example of the average treatment effect (see above): 
+We give one example using an example of the average treatment effect (see above):
 
 - $\Psi(P_0) = \Psi(Q_0) \mathbb{E}_0
     \left(\mathbb{E}_0[Y \mid A = 1, W] - \mathbb{E}_0[Y \mid A = 0, W]\right).$
@@ -267,7 +267,7 @@ where $Q_0$ represents both the distribution of $Y \mid W,A$ and distribution of
 ### TMLE
 - Though using SL over an arbitrary parametric regression is an improvement, it's not sufficient to have the properties of an estimator one needs for rigorous inference.
 - Because the variance-bias trade-off in the SL is focused on the prediction model, it can, for instance, underfit portions of the distributions that are critical for estimating the parameter of interest ($\Psi(P_0)$).
-- TMLE keeps the benefits of substitution estimators (it is one), but augments the original estimates to correct for this issue and also results in an asymptotically linear (and thus normally-distributed) estimator with consisent Wald-style confidence intervals. 
+- TMLE keeps the benefits of substitution estimators (it is one), but augments the original estimates to correct for this issue and also results in an asymptotically linear (and thus normally-distributed) estimator with consisent Wald-style confidence intervals.
 - Produces a well-defined, unbiased, efficient substitution estimator of target parameters of a data-generating distribution.
 - Updates an initial (super learner) estimate  of the relevant part of the data-generating distribution possibly using an estimate of a nuisance parameter (like the model of intervention given covariates).
 - Removes asymptotic residual bias of initial estimator for the target parameter, if it uses a consistent estimator of $g_0$.
@@ -291,7 +291,7 @@ where $\bar{Q}^*_n(A,W)$ is the TMLE augmented estimate.
 $f(\bar{Q}^*_n(A,W)) = f(\bar{Q}_n(A,W)) + \epsilon_n * h_n(A,W)$, where $f(\cdot)$ is the appropriate link function (e.g., logit), $\epsilon_n$ is an estimated coefficient and $h_n(A,W)$ is a "clever covariate".
 - In this case, $h_n(A,W) = A/g_n(W)-(1-A)/(1-g_n(W))$, with $g_n(W) = P_n(A=1 \mid W)$ being the estimated (also by SL) propensity score, so the estimator depends both on initial SL fit of the outcome regression ($\bar{Q}_0$) and an SL fit of the propensity score ($g_n$).
 
-- There are further robust agumentations that are used in tlverse, such as an added layer of cross-validation to avoid over-fitting bias (CV-TMLE), and so called methods that can more robustly estimated several parameters simultaneously (e.g., the points on a survival curve). 
+- There are further robust agumentations that are used in tlverse, such as an added layer of cross-validation to avoid over-fitting bias (CV-TMLE), and so called methods that can more robustly estimated several parameters simultaneously (e.g., the points on a survival curve).
 
 ### Inference
 
