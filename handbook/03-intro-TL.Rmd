@@ -266,7 +266,7 @@ knitr::include_graphics("img/misc/ericSL.pdf")
 We give one example using an example of the average treatment effect (see above):
 
 - $\Psi(P_0) = \Psi(Q_0) = \mathbb{E}_0 \big[\mathbb{E}_0[Y \mid A = 1, W] -
-  \mathbb{E}_0[Y \mid A = 0, W]\right\big]$, where $Q_0$ represents both the
+  \mathbb{E}_0[Y \mid A = 0, W]\big]$, where $Q_0$ represents both the
   distribution of $Y \mid A,W$ and distribution of $W$.
 - Let $\bar{Q}_0(A,W) \equiv E_0(Y \mid A,W)$ and $Q_{0,W}(w) = P_0 (W=w)$, then
 \[
