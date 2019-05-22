@@ -287,7 +287,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><em>Ivana Malenica</em></p>
 <p>Based on the <a href="https://github.com/tlverse/tmle3mopttx"><code>tmle3mopttx</code> <code>R</code> package</a>
 by <em>Ivana Malenica, Jeremy Coyle, and Mark van der Laan</em>.</p>
-<p>Updated: 2019-05-21</p>
+<p>Updated: 2019-05-22</p>
 <div id="learning-objectives-3" class="section level2">
 <h2><span class="header-section-number">5.1</span> Learning Objectives</h2>
 <p>By the end of this lesson you will be able to:</p>
@@ -701,15 +701,15 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.5368849 0.6372239 0.06478664 0.5102444 0.7642034
+   type         param  init_est  tmle_est         se     lower    upper
+1:  TSM E[Y_{A=NULL}] 0.5560258 0.5842864 0.07592569 0.4354748 0.733098
    psi_transformed lower_transformed upper_transformed
-1:       0.6372239         0.5102444         0.7642034</code></pre>
+1:       0.5842864         0.4354748          0.733098</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How many individuals got assigned each treatment?</span>
 <span class="kw">table</span>(tmle_spec<span class="op">$</span>return_rule)</code></pre>
 <pre><code>
   1   2   3 
-353 406 241 </code></pre>
+400 402 198 </code></pre>
 <p>We can see that the confidence interval covers
 our true mean under the true optimal individualized treatment.</p>
 <p><strong>NOTICE the distribution of the assigned treatment! We will need this shortly.</strong></p>
@@ -748,10 +748,10 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type             param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=W3,W2,W1}] 0.5534399 0.6384027 0.05631247 0.5280323 0.7487731
+   type          param  init_est  tmle_est         se     lower     upper
+1:  TSM E[Y_{A=W2,W1}] 0.5547573 0.6281721 0.06219842 0.5062655 0.7500788
    psi_transformed lower_transformed upper_transformed
-1:       0.6384027         0.5280323         0.7487731</code></pre>
+1:       0.6281721         0.5062655         0.7500788</code></pre>
 <p>Even though the user specified all baseline covariates as the basis
 for rule estimation, a simpler rule is sufficient to
 maximize the mean under the optimal individualized treatment!</p>
@@ -782,15 +782,15 @@ tmle_spec &lt;-<span class="st"> </span><span class="kw">tmle3_mopttx_blip_rever
 fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)
 fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est  tmle_est         se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.5513238 0.6547197 0.02150939 0.6125621 0.6968773
+   type         param  init_est  tmle_est         se    lower     upper
+1:  TSM E[Y_{A=NULL}] 0.5526562 0.6596024 0.02142768 0.617605 0.7015999
    psi_transformed lower_transformed upper_transformed
-1:       0.6547197         0.6125621         0.6968773</code></pre>
+1:       0.6596024          0.617605         0.7015999</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How many individuals got assigned each treatment?</span>
 <span class="kw">table</span>(tmle_spec<span class="op">$</span>return_rule)</code></pre>
 <pre><code>
   2   3 
-508 492 </code></pre>
+505 495 </code></pre>
 <p><strong>QUESTION:</strong> Referring back to the data-generating distribution, why do you
 think the distribution of allocated treatment changed from the distribution
 we had under the “non-realistic”&quot; rule?</p>
@@ -845,15 +845,15 @@ vim_results &lt;-<span class="st"> </span><span class="kw">tmle3_vim</span>(tmle
 )
 
 <span class="kw">print</span>(vim_results)</code></pre>
-<pre><code>   type                  param      init_est    tmle_est         se       lower
-1:   RR RR(E[Y_{A=NULL}]/E[Y]) -0.0253027679 -0.05312113 0.04953226 -0.15020258
-2:   RR RR(E[Y_{A=NULL}]/E[Y])  0.0001828497  0.03305568 0.03440590 -0.03437865
-        upper psi_transformed lower_transformed upper_transformed  A
-1: 0.04396033       0.9482651         0.8605336          1.044941 W1
-2: 0.10049002       1.0336081         0.9662056          1.105713  A
-             W     Z_stat      p_nz p_nz_corrected
-1:  W3,W4,W2,A -1.0724550 0.1417578      0.1683374
-2: W3,W4,W2,W1  0.9607562 0.1683374      0.1683374</code></pre>
+<pre><code>   type                  param     init_est    tmle_est         se        lower
+1:   RR RR(E[Y_{A=NULL}]/E[Y]) -0.026704424 -0.12657972 0.05269707 -0.229864069
+2:   RR RR(E[Y_{A=NULL}]/E[Y])  0.005327165  0.07295149 0.03392370  0.006462261
+         upper psi_transformed lower_transformed upper_transformed  A
+1: -0.02329537       0.8811039         0.7946416         0.9769739 W1
+2:  0.13944072       1.0756784         1.0064832         1.1496307  A
+             W    Z_stat        p_nz p_nz_corrected
+1:  W3,W4,W2,A -2.402026 0.008152277      0.0157595
+2: W3,W4,W2,W1  2.150458 0.015759503      0.0157595</code></pre>
 <p>The final result of <code>tmle3_vim</code> with the <code>tmle3mopttx</code> spec is an ordered list
 of mean outcomes under the optimal individualized treatment for all categorical
 covariates in our dataset.</p>
