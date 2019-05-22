@@ -409,15 +409,15 @@ future, we plan to include reasonable default learners.</p>
 can extra results from the summary by indexing into it:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(tmle_fit)</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type                                    param    init_est    tmle_est
-1:  ATE ATE[Y_{A=Nutrition + WSH}-Y_{A=Control}] 0.002440166 0.002494379
-           se       lower     upper psi_transformed lower_transformed
-1: 0.05066932 -0.09681566 0.1018044     0.002494379       -0.09681566
+   type                                    param    init_est     tmle_est
+1:  ATE ATE[Y_{A=Nutrition + WSH}-Y_{A=Control}] 0.002418799 -0.002071827
+           se      lower      upper psi_transformed lower_transformed
+1: 0.05077897 -0.1015968 0.09745313    -0.002071827        -0.1015968
    upper_transformed
-1:         0.1018044</code></pre>
+1:        0.09745313</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">estimates &lt;-<span class="st"> </span>tmle_fit<span class="op">$</span>summary<span class="op">$</span>psi_transformed
 <span class="kw">print</span>(estimates)</code></pre>
-<pre><code>[1] 0.002494379</code></pre>
+<pre><code>[1] -0.002071827</code></pre>
 </div>
 </div>
 <div id="tmle3-components" class="section level2">
@@ -467,17 +467,17 @@ the <code>learner_list</code>) above.</p>
 estimates for each observation:</p>
 <pre class="sourceCode r"><code class="sourceCode r">initial_likelihood<span class="op">$</span><span class="kw">get_likelihoods</span>(tmle_task)</code></pre>
 <pre><code>                 W         A          Y
-   1: 0.0002129925 0.2488371 -0.6585982
-   2: 0.0002129925 0.2534295 -0.6328196
-   3: 0.0002129925 0.2564257 -0.6211698
-   4: 0.0002129925 0.2705431 -0.6018431
-   5: 0.0002129925 0.2527296 -0.5478886
+   1: 0.0002129925 0.2478909 -0.6607611
+   2: 0.0002129925 0.2545843 -0.6339732
+   3: 0.0002129925 0.2589513 -0.6218671
+   4: 0.0002129925 0.2795272 -0.6017837
+   5: 0.0002129925 0.2535642 -0.5457164
   ---                                  
-4691: 0.0002129925 0.1324206 -0.4716803
-4692: 0.0002129925 0.1265715 -0.4896291
-4693: 0.0002129925 0.1267350 -0.5702486
-4694: 0.0002129925 0.1594342 -0.8075615
-4695: 0.0002129925 0.1290822 -0.5451125</code></pre>
+4691: 0.0002129925 0.1347314 -0.4665240
+4692: 0.0002129925 0.1262065 -0.4851757
+4693: 0.0002129925 0.1264447 -0.5689520
+4694: 0.0002129925 0.1741034 -0.8155575
+4695: 0.0002129925 0.1298657 -0.5428317</code></pre>
 <!-- TODO: make helper to get learners out of fit objects -->
 </div>
 <div id="targeted-likelihood-updater" class="section level3">
@@ -517,11 +517,11 @@ manually fit a <code>tmle3</code>:</p>
 <span class="kw">print</span>(tmle_fit_manual)</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
    type                                    param    init_est     tmle_est
-1:  ATE ATE[Y_{A=Nutrition + WSH}-Y_{A=Control}] 0.002306144 -0.001263922
+1:  ATE ATE[Y_{A=Nutrition + WSH}-Y_{A=Control}] 0.002396446 -0.001774024
            se      lower      upper psi_transformed lower_transformed
-1: 0.05078139 -0.1007936 0.09826578    -0.001263922        -0.1007936
+1: 0.05097856 -0.1016902 0.09814212    -0.001774024        -0.1016902
    upper_transformed
-1:        0.09826578</code></pre>
+1:        0.09814212</code></pre>
 <p>The result is equivalent to fitting using the <code>tmle3</code> function as above.</p>
 </div>
 </div>
@@ -587,32 +587,32 @@ tmle_fit_multiparam &lt;-<span class="st"> </span><span class="kw">fit_tmle3</sp
 <span class="kw">print</span>(tmle_fit_multiparam)</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
    type                                       param     init_est     tmle_est
-1:  TSM                            E[Y_{A=Control}] -0.596137737 -0.621780081
-2:  TSM                        E[Y_{A=Handwashing}] -0.607996876 -0.641966702
-3:  TSM                          E[Y_{A=Nutrition}] -0.603761331 -0.622303934
-4:  TSM                    E[Y_{A=Nutrition + WSH}] -0.593831593 -0.622957730
-5:  TSM                         E[Y_{A=Sanitation}] -0.589884837 -0.592698657
-6:  TSM                                E[Y_{A=WSH}] -0.534294349 -0.435995485
-7:  TSM                              E[Y_{A=Water}] -0.578848511 -0.533223412
-8:  ATE E[Y_{A=Nutrition + WSH}] - E[Y_{A=Control}]  0.002306144 -0.001177649
+1:  TSM                            E[Y_{A=Control}] -0.595854903 -0.620485238
+2:  TSM                        E[Y_{A=Handwashing}] -0.608178413 -0.642378059
+3:  TSM                          E[Y_{A=Nutrition}] -0.603777016 -0.625090160
+4:  TSM                    E[Y_{A=Nutrition + WSH}] -0.593458456 -0.621925345
+5:  TSM                         E[Y_{A=Sanitation}] -0.589357157 -0.592053786
+6:  TSM                                E[Y_{A=WSH}] -0.531589899 -0.449466822
+7:  TSM                              E[Y_{A=Water}] -0.577888679 -0.522162157
+8:  ATE E[Y_{A=Nutrition + WSH}] - E[Y_{A=Control}]  0.002396446 -0.001440106
            se      lower       upper psi_transformed lower_transformed
-1: 0.02981577 -0.6802179 -0.56334226    -0.621780081        -0.6802179
-2: 0.04210707 -0.7244950 -0.55943836    -0.641966702        -0.7244950
-3: 0.04264377 -0.7058842 -0.53872369    -0.622303934        -0.7058842
-4: 0.04121122 -0.7037302 -0.54218523    -0.622957730        -0.7037302
-5: 0.04216484 -0.6753402 -0.51005709    -0.592698657        -0.6753402
-6: 0.04496243 -0.5241202 -0.34787074    -0.435995485        -0.5241202
-7: 0.03913564 -0.6099278 -0.45651897    -0.533223412        -0.6099278
-8: 0.05076544 -0.1006761  0.09832079    -0.001177649        -0.1006761
+1: 0.02980465 -0.6789013 -0.56206919    -0.620485238        -0.6789013
+2: 0.04208255 -0.7248583 -0.55989777    -0.642378059        -0.7248583
+3: 0.04232352 -0.7080427 -0.54213758    -0.625090160        -0.7080427
+4: 0.04148839 -0.7032411 -0.54060959    -0.621925345        -0.7032411
+5: 0.04225567 -0.6748734 -0.50923419    -0.592053786        -0.6748734
+6: 0.04513028 -0.5379206 -0.36101309    -0.449466822        -0.5379206
+7: 0.03893891 -0.5984810 -0.44584329    -0.522162157        -0.5984810
+8: 0.05096651 -0.1013326  0.09845242    -0.001440106        -0.1013326
    upper_transformed
-1:       -0.56334226
-2:       -0.55943836
-3:       -0.53872369
-4:       -0.54218523
-5:       -0.51005709
-6:       -0.34787074
-7:       -0.45651897
-8:        0.09832079</code></pre>
+1:       -0.56206919
+2:       -0.55989777
+3:       -0.54213758
+4:       -0.54060959
+5:       -0.50923419
+6:       -0.36101309
+7:       -0.44584329
+8:        0.09845242</code></pre>
 </div>
 </div>
 <div id="exercise-1" class="section level2">
@@ -673,8 +673,14 @@ above.</li>
 <li>Define a <code>tmle3_Spec</code> object for the ATE, <code>tmle_ATE()</code>.</li>
 <li>Using the same base learning libraries defined above, specify <code>sl3</code> base
 learners for estimation of <span class="math inline">\(Q = E(Y|A,Y)\)</span> and <span class="math inline">\(g=P(A|W)\)</span>.</li>
-<li>Specify <code>Lrnr_nnls</code> as the metalearner for both <span class="math inline">\(Q\)</span> and <span class="math inline">\(G\)</span>.</li>
-<li>Define one super learner for estimating <span class="math inline">\(Q\)</span> and another for estimating <span class="math inline">\(g\)</span>.</li>
+<li>Define the metalearner like below</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r">metalearner &lt;-<span class="st"> </span><span class="kw">make_learner</span>(Lrnr_solnp,
+                            <span class="dt">loss_function =</span> loss_loglik_binomial,
+                            <span class="dt">learner_function =</span> metalearner_logistic_binomial)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Define one super learner for estimating <span class="math inline">\(Q\)</span> and another for estimating <span class="math inline">\(g\)</span>.
+Use the metalearner above for both <span class="math inline">\(Q\)</span> and <span class="math inline">\(g\)</span> super learners.</li>
 <li>Create a list of the two super learners defined in Step 5 and call this
 object <code>learner_list</code>. The list names should be <code>A</code> (defining the super
 learner for estimating <span class="math inline">\(g\)</span>) and <code>Y</code> (defining the super learner for
