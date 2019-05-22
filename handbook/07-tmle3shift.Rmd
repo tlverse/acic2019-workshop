@@ -350,7 +350,7 @@ in assessing the mean counterfactual outcome over a grid of shifts `r seq(-1,
 
 ```{r vim_spec_init, message=FALSE, warning=FALSE}
 # what's the grid of shifts we wish to consider?
-delta_grid <- seq(-1, 1, 1)
+delta_grid <- seq(from = -1, to = 1, by = 1)
 
 # initialize a tmle specification
 tmle_spec <- tmle_vimshift_delta(
@@ -444,7 +444,7 @@ investigate the data from the WASH Benefits trial. To start, let's load the
 data, convert all columns to be of class `numeric`, and take a quick look at it
 
 ```{r load-washb-data-shift, message=FALSE, warning=FALSE, cache=FALSE}
-washb_data <- fread("https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data.csv", stringsAsFactors = TRUE)
+washb_data <- fread("https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data_subset.csv", stringsAsFactors = TRUE)
 washb_data <- washb_data[!is.na(momage), lapply(.SD, as.numeric)]
 head(washb_data, 3)
 ```
@@ -479,7 +479,7 @@ initialize a `Spec` `tmle_vimshift_delta` just as we did in a previous example
 ```{r vim_spec_init_washb, message=FALSE, warning=FALSE}
 # initialize a tmle specification for the variable importance parameter
 washb_vim_spec <- tmle_vimshift_delta(
-  shift_grid = c(-2, 2),
+  shift_grid = seq(from = -2, to = 2, by = 1),
   max_shifted_ratio = 2
 )
 ```
@@ -497,8 +497,15 @@ lrn_rfcde <- Lrnr_rfcde$new(
   n_trees = 500, node_size = 3,
   n_basis = 20, output_type = "observed"
 )
+
+# we need to turn on cross-validation for the RFCDE learner
+lrn_cv_rfcde <- Lrnr_cv$new(
+  learner = lrn_rfcde,
+  full_fit = TRUE
+)
+
 # modify learner list, using existing SL for Q fit
-learner_list <- list(Y = sl_lrn, A = lrn_rfcde)
+learner_list <- list(Y = sl_lrn, A = lrn_cv_rfcde)
 ```
 
 Having made the above preparations, we're now ready to estimate the
@@ -528,7 +535,12 @@ washb_tmle_fit
    summarizing the trend for this sequence of shifts using a marginal structural
    model.
 
-4. How does the marginal structural model we used to summarize the trend along
+4. For either the grid of shifts in the example preceding the exercises or that
+   estimated in (3) above, plot the resultant estimates against their respective
+   counterfactual shifts. Graphically add to the scatterplot a line with slope
+   and intercept equivalent to the MSM fit through the individual TML estimates.
+
+5. How does the marginal structural model we used to summarize the trend along
    the sequence of shifts previously help to contextualize the estimated effect
    for a single shift? That is, how does access to estimates across several
    shifts and the marginal structural model parameters allow us to more richly
