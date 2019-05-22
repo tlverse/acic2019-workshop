@@ -109,7 +109,10 @@ repository for the short course.
 * [https://github.com/tlverse/acic2019-workshop/tree/master/handbook/R](https://github.com/tlverse/acic2019-workshop/tree/master/handbook/R)
 
 **RStudio Cloud**
-Coming soon.
+We created an RStudio Cloud Workspace for this workshop to serve as an
+alternative to installing the software locally.
+
+* [tlverse-workshop RStudio Cloud Workspace](https://rstudio.cloud/spaces/17329/join?access_code=auiwCe67fq%2FDKlBMfJES%2FG%2BOOSOXc9kuSTaB5JIC)
 
 ## About this workshop {-}
 
