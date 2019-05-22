@@ -464,17 +464,20 @@ node_list <- list(
 
 Were we to consider the counterfactual weight-for-height Z-score under shifts in
 the age of the mother at child's birth, how would we interpret estimates of our
-parameter? To simplify our interpretation, consider a shift of just a year in
-the mother's age (i.e., $\delta = 1$); in this setting, a stochastic
+parameter?
+
+To simplify our interpretation, consider a shift (up or down) of two years in
+the mother's age (i.e., $\delta = \{-2, 0, 2\}$); in this setting, a stochastic
 intervention would correspond to a policy advocating that potential mothers
-defer having a child for a single calendar year, possibly implemented through an
-encouragement design deployed in a clinical setting.
+defer or accelerate plans of having a child for two calendar years, possibly
+implemented through an encouragement design deployed in a clinical setting.
 
 For this example, we'll use the variable importance strategy of considering a
 grid of stochastic interventions to evaluate the weight-for-height Z-score under
-a shift in the mother's age down by two years ($\delta = -2$), up by two years
-($\delta = 2$), and under no shift at all ($\delta = 0$). To do this, we simply
-initialize a `Spec` `tmle_vimshift_delta` just as we did in a previous example
+a shift in the mother's age down by two years ($\delta = -2$) through up by two
+years ($\delta = 2$), incrementing by a single year between the two. To do this,
+we simply initialize a `Spec` `tmle_vimshift_delta` similar to how we did in a
+previous example:
 
 ```{r vim_spec_init_washb, message=FALSE, warning=FALSE}
 # initialize a tmle specification for the variable importance parameter
@@ -494,7 +497,7 @@ lasso [@diaz2011super; @benkeser2016hal; @coyle2018hal9001;
 ```{r sl3_lrnrs-gfit-shift-washb, message=FALSE, warning=FALSE}
 # learners used for conditional density regression (i.e., propensity score)
 lrn_rfcde <- Lrnr_rfcde$new(
-  n_trees = 500, node_size = 3,
+  n_trees = 250, node_size = 5,
   n_basis = 20, output_type = "observed"
 )
 
@@ -513,7 +516,7 @@ counterfactual mean of the weight-for-height Z-score under a small grid of
 shifts in the mother's age at child's birth. Just as before, we do this through
 a simple call to our `tmle3` wrapper function:
 
-```{r fit_tmle_wrapper_washb, message=FALSE, warning=FALSE, eval=FALSE}
+```{r fit_tmle_wrapper_washb, message=FALSE, warning=FALSE}
 washb_tmle_fit <- tmle3(washb_vim_spec, washb_data, node_list, learner_list)
 washb_tmle_fit
 ```
