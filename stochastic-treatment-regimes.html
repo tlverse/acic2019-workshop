@@ -560,15 +560,15 @@ hold. We discuss this in greater detail in the sequel.</p>
 <h3><span class="header-section-number">6.4.2</span> Targeted Estimation of Stochastic Interventions Effects</h3>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)</code></pre>
 <pre><code>
-Iter: 1 fn: 1373.6161    Pars:  0.80826 0.19174
-Iter: 2 fn: 1373.6161    Pars:  0.80825 0.19175
+Iter: 1 fn: 1374.3832    Pars:  0.80578 0.19422
+Iter: 2 fn: 1374.3832    Pars:  0.80578 0.19422
 solnp--&gt; Completed in 2 iterations</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-   type         param  init_est  tmle_est        se     lower     upper
-1:  TSM E[Y_{A=NULL}] 0.7961602 0.7982786 0.0125488 0.7736834 0.8228738
+   type         param  init_est  tmle_est         se     lower     upper
+1:  TSM E[Y_{A=NULL}] 0.7949624 0.7975091 0.01218737 0.7736223 0.8213959
    psi_transformed lower_transformed upper_transformed
-1:       0.7982786         0.7736834         0.8228738</code></pre>
+1:       0.7975091         0.7736223         0.8213959</code></pre>
 <p>The <code>print</code> method of the resultant <code>tmle_fit</code> object conveniently displays the
 results from computing our TML estimator.</p>
 </div>
@@ -634,23 +634,23 @@ simply invoke the <code>tmle3</code> wrapper function to fit the series of TML e
 For convenience, we choose the latter:</p>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_spec, data, node_list, learner_list)</code></pre>
 <pre><code>
-Iter: 1 fn: 1376.6572    Pars:  0.78818 0.21182
-Iter: 2 fn: 1376.6572    Pars:  0.78818 0.21182
+Iter: 1 fn: 1377.1232    Pars:  0.79443 0.20557
+Iter: 2 fn: 1377.1232    Pars:  0.79443 0.20557
 solnp--&gt; Completed in 2 iterations</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit</code></pre>
 <pre><code>A tmle3_Fit that took 1 step(s)
-         type          param  init_est  tmle_est          se      lower
-1:        TSM  E[Y_{A=NULL}] 0.6299043 0.6279914 0.014293277 0.59997712
-2:        TSM  E[Y_{A=NULL}] 0.7391336 0.7388541 0.014116848 0.71118554
-3:        TSM  E[Y_{A=NULL}] 0.8442564 0.8460800 0.010293863 0.82590436
-4: MSM_linear MSM(intercept) 0.7376617 0.7375451 0.012204755 0.71362426
-5: MSM_linear     MSM(slope) 0.1069902 0.1088828 0.004557863 0.09994956
+         type          param  init_est  tmle_est          se     lower
+1:        TSM  E[Y_{A=NULL}] 0.6288431 0.6289993 0.014178400 0.6012101
+2:        TSM  E[Y_{A=NULL}] 0.7385785 0.7402729 0.014045069 0.7127450
+3:        TSM  E[Y_{A=NULL}] 0.8436568 0.8471524 0.010250063 0.8270626
+4: MSM_linear MSM(intercept) 0.7369035 0.7386899 0.012137551 0.7149007
+5: MSM_linear     MSM(slope) 0.1071918 0.1088840 0.004486446 0.1000907
        upper psi_transformed lower_transformed upper_transformed
-1: 0.6560057       0.6279914        0.59997712         0.6560057
-2: 0.7665226       0.7388541        0.71118554         0.7665226
-3: 0.8662556       0.8460800        0.82590436         0.8662556
-4: 0.7614660       0.7375451        0.71362426         0.7614660
-5: 0.1178160       0.1088828        0.09994956         0.1178160</code></pre>
+1: 0.6567884       0.6289993         0.6012101         0.6567884
+2: 0.7678007       0.7402729         0.7127450         0.7678007
+3: 0.8672421       0.8471524         0.8270626         0.8672421
+4: 0.7624791       0.7386899         0.7149007         0.7624791
+5: 0.1176773       0.1088840         0.1000907         0.1176773</code></pre>
 <p><em>Remark</em>: The <code>print</code> method of the resultant <code>tmle_fit</code> object conveniently
 displays the results from computing our TML estimator.</p>
 </div>
@@ -675,12 +675,12 @@ for <span class="math inline">\(m_{\beta}(\delta)\)</span> may be expressed <spa
 \Sigma),\]</span> where <span class="math inline">\(\Sigma\)</span> is the empirical covariance matrix of
 <span class="math inline">\(\text{EIF}_{\beta}(O)\)</span>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_fit<span class="op">$</span>summary[<span class="dv">4</span><span class="op">:</span><span class="dv">5</span>, ]</code></pre>
-<pre><code>         type          param  init_est  tmle_est          se      lower
-1: MSM_linear MSM(intercept) 0.7376617 0.7375451 0.012204755 0.71362426
-2: MSM_linear     MSM(slope) 0.1069902 0.1088828 0.004557863 0.09994956
-      upper psi_transformed lower_transformed upper_transformed
-1: 0.761466       0.7375451        0.71362426          0.761466
-2: 0.117816       0.1088828        0.09994956          0.117816</code></pre>
+<pre><code>         type          param  init_est  tmle_est          se     lower
+1: MSM_linear MSM(intercept) 0.7369035 0.7386899 0.012137551 0.7149007
+2: MSM_linear     MSM(slope) 0.1071918 0.1088840 0.004486446 0.1000907
+       upper psi_transformed lower_transformed upper_transformed
+1: 0.7624791       0.7386899         0.7149007         0.7624791
+2: 0.1176773       0.1088840         0.1000907         0.1176773</code></pre>
 </div>
 <div id="directly-targeting-the-msm-parameter-beta" class="section level3">
 <h3><span class="header-section-number">6.5.4</span> Directly Targeting the MSM Parameter <span class="math inline">\(\beta\)</span></h3>
@@ -711,17 +711,17 @@ tmle_msm_spec &lt;-<span class="st"> </span><span class="kw">tmle_vimshift_msm</
 <span class="co"># fit the TML estimator and examine the results</span>
 tmle_msm_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(tmle_msm_spec, data, node_list, learner_list)</code></pre>
 <pre><code>
-Iter: 1 fn: 1373.9725    Pars:  0.79235 0.20765
-Iter: 2 fn: 1373.9725    Pars:  0.79236 0.20764
+Iter: 1 fn: 1379.1753    Pars:  0.77887 0.22113
+Iter: 2 fn: 1379.1753    Pars:  0.77887 0.22113
 solnp--&gt; Completed in 2 iterations</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tmle_msm_fit</code></pre>
 <pre><code>A tmle3_Fit that took 100 step(s)
          type          param  init_est  tmle_est          se      lower
-1: MSM_linear MSM(intercept) 0.7361663 0.7359159 0.014410736 0.70767136
-2: MSM_linear     MSM(slope) 0.1072797 0.1074329 0.007754818 0.09223369
+1: MSM_linear MSM(intercept) 0.7375259 0.7371286 0.013263914 0.71113185
+2: MSM_linear     MSM(slope) 0.1070251 0.1068032 0.005953466 0.09513463
        upper psi_transformed lower_transformed upper_transformed
-1: 0.7641604       0.7359159        0.70767136         0.7641604
-2: 0.1226320       0.1074329        0.09223369         0.1226320</code></pre>
+1: 0.7631254       0.7371286        0.71113185         0.7631254
+2: 0.1184718       0.1068032        0.09513463         0.1184718</code></pre>
 </div>
 <div id="example-with-the-wash-benefits-data" class="section level3">
 <h3><span class="header-section-number">6.5.5</span> Example with the WASH Benefits Data</h3>
@@ -758,16 +758,18 @@ child’s birth, and take all other covariates to be potential confounders.</p>
 )</code></pre>
 <p>Were we to consider the counterfactual weight-for-height Z-score under shifts in
 the age of the mother at child’s birth, how would we interpret estimates of our
-parameter? To simplify our interpretation, consider a shift of just a year in
-the mother’s age (i.e., <span class="math inline">\(\delta = 1\)</span>); in this setting, a stochastic
+parameter?</p>
+<p>To simplify our interpretation, consider a shift (up or down) of two years in
+the mother’s age (i.e., <span class="math inline">\(\delta = \{-2, 0, 2\}\)</span>); in this setting, a stochastic
 intervention would correspond to a policy advocating that potential mothers
-defer having a child for a single calendar year, possibly implemented through an
-encouragement design deployed in a clinical setting.</p>
+defer or accelerate plans of having a child for two calendar years, possibly
+implemented through an encouragement design deployed in a clinical setting.</p>
 <p>For this example, we’ll use the variable importance strategy of considering a
 grid of stochastic interventions to evaluate the weight-for-height Z-score under
-a shift in the mother’s age down by two years (<span class="math inline">\(\delta = -2\)</span>), up by two years
-(<span class="math inline">\(\delta = 2\)</span>), and under no shift at all (<span class="math inline">\(\delta = 0\)</span>). To do this, we simply
-initialize a <code>Spec</code> <code>tmle_vimshift_delta</code> just as we did in a previous example</p>
+a shift in the mother’s age down by two years (<span class="math inline">\(\delta = -2\)</span>) through up by two
+years (<span class="math inline">\(\delta = 2\)</span>), incrementing by a single year between the two. To do this,
+we simply initialize a <code>Spec</code> <code>tmle_vimshift_delta</code> similar to how we did in a
+previous example:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># initialize a tmle specification for the variable importance parameter</span>
 washb_vim_spec &lt;-<span class="st"> </span><span class="kw">tmle_vimshift_delta</span>(
   <span class="dt">shift_grid =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">-2</span>, <span class="dt">to =</span> <span class="dv">2</span>, <span class="dt">by =</span> <span class="dv">1</span>),
@@ -780,7 +782,7 @@ the nonparametric conditional density approach based on the highly adaptive
 lasso <span class="citation">(Díaz and van der Laan <a href="#ref-diaz2011super">2011</a>; Benkeser and van der Laan <a href="#ref-benkeser2016hal">2016</a>; Coyle and Hejazi <a href="#ref-coyle2018hal9001">2018</a>; Hejazi and Benkeser <a href="#ref-hejazi2019haldensify">2019</a>)</span> is currently unable to accommodate large datasets.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># learners used for conditional density regression (i.e., propensity score)</span>
 lrn_rfcde &lt;-<span class="st"> </span>Lrnr_rfcde<span class="op">$</span><span class="kw">new</span>(
-  <span class="dt">n_trees =</span> <span class="dv">500</span>, <span class="dt">node_size =</span> <span class="dv">3</span>,
+  <span class="dt">n_trees =</span> <span class="dv">250</span>, <span class="dt">node_size =</span> <span class="dv">5</span>,
   <span class="dt">n_basis =</span> <span class="dv">20</span>, <span class="dt">output_type =</span> <span class="st">&quot;observed&quot;</span>
 )
 
@@ -798,6 +800,23 @@ shifts in the mother’s age at child’s birth. Just as before, we do this thro
 a simple call to our <code>tmle3</code> wrapper function:</p>
 <pre class="sourceCode r"><code class="sourceCode r">washb_tmle_fit &lt;-<span class="st"> </span><span class="kw">tmle3</span>(washb_vim_spec, washb_data, node_list, learner_list)
 washb_tmle_fit</code></pre>
+<pre><code>A tmle3_Fit that took 1 step(s)
+         type          param     init_est    tmle_est          se        lower
+1:        TSM  E[Y_{A=NULL}] -0.555763996 -0.57631979 0.052042248 -0.678320721
+2:        TSM  E[Y_{A=NULL}] -0.559446078 -0.62835075 0.081568430 -0.788221930
+3:        TSM  E[Y_{A=NULL}] -0.562524409 -0.58400078 0.167805276 -0.912893079
+4:        TSM  E[Y_{A=NULL}] -0.564769929 -0.48449738 0.087417572 -0.655832671
+5:        TSM  E[Y_{A=NULL}] -0.568294385 -0.54296293 0.064315897 -0.669019769
+6: MSM_linear MSM(intercept) -0.562085417 -0.55897780 0.066766868 -0.689838460
+7: MSM_linear     MSM(slope) -0.003079483  0.01494375 0.009701744 -0.004071317
+         upper psi_transformed lower_transformed upper_transformed
+1: -0.47431886     -0.57631979      -0.678320721       -0.47431886
+2: -0.46847956     -0.62835075      -0.788221930       -0.46847956
+3: -0.25510848     -0.58400078      -0.912893079       -0.25510848
+4: -0.31316209     -0.48449738      -0.655832671       -0.31316209
+5: -0.41690609     -0.54296293      -0.669019769       -0.41690609
+6: -0.42811715     -0.55897780      -0.689838460       -0.42811715
+7:  0.03395882      0.01494375      -0.004071317        0.03395882</code></pre>
 <hr />
 </div>
 </div>
