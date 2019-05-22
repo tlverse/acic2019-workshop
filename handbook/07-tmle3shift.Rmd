@@ -497,7 +497,7 @@ lasso [@diaz2011super; @benkeser2016hal; @coyle2018hal9001;
 ```{r sl3_lrnrs-gfit-shift-washb, message=FALSE, warning=FALSE}
 # learners used for conditional density regression (i.e., propensity score)
 lrn_rfcde <- Lrnr_rfcde$new(
-  n_trees = 500, node_size = 3,
+  n_trees = 250, node_size = 5,
   n_basis = 20, output_type = "observed"
 )
 
