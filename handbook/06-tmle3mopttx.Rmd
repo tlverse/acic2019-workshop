@@ -10,20 +10,22 @@ Updated: `r Sys.Date()`
 ## Learning Objectives
 By the end of this lesson you will be able to:
 
-1. Differentiate between dynamic and optimal dynamic treatment regimes from static
+1. Differentiate dynamic and optimal dynamic treatment interventions from static
    interventions.
-2. Understand the benefits, and challenges, associated with using
-   optimal individualized treatment regimes in practice.
+2. Explain the benefits and challenges associated with using optimal
+   individualized treatment regimes in practice.
 3. Contrast the impact of implementing an optimal individualized treatment
-   in the population with static and dynamic regimes.
-4. Estimate causal effects under optimal individualized treatment regimes with the
-  `tmle3mopttx` `R` package.
-5. Contrast the population impact of implementing optimal individualized treatment
-   based on sub-optimal rules.
-6. Construct realistic optimal individualized treatments that respect real data
-   and subject-matter knowledge limitations on interventions.
-7. Understand and implement variable importance analysis defined in
-   terms of optimal individualized treatment interventions.
+   regime in the population with the impact of implementing static and dynamic
+   treatment regimes in the population.
+4. Estimate causal effects under optimal individualized treatment regimes with
+   the `tmle3mopttx` `R` package.
+5. Implement optimal individualized treatment rules based on sub-optimal
+   rules, or "simple" rules, and recognize the practical benefit of these rules.
+6. Construct "realistic" optimal individualized treatment regimes that respect
+   real data and subject-matter knowledge limitations on interventions by
+   only considering interventions that are supported by the data.
+7. Measure variable importance as defined in terms of optimal individualized
+   treatment interventions.
 
 ## Introduction to Optimal Individualized Interventions
 
@@ -32,60 +34,60 @@ based on lifestyle, genetic and environmental factors is a common goal in
 precision medicine. One opts to administer the intervention to individuals
 who will profit from it, instead of assigning treatment on a population level.
 
-* This aim motivates a different type of intervention, as opposed to the static 
-exposures we might be used to. 
+* This aim motivates a different type of intervention, as opposed to the static
+exposures we might be used to.
 
-* In this chapter, we learn about dynamic 
-(individualized) interventions that tailor the treatment decision based on the 
-collected covariates. 
+* In this chapter, we learn about dynamic
+(individualized) interventions that tailor the treatment decision based on the
+collected covariates.
 
 * In the statistics community, such a treatment strategy is
-termed **individualized treatment regimes** (ITR), and the (counterfactual) population 
-mean outcome under an ITR is the **value of the ITR**. 
+termed **individualized treatment regimes** (ITR), and the (counterfactual) population
+mean outcome under an ITR is the **value of the ITR**.
 
-* Even more, suppose one wishes 
-to maximize the population mean of an outcome, where for each individual we have 
-access to some set of measured covariates. An ITR with the maximal value is referred 
-to as an **optimal ITR** or the **optimal individualized treatment**. 
-Consequently, the value of an optimal ITR is termed the **optimal value**, or the 
+* Even more, suppose one wishes
+to maximize the population mean of an outcome, where for each individual we have
+access to some set of measured covariates. An ITR with the maximal value is referred
+to as an **optimal ITR** or the **optimal individualized treatment**.
+Consequently, the value of an optimal ITR is termed the **optimal value**, or the
 **mean under the optimal individualized treatment**.
 
-* One opts to administer the intervention to individuals who will profit from it, instead of 
-assigning treatment on a population level. But how do we know which intervention works for which 
-patient? 
+* One opts to administer the intervention to individuals who will profit from it, instead of
+assigning treatment on a population level. But how do we know which intervention works for which
+patient?
 
-* For example, one might seek to improve retention in 
+* For example, one might seek to improve retention in
 HIV care. In a randomized clinical trial, several interventions show efficacy- including
-appointment reminders through text messages, small cash incentives for on time clinic 
-visits, and peer health workers. 
+appointment reminders through text messages, small cash incentives for on time clinic
+visits, and peer health workers.
 
-* Ideally, we want to improve effectiveness by assigning 
-each patient the intervention they are most likely to benefit from, as well as improve 
-efficiency by not allocating resources to individuals that do not need them, or would 
+* Ideally, we want to improve effectiveness by assigning
+each patient the intervention they are most likely to benefit from, as well as improve
+efficiency by not allocating resources to individuals that do not need them, or would
 
 ```{r, fig.cap="Illustration of a Dynamic Treatment Regime in a Clinical Setting", echo=FALSE, eval=TRUE, out.width='60%'}
 knitr::include_graphics(path = "img/image/DynamicA_Illustration.png")
 ```
 
 
-This aim motivates a different type of intervention, as opposed to the static exposures we 
-might be used to. 
+This aim motivates a different type of intervention, as opposed to the static exposures we
+might be used to.
 
-* In this chapter, we examine multiple examples of optimal individualized 
-treatment regimes 
-and estimate the mean outcome under the ITR 
-where the candidate rules are restricted to depend only on user-supplied subset of the 
-baseline covariates. 
+* In this chapter, we examine multiple examples of optimal individualized
+treatment regimes
+and estimate the mean outcome under the ITR
+where the candidate rules are restricted to depend only on user-supplied subset of the
+baseline covariates.
 
 * In order to accomplish this, we present the [`tmle3mopttx` R
 package](https://github.com/tlverse/tmle3mopttx), which features an
 implementation of a recently developed algorithm for computing targeted minimum
-loss-based estimates of a causal effect based on optimal ITR for 
-categorical treatment. 
+loss-based estimates of a causal effect based on optimal ITR for
+categorical treatment.
 
-* In particular, we will use `tmle3mopttx` to estimate 
-optimal ITR and the corresponding population value, 
-construct realistic optimal ITRs, and perform variable importance in terms of the 
+* In particular, we will use `tmle3mopttx` to estimate
+optimal ITR and the corresponding population value,
+construct realistic optimal ITRs, and perform variable importance in terms of the
 mean under the optimal individualized treatment.
 
 ## Data Structure and Notation
@@ -159,10 +161,10 @@ Estimator (CV-TMLE).
 
 ### Why CV-TMLE?
 
-* CV-TMLE is necessary as the non-cross-validated TMLE 
-is biased upward for the mean outcome under the rule, and therefore overly optimistic. 
+* CV-TMLE is necessary as the non-cross-validated TMLE
+is biased upward for the mean outcome under the rule, and therefore overly optimistic.
 
-* More generally however, using CV-TMLE allows us more freedom in estimation and therefore greater 
+* More generally however, using CV-TMLE allows us more freedom in estimation and therefore greater
 data adaptivity, without sacrificing inference!
 
 ## Binary Treatment
@@ -192,11 +194,11 @@ our outcome, where we define:
 
 $$D_{\bar{Q}_Y,g,a}(O) \equiv \frac{I(A=a)}{g(A|W)} (Y-\bar{Q}_Y(A,W)) + \bar{Q}_Y(A=a,W)$$
 
-Note that under the randomization and positivity assumptions we have that 
-$E[D_{\bar{Q}_Y,g,a}(O) | V] = E[Y_a |V].$ We emphasize the double robust nature 
-of the A-IPW transform: consistency of $E[Y_a |V]$ will depend on correct estimation 
-of either $\bar{Q}_{Y,0}(A,W)$ or $g_0(A|W)$. As such, in a randomized trial, we are 
-guaranteed a consistent estimate of $E[Y_a |V]$ even if we get $\bar{Q}_{Y,0}(A,W)$ wrong! 
+Note that under the randomization and positivity assumptions we have that
+$E[D_{\bar{Q}_Y,g,a}(O) | V] = E[Y_a |V].$ We emphasize the double robust nature
+of the A-IPW transform: consistency of $E[Y_a |V]$ will depend on correct estimation
+of either $\bar{Q}_{Y,0}(A,W)$ or $g_0(A|W)$. As such, in a randomized trial, we are
+guaranteed a consistent estimate of $E[Y_a |V]$ even if we get $\bar{Q}_{Y,0}(A,W)$ wrong!
 
 Using this transform, we can define the following contrast:
 
@@ -338,12 +340,13 @@ fit <- tmle3(tmle_spec, data, node_list, learner_list)
 fit
 ```
 
-We can see that the confidence interval covers our true mean under the true optimal 
+We can see that the confidence interval covers our true mean under the true optimal
 individualized treatment!
 
 ## Categorical Treatment
 
-**QUESTION:** What if the treatment is categorical? Can we still use the blip function?
+**QUESTION:** Can we still use the blip function if the treatment is 
+categorical?
 
 * In this section, we consider how to evaluate the mean outcome under the optimal
 individualized treatment when $A$ has more than two categories!
@@ -524,7 +527,7 @@ for rule estimation, a simpler rule is sufficient to
 maximize the mean under the optimal individualized treatment!
 
 **QUESTION:** Why do you think the estimate
-   if higher under the less complex rule? How does the set of covariates picked by `tmle3mopttx`
+   is higher under the less complex rule? How does the set of covariates picked by `tmle3mopttx`
    compare to the baseline covariates the true rule depends on?
 
 ### Realistic Optimal Individual Regimes
@@ -560,8 +563,8 @@ table(tmle_spec$return_rule)
 ```
 
 **QUESTION:** Referring back to the data-generating distribution, why do you
-think the distribution of allocated treatment changed from the distribution 
-we had under the "non-realistic"" rule?
+think the distribution of allocated treatment changed from the distribution
+that we had under the "non-realistic" rule?
 
 ### Variable Importance Analysis
 
@@ -629,7 +632,7 @@ covariates in our dataset.
 
 ### Real World Data and `tmle3mopttx`
 
-Finally, we cement everything we learned so far with a real data application. 
+Finally, we cement everything we learned so far with a real data application.
 
 As in the previous sections, we will be using the WASH Benefits data,
 corresponding to the Effect of water quality, sanitation, hand washing, and
@@ -662,20 +665,20 @@ the six intervention groups aimed at improving living conditions.
 
 In the etherpad, submit your group's answers to the following questions.
 
-1. Define $V$ as mother's education (`momedu`), current living conditions (`floor`), 
-   and possession of material items including the refrigerator (`asset_refrig`). 
+1. Define $V$ as mother's education (`momedu`), current living conditions (`floor`),
+   and possession of material items including the refrigerator (`asset_refrig`).
    Why do you think we use these covariates as $V$?
    Do we want to minimize or maximize the outcome? Which blip type should we use?
    Construct an approprite `sl3` library for $A$, $Y$ and $B$.
-   
+
 2. Based on the $V$ defined in the previous question, estimate the mean under the ITR for
    the main randomized intervention used in the WASH Benefits trial
    with weight-for-height Z-score as the outcome. What's the TMLE value of the optimal ITR?
-   How does it change from the initial estimate? Which intervention is the most dominant? 
+   How does it change from the initial estimate? Which intervention is the most dominant?
    Why do you think that is?
-   
-3. Using the same formulation as in questions 1 and 2, estimate the realistic optimal ITR 
-   and the corresponding value of the realistic ITR. Did the results change? Which intervention 
+
+3. Using the same formulation as in questions 1 and 2, estimate the realistic optimal ITR
+   and the corresponding value of the realistic ITR. Did the results change? Which intervention
    is the most dominant under realistic rules? Why do you think that is?   
 
 ## Summary
@@ -730,7 +733,7 @@ summary(washb_data$whz)
 
 We specify a simply library for the outcome regression, propensity score
 and the blip function. Since our treatment is categorical, we need to define a
-multinomial learner for $A$ and multivariate learner for $B$. We 
+multinomial learner for $A$ and multivariate learner for $B$. We
 will define the `xgboost` over a grid of parameters, and initialize a mean learner.
 
 ```{r sl3_lrnrs-WASH-mopttx, eval=FALSE}
@@ -764,10 +767,10 @@ b_learner <- create_mv_learners(learners = learners)
 learner_list <- list(Y = Q_learner, A = g_learner, B = b_learner)
 ```
 
-As seen before, we initialize the `tmle3_mopttx_blip_revere` Specn in order to 
+As seen before, we initialize the `tmle3_mopttx_blip_revere` Specn in order to
 answer Question 1. We want to maximize our outcome, with higher the weight-for-height Z-score
 the better. We will also use `blip2` as the blip type, but note that we could have used `blip1`
-as well since "Control" is a good reference category. 
+as well since "Control" is a good reference category.
 
 ```{r spec_init_WASH, eval=FALSE}
 ## Question 2:
@@ -783,11 +786,11 @@ tmle_spec <- tmle3_mopttx_blip_revere(
 fit <- tmle3(tmle_spec, data=washb_data, node_list, learner_list)
 fit
 
-#Which intervention is the most dominant? 
+#Which intervention is the most dominant?
 table(tmle_spec$return_rule)
 ```
 
-Using the same formulation as before, we estimate the realistic optimal ITR 
+Using the same formulation as before, we estimate the realistic optimal ITR
 and the corresponding value of the realistic ITR:
 
 ```{r spec_init_WASH_simple_q3, eval=FALSE}
