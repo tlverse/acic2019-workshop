@@ -321,8 +321,8 @@ experiment and thereby define the parameter of interest. Causal graphs are one
 useful tool to express what we know about the causal relations among variables
 that are relevant to the question under study <span class="citation">(Pearl <a href="#ref-pearl2009causality">2009</a>)</span>.</p>
 <p>Ignoring error terms, we will assume the following ordering of the variables in <span class="math inline">\(O\)</span>.</p>
-<div id="htmlwidget-4446360a45d69db7b61b" style="width:200px;height:300px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4446360a45d69db7b61b">{"x":{"nodes":{"id":["W","A","Y"],"label":["W","A","Y"]},"edges":{"from":["W","W","A"],"to":["A","Y","Y"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":true}},"layout":{"randomSeed":25}},"groups":null,"width":"200px","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b0c0216a2de8bcf2dfe7" style="width:200px;height:300px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b0c0216a2de8bcf2dfe7">{"x":{"nodes":{"id":["W","A","Y"],"label":["W","A","Y"]},"edges":{"from":["W","W","A"],"to":["A","Y","Y"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":true}},"layout":{"randomSeed":25}},"groups":null,"width":"200px","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
 <p>While
 directed acyclic graphs (DAGs - like above) provide a convenient means by which to visualize
 causal relations between variables, the causal relations among variables
@@ -396,14 +396,14 @@ is the <em>randomization</em> assumption. In the case of observational data, the
 analogous assumption is <em>strong ignorability</em> or <em>no unmeasured confounding</em>
 <span class="math inline">\(Y(a) \perp A \mid W\)</span> for all <span class="math inline">\(a \in \mathcal{A}\)</span>;</li>
 <li>Although not represented in the causal graph, also required is the assumption
-of no interference between units, that is, the outcome for unit <span class="math inline">\(i\)</span> <span class="math inline">\(Y_i\)</span> is
-not affected by exposure for unit <span class="math inline">\(j\)</span> <span class="math inline">\(A_j\)</span> unless <span class="math inline">\(i=j\)</span>;</li>
+of <em>no interference</em> between units, that is, the outcome for unit <span class="math inline">\(i\)</span> <span class="math inline">\(Y_i\)</span>
+is not affected by exposure for unit <span class="math inline">\(j\)</span> <span class="math inline">\(A_j\)</span> unless <span class="math inline">\(i=j\)</span>;</li>
 <li><em>Consistency</em> of the treatment mechanism is also required, i.e., the outcome
 for unit <span class="math inline">\(i\)</span> is <span class="math inline">\(Y_i(a)\)</span> whenever <span class="math inline">\(A_i = a\)</span>, an assumption also known as “no
 other versions of treatment”;</li>
 <li>It is also necessary that all observed units, across strata defined by <span class="math inline">\(W\)</span>,
 have a bounded (non-deterministic) probability of receiving treatment –
-that is, <span class="math inline">\(0 &lt; P_0(A = a \mid W) &lt; 1\)</span> for all <span class="math inline">\(a\)</span> and <span class="math inline">\(W\)</span>). This assumption is
+that is, <span class="math inline">\(0 &lt; P_0(A = a \mid W) &lt; 1\)</span> for all <span class="math inline">\(a\)</span> and <span class="math inline">\(W\)</span>. This assumption is
 referred to as <em>positivity</em>.</li>
 </ol>
 <p><em>Remark</em>: Together, (2) and (3), the assumptions of no interference and
