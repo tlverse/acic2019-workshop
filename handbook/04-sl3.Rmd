@@ -95,7 +95,8 @@ library(origami)
 set.seed(7194)
 
 # load data set and take a peek
-washb_data <- fread("https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data.csv", stringsAsFactors = TRUE)
+washb_data <- fread("https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data.csv",
+                    stringsAsFactors = TRUE)
 
 head(washb_data) %>%
   kable(digits = 4) %>%
@@ -340,7 +341,7 @@ mean risk of the discrete super learner?
 3. Did your group face any challenges?
 4. Any additional comments/questions about this `sl3` section of the workshop?
 
-```{r ex-setup}
+```{r ex-setup, message=FALSE, warning=FALSE}
 # load the data set
 db_data <-
  url("https://raw.githubusercontent.com/benkeser/sllecture/master/chspred.csv")
@@ -349,7 +350,7 @@ chspred <- read_csv(file = db_data, col_names = TRUE)
 head(chspred) %>%
   kable(digits = 4) %>%
   kable_styling(fixed_thead = T, font_size = 10) %>%
-  scroll_box(width = "100%", height = "250px")
+  scroll_box(width = "100%", height = "200px")
 ```
 
 1. Create an `sl3` task, setting myocardial infarction `mi` as the outcome and
