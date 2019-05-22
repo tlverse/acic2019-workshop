@@ -95,7 +95,8 @@ library(origami)
 set.seed(7194)
 
 # load data set and take a peek
-washb_data <- fread("https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data.csv", stringsAsFactors = TRUE)
+washb_data <- fread("https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data.csv",
+                    stringsAsFactors = TRUE)
 
 head(washb_data) %>%
   kable(digits = 4) %>%
