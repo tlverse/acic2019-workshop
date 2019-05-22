@@ -1,4 +1,4 @@
----
+hand-washing---
 output: html_document
 editor_options:
   chunk_output_type: console
@@ -61,10 +61,9 @@ network <- visNetwork(nodes,edges, height="300px",width="200px") %>%
 network
 ```
 
-While
-directed acyclic graphs (DAGs - like above) provide a convenient means by which
-to visualize causal relations between variables, the  causal relations among
-variables can be represented via a set of structural equations:
+While directed acyclic graphs (DAGs) like above provide a convenient means by
+which to visualize causal relations between variables, the causal relations
+among variables can be represented via a set of structural equations:
 \begin{align*}
   W &= f_W(U_W) \\
   A &= f_A(W, U_A) \\
@@ -163,7 +162,7 @@ contrast of treatment conditions ($A = 0$ vs. $A = 1$), in the population,
 averaged over all observations. Thus, a parameter of a theoretical "full" data
 distribution can be represented as an estimand of the observed data
 distribution. Significantly, there is nothing about the representation in
-\ref{eqn:estimand} that requires parameteric assumptions; thus, the regressions
+\ref{eqn:estimand} that requires parametric assumptions; thus, the regressions
 on the right hand side may be estimated freely with machine learning. With
 different parameters, there will be potentially different identifiability
 assumptions and the resulting estimands can be functions of different components
@@ -266,17 +265,16 @@ knitr::include_graphics("img/misc/ericSL.pdf")
 
 We give one example using an example of the average treatment effect (see above):
 
-- $\Psi(P_0) = \Psi(Q_0) \mathbb{E}_0
-    \left(\mathbb{E}_0[Y \mid A = 1, W] - \mathbb{E}_0[Y \mid A = 0, W]\right).$
-    where $Q_0$ represents both the distribution of $Y \mid W,A$ and
-    distribution of $W$.
+- $\Psi(P_0) = \Psi(Q_0) = \mathbb{E}_0 \big[\mathbb{E}_0[Y \mid A = 1, W] -
+  \mathbb{E}_0[Y \mid A = 0, W]\right\big]$, where $Q_0$ represents both the
+  distribution of $Y \mid A,W$ and distribution of $W$.
 - Let $\bar{Q}_0(A,W) \equiv E_0(Y \mid A,W)$ and $Q_{0,W}(w) = P_0 (W=w)$, then
 \[
 \Psi(Q_0) = \sum_w \{ \bar{Q}_0(1,w)-\bar{Q}_0(0,w)\} Q_{0,W}(w)
 \]
 - The **Substitution Estimator** plugs in the empirical distribution (weight
   $1/n$ for each observation) for $Q_{0,W}(W_i)$, and some estimate of the
-  regression of $Y$ on $(W,A)$  (say SL fit):
+  regression of $Y$ on $(A,W)$  (say SL fit):
  \[
  \Psi(Q_n) = \frac{1}{n} \sum_{i=1}^n  \{ \bar{Q}_n(1,W_i)-\bar{Q}_n(0,W_i)\}
  \]
@@ -290,12 +288,12 @@ We give one example using an example of the average treatment effect (see above)
   it's not sufficient to have the properties of an estimator one needs for
   rigorous inference.
 - Because the variance-bias trade-off in the SL is focused on the prediction
-  model, it can, for instance, underfit portions of the distributions that are
-  critical for estimating the parameter of interest ($\Psi(P_0)$).
+  model, it can, for instance, under-fit portions of the distributions that are
+  critical for estimating the parameter of interest, $\Psi(P_0)$.
 - TMLE keeps the benefits of substitution estimators (it is one), but augments
   the original estimates to correct for this issue and also results in an
-  asymptotically linear (and thus normally-distributed) estimator with consisent
-  Wald-style confidence intervals.
+  asymptotically linear (and thus normally-distributed) estimator with
+  consistent Wald-style confidence intervals.
 - Produces a well-defined, unbiased, efficient substitution estimator of target
   parameters of a data-generating distribution.
 - Updates an initial (super learner) estimate  of the relevant part of the
@@ -328,11 +326,11 @@ $f(\bar{Q}^*_n(A,W)) = f(\bar{Q}_n(A,W)) + \epsilon_n * h_n(A,W)$, where
 $f(\cdot)$ is the appropriate link function (e.g., logit), $\epsilon_n$ is an
 estimated coefficient and $h_n(A,W)$ is a "clever covariate".
 
-- In this case, $h_n(A,W) = A/g_n(W)-(1-A)/(1-g_n(W))$, with $g_n(W) = P_n(A=1
-  \mid W)$ being the estimated (also by SL) propensity score, so the estimator
-  depends both on initial SL fit of the outcome regression ($\bar{Q}_0$) and an
-  SL fit of the propensity score ($g_n$).
-- There are further robust agumentations that are used in tlverse, such as an
+- In this case, $h_n(A,W) = \frac{A}{g_n(W)}-\frac{1-A}{1-g_n(W)}$, with
+  $g_n(W) = P_n(A=1 \mid W)$ being the estimated (also by SL) propensity score,
+  so the estimator depends both on initial SL fit of the outcome regression
+  ($\bar{Q}_0$) and an SL fit of the propensity score ($g_n$).
+- There are further robust augmentations that are used in `tlverse`, such as an
   added layer of cross-validation to avoid over-fitting bias (CV-TMLE), and so
   called methods that can more robustly estimated several parameters
   simultaneously (e.g., the points on a survival curve).
@@ -343,7 +341,7 @@ estimated coefficient and $h_n(A,W)$ is a "clever covariate".
   difference in the estimate $\Psi(P_n)$ and the true parameter ($\Psi(P_0)$)
   can be represented in first order by a i.i.d. sum:
 \begin{equation}\label{eqn:IC}
-  \Psi(P_n) - \Psi(P_0) = \frac{1}{n} IC(O_i; \nu) + op(1/\sqrt{n})
+  \Psi(P_n) - \Psi(P_0) = \frac{1}{n} IC(O_i; \nu) + o_p(1/\sqrt{n})
 \end{equation}
 
 where $IC(O_i; \nu)$ (the influence curve or function) is a function of the data
@@ -385,7 +383,7 @@ intervention or health promoter visit). The six intervention groups were:
 
 1. chlorinated drinking water;
 2. improved sanitation;
-3. handwashing with soap;
+3. hand-washing with soap;
 4. combined water, sanitation, and hand washing;
 5. improved nutrition through counseling and provision of lipid-based nutrient
    supplements; and
