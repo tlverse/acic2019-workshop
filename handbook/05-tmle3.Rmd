@@ -365,8 +365,16 @@ but also tailored to have robust finite sample performance.
 2. Define a `tmle3_Spec` object for the ATE, `tmle_ATE()`.
 3. Using the same base learning libraries defined above, specify `sl3` base
    learners for estimation of $Q = E(Y|A,Y)$ and $g=P(A|W)$.
-4. Specify `Lrnr_nnls` as the metalearner for both $Q$ and $G$.
+4. Define the metalearner like below
+
+```{r, metalrnr-exercise}
+metalearner <- make_learner(Lrnr_solnp,
+                            loss_function = loss_loglik_binomial,
+                            learner_function = metalearner_logistic_binomial)
+```   
+
 5. Define one super learner for estimating $Q$ and another for estimating $g$.
+   Use the metalearner above for both $Q$ and $g$ super learners.
 6. Create a list of the two super learners defined in Step 5 and call this
    object `learner_list`. The list names should be `A` (defining the super
    learner for estimating $g$) and `Y` (defining the super learner for
