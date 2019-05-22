@@ -211,7 +211,7 @@ print(vim_results)
 
 
 ## ----load-washb-data, message=FALSE, warning=FALSE, cache=FALSE, eval=FALSE----
-## washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
+## washb_data <- fread("https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data.csv", stringsAsFactors = TRUE)
 ## washb_data <- washb_data[!is.na(momage), lapply(.SD, as.numeric)]
 ## head(washb_data, 3)
 
@@ -222,9 +222,15 @@ print(vim_results)
 
 
 ## ----summary_WASH, eval=FALSE--------------------------------------------
+## #V1, V2 and V3:
 ## table(washb_data$momedu)
 ## table(washb_data$floor)
 ## table(washb_data$asset_refrig)
+## 
+## #A:
+## table(washb_data$tr)
+## 
+## #Y:
 ## summary(washb_data$whz)
 
 
@@ -260,48 +266,34 @@ print(vim_results)
 
 
 ## ----spec_init_WASH, eval=FALSE------------------------------------------
-## ## Question 0:
-## # initialize a tmle specification
+## ## Question 2:
+## 
+## #Initialize a tmle specification
 ## tmle_spec <- tmle3_mopttx_blip_revere(
 ##   V = c("momedu", "floor", "asset_refrig"), type = "blip2",
 ##   learners = learner_list, maximize = TRUE, complex = TRUE,
 ##   realistic = FALSE
 ## )
 ## 
-## # fit the TML estimator
+## #Fit the TML estimator.
 ## fit <- tmle3(tmle_spec, data=washb_data, node_list, learner_list)
 ## fit
 ## 
-## # Question 1:
-## table(tmle_spec$return_rule)
-
-
-## ----spec_init_WASH_simple_q2, eval=FALSE--------------------------------
-## ## Question 2:
-## 
-## # initialize a tmle specification
-## tmle_spec <- tmle3_mopttx_blip_revere(
-##   V = c("momedu", "floor", "asset_refrig"), type = "blip2",
-##   learners = learner_list, maximize = TRUE, complex = FALSE,
-##   realistic = FALSE
-## )
-## 
-## fit <- tmle3(tmle_spec, data=washb_data, node_list, learner_list)
-## fit
-## 
+## #Which intervention is the most dominant?
 ## table(tmle_spec$return_rule)
 
 
 ## ----spec_init_WASH_simple_q3, eval=FALSE--------------------------------
 ## ## Question 3:
 ## 
-## # initialize a tmle specification
+## #Initialize a tmle specification with "realistic=TRUE":
 ## tmle_spec <- tmle3_mopttx_blip_revere(
 ##   V = c("momedu", "floor", "asset_refrig"), type = "blip2",
 ##   learners = learner_list, maximize = TRUE, complex = TRUE,
 ##   realistic = TRUE
 ## )
 ## 
+## #Fit the TML estimator.
 ## fit <- tmle3(tmle_spec, data=washb_data, node_list, learner_list)
 ## fit
 ## 

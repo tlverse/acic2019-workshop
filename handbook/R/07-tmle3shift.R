@@ -86,7 +86,7 @@ tmle_fit
 
 ## ----vim_spec_init, message=FALSE, warning=FALSE-------------------------
 # what's the grid of shifts we wish to consider?
-delta_grid <- seq(-1, 1, 1)
+delta_grid <- seq(from = -1, to = 1, by = 1)
 
 # initialize a tmle specification
 tmle_spec <- tmle_vimshift_delta(
@@ -117,7 +117,7 @@ tmle_msm_fit
 
 
 ## ----load-washb-data-shift, message=FALSE, warning=FALSE, cache=FALSE----
-washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
+washb_data <- fread("https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data_subset.csv", stringsAsFactors = TRUE)
 washb_data <- washb_data[!is.na(momage), lapply(.SD, as.numeric)]
 head(washb_data, 3)
 
@@ -133,7 +133,7 @@ node_list <- list(
 ## ----vim_spec_init_washb, message=FALSE, warning=FALSE-------------------
 # initialize a tmle specification for the variable importance parameter
 washb_vim_spec <- tmle_vimshift_delta(
-  shift_grid = c(-2, 2),
+  shift_grid = seq(from = -2, to = 2, by = 1),
   max_shifted_ratio = 2
 )
 
@@ -144,8 +144,15 @@ lrn_rfcde <- Lrnr_rfcde$new(
   n_trees = 500, node_size = 3,
   n_basis = 20, output_type = "observed"
 )
+
+# we need to turn on cross-validation for the RFCDE learner
+lrn_cv_rfcde <- Lrnr_cv$new(
+  learner = lrn_rfcde,
+  full_fit = TRUE
+)
+
 # modify learner list, using existing SL for Q fit
-learner_list <- list(Y = sl_lrn, A = lrn_rfcde)
+learner_list <- list(Y = sl_lrn, A = lrn_cv_rfcde)
 
 
 ## ----fit_tmle_wrapper_washb, message=FALSE, warning=FALSE, eval=FALSE----

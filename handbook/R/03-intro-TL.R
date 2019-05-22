@@ -9,30 +9,27 @@ network <- visNetwork(nodes,edges, height="300px",width="200px") %>%
 network
 
 
-## ----nature_slides, fig.show="hold"--------------------------------------
-knitr::include_graphics("img/misc/NatureSlides.pdf")
-
-
 ## ----cv_fig, fig.show="hold"---------------------------------------------
 knitr::include_graphics("img/misc/vs.pdf")
 
 
-## ----nature_slides_3, fig.show="hold"------------------------------------
-knitr::include_graphics("img/misc/NatureSlides_3.pdf")
+## ----cv_fig2, fig.show="hold"--------------------------------------------
+knitr::include_graphics("img/misc/SLKaiserNew.pdf")
 
-## ----nature_slides_4, fig.show="hold"------------------------------------
-knitr::include_graphics("img/misc/NatureSlides_4.pdf")
 
-## ----nature_slides_5, fig.show="hold"------------------------------------
-knitr::include_graphics("img/misc/NatureSlides_5.pdf")
+## ----cv_fig3, fig.show="hold"--------------------------------------------
+knitr::include_graphics("img/misc/ericSL.pdf")
+
+
+## ----cv_fig4, fig.show="hold"--------------------------------------------
+knitr::include_graphics("img/misc/TMLEimage.pdf")
 
 
 ## ----load_washb_data_intro, message=FALSE, warning=FALSE-----------------
-library(here)
 library(tidyverse)
 
 # read in data
-dat <- read_csv(here("data", "washb_data.csv"))
+dat <- read_csv("https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data.csv")
 dat
 
 

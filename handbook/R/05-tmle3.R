@@ -1,9 +1,8 @@
 ## ----tmle3-load-data-----------------------------------------------------
-library(here)
 library(data.table)
 library(tmle3)
 library(sl3)
-washb_data <- fread(here("data", "washb_data.csv"), stringsAsFactors = TRUE)
+washb_data <- fread("https://raw.githubusercontent.com/tlverse/tlverse-data/master/wash-benefits/washb_data.csv", stringsAsFactors = TRUE)
 
 
 ## ----tmle3-node-list-----------------------------------------------------
