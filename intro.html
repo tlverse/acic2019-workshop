@@ -323,8 +323,8 @@ useful tool to express what we know about the causal relations among variables
 that are relevant to the question under study <span class="citation">(Pearl <a href="#ref-pearl2009causality">2009</a>)</span>.</p>
 <p>Ignoring error terms, we will assume the following ordering of the variables in
 <span class="math inline">\(O\)</span>.</p>
-<div id="htmlwidget-52237c45bbfaecac1cc6" style="width:200px;height:300px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-52237c45bbfaecac1cc6">{"x":{"nodes":{"id":["W","A","Y"],"label":["W","A","Y"]},"edges":{"from":["W","W","A"],"to":["A","Y","Y"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":true}},"layout":{"randomSeed":25}},"groups":null,"width":"200px","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-59d6e9e7512ae5e518c3" style="width:200px;height:300px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-59d6e9e7512ae5e518c3">{"x":{"nodes":{"id":["W","A","Y"],"label":["W","A","Y"]},"edges":{"from":["W","W","A"],"to":["A","Y","Y"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":true}},"layout":{"randomSeed":25}},"groups":null,"width":"200px","height":"300px","idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
 <p>While directed acyclic graphs (DAGs) like above provide a convenient means by
 which to visualize causal relations between variables, the causal relations
 among variables can be represented via a set of structural equations:
@@ -521,7 +521,7 @@ dimensionality.</li>
 </ul>
 <p>We give one example using an example of the average treatment effect (see above):</p>
 <ul>
-<li><span class="math inline">\(\Psi(P_0) = \Psi(Q_0) = \mathbb{E}_0 \big[\mathbb{E}_0[Y \mid A = 1, W] - \mathbb{E}_0[Y \mid A = 0, W]\right\big]\)</span>, where <span class="math inline">\(Q_0\)</span> represents both the
+<li><span class="math inline">\(\Psi(P_0) = \Psi(Q_0) = \mathbb{E}_0 \big[\mathbb{E}_0[Y \mid A = 1, W] - \mathbb{E}_0[Y \mid A = 0, W]\big]\)</span>, where <span class="math inline">\(Q_0\)</span> represents both the
 distribution of <span class="math inline">\(Y \mid A,W\)</span> and distribution of <span class="math inline">\(W\)</span>.</li>
 <li>Let <span class="math inline">\(\bar{Q}_0(A,W) \equiv E_0(Y \mid A,W)\)</span> and <span class="math inline">\(Q_{0,W}(w) = P_0 (W=w)\)</span>, then
 <span class="math display">\[
